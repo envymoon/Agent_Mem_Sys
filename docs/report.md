@@ -136,12 +136,97 @@ LLM 调用统计：
 
 ## 5. 规模扩展：记忆存储本身随 N 的变化
 
-（运行中，见 `results/scale_*`）
+`bench/scale_store.py`：把 LLM 换成固定返回 2 条记忆的桩，只测记忆系统本身。记忆文本取自 LoCoMo 全部 10 段对话（不够时循环加后缀），用 mem0 自己的组件（embedding、spaCy、BM25、向量库、实体库）灌入。两种布局：
+
+- **single**：N 条记忆都属于被查询的用户；
+- **multi**：N 条记忆平均分给 100 个用户，只查其中一个（被查用户只拥有 N/100 条）。
+
+每个 N：关掉并重新打开存储（冷启动），然后 30 次 `search`（LoCoMo 问题，top-10）和 10 次 `add`（LLM 桩）。这组实验没有启动 LLM，独占 4 核。
+
+![scale](fig/scale.png)
+
+| N | 布局 | search p50 / p95 | add p50（无 LLM） | 冷启动 | 打开后 RSS | 磁盘 |
+|---|---|---|---|---|---|---|
+| 1k | single | 55 / 102 ms | 36 ms | 0.23 s | 555 MB | 7.7 MB |
+| 4k | single | 197 / 277 ms | 113 ms | 0.51 s | 710 MB | 30 MB |
+| 16k | single | 589 / 788 ms | 202 ms | 1.68 s | 1010 MB | 120 MB |
+| **48k** | single | **1522 / 2110 ms** | **516 ms** | **5.9 s** | **2528 MB** | 359 MB |
+| 48k | multi | **1971 / 3240 ms** | 517 ms | 8.9 s | 3532 MB | 527 MB |
+
+48k（single）时 `search` 1.65 s 的构成（均值，`results/scale_single/scale_breakdown.json`）：
+
+| 组件 | 时间 | 说明 |
+|---|---|---|
+| 实体加权：线程池里对实体库的 top-500 检索（4 线程，墙钟合计 844 ms，关键路径约 503 ms） | 约 0.5 s | 实体库同样是全扫 + 过滤 |
+| **payload 过滤**（`calculate_payload_mask`，Python 逐点 `check_filter`） | **791 ms** | 按 user_id 过滤，每个点一次 Python 函数调用 |
+| qdrant 本地引擎其余部分（打分、排序、构造结果对象） | 236 ms | |
+| **向量距离计算**（numpy 矩阵向量乘） | **85 ms** | 真正的“向量检索”只占约 5% |
+| query embedding（ONNX） | 25 ms | 与 N 无关 |
+| spaCy | 7.5 ms | 与 N 无关 |
+
+结论：
+
+- **全部线性（O(N)）**：检索、写、冷启动、内存占用都随 N 线性增长，没有索引。
+- **瓶颈不在“算”，而在“Python 逐点处理 + 数据布局”**：算距离只占 5%，过滤和对象构造占大头。多租户时被查用户只有 1% 的数据，却要为 100% 的数据付钱（payload 没有物理分区）。
+- **写路径也会被读路径拖慢**：`add` 的 P1 阶段要先检索已有记忆，48k 时其中 399 ms 是 payload 过滤。
+- **冷启动 = 全量反序列化**：打开存储要把 SQLite 里每个点 unpickle 回 Python 对象，48k 需要 5.9 s；RSS 增长约 50 KB/条（Python 对象开销远大于数据本身）。
+- **存储膨胀**：每条记忆在磁盘上约 7.8 KB（multi 布局 11.5 KB，实体更多），而文本约 100 B、384 维 float32 向量 1.5 KB。主要原因是向量被存成 pickle 的 Python float 列表、加上 BM25 稀疏向量和实体记录。
+- 和 4.1 节合起来看：**N 小（几十到几百条）时瓶颈是 LLM；N 到万级时，检索本身就到了秒级，开始和 LLM 回答处在同一个量级**。“大规模本地记忆”这个目标场景正好落在这里。
+
+> 公平性说明：Qdrant **server**（Rust + HNSW + payload 索引）会比 embedded 模式快很多。但 embedded 是 mem0 本地部署的默认配置，也是大量本地 agent 实际在用的形态。下一步会把 qdrant server / FAISS / sqlite-vec / LanceDB 加进对照（第 7 节）。
 
 ## 6. 从系统 / 硬件角度看到的优化机会
 
-（待规模实验完成后定稿）
+按“测到的瓶颈 → 对应的硬件特性 → 可以做的事”排列。每一条都写明是测量直接支持的，还是推测。
+
+| # | 瓶颈（测量） | 硬件 / 系统视角 | 可做的方向 |
+|---|---|---|---|
+| O1 | 抽取 prompt 的 8k 静态前缀：没有缓存时 prefill 60 s；有缓存时新 token 仍要对 8k KV 做 attention（85 vs 250 tok/s），decode 也减半 | KV 是**可复用的派生数据**，230 MB/份；attention 成本 ∝ 上下文长度 × 带宽 | (a) 记忆系统**显式管理前缀 KV**：常驻、跨进程持久化到 SSD、冷启动直接加载（参考 2603.04428 / CachedAttention）；(b) **缩短前缀**（蒸馏 prompt、小模型专用抽取器）；(c) 前缀 KV 量化（Q8/Q4）以降低带宽 |
+| O2 | decode 是写路径最大单项（32.5 s，11.6 tok/s，平均 376 输出 token） | decode 受**内存带宽**限制；输出 token 数直接等于读权重 + KV 的次数 | 紧凑输出 schema（ID 化、短字段、约束解码 / grammar）、**批处理多轮对话一起抽取**（把带宽受限的 decode 变成算力受限的 batch decode）、投机解码（抽取输出和输入高度重合，适合 prompt lookup decoding） |
+| O3 | 异步写和前台抢资源：前台 decode 22→4 tok/s，最长 55 s；提交延迟中位数 114 s | 单机上 LLM、embedding、检索共享**同一组核 / 同一份带宽 / 同一个 KV 池** | **记忆感知的调度器**：前台优先、后台写在空闲时批量执行、可抢占；按新鲜度要求分级（关键事实同步轻量写入，深度整理放到空闲时）；异构放置（抽取放 NPU/iGPU、对话放 dGPU） |
+| O4 | embedding 逐条执行（每轮约 13 次单条 ONNX 推理） | 小 batch 下 CPU/GPU 利用率很低 | 真正的批处理与跨请求合批；和 LLM 共享权重或用 LLM 的隐状态做 embedding |
+| O5 | 检索 O(N)：48k 时 1.5–2 s，其中 Python 逐点过滤 791 ms，向量计算只有 85 ms | 不是算力问题，是**数据布局 + 解释器开销**问题 | 按用户/会话**物理分区**（每个租户一段连续内存/文件）；向量列式存储 + SIMD 过滤；小规模时 brute-force 但要用连续 float32/int8 数组；大规模时 DRAM-SSD 混合索引（DiskANN 类） |
+| O6 | 冷启动 = 全量 unpickle（48k 用 5.9 s），RSS 约 50 KB/条 | 没有利用 **mmap / page cache**，数据结构不是“磁盘即内存”的格式 | 采用可 mmap 的列式格式（向量矩阵、payload 列、倒排表），冷启动 O(1)、按需换页；热/冷记忆分层：热记忆（近期、高频实体）放 DRAM 甚至 VRAM，冷记忆留在 SSD |
+| O7 | 每次 add 写约 300 KB（写放大约 1000×），磁盘上 7.8 KB/条 | SSD 适合**顺序追加写**；随机小写 + 整页重写对寿命和能耗都不好 | 追加日志（WAL/LSM）+ 后台合并（参考 Akashic 的 out-of-place 更新）；向量量化存储（int8/PQ）；文本、向量、KV 三种表示分开放置 |
+| O8 | （推测）热记忆反复被检索并拼进 prompt，每次都要 prefill | 检索出来的记忆文本 → KV 是可缓存的派生数据 | **记忆条目级 KV 缓存**（KEEP / InferScale / CacheBlend 思路）与存储层次结合：热记忆的 KV 驻留 VRAM，温记忆的 KV 在 DRAM，冷记忆只存文本和向量 |
+
+总体思路（可以作为研究主线）：**把一条记忆的三种表示（文本、向量、KV）当作同一对象的不同物化形式，在 VRAM–DRAM–SSD 层次上统一放置、迁移和失效，并与本地推理引擎一起调度读写路径。** 这就是 [`related_work.md`](related_work.md) 里认为目前没人做的部分。
 
 ## 7. 局限与下一步
 
-（待补充）
+**本次的局限**
+
+- 只有 CPU（4 vCPU 云容器），没有 GPU / NPU / 统一内存；1.5B Q4 小模型。绝对数字不能外推，结构性结论需要在目标硬件上复核。
+- 主实验 40 轮、对照实验 7–14 轮，样本量偏小；LLM 每次抽取的输出长度波动很大（56–1024 token，个别撞到 max_tokens=1024 上限），对照时应看 prefill/decode 速率。
+- 只测了 mem0 一个系统；向量库只测了 mem0 默认的 Qdrant embedded。
+- 4.2 节中 KV 从 host RAM 恢复的代价是推断，没有单独打点。
+- 云容器的块设备是虚拟盘，I/O 数字只反映 syscall / 块层写入量，不反映真实 SSD 的延迟特性。
+
+**建议的下一步**
+
+1. **在目标硬件上复现**：一台带消费级 GPU 的机器（例如 24 GB 显存）+ NVMe SSD，以及一台统一内存设备（Apple M 系列）。同一套 harness 直接可用，只需要 `start_llm.sh` 换成 GPU 版 llama.cpp 或 vLLM。增加 GPU 计数器（NVML：SM 利用率、显存带宽）和 SSD 计数器（iostat、blktrace）。
+2. **扩大负载**：LoCoMo 全部 10 段、LongMemEval；更大模型（7B/8B）；多用户并发。
+3. **向量库对照**：Qdrant server（HNSW）、FAISS、sqlite-vec、LanceDB，同样的 N 扫描，看瓶颈是否从“Python 逐点”变成“算 / 带宽 / I/O”。
+4. **对照其他记忆系统**：A-Mem、Letta、LightMem、MemOS，用同一个 harness 打点（只要它们用 OpenAI 兼容接口）。
+5. **最小可行的原型**（验证第 6 节的假设，从最便宜的开始）：
+   - 抽取前缀 KV 持久化 + 冷启动直接加载（预期把冷启动 60 s 降到秒级）；
+   - 紧凑输出 schema + 多轮合批抽取（预期 decode 时间减半以上）；
+   - 前台优先的写调度器（目标：前台 p99 不受后台影响，同时给出新鲜度上限）；
+   - 按用户分区 + 列式 mmap 存储（目标：检索与冷启动不随总 N 增长）。
+
+## 附录：复现
+
+```bash
+python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+git clone --depth 1 https://github.com/ggml-org/llama.cpp ../llama.cpp   # 然后 cmake 编译 llama-server
+git clone --depth 1 https://github.com/snap-research/locomo ../locomo
+# 模型：Qwen/Qwen2.5-1.5B-Instruct-GGUF 的 qwen2.5-1.5b-instruct-q4_k_m.gguf 放到 models/
+scripts/run_e2e_suite.sh      # 三种 KV cache 配置的端到端 profiling
+scripts/run_followups.sh      # 异步写干扰 + 规模扩展
+python analysis/analyze.py results/e2e_cache_np2
+python analysis/async_stats.py results/e2e_cache_np2 results/e2e_async_np2
+python analysis/scale_breakdown.py results/scale_single results/scale_multi
+```
+
+所有原始 trace 都在 `results/*/spans.jsonl`（每行一个 span），可以按需重新聚合。

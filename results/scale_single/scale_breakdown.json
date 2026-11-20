@@ -1,0 +1,530 @@
+{
+ "search@1000": {
+  "n": 30,
+  "mean_ms": 65.88609523333334,
+  "by_category": {
+   "Vector store glue": 32.97741706666666,
+   "Payload filter": 15.466451366666664,
+   "Embedding ONNX": 8.259363633333333,
+   "spaCy NLP": 6.43421896666667,
+   "Vector distance": 1.4084234333333332,
+   "mem0/agent glue": 0.8224422666666661,
+   "Embedding wrapper": 0.3887702999999999,
+   "BM25 encode": 0.1290082
+  },
+  "top_spans": [
+   [
+    "[threadpool] ent.search",
+    31.156018733333326
+   ],
+   [
+    "mem0.entity_boost",
+    24.936491
+   ],
+   [
+    "qlocal.filter_mask",
+    15.466451366666664
+   ],
+   [
+    "fastembed.dense",
+    8.259363633333333
+   ],
+   [
+    "qlocal.scan",
+    7.398161666666667
+   ],
+   [
+    "nlp.ner",
+    4.289332933333334
+   ],
+   [
+    "nlp.lemmatize",
+    2.1448860333333335
+   ],
+   [
+    "qlocal.distance",
+    1.4084234333333332
+   ]
+  ]
+ },
+ "search@4000": {
+  "n": 30,
+  "mean_ms": 197.1094001333333,
+  "by_category": {
+   "Vector store glue": 88.5951483,
+   "Payload filter": 69.49868053333334,
+   "Embedding ONNX": 21.5679974,
+   "Vector distance": 8.562716066666667,
+   "spaCy NLP": 7.054168333333334,
+   "mem0/agent glue": 1.038496333333334,
+   "Embedding wrapper": 0.6450708666666667,
+   "BM25 encode": 0.1471223
+  },
+  "top_spans": [
+   [
+    "[threadpool] ent.search",
+    102.20851919999998
+   ],
+   [
+    "qlocal.filter_mask",
+    69.49868053333334
+   ],
+   [
+    "mem0.entity_boost",
+    65.79376733333335
+   ],
+   [
+    "qlocal.scan",
+    22.022343133333333
+   ],
+   [
+    "fastembed.dense",
+    21.5679974
+   ],
+   [
+    "qlocal.distance",
+    8.562716066666667
+   ],
+   [
+    "nlp.ner",
+    4.600316666666666
+   ],
+   [
+    "nlp.lemmatize",
+    2.4538516666666665
+   ]
+  ]
+ },
+ "search@16000": {
+  "n": 30,
+  "mean_ms": 610.3993953666667,
+  "by_category": {
+   "Vector store glue": 282.8130686000001,
+   "Payload filter": 269.5695854333333,
+   "Vector distance": 32.296558499999996,
+   "Embedding ONNX": 16.06866296666667,
+   "spaCy NLP": 7.332055866666666,
+   "mem0/agent glue": 1.1121681333333415,
+   "Embedding wrapper": 1.0381056000000002,
+   "BM25 encode": 0.16919026666666664
+  },
+  "top_spans": [
+   [
+    "[threadpool] ent.search",
+    322.7270732
+   ],
+   [
+    "qlocal.filter_mask",
+    269.5695854333333
+   ],
+   [
+    "mem0.entity_boost",
+    198.86089149999998
+   ],
+   [
+    "qlocal.scan",
+    82.99699629999996
+   ],
+   [
+    "qlocal.distance",
+    32.296558499999996
+   ],
+   [
+    "fastembed.dense",
+    16.06866296666667
+   ],
+   [
+    "nlp.ner",
+    4.702818600000001
+   ],
+   [
+    "nlp.lemmatize",
+    2.629237266666667
+   ]
+  ]
+ },
+ "search@48000": {
+  "n": 30,
+  "mean_ms": 1650.0829609666666,
+  "by_category": {
+   "Payload filter": 791.1044850000002,
+   "Vector store glue": 739.2639836,
+   "Vector distance": 85.17798193333333,
+   "Embedding ONNX": 24.54225746666667,
+   "spaCy NLP": 7.514770833333334,
+   "mem0/agent glue": 1.3184285333333148,
+   "Embedding wrapper": 0.9783014999999993,
+   "BM25 encode": 0.18275209999999997
+  },
+  "top_spans": [
+   [
+    "[threadpool] ent.search",
+    844.2612726333333
+   ],
+   [
+    "qlocal.filter_mask",
+    791.1044850000002
+   ],
+   [
+    "mem0.entity_boost",
+    502.5518694000001
+   ],
+   [
+    "qlocal.scan",
+    235.77346970000008
+   ],
+   [
+    "qlocal.distance",
+    85.17798193333333
+   ],
+   [
+    "fastembed.dense",
+    24.54225746666667
+   ],
+   [
+    "nlp.ner",
+    4.784159866666667
+   ],
+   [
+    "nlp.lemmatize",
+    2.730610966666667
+   ]
+  ]
+ },
+ "add@1000": {
+  "n": 10,
+  "mean_ms": 48.967818699999995,
+  "by_category": {
+   "Vector store glue": 12.921383299999999,
+   "Embedding ONNX": 10.5122435,
+   "Payload filter": 9.241522200000002,
+   "spaCy NLP": 8.4692882,
+   "Persist pickle+SQLite": 2.7947281,
+   "History DB SQLite": 2.1764265000000003,
+   "Vector distance": 1.3238855,
+   "mem0/agent glue": 1.0709927999999982,
+   "Embedding wrapper": 0.34770849999999986,
+   "BM25 encode": 0.10964010000000002
+  },
+  "top_spans": [
+   [
+    "fastembed.dense",
+    10.5122435
+   ],
+   [
+    "ent.insert",
+    9.871823299999999
+   ],
+   [
+    "qlocal.filter_mask",
+    9.241522200000002
+   ],
+   [
+    "nlp.ner_batch",
+    4.7918331
+   ],
+   [
+    "nlp.lemmatize",
+    3.6774550999999995
+   ],
+   [
+    "qlocal.persist_sqlite",
+    2.7947281
+   ],
+   [
+    "qlocal.distance",
+    1.3238855
+   ],
+   [
+    "db.save_messages",
+    1.1345228
+   ]
+  ]
+ },
+ "add@4000": {
+  "n": 10,
+  "mean_ms": 112.87640289999999,
+  "by_category": {
+   "Payload filter": 41.957281900000005,
+   "Embedding ONNX": 39.6750612,
+   "Vector distance": 9.3965882,
+   "spaCy NLP": 8.980390000000002,
+   "History DB SQLite": 3.2081643,
+   "Vector store glue": 2.7213083999999985,
+   "mem0/agent glue": 2.621916000000001,
+   "Embedding wrapper": 2.1602657,
+   "Persist pickle+SQLite": 2.0669881,
+   "BM25 encode": 0.08843909999999998
+  },
+  "top_spans": [
+   [
+    "qlocal.filter_mask",
+    41.957281900000005
+   ],
+   [
+    "fastembed.dense",
+    39.6750612
+   ],
+   [
+    "qlocal.distance",
+    9.3965882
+   ],
+   [
+    "nlp.ner_batch",
+    5.7199317
+   ],
+   [
+    "nlp.lemmatize",
+    3.2604583
+   ],
+   [
+    "mem0.add.pipeline",
+    2.471424199999998
+   ],
+   [
+    "embed.one",
+    2.0816697
+   ],
+   [
+    "qlocal.persist_sqlite",
+    2.0669881
+   ]
+  ]
+ },
+ "add@16000": {
+  "n": 10,
+  "mean_ms": 204.8570999,
+  "by_category": {
+   "Payload filter": 136.8515941,
+   "Vector distance": 32.213626,
+   "Embedding ONNX": 15.840815299999997,
+   "spaCy NLP": 7.2812315000000005,
+   "Vector store glue": 6.483620700000012,
+   "History DB SQLite": 2.4445164999999998,
+   "Persist pickle+SQLite": 2.114879,
+   "mem0/agent glue": 1.077504099999995,
+   "Embedding wrapper": 0.4605452999999997,
+   "BM25 encode": 0.08876740000000001
+  },
+  "top_spans": [
+   [
+    "qlocal.filter_mask",
+    136.8515941
+   ],
+   [
+    "qlocal.distance",
+    32.213626
+   ],
+   [
+    "fastembed.dense",
+    15.840815299999997
+   ],
+   [
+    "nlp.ner_batch",
+    4.750526300000001
+   ],
+   [
+    "qlocal.upsert",
+    4.731904900000001
+   ],
+   [
+    "nlp.lemmatize",
+    2.5307052
+   ],
+   [
+    "qlocal.persist_sqlite",
+    2.114879
+   ],
+   [
+    "db.save_messages",
+    1.2293839
+   ]
+  ]
+ },
+ "add@48000": {
+  "n": 10,
+  "mean_ms": 532.0185453,
+  "by_category": {
+   "Payload filter": 399.3542217,
+   "Vector distance": 82.5578932,
+   "Embedding ONNX": 18.344147899999996,
+   "Vector store glue": 18.23908090000001,
+   "spaCy NLP": 7.106988599999999,
+   "History DB SQLite": 2.3737017,
+   "Persist pickle+SQLite": 1.9489291,
+   "mem0/agent glue": 1.1034302000000182,
+   "Embedding wrapper": 0.8984920000000003,
+   "BM25 encode": 0.09166000000000002
+  },
+  "top_spans": [
+   [
+    "qlocal.filter_mask",
+    399.3542217
+   ],
+   [
+    "qlocal.distance",
+    82.5578932
+   ],
+   [
+    "fastembed.dense",
+    18.344147899999996
+   ],
+   [
+    "qlocal.upsert",
+    15.420337
+   ],
+   [
+    "nlp.ner_batch",
+    4.6466149
+   ],
+   [
+    "nlp.lemmatize",
+    2.4603737000000003
+   ],
+   [
+    "qlocal.scan",
+    2.00438400000001
+   ],
+   [
+    "qlocal.persist_sqlite",
+    1.9489291
+   ]
+  ]
+ },
+ "open@1000": {
+  "n": 1,
+  "mean_ms": 230.687114,
+  "by_category": {
+   "mem0/agent glue": 230.6557,
+   "Payload filter": 0.031414
+  },
+  "top_spans": [
+   [
+    "mem0.init",
+    230.653254
+   ],
+   [
+    "[threadpool] mem0.search",
+    164.619398
+   ],
+   [
+    "[threadpool] ent.search",
+    20.500111
+   ],
+   [
+    "qlocal.filter_mask",
+    0.031414
+   ],
+   [
+    "[threadpool] qlocal.filter_mask",
+    0.023928
+   ],
+   [
+    "mem0.telemetry",
+    0.002446
+   ]
+  ]
+ },
+ "open@4000": {
+  "n": 1,
+  "mean_ms": 509.621191,
+  "by_category": {
+   "mem0/agent glue": 509.58702200000005,
+   "Payload filter": 0.034169
+  },
+  "top_spans": [
+   [
+    "mem0.init",
+    509.584758
+   ],
+   [
+    "[threadpool] mem0.search",
+    304.527154
+   ],
+   [
+    "[threadpool] ent.search",
+    69.017616
+   ],
+   [
+    "qlocal.filter_mask",
+    0.034169
+   ],
+   [
+    "[threadpool] qlocal.filter_mask",
+    0.027232
+   ],
+   [
+    "mem0.telemetry",
+    0.002264
+   ]
+  ]
+ },
+ "open@16000": {
+  "n": 1,
+  "mean_ms": 1680.212953,
+  "by_category": {
+   "mem0/agent glue": 1680.1751,
+   "Payload filter": 0.037853
+  },
+  "top_spans": [
+   [
+    "mem0.init",
+    1680.172309
+   ],
+   [
+    "[threadpool] mem0.search",
+    950.326738
+   ],
+   [
+    "[threadpool] ent.search",
+    158.727927
+   ],
+   [
+    "qlocal.filter_mask",
+    0.037853
+   ],
+   [
+    "[threadpool] qlocal.filter_mask",
+    0.02889
+   ],
+   [
+    "mem0.telemetry",
+    0.002791
+   ]
+  ]
+ },
+ "open@48000": {
+  "n": 1,
+  "mean_ms": 5906.334551,
+  "by_category": {
+   "mem0/agent glue": 5906.287234,
+   "Payload filter": 0.047317
+  },
+  "top_spans": [
+   [
+    "mem0.init",
+    5906.284966
+   ],
+   [
+    "[threadpool] mem0.search",
+    1499.643874
+   ],
+   [
+    "[threadpool] ent.search",
+    328.791089
+   ],
+   [
+    "qlocal.filter_mask",
+    0.047317
+   ],
+   [
+    "[threadpool] qlocal.filter_mask",
+    0.033448
+   ],
+   [
+    "mem0.telemetry",
+    0.002268
+   ]
+  ]
+ }
+}
