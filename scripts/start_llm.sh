@@ -10,7 +10,7 @@ LLAMA=${LLAMA_SERVER:-/home/user/llama.cpp/build/bin/llama-server}
 pkill -f "llama-server.*--port $PORT" 2>/dev/null || true
 sleep 1
 nohup "$LLAMA" -m "$MODEL" -c "$CTX" -np "$NP" -t "$(nproc)" --port "$PORT" \
-  --metrics --no-webui --temp 0.1 > "results/llama_server_${PORT}.log" 2>&1 &
+  --metrics --no-webui --temp 0.1 ${LLAMA_EXTRA:-} > "results/llama_server_${PORT}.log" 2>&1 &
 for i in $(seq 1 120); do
   curl -sf "http://127.0.0.1:$PORT/health" >/dev/null && { echo "llama-server up (np=$NP ctx=$CTX)"; exit 0; }
   sleep 1

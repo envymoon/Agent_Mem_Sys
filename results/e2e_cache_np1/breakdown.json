@@ -1,0 +1,310 @@
+{
+  "run": "results/e2e_cache_np1",
+  "label": "cache_np1",
+  "meta": {
+    "n_turns": 12,
+    "n_qa": 0,
+    "n_memories": 11,
+    "total_s": 504.5157348849998,
+    "tracer_overhead_us": 22.754517500000002,
+    "cache_prompt": "1"
+  },
+  "ops": {
+    "agent.turn": {
+      "n": 11,
+      "mean_ms": 38379.58821627273,
+      "p50_ms": 38014.373848,
+      "p95_ms": 67858.677471,
+      "max_ms": 67858.677471,
+      "cpu_ms_mean": 581.1063754545455,
+      "wchar_mean": 92652.36363636363,
+      "write_bytes_mean": 144849.45454545456,
+      "rchar_mean": 20631.090909090908,
+      "breakdown_mean_ms": {
+        "LLM prefill": 8107.182727272728,
+        "LLM decode": 29930.08090909091,
+        "LLM other": 237.11707190909075,
+        "Embedding ONNX": 68.53363536363636,
+        "Embedding wrapper": 1.5542108181818184,
+        "spaCy NLP": 17.438860272727272,
+        "BM25 encode": 0.25911527272727275,
+        "Vector distance": 0.26918481818181816,
+        "Payload filter": 0.4499365454545454,
+        "Persist pickle+SQLite": 3.6972476363636364,
+        "Vector store glue": 8.267225181818182,
+        "History DB SQLite": 2.088620272727273,
+        "mem0/agent glue": 2.6494718181818913
+      }
+    },
+    "agent.retrieve(chat)": {
+      "n": 11,
+      "mean_ms": 28.911445454545454,
+      "p50_ms": 26.540122,
+      "p95_ms": 51.147267,
+      "max_ms": 51.147267,
+      "cpu_ms_mean": 106.17428036363636,
+      "wchar_mean": 0,
+      "write_bytes_mean": 0,
+      "rchar_mean": 8102.636363636364,
+      "breakdown_mean_ms": {
+        "LLM prefill": 0.0,
+        "LLM decode": 0.0,
+        "LLM other": 0.0,
+        "Embedding ONNX": 10.761076636363637,
+        "Embedding wrapper": 0.2931987272727272,
+        "spaCy NLP": 10.49538590909091,
+        "BM25 encode": 0.14693318181818182,
+        "Vector distance": 0.09653718181818181,
+        "Payload filter": 0.22215245454545454,
+        "Persist pickle+SQLite": 0.0,
+        "Vector store glue": 5.833918636363636,
+        "History DB SQLite": 0.0,
+        "mem0/agent glue": 1.062242727272727
+      }
+    },
+    "agent.generate(chat)": {
+      "n": 11,
+      "mean_ms": 3490.325354,
+      "p50_ms": 3745.07541,
+      "p95_ms": 4383.531864,
+      "max_ms": 4383.531864,
+      "cpu_ms_mean": 100.02483436363636,
+      "wchar_mean": 0,
+      "write_bytes_mean": 0,
+      "rchar_mean": 371.72727272727275,
+      "breakdown_mean_ms": {
+        "LLM prefill": 1301.4885454545454,
+        "LLM decode": 2037.3875454545455,
+        "LLM other": 151.30834327272726,
+        "Embedding ONNX": 0.0,
+        "Embedding wrapper": 0.0,
+        "spaCy NLP": 0.0,
+        "BM25 encode": 0.0,
+        "Vector distance": 0.0,
+        "Payload filter": 0.0,
+        "Persist pickle+SQLite": 0.0,
+        "Vector store glue": 0.0,
+        "History DB SQLite": 0.0,
+        "mem0/agent glue": 0.1409198181817663
+      }
+    },
+    "agent.memorize": {
+      "n": 11,
+      "mean_ms": 34860.18155190909,
+      "p50_ms": 35115.658995,
+      "p95_ms": 63533.941787,
+      "max_ms": 63533.941787,
+      "cpu_ms_mean": 374.7385529090909,
+      "wchar_mean": 92652.36363636363,
+      "write_bytes_mean": 144849.45454545456,
+      "rchar_mean": 11413.09090909091,
+      "breakdown_mean_ms": {
+        "LLM prefill": 6805.694181818182,
+        "LLM decode": 27892.693363636365,
+        "LLM other": 85.8087286363635,
+        "Embedding ONNX": 57.77255872727273,
+        "Embedding wrapper": 1.2610120909090912,
+        "spaCy NLP": 6.943474363636364,
+        "BM25 encode": 0.11218209090909091,
+        "Vector distance": 0.17264763636363636,
+        "Payload filter": 0.2277840909090909,
+        "Persist pickle+SQLite": 3.6972476363636364,
+        "Vector store glue": 2.4333065454545455,
+        "History DB SQLite": 2.088620272727273,
+        "mem0/agent glue": 1.2764443636358553
+      }
+    }
+  },
+  "llm": {
+    "llm.agent_answer": {
+      "n": 11,
+      "prompt_tokens": 356.54545454545456,
+      "cache_n": 27.09090909090909,
+      "prompt_n_computed": 329.45454545454544,
+      "prefill_ms": 1301.4885454545454,
+      "prefill_tok_s": 253.13672302777223,
+      "decode_n": 46.45454545454545,
+      "decode_ms": 2037.3875454545455,
+      "decode_tok_s": 22.801035354410864,
+      "wall_ms": 3490.1844341818182,
+      "cache_hit_ratio": 0.07598164201937786,
+      "first_call": {
+        "prompt_tokens": 84,
+        "cache_n": 0,
+        "prompt_ms": 459.499,
+        "predicted_n": 19,
+        "predicted_ms": 814.649,
+        "wall_ms": 1290.892623
+      }
+    },
+    "llm.mem0_extract": {
+      "n": 11,
+      "prompt_tokens": 8526.363636363636,
+      "cache_n": 7980.545454545455,
+      "prompt_n_computed": 545.8181818181819,
+      "prefill_ms": 6805.694181818182,
+      "prefill_tok_s": 80.20022164327743,
+      "decode_n": 321.1818181818182,
+      "decode_ms": 27892.693363636365,
+      "decode_tok_s": 11.514908725183998,
+      "wall_ms": 34784.19627409091,
+      "cache_hit_ratio": 0.935984646550805,
+      "first_call": {
+        "prompt_tokens": 8030,
+        "cache_n": 2,
+        "prompt_ms": 68696.969,
+        "predicted_n": 98,
+        "predicted_ms": 9252.353,
+        "wall_ms": 77985.92071
+      }
+    }
+  },
+  "cold": {
+    "mem0.init": 686.357966,
+    "cold.build_memory": 1853.123242,
+    "turn0_ms": 80473.256966,
+    "turn0_breakdown": {
+      "mem0/agent glue": 2.818860999998128,
+      "History DB SQLite": 2.254925,
+      "Vector store glue": 121.162186,
+      "Persist pickle+SQLite": 4.981393000000001,
+      "BM25 encode": 100.728573,
+      "Payload filter": 0.025573000000000002,
+      "Vector distance": 0.330625,
+      "Embedding wrapper": 1.1287829999999976,
+      "Embedding ONNX": 55.23090500000001,
+      "spaCy NLP": 907.781809,
+      "LLM prefill": 69156.468,
+      "LLM decode": 10067.001999999999,
+      "LLM other": 53.34333300000924
+    },
+    "steady_turn_mean_ms": 38379.58821627273
+  },
+  "top_self": [
+    [
+      "fastembed.dense",
+      115,
+      753.869989
+    ],
+    [
+      "nlp.ner",
+      11,
+      75.779748
+    ],
+    [
+      "nlp.lemmatize",
+      20,
+      70.168011
+    ],
+    [
+      "mem0.entity_boost",
+      11,
+      49.447768999999994
+    ],
+    [
+      "nlp.ner_batch",
+      6,
+      45.879704
+    ],
+    [
+      "qlocal.persist_sqlite",
+      19,
+      40.669723999999995
+    ],
+    [
+      "qlocal.scan",
+      59,
+      30.606481000000006
+    ],
+    [
+      "qlocal.filter_mask",
+      76,
+      18.714826000000006
+    ],
+    [
+      "db.save_messages",
+      11,
+      15.128717000000002
+    ],
+    [
+      "qdrant.query_points",
+      49,
+      15.055133
+    ],
+    [
+      "embed.one",
+      115,
+      12.910601999999987
+    ],
+    [
+      "mem0.add.pipeline",
+      11,
+      11.863187999999354
+    ],
+    [
+      "mem0.search.pipeline",
+      11,
+      9.476565000000004
+    ],
+    [
+      "db.batch_add_history",
+      6,
+      6.31031
+    ],
+    [
+      "qdrant.query_batch_points",
+      6,
+      5.6489959999999995
+    ],
+    [
+      "qlocal.upsert",
+      12,
+      5.189841
+    ],
+    [
+      "qlocal.distance",
+      48,
+      4.600252
+    ],
+    [
+      "embed.batch",
+      28,
+      4.18571700000001
+    ],
+    [
+      "fastembed.bm25",
+      23,
+      2.3134979999999996
+    ],
+    [
+      "ent.search",
+      16,
+      2.102549
+    ],
+    [
+      "vs.search",
+      22,
+      2.0725299999999995
+    ],
+    [
+      "mem0.search",
+      11,
+      1.6042869999999958
+    ],
+    [
+      "db.get_last_messages",
+      11,
+      1.535796
+    ],
+    [
+      "qdrant.upsert",
+      12,
+      1.3337569999999987
+    ],
+    [
+      "vs.insert",
+      6,
+      1.2031050000000008
+    ]
+  ]
+}
