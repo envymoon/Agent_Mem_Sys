@@ -33,15 +33,17 @@ def style(ax):
     ax.set_axisbelow(True)
 
 
-def stacked(ax, rows, labels, title, xlabel="seconds"):
+def stacked(ax, rows, labels, title, xlabel="seconds", only=None, scale=1e3, unit="s", fmt="{:.2f}"):
     left = [0.0] * len(rows)
     for gi, (g, cats) in enumerate(GROUPS.items()):
-        vals = [sum(r.get(c, 0.0) for c in cats) / 1e3 for r in rows]
+        if only is not None and g not in only:
+            continue
+        vals = [sum(r.get(c, 0.0) for c in cats) / scale for r in rows]
         ax.barh(range(len(rows)), vals, left=left, color=SERIES[gi], height=0.6,
                 edgecolor=SURF, linewidth=1.5, label=g)
         left = [a + b for a, b in zip(left, vals)]
     for i, tot in enumerate(left):
-        ax.text(tot, i, f"  {tot:.2f}s", va="center", color=INK, fontsize=9)
+        ax.text(tot, i, "  " + fmt.format(tot) + unit, va="center", color=INK, fontsize=9)
     ax.set_yticks(range(len(rows)), labels, color=INK)
     ax.invert_yaxis()
     ax.set_xlabel(xlabel, color=INK2)
@@ -53,8 +55,8 @@ def stacked(ax, rows, labels, title, xlabel="seconds"):
 def fig_e2e(runs: list[str], out: str) -> None:
     R = [json.load(open(os.path.join(r, "breakdown.json"))) for r in runs]
     main = R[0]
-    fig, axes = plt.subplots(2, 1, figsize=(10, 6.4), facecolor=SURF,
-                             gridspec_kw={"height_ratios": [4, len(R)]})
+    fig, axes = plt.subplots(3, 1, figsize=(10, 9), facecolor=SURF,
+                             gridspec_kw={"height_ratios": [4, len(R), 3]})
     ops = [o for o in ("agent.retrieve(chat)", "agent.generate(chat)", "agent.memorize",
                        "agent.retrieve(qa)", "agent.generate(qa)") if o in main["ops"]]
     stacked(axes[0], [main["ops"][o]["breakdown_mean_ms"] for o in ops],
@@ -62,6 +64,12 @@ def fig_e2e(runs: list[str], out: str) -> None:
             f"Per-operation latency, steady state ({main['label']}: mean of turns 1..N)")
     stacked(axes[1], [r["ops"]["agent.memorize"]["breakdown_mean_ms"] for r in R],
             [r["label"] for r in R], "mem0.add() (memorize) under different LLM KV-cache configurations")
+    nonllm = [g for g in GROUPS if not g.startswith("LLM")]
+    zo = ["agent.retrieve(chat)", "agent.retrieve(qa)", "agent.memorize"]
+    stacked(axes[2], [main["ops"][o]["breakdown_mean_ms"] for o in zo],
+            ["retrieve(chat)", "retrieve(qa)", "memorize (non-LLM part)"],
+            "Zoom: everything except the LLM (milliseconds)", xlabel="milliseconds",
+            only=nonllm, scale=1.0, unit=" ms", fmt="{:.0f}")
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=3, frameon=False, fontsize=9, labelcolor=INK)
     fig.tight_layout(rect=(0, 0.08, 1, 1))
