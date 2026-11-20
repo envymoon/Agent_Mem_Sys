@@ -12,7 +12,7 @@
    - 不开 prefix cache：每次 add 的 prefill 是 **59.9 s**（8356 token，140 tok/s）；
    - 开 prefix cache（命中 91.5%）：prefill 降到 **8.7 s**（6.9×），但剩下约 740 个新 token 要对 8k 的缓存做 attention，只能跑 **85 tok/s**（短上下文是 250 tok/s）；
    - decode 在 8k 上下文下只有 **11.6 tok/s**（短上下文是 22.6 tok/s），而 mem0 要求输出“15–80 词/条”的 JSON，平均 **376 个输出 token** → **decode 32.5 s 成为最大单项**。
-4. **这段静态前缀的 KV 约 230 MB/份**（Qwen2.5-1.5B，F16 KV）。llama-server 默认会把空闲 slot 的 KV 存到主机内存（`--cache-ram 8192`），所以单 slot 时依然能命中——**现成推理引擎里已经有一层“KV 在 slot↔DRAM 之间分层”**，记忆系统完全没有意识到并利用它。
+4. **这段静态前缀的 KV 约 230 MB/份**（Qwen2.5-1.5B，F16 KV）。llama-server 默认会把空闲 slot 的 KV 存到主机内存（`--cache-ram 8192`），所以单 slot 时依然能命中；把它关掉（`--cache-ram 0`）后，agent 回答和抽取互相驱逐 KV，每次 add 的 prefill 回到 **62 s**，写路径从 35 s 变成 79 s。**同样的硬件和负载，仅 KV 放置策略不同就差 2.3 倍**，而记忆系统对此没有任何控制。
 5. **把写路径异步化在单机上不是免费的**：后台 `add` 和前台回答抢同一份算力，前台回答 **3.2 s → 10.4 s（p50 6.0 s，最长 55 s）**，decode 22.2 → 4.2 tok/s；同时写队列线性堆积，记忆从说出到可检索的**提交延迟中位数 114 s、最长 319 s**（新鲜度问题）。
 6. **存储引擎层面**（mem0 默认本地栈 = Qdrant embedded + SQLite）：Python 逐点 payload 过滤、numpy 暴力扫描、每个点 pickle 一次写入 SQLite、冷启动全量反序列化进 DRAM；每次 `add` 块设备写入约 **300 KB**，而新增记忆文本只有几百字节（**写放大约 1000×**）。规模上去之后的退化见第 5 节。
 7. 结论：在本地场景里，**“记忆系统 ↔ 推理引擎（KV）↔ 存储层次”之间缺少协同**，这正是可以做系统/硬件优化的地方（第 6 节）。
@@ -109,7 +109,7 @@ LLM 调用统计：
 | `cache_np2`：prefix cache 开，2 slot | 39 | 41.4 s | 8691 | 7952 (91%) | **8.7 s** | 85 tok/s | 376 | 11.6 tok/s |
 | `cache_np1`：prefix cache 开，1 slot（默认 `--cache-ram 8192`） | 11 | 34.9 s | 8526 | 7981 (94%) | **6.8 s** | 80 tok/s | 321 | 11.5 tok/s |
 | `nocache`：prefix cache 关 | 7 | 71.6 s | 8356 | 0 | **59.9 s** | 140 tok/s | 149 | 12.8 tok/s |
-| `cache_np1_noram`：1 slot 且关闭 host-RAM prompt cache | – | 见 4.4 | | | | | | |
+| `cache_np1_noram`：1 slot 且关闭 host-RAM prompt cache（`--cache-ram 0`） | 7 | 78.9 s | 8371 | **2 (0%)** | **62.1 s** | 135 tok/s | 212 | 12.7 tok/s |
 
 - prefix cache 把每次 add 的 prefill **从 59.9 s 降到 6.8–8.7 s**。各配置的输出长度差异来自对话内容不同（LLM 每次抽几条记忆不确定），所以比较 decode 时要看速率，不看总时间。
 - 单 slot 时，agent 回答会占用唯一的 slot、把抽取前缀挤掉；但 llama-server 默认把空闲 slot 的 KV 存进 **host RAM 的 prompt cache**，下次再恢复，所以依然命中。单 slot 下抽取调用的“LLM other”多了约 50 ms（36.7 vs 85.8 ms），量级上与恢复一份约 230 MB 的 KV 相符（**这是推断，没有单独打点**）。
@@ -130,9 +130,14 @@ LLM 调用统计：
 - 写吞吐（约 1 次 add / 41 s）远低于对话速率（约 1 轮 / 10 s），积压无上界增长——**记忆新鲜度**无法保证。
 - 意味着：在本地单机上需要**有优先级、能感知硬件（算力/带宽/KV 容量）的记忆写调度**，而不是简单地“扔到后台”。
 
-### 4.4 单 slot + 关闭 host-RAM prompt cache
+### 4.4 单 slot + 关闭 host-RAM prompt cache：KV 互相驱逐
 
-（实验结果见 4.4 补充，运行中）
+`results/e2e_cache_np1_noram`（8 轮）：只有一个 slot，并用 `--cache-ram 0` 关掉主机内存里的 prompt cache。每轮 agent 回答（约 300 token）都会覆盖 slot 里抽取用的 8k 前缀 KV，下一次 `add` 只能从头 prefill：
+
+- 抽取调用命中缓存 **2 / 8371 token**，prefill **62.1 s**，和完全关掉缓存（59.9 s）一样；`add` 平均 78.9 s，整轮 81.5 s。
+- 对比 `cache_np1`（同样单 slot，但默认 `--cache-ram 8192`）：prefill 6.8 s。**这 9 倍的差距完全来自“KV 有没有一个 DRAM 层可以暂存”**。
+
+也就是说：同一台机器、同一个模型、同一个负载，仅仅是 KV 放置策略不同，写路径就从 35 s 变成 79 s。记忆系统发出的 LLM 调用有非常稳定的前缀结构（抽取 prompt 永远一样），但它对 KV 的放置和保留**没有任何控制或提示**，完全依赖推理引擎的默认 LRU/RAM 缓存。这是“记忆系统和推理引擎协同”最直接的证据。
 
 ## 5. 规模扩展：记忆存储本身随 N 的变化
 

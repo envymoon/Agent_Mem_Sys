@@ -1,0 +1,9 @@
+turn   0 done  t=   71.1s
+turn   1 done  t=  138.6s
+turn   2 done  t=  214.5s
+turn   3 done  t=  288.5s
+turn   4 done  t=  358.9s
+turn   5 done  t=  431.0s
+turn   6 done  t=  530.4s
+turn   7 done  t=  641.4s
+{"n_turns": 8, "n_qa": 0, "n_memories": 14, "total_s": 641.4469067600003}
