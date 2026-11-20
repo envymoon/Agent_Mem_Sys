@@ -1,0 +1,76 @@
+[
+ {
+  "label": "cache_np2",
+  "agent.retrieve": {
+   "n": 39,
+   "mean_ms": 39.733756871794874,
+   "p50_ms": 36.19014,
+   "max_ms": 97.741127
+  },
+  "agent.generate": {
+   "n": 39,
+   "mean_ms": 3220.490612025641,
+   "p50_ms": 3121.318163,
+   "max_ms": 5455.855414
+  },
+  "llm.agent_answer": {
+   "n": 39,
+   "mean_ms": 3220.3404531538463,
+   "p50_ms": 3121.172638,
+   "max_ms": 5455.710564,
+   "prefill_tok_s": 249.61638896005746,
+   "decode_tok_s": 22.16269773496087
+  },
+  "extract_decode_tok_s": 11.585363721380658,
+  "extract_prefill_tok_s": 92.1706805934897,
+  "user_turn_ms_mean": 44626.977886
+ },
+ {
+  "label": "async_np2",
+  "agent.retrieve": {
+   "n": 14,
+   "mean_ms": 77.90578492857142,
+   "p50_ms": 74.429251,
+   "max_ms": 125.839565
+  },
+  "agent.generate": {
+   "n": 14,
+   "mean_ms": 10392.602112285715,
+   "p50_ms": 6046.9452,
+   "max_ms": 55191.422062
+  },
+  "llm.agent_answer": {
+   "n": 14,
+   "mean_ms": 10392.463353714285,
+   "p50_ms": 6046.813997,
+   "max_ms": 55191.290602,
+   "prefill_tok_s": 125.60309247110469,
+   "decode_tok_s": 4.152486181501918
+  },
+  "extract_decode_tok_s": 11.75706296809994,
+  "extract_prefill_tok_s": 103.94469366408192,
+  "backlog_per_turn": [
+   1,
+   2,
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   5,
+   6,
+   7,
+   7,
+   8
+  ],
+  "commit_lag_s": {
+   "min": 14.153004527000121,
+   "median": 114.06993859100021,
+   "max": 319.18779978400016
+  },
+  "user_turn_ms_mean": 10470.682299857142
+ }
+]

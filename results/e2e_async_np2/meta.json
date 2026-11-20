@@ -1,0 +1,45 @@
+{
+  "args": {
+    "data": "/home/user/locomo/data/locomo10.json",
+    "conv": 0,
+    "turns": 15,
+    "qa": 0,
+    "topk": 5,
+    "window": 6,
+    "async_add": true,
+    "think": 5.0,
+    "out": "results/e2e_async_np2"
+  },
+  "llm_url": "http://127.0.0.1:8080/v1",
+  "cache_prompt": "1",
+  "tracer_overhead_us": 22.36991155,
+  "label": "async_np2",
+  "commit_lag_s": [
+    63.2045312299997,
+    14.153004527000121,
+    24.238092969000718,
+    28.646633320000547,
+    31.95871688599982,
+    38.09525461799967,
+    76.3798341519996,
+    114.06993859100021,
+    145.0373854319996,
+    182.4046314039997,
+    200.2337998820003,
+    230.6802819500008,
+    236.424651155,
+    308.3161121940002,
+    319.18779978400016
+  ],
+  "n_turns": 15,
+  "n_qa": 0,
+  "store_bytes": {
+    "store/history.db": 28672,
+    "store/qdrant/.lock": 13,
+    "store/qdrant/meta.json": 1189,
+    "store/qdrant/collection/mem/storage.sqlite": 147456,
+    "store/qdrant/collection/mem_entities/storage.sqlite": 69632
+  },
+  "n_memories": 29,
+  "total_s": 539.4568852929997
+}
