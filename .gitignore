@@ -1,0 +1,6 @@
+.venv/
+models/
+__pycache__/
+results/**/store/
+results/llama_server_*.log
+*.gguf

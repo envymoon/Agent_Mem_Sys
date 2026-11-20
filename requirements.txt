@@ -1,0 +1,9 @@
+mem0ai==2.2.1
+fastembed
+spacy
+qdrant-client
+psutil
+openai
+matplotlib
+# + spaCy model:  python -m spacy download en_core_web_sm
+# + llama.cpp server built from source (scripts/start_llm.sh)
