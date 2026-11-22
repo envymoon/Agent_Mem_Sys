@@ -1,0 +1,56 @@
+{
+  "args": {
+    "system": "rag-pg",
+    "data": "/home/user/locomo/data/locomo10.json",
+    "conv": 0,
+    "turns": 3,
+    "qa": 2,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 256,
+    "async_add": false,
+    "think": 0.0,
+    "no_hwmon": false,
+    "vllm_metrics": "http://127.0.0.1:8000",
+    "label": "smoke_rag-pg",
+    "out": "results/smoke/suite/smoke_rag-pg"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "smoke_rag-pg",
+  "tracer_overhead_us": 21.555278750000003,
+  "t_start_ns": 2827583100559,
+  "pg_before": {
+    "calls": 107,
+    "exec_ms": 57.924415,
+    "blks_hit": 11579,
+    "blks_read": 922,
+    "wal_bytes": 4757089
+  },
+  "n_turns": 3,
+  "n_qa": 2,
+  "total_s": 20.965422293999836,
+  "count": 3,
+  "footprint": {
+    "pg:rag_smoke_rag_pg": 131072
+  },
+  "pg_after": {
+    "calls": 149,
+    "exec_ms": 72.07094600000002,
+    "blks_hit": 12881,
+    "blks_read": 923,
+    "wal_bytes": 4808445
+  }
+}

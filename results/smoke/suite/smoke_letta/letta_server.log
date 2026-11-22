@@ -1,0 +1,150 @@
+/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/cli/cli.py:32: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  from letta.server.rest_api.app import start_server
+Letta.letta.schemas.secret - WARNING - No encryption key configured. Storing Secret value as plaintext in _enc column. Set LETTA_ENCRYPTION_KEY environment variable to enable encryption.
+Letta.letta.schemas.providers.base - WARNING - DEPRECATION: Creating provider with 'api_key' directly is deprecated. Use the encrypted fields (`api_key_enc`) instead.
+Letta.letta.schemas.providers.base - WARNING - DEPRECATION: Creating provider with 'access_key' directly is deprecated. Use the encrypted fields (`access_key_enc`) instead.
+
+[[ Letta server // v0.16.8 ]]
+Letta.letta.server.global_exception_handler - INFO - Global exception handlers initialized
+/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/fastapi/openapi/utils.py:252: UserWarning: Duplicate Operation ID retrieve_metrics_for_run for function retrieve_metrics_for_run at /home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/server/rest_api/routers/v1/runs.py
+  warnings.warn(message, stacklevel=1)
+/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/fastapi/openapi/utils.py:252: UserWarning: Duplicate Operation ID create_chat_completion for function create_chat_completion at /home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/server/rest_api/routers/v1/chat_completions.py
+  warnings.warn(message, stacklevel=1)
+▶ Server running at: http://localhost:8283
+▶ View using ADE at: https://app.letta.com/development-servers/local/dashboard
+
+INFO:     Started server process [5250]
+INFO:     Waiting for application startup.
+Letta.letta.otel.metrics - WARNING - Metrics are not initialized or meter is not available.
+Letta.letta.monitoring.readiness_state - INFO - Readiness telemetry initialized: state=warming, source=lifespan_startup
+Letta.letta.monitoring.event_loop_watchdog - INFO - Event loop watchdog started - monitoring thread running, heartbeat every 1s, checks every 5.0s, hang threshold: 15.0s
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Event loop watchdog started
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Checking NLTK data availability...
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] NLTK data ready
+Letta.letta.otel.db_pool_monitoring - INFO - Database pool monitoring initialized for engine: core
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] DB pool monitoring initialized
+Letta.letta.otel.db_pool_monitoring - INFO - First connection established for engine: core
+Letta.letta.server.rest_api.app - WARNING - [Worker 5250] PostgreSQL statement_timeout: 0
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Disabled pinecone
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Starting scheduler with leader election
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Reading org-scoped model User without actor. IDs: ['user-00000000-0000-4000-8000-000000000000']. This bypasses organization filtering.
+Letta.letta.data_sources.redis_client - INFO - Redis not configured, using noop client
+Default user: id='user-00000000-0000-4000-8000-000000000000' organization_id='org-00000000-0000-4000-8000-000000000000' name='default_user' created_at=None updated_at=datetime.datetime(2026, 11, 22, 2, 17, 18, 698995, tzinfo=datetime.timezone.utc) is_deleted=False and org: id='org-00000000-0000-4000-8000-000000000000' name='default_org' created_at=datetime.datetime(2026, 11, 22, 2, 17, 18, 649059, tzinfo=datetime.timezone.utc) privileged_tools=False
+Letta.letta.services.provider_manager - INFO - Syncing 3 base providers to database
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.schemas.secret - WARNING - No encryption key configured. Storing Secret value as plaintext in _enc column. Set LETTA_ENCRYPTION_KEY environment variable to enable encryption.
+Letta.letta.services.provider_manager - INFO - Successfully initialized base provider 'letta' to database
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.schemas.secret - WARNING - No encryption key configured. Storing Secret value as plaintext in _enc column. Set LETTA_ENCRYPTION_KEY environment variable to enable encryption.
+Letta.letta.services.provider_manager - INFO - Successfully initialized base provider 'openai' to database
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.schemas.secret - WARNING - No encryption key configured. Storing Secret value as plaintext in _enc column. Set LETTA_ENCRYPTION_KEY environment variable to enable encryption.
+Letta.letta.services.provider_manager - INFO - Successfully initialized base provider 'bedrock' to database
+Letta.letta.server.server - INFO - Syncing provider models to database
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Provider without actor. This bypasses organization filtering.
+Letta.letta.server.server - ERROR - Failed to sync models for provider bedrock: No module named 'aioboto3'
+Traceback (most recent call last):
+  File "/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/server/server.py", line 486, in _sync_provider_models_async
+    llm_models = await enabled_provider.list_llm_models_async()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/schemas/providers/bedrock.py", line 81, in list_llm_models_async
+    models = await self.bedrock_get_model_list_async()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Agent_Mem_Sys/.venv-letta/lib/python3.12/site-packages/letta/schemas/providers/bedrock.py", line 54, in bedrock_get_model_list_async
+    from aioboto3.session import Session
+ModuleNotFoundError: No module named 'aioboto3'
+httpx - INFO - HTTP Request: GET http://127.0.0.1:8100/v1/models "HTTP/1.1 200 OK"
+Letta.letta.services.provider_manager - INFO - === Starting sync for provider 'openai' (ID: provider-95958fa6-ec49-4f78-94a6-617b365a9457) ===
+Letta.letta.services.provider_manager - INFO -   Organization ID: None
+Letta.letta.services.provider_manager - INFO -   LLM models to sync: ['openai-proxy/models/qwen2.5-3b-instruct-q4_k_m.gguf']
+Letta.letta.services.provider_manager - INFO -   Embedding models to sync: ['openai/text-embedding-ada-002', 'openai/text-embedding-3-small', 'openai/text-embedding-3-large']
+Letta.letta.services.provider_manager - INFO - Processing 1 LLM models for provider openai
+Letta.letta.services.provider_manager - INFO -   Checking LLM model: openai-proxy/models/qwen2.5-3b-instruct-q4_k_m.gguf (name: models/qwen2.5-3b-instruct-q4_k_m.gguf)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new LLM model openai-proxy/models/qwen2.5-3b-instruct-q4_k_m.gguf
+Letta.letta.services.provider_manager - INFO -     Model data: handle=openai-proxy/models/qwen2.5-3b-instruct-q4_k_m.gguf, name=models/qwen2.5-3b-instruct-q4_k_m.gguf, model_type=llm, provider_id=provider-95958fa6-ec49-4f78-94a6-617b365a9457, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created LLM model openai-proxy/models/qwen2.5-3b-instruct-q4_k_m.gguf
+Letta.letta.services.provider_manager - INFO - Processing 3 embedding models for provider openai
+Letta.letta.services.provider_manager - INFO -   Checking embedding model: openai/text-embedding-ada-002 (name: text-embedding-ada-002)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new embedding model openai/text-embedding-ada-002
+Letta.letta.services.provider_manager - INFO -     Model data: handle=openai/text-embedding-ada-002, name=text-embedding-ada-002, model_type=embedding, provider_id=provider-95958fa6-ec49-4f78-94a6-617b365a9457, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created embedding model openai/text-embedding-ada-002
+Letta.letta.services.provider_manager - INFO -   Checking embedding model: openai/text-embedding-3-small (name: text-embedding-3-small)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new embedding model openai/text-embedding-3-small
+Letta.letta.services.provider_manager - INFO -     Model data: handle=openai/text-embedding-3-small, name=text-embedding-3-small, model_type=embedding, provider_id=provider-95958fa6-ec49-4f78-94a6-617b365a9457, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created embedding model openai/text-embedding-3-small
+Letta.letta.services.provider_manager - INFO -   Checking embedding model: openai/text-embedding-3-large (name: text-embedding-3-large)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new embedding model openai/text-embedding-3-large
+Letta.letta.services.provider_manager - INFO -     Model data: handle=openai/text-embedding-3-large, name=text-embedding-3-large, model_type=embedding, provider_id=provider-95958fa6-ec49-4f78-94a6-617b365a9457, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created embedding model openai/text-embedding-3-large
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Reading org-scoped model Provider without actor. IDs: ['provider-95958fa6-ec49-4f78-94a6-617b365a9457']. This bypasses organization filtering.
+Letta.letta.server.server - INFO - Synced 1 LLM models and 3 embedding models for provider openai
+Letta.letta.services.provider_manager - INFO - === Starting sync for provider 'letta' (ID: provider-c9738b05-9e52-4fbf-b29e-4d995226d812) ===
+Letta.letta.services.provider_manager - INFO -   Organization ID: None
+Letta.letta.services.provider_manager - INFO -   LLM models to sync: ['letta/letta-free']
+Letta.letta.services.provider_manager - INFO -   Embedding models to sync: ['letta/letta-free']
+Letta.letta.services.provider_manager - INFO - Processing 1 LLM models for provider letta
+Letta.letta.services.provider_manager - INFO -   Checking LLM model: letta/letta-free (name: letta-free)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new LLM model letta/letta-free
+Letta.letta.services.provider_manager - INFO -     Model data: handle=letta/letta-free, name=letta-free, model_type=llm, provider_id=provider-c9738b05-9e52-4fbf-b29e-4d995226d812, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created LLM model letta/letta-free
+Letta.letta.services.provider_manager - INFO - Processing 1 embedding models for provider letta
+Letta.letta.services.provider_manager - INFO -   Checking embedding model: letta/letta-free (name: letta-free)
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model ProviderModel without actor. This bypasses organization filtering.
+Letta.letta.services.provider_manager - INFO -     Creating new embedding model letta/letta-free
+Letta.letta.services.provider_manager - INFO -     Model data: handle=letta/letta-free, name=letta-free, model_type=embedding, provider_id=provider-c9738b05-9e52-4fbf-b29e-4d995226d812, org_id=None
+Letta.letta.services.provider_manager - INFO -     ✓ Successfully created embedding model letta/letta-free
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Reading org-scoped model Provider without actor. IDs: ['provider-c9738b05-9e52-4fbf-b29e-4d995226d812']. This bypasses organization filtering.
+Letta.letta.server.server - INFO - Synced 1 LLM models and 1 embedding models for provider letta
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model SandboxConfig without actor. This bypasses organization filtering.
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Git HTTP server instance set
+Letta.letta.jobs.scheduler - INFO - Batch job polling is disabled.
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Scheduler initialization completed
+Letta.letta.monitoring.readiness_state - INFO - Readiness telemetry transition: warming -> ready (source=lifespan_startup_complete)
+Letta.letta.server.rest_api.app - INFO - [Worker 5250] Lifespan startup completed
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://localhost:8283 (Press CTRL+C to quit)
+Letta.letta.services.agent_manager - INFO - Overriding include_base_tool_rules to False for model: gpt-4.1-mini
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - WARNING - Context token estimate is not set
+httpx - INFO - HTTP Request: POST http://127.0.0.1:8100/v1/chat/completions "HTTP/1.1 200 OK"
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Context token estimate after LLM request: 2373
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Running final update. Step Progression: StepProgression.FINISHED
+Letta.letta.services.run_manager - WARNING - Run run-b0ddbf17-54df-4848-889e-4f5a981e2642 completed without a completed_at timestamp
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Step without actor. This bypasses organization filtering.
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - WARNING - Context token estimate is not set
+httpx - INFO - HTTP Request: POST http://127.0.0.1:8100/v1/chat/completions "HTTP/1.1 200 OK"
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Context token estimate after LLM request: 2444
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Running final update. Step Progression: StepProgression.FINISHED
+Letta.letta.services.run_manager - WARNING - Run run-23db4591-d95d-4fe3-8d01-00d561f1f806 completed without a completed_at timestamp
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Step without actor. This bypasses organization filtering.
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - WARNING - Context token estimate is not set
+httpx - INFO - HTTP Request: POST http://127.0.0.1:8100/v1/chat/completions "HTTP/1.1 200 OK"
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Context token estimate after LLM request: 2511
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Running final update. Step Progression: StepProgression.FINISHED
+Letta.letta.services.run_manager - WARNING - Run run-bb2b3a5b-879e-4b79-9fa6-4eba886979f5 completed without a completed_at timestamp
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Step without actor. This bypasses organization filtering.
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - WARNING - Context token estimate is not set
+httpx - INFO - HTTP Request: POST http://127.0.0.1:8100/v1/chat/completions "HTTP/1.1 200 OK"
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Context token estimate after LLM request: 2576
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Running final update. Step Progression: StepProgression.FINISHED
+Letta.letta.services.run_manager - WARNING - Run run-7c2673ed-85f8-44e8-83f8-2e8010f185b0 completed without a completed_at timestamp
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Step without actor. This bypasses organization filtering.
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - WARNING - Context token estimate is not set
+httpx - INFO - HTTP Request: POST http://127.0.0.1:8100/v1/chat/completions "HTTP/1.1 200 OK"
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Context token estimate after LLM request: 2624
+Letta.agent-cb00c2c9-a1e4-4dda-a3e3-67c6538a0bda - INFO - Running final update. Step Progression: StepProgression.FINISHED
+Letta.letta.services.run_manager - WARNING - Run run-17bddc2d-0e25-45b3-83db-e7fb8d5baf3f completed without a completed_at timestamp
+Letta.letta.orm.sqlalchemy_base - WARNING - SECURITY: Listing org-scoped model Step without actor. This bypasses organization filtering.

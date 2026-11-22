@@ -1,0 +1,227 @@
+{
+ "label": "smoke_graphiti",
+ "system": "graphiti",
+ "async": false,
+ "n_turns": 3,
+ "count": 4,
+ "footprint": {
+  "nodes:Entity": 6,
+  "nodes:Episodic": 3,
+  "nodes:Community": 0,
+  "edges:RELATES_TO": 4,
+  "edges:MENTIONS": 10,
+  "disk_bytes": 542082453
+ },
+ "ops": {
+  "agent.retrieve(chat)": {
+   "DB": 122.73452300000001,
+   "Embedding": 59.79906750000001,
+   "LLM decode": 0,
+   "LLM prefill+queue": 0,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 0,
+   "completion_tok": 0,
+   "llm_busy_ms": 0,
+   "n_embed": 1,
+   "n_llm": 0,
+   "other": 4.777818,
+   "prompt_tok": 0,
+   "wall": 187.3114085,
+   "n": 2,
+   "p50": 187.94568,
+   "p95": 187.94568,
+   "max": 187.94568,
+   "cache_hit": null
+  },
+  "agent.retrieve(qa)": {
+   "DB": 52.285166499999995,
+   "Embedding": 33.5184815,
+   "LLM decode": 0,
+   "LLM prefill+queue": 0,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 0,
+   "completion_tok": 0,
+   "llm_busy_ms": 0,
+   "n_embed": 1,
+   "n_llm": 0,
+   "other": 5.678352500000001,
+   "prompt_tok": 0,
+   "wall": 91.4820005,
+   "n": 2,
+   "p50": 133.840137,
+   "p95": 133.840137,
+   "max": 133.840137,
+   "cache_hit": null
+  },
+  "agent.generate(chat)": {
+   "DB": 0,
+   "Embedding": 0,
+   "LLM decode": 2335.6169499999996,
+   "LLM prefill+queue": 1198.6969105,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 60,
+   "completion_tok": 26.5,
+   "llm_busy_ms": 3534.3138605000004,
+   "n_embed": 0,
+   "n_llm": 1,
+   "other": 3.3698125,
+   "prompt_tok": 166.5,
+   "wall": 3537.683673,
+   "n": 2,
+   "p50": 3982.402486,
+   "p95": 3982.402486,
+   "max": 3982.402486,
+   "cache_hit": 0.36036036036036034
+  },
+  "agent.generate(qa)": {
+   "DB": 0,
+   "Embedding": 0,
+   "LLM decode": 3208.6488465,
+   "LLM prefill+queue": 583.0143805,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 8.5,
+   "completion_tok": 38.5,
+   "llm_busy_ms": 3791.663227,
+   "n_embed": 0,
+   "n_llm": 1,
+   "other": 2.95871,
+   "prompt_tok": 65.5,
+   "wall": 3794.621937,
+   "n": 2,
+   "p50": 4234.323544,
+   "p95": 4234.323544,
+   "max": 4234.323544,
+   "cache_hit": 0.1297709923664122
+  },
+  "agent.memorize(chat)": {
+   "DB": 542.4939615000001,
+   "Embedding": 321.378862,
+   "LLM decode": 53182.8483955,
+   "LLM prefill+queue": 54349.271800500006,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 1425.5,
+   "completion_tok": 528.5,
+   "llm_busy_ms": 115586.9224295,
+   "n_embed": 4.5,
+   "n_llm": 5.5,
+   "other": 52.3918125,
+   "prompt_tok": 6776.5,
+   "wall": 108448.38483200001,
+   "n": 2,
+   "p50": 137415.372669,
+   "p95": 137415.372669,
+   "max": 137415.372669,
+   "cache_hit": 0.21035933003763005
+  },
+  "agent.turn(chat)": {
+   "DB": 665.2284845,
+   "Embedding": 381.1779295,
+   "LLM decode": 55518.46534549999,
+   "LLM prefill+queue": 55547.968710999994,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 1485.5,
+   "completion_tok": 555,
+   "llm_busy_ms": 119121.23629,
+   "n_embed": 5.5,
+   "n_llm": 6.5,
+   "other": 61.026042999999994,
+   "prompt_tok": 6943,
+   "wall": 112173.8665135,
+   "n": 2,
+   "p50": 141586.239708,
+   "p95": 141586.239708,
+   "max": 141586.239708,
+   "cache_hit": 0.21395650295261415
+  },
+  "cold.start(cold)": {
+   "DB": 1884.0829589999994,
+   "Embedding": 0,
+   "LLM decode": 0,
+   "LLM prefill+queue": 0,
+   "LLM queue": 0,
+   "NLP": 0,
+   "cached_tok": 0,
+   "completion_tok": 0,
+   "llm_busy_ms": 0,
+   "n_embed": 0,
+   "n_llm": 0,
+   "other": 981.228903,
+   "prompt_tok": 0,
+   "wall": 2865.311862,
+   "n": 1,
+   "p50": 2865.311862,
+   "p95": 2865.311862,
+   "max": 2865.311862,
+   "cache_hit": null
+  }
+ },
+ "phases": {
+  "graphiti.phase.search": {
+   "n": 2,
+   "mean_ms": 186.06001700000002
+  },
+  "graphiti.phase.retrieve_episodes": {
+   "n": 2,
+   "mean_ms": 33.443447
+  },
+  "graphiti.phase.extract_nodes": {
+   "n": 2,
+   "mean_ms": 35888.313122
+  },
+  "graphiti.phase.resolve_extracted_nodes": {
+   "n": 3,
+   "mean_ms": 13973.183708
+  },
+  "graphiti.phase.extract_edges": {
+   "n": 2,
+   "mean_ms": 36260.363954500004
+  },
+  "graphiti.phase.resolve_extracted_edges": {
+   "n": 2,
+   "mean_ms": 11836.919722499999
+  },
+  "graphiti.phase.extract_and_resolve_edges": {
+   "n": 2,
+   "mean_ms": 54671.310446
+  },
+  "graphiti.phase.extract_attributes_from_nodes": {
+   "n": 2,
+   "mean_ms": 3191.8018515000003
+  },
+  "graphiti.phase.build_episodic_edges": {
+   "n": 2,
+   "mean_ms": 0.0662565
+  },
+  "graphiti.phase.process_episode_data": {
+   "n": 2,
+   "mean_ms": 275.3445625
+  }
+ },
+ "hw": {
+  "proc_cpu_mean": {
+   "llm_server": 375.02069868995636,
+   "embed_server": 1.6593013100436682,
+   "proxy": 0.1531004366812227,
+   "postgres": 0.01388646288209607,
+   "qdrant": 0.05930131004366812,
+   "neo4j": 7.556244541484716,
+   "harness": 1.0119650655021835
+  },
+  "proc_rss_max_mb": {
+   "llm_server": 7238.0546875,
+   "embed_server": 2074.4375,
+   "proxy": 40.30078125,
+   "postgres": 152.2421875,
+   "qdrant": 46.20703125,
+   "neo4j": 2538.11328125,
+   "harness": 205.2265625
+  },
+  "disk_w_mb": 10.4765625
+ }
+}

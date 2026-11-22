@@ -1,0 +1,28 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Mel attended the LGBTQ support group on November 21, 2026.",
+    "mem": [
+      "Mel attended a LGBTQ support group on November 21, 2026 and found it powerful",
+      "The user was inspired by the transgender stories at the LGBTQ support group on November 21, 2026",
+      "Mel attended a LGBTQ support group on November 21, 2026 and found the transgender stories inspiring and felt happy and thankful",
+      "Mel was last seen by the user on November 22, 2026, and has been well",
+      "Mel was last seen by the user on November 22, 2026 and has been well",
+      "The user greeted Mel and asked how Mel has been"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "I don't have any information about a person named Caroline or their identity. The previous conversation was about Mel, who attended a LGBTQ support group and found the transgender stories inspiring.",
+    "mem": [
+      "The user greeted Mel and asked how Mel has been",
+      "Mel was last seen by the user on November 22, 2026 and has been well",
+      "Mel was last seen by the user on November 22, 2026, and has been well",
+      "Mel attended a LGBTQ support group on November 21, 2026 and found it powerful",
+      "The user was inspired by the transgender stories at the LGBTQ support group on November 21, 2026",
+      "Mel attended a LGBTQ support group on November 21, 2026 and found the transgender stories inspiring and felt happy and thankful"
+    ]
+  }
+]

@@ -133,6 +133,73 @@ class Tracer:
         wrapped.__memprof_wrapped__ = True  # type: ignore[attr-defined]
         setattr(obj, attr, wrapped)
 
+    # ------------------------------------------- flat intervals (async / concurrent code)
+    def interval(self, name: str, t0: int, t1: int, **attrs: Any) -> None:
+        """Record a flat [t0, t1] interval (no parent stack). Used for coroutines, where many
+        calls overlap on one thread; analysis attributes wall time by interval union."""
+        if not self.enabled:
+            return
+        rec = {"id": -2, "parent": None, "name": name, "thread": threading.get_ident(), "flat": True,
+               "t0_ns": t0, "wall_ms": (t1 - t0) / 1e6, "cpu_ms": 0.0, **self.context, **attrs}
+        with self._lock:
+            self.spans.append(rec)
+
+    def wrap_async(self, obj: Any, attr: str, name: str,
+                   attrs_fn: Callable[..., dict] | None = None) -> None:
+        """Monkeypatch an async method with a flat-interval recording version (idempotent)."""
+        orig = getattr(obj, attr)
+        if getattr(orig, "__memprof_wrapped__", False):
+            return
+        tracer = self
+
+        @functools.wraps(orig)
+        async def wrapped(*a, **k):
+            extra = {}
+            if attrs_fn is not None:
+                try:
+                    extra = attrs_fn(*a, **k) or {}
+                except Exception:
+                    extra = {}
+            t0 = time.perf_counter_ns()
+            err = None
+            try:
+                return await orig(*a, **k)
+            except BaseException as e:
+                err = repr(e)[:200]
+                raise
+            finally:
+                if err:
+                    extra["error"] = err
+                tracer.interval(name, t0, time.perf_counter_ns(), **extra)
+
+        wrapped.__memprof_wrapped__ = True  # type: ignore[attr-defined]
+        setattr(obj, attr, wrapped)
+
+    def wrap_flat(self, obj: Any, attr: str, name: str,
+                  attrs_fn: Callable[..., dict] | None = None) -> None:
+        """Sync wrapper that records a flat interval (safe to call from many threads)."""
+        orig = getattr(obj, attr)
+        if getattr(orig, "__memprof_wrapped__", False):
+            return
+        tracer = self
+
+        @functools.wraps(orig)
+        def wrapped(*a, **k):
+            extra = {}
+            if attrs_fn is not None:
+                try:
+                    extra = attrs_fn(*a, **k) or {}
+                except Exception:
+                    extra = {}
+            t0 = time.perf_counter_ns()
+            try:
+                return orig(*a, **k)
+            finally:
+                tracer.interval(name, t0, time.perf_counter_ns(), **extra)
+
+        wrapped.__memprof_wrapped__ = True  # type: ignore[attr-defined]
+        setattr(obj, attr, wrapped)
+
     # ------------------------------------------------------------------ io
     def dump(self, path: str) -> None:
         with open(path, "w") as f:

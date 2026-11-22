@@ -1,0 +1,49 @@
+{
+  "args": {
+    "system": "graphiti",
+    "data": "/home/user/locomo/data/locomo10.json",
+    "conv": 0,
+    "turns": 2,
+    "qa": 1,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 256,
+    "async_add": false,
+    "think": 0.0,
+    "no_hwmon": false,
+    "vllm_metrics": "",
+    "label": "",
+    "out": "results/smoke/graphiti"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "graphiti",
+  "tracer_overhead_us": 20.225671249999998,
+  "t_start_ns": 2364904157209,
+  "pg_before": null,
+  "n_turns": 2,
+  "n_qa": 1,
+  "total_s": 191.95927557899995,
+  "count": 2,
+  "footprint": {
+    "nodes:Entity": 6,
+    "nodes:Episodic": 2,
+    "nodes:Community": 0,
+    "edges:RELATES_TO": 2,
+    "edges:MENTIONS": 9,
+    "disk_bytes": 542262344
+  },
+  "pg_after": null
+}

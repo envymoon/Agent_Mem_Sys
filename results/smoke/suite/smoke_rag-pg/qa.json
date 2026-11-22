@@ -1,0 +1,22 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Based on the memories provided, Caroline did not attend the LGBTQ support group. The conversation was about you, Mel, and your experience at the support group.",
+    "mem": [
+      "user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds amazing and very meaningful, Mel. It's wonderful to hear that you found such a positive experience.",
+      "user: The transgender stories were so inspiring! I was so happy and thankful for all the support.\nassistant: Those stories were truly inspiring, Mel. It's wonderful to hear that you felt so uplifted and grateful for the support.",
+      "user: Hey Mel! Good to see you! How have you been?\nassistant: Hello! Good to hear from you, Mel. I've been well, thanks for asking. How about you?"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "I don't have specific information about Caroline's identity from the memories provided. Could you please provide more context or details about Caroline?",
+    "mem": [
+      "user: The transgender stories were so inspiring! I was so happy and thankful for all the support.\nassistant: Those stories were truly inspiring, Mel. It's wonderful to hear that you felt so uplifted and grateful for the support.",
+      "user: Hey Mel! Good to see you! How have you been?\nassistant: Hello! Good to hear from you, Mel. I've been well, thanks for asking. How about you?",
+      "user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds amazing and very meaningful, Mel. It's wonderful to hear that you found such a positive experience."
+    ]
+  }
+]

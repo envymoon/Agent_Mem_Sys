@@ -1,0 +1,24 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline participated in the LGBTQ support group at an unspecified time, but it seems to be a recurring activity as she finds the topic of transgender stories inspiring.",
+    "mem": [
+      "Caroline participated in an LGBTQ support group",
+      "Caroline finds the topic of transgender stories inspiring.",
+      "Caroline experienced support from a community during a recent event.",
+      "Caroline greeted Mel"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Based on the memories provided, Caroline participates in an LGBTQ support group and finds transgender stories inspiring. This suggests Caroline is likely an LGBTQ individual, possibly transgender or non-binary. However, her specific identity is not explicitly stated.",
+    "mem": [
+      "Caroline greeted Mel",
+      "Caroline participated in an LGBTQ support group",
+      "Caroline finds the topic of transgender stories inspiring.",
+      "Caroline experienced support from a community during a recent event."
+    ]
+  }
+]

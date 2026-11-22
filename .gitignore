@@ -4,3 +4,12 @@ __pycache__/
 results/**/store/
 results/llama_server_*.log
 *.gguf
+.venv-letta/
+.venv-vllm/
+results/server_logs/
+results/_proxy_idle.jsonl
+results/**/_proxy_idle.jsonl
+results/letta_server.log
+results/smoke/proxy_test.jsonl
+results/smoke/*.log
+openapi_letta.json

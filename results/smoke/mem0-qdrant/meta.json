@@ -1,0 +1,46 @@
+{
+  "args": {
+    "system": "mem0-qdrant",
+    "data": "/home/user/locomo/data/locomo10.json",
+    "conv": 0,
+    "turns": 2,
+    "qa": 1,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 256,
+    "async_add": false,
+    "think": 0.0,
+    "no_hwmon": false,
+    "vllm_metrics": "",
+    "label": "",
+    "out": "results/smoke/mem0-qdrant"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "mem0-qdrant",
+  "tracer_overhead_us": 20.59890805,
+  "t_start_ns": 2310634738201,
+  "pg_before": null,
+  "n_turns": 2,
+  "n_qa": 1,
+  "total_s": 45.34597138500021,
+  "count": 3,
+  "footprint": {
+    "sqlite:history.db": 20480,
+    "qdrant:mem0_mem0_qdrant:points": 3,
+    "qdrant:mem0_mem0_qdrant_entities:points": 4
+  },
+  "pg_after": null
+}
