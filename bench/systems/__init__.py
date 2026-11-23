@@ -3,7 +3,7 @@ from __future__ import annotations
 
 
 def make(name: str, cfg: dict, run_dir: str):
-    if name in ("mem0-pg", "mem0-qdrant"):
+    if name in ("mem0-pg", "mem0-qdrant", "mem0-local"):
         from .mem0_sys import Mem0System
         return Mem0System(cfg, run_dir, backend=name.split("-")[1])
     if name == "graphiti":
@@ -18,4 +18,5 @@ def make(name: str, cfg: dict, run_dir: str):
     raise ValueError(name)
 
 
-SYSTEMS = ["rag-pg", "mem0-pg", "mem0-qdrant", "graphiti", "letta"]
+SYSTEMS = ["rag-pg", "mem0-local", "mem0-pg", "mem0-qdrant", "graphiti", "letta"]
+LOCAL_SYSTEMS = ["rag-pg", "mem0-local", "mem0-pg", "mem0-qdrant", "graphiti"]  # local 4060 study: no Letta

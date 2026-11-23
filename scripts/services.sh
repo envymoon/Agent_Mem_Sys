@@ -56,7 +56,7 @@ start_pg() {
 port = $PG_PORT
 listen_addresses = '127.0.0.1'
 unix_socket_directories = '/tmp'
-shared_buffers = '2GB'
+shared_buffers = '${PG_SHARED_BUFFERS:-2GB}'
 work_mem = '64MB'
 maintenance_work_mem = '1GB'
 effective_cache_size = '8GB'
@@ -64,6 +64,7 @@ max_connections = 200
 shared_preload_libraries = 'pg_stat_statements'
 pg_stat_statements.track = all
 track_io_timing = on
+track_wal_io_timing = on
 EOF
   fi
   su postgres -c "$PGBIN/pg_ctl -D $D -l $LOGS/pg.log -w start" >/dev/null 2>&1 </dev/null
@@ -76,10 +77,11 @@ stop_pg() { [ -f "$SVC_DATA/pg/postmaster.pid" ] && su postgres -c "$PGBIN/pg_ct
 
 start_qdrant() {
   mkdir -p "$SVC_DATA/qdrant"
-  ( cd "$SVC_DATA/qdrant" && QDRANT__STORAGE__STORAGE_PATH="$SVC_DATA/qdrant/storage" \
+  ( cd "$SVC_DATA/qdrant" && exec env QDRANT__STORAGE__STORAGE_PATH="$SVC_DATA/qdrant/storage" \
     QDRANT__STORAGE__SNAPSHOTS_PATH="$SVC_DATA/qdrant/snapshots" QDRANT__TELEMETRY_DISABLED=true \
     QDRANT__SERVICE__HOST=127.0.0.1 QDRANT__SERVICE__HTTP_PORT=6333 QDRANT__SERVICE__GRPC_PORT=6334 \
-    nohup "$SVC_HOME/qdrant" >"$LOGS/qdrant.log" 2>&1 </dev/null & echo $! >"$SVC_DATA/qdrant.pid" )
+    "$SVC_HOME/qdrant" ) >"$LOGS/qdrant.log" 2>&1 </dev/null &
+  echo $! >"$SVC_DATA/qdrant.pid"
   wait_port 6333 && echo "qdrant up :6333"
 }
 stop_qdrant() { pkill -f "$SVC_HOME/qdrant" 2>/dev/null; rm -f "$SVC_DATA/qdrant.pid"; sleep 1; }
@@ -104,7 +106,7 @@ db.logs.query.threshold=0
 EOF
     "$N/bin/neo4j-admin" dbms set-initial-password "$NEO4J_PASSWORD" >/dev/null 2>&1 || true
   fi
-  "$N/bin/neo4j" start >"$LOGS/neo4j_start.log" 2>&1
+  "$N/bin/neo4j" start >"$LOGS/neo4j_start.log" 2>&1 </dev/null
   wait_port 7687 && echo "neo4j up :7687 (neo4j/$NEO4J_PASSWORD)"
 }
 stop_neo4j() { local N=$SVC_HOME/neo4j-community-$NEO4J_VER; NEO4J_CONF=$SVC_DATA/neo4j/conf NEO4J_HOME=$N "$N/bin/neo4j" stop >/dev/null 2>&1 || true; }

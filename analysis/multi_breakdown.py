@@ -46,7 +46,11 @@ def intervals(S, L):
         else:
             tf = c.get("t_first_ns") or c["t1_ns"]
             q = ((c.get("vllm_metrics") or {}).get("queue_time_ms") or 0) * 1e6
-            if q > 0:  # vLLM per-request metrics: split scheduler queueing from prefill
+            lt = c.get("llama_timings") or {}
+            if not q and lt.get("prompt_ms") is not None and c.get("t_first_ns"):
+                # llama.cpp: TTFT - server prefill time = waiting for a slot / batch + HTTP (upper bound of queue)
+                q = max(0.0, (tf - c["t0_ns"]) - lt["prompt_ms"] * 1e6 - 2e6)
+            if q > 0:  # split scheduler queueing from prefill
                 tq = min(tf, c["t0_ns"] + int(q))
                 iv.append((c["t0_ns"], tq, "LLM queue", agent))
                 iv.append((tq, tf, "LLM prefill+queue", agent))
@@ -122,9 +126,9 @@ def analyze(run: str) -> dict:
                 r = attribute(a, b, iv, want)
                 r.update(calls_in(a, b, L, want))
                 r["wall"] = s["wall_ms"]
-                for k in ("pg_calls", "pg_exec_ms", "pg_wal_bytes", "n_tool_calls"):
-                    if k in s and s[k] is not None:
-                        r[k] = s[k]
+                for k, v in s.items():
+                    if (k.startswith(("pg_", "io_", "dev_")) or k == "n_tool_calls") and isinstance(v, (int, float)):
+                        r[k] = v
                 rows.append(r)
             walls = sorted(r["wall"] for r in rows)
             keys = sorted({k for r in rows for k in r})
@@ -158,7 +162,17 @@ def hw_summary(H: list[dict]) -> dict:
         out["gpu_mem_mb_max"] = max(x["mem_mb"] for x in g)
         out["gpu_power_mean"] = st.mean(x["power_w"] for x in g)
     v = [list(h["vllm"].values())[0] for h in H if h.get("vllm") and list(h["vllm"].values())[0]]
-    if len(v) >= 2:
+    if len(v) >= 2 and "pc_hits_tok" in v[-1]:  # llama.cpp: tokens served from cache / all prompt tokens
+        dh = v[-1]["pc_hits_tok"] - v[0].get("pc_hits_tok", 0)
+        dp = v[-1].get("prompt_tokens", 0) - v[0].get("prompt_tokens", 0)
+        out["prefix_cache_hit"] = dh / (dh + dp) if dh + dp else None
+        out["max_waiting"] = max(x.get("waiting", 0) for x in v)
+        g = (v[-1].get("gen_tokens", 0) - v[0].get("gen_tokens", 0))
+        gs = (v[-1].get("gen_s", 0) - v[0].get("gen_s", 0))
+        ps = (v[-1].get("prompt_s", 0) - v[0].get("prompt_s", 0))
+        out["llm_decode_tok_s"] = g / gs if gs else None
+        out["llm_prefill_tok_s"] = dp / ps if ps else None
+    elif len(v) >= 2:
         out["kv_usage_max"] = max(x.get("kv_usage", 0) for x in v)
         dq = v[-1].get("pc_queries", 0) - v[0].get("pc_queries", 0)
         dh = v[-1].get("pc_hits", 0) - v[0].get("pc_hits", 0)
@@ -172,12 +186,28 @@ def hw_summary(H: list[dict]) -> dict:
     out["proc_rss_max_mb"] = {k: max(x["rss_mb"] for x in xs) for k, xs in procs.items()}
     if H:
         out["disk_w_mb"] = H[-1]["sys"]["disk_w"] / 2**20
+        out["disk_r_mb"] = H[-1]["sys"]["disk_r"] / 2**20
+        out["swap_mb_max"] = max(h["sys"].get("swap_mb", 0) for h in H)
+    if g and "pcie_tx_kbs" in g[0]:
+        out["pcie_rx_mb_s_mean"] = st.mean(x.get("pcie_rx_kbs", 0) for x in g) / 1024
+        out["pcie_tx_mb_s_mean"] = st.mean(x.get("pcie_tx_kbs", 0) for x in g) / 1024
+    io = [h["io"] for h in H if h.get("io")]
+    if len(io) >= 2:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from memprof.iostat import delta
+        d = delta(io[0], io[-1])
+        out["io_by_group_mb"] = {k: {"rd": x["read_bytes"] / 2**20, "wr": x["write_bytes"] / 2**20,
+                                     "rchar": x["rchar"] / 2**20, "wchar": x["wchar"] / 2**20}
+                                 for k, x in d["procs"].items()}
+        out["dev"] = d["dev"]
+        out["psi_io"] = d.get("psi_io")
     return out
 
 
 def md(results: list[dict]) -> str:
-    lines = ["| run | op | n | mean ms | p95 ms | " + " | ".join(CATS) + " | #LLM | prompt tok | cache hit | out tok | pg stmts |",
-             "|" + "---|" * (11 + len(CATS))]
+    lines = ["| run | op | n | mean ms | p95 ms | " + " | ".join(CATS)
+             + " | #LLM | prompt tok | cache hit | out tok | pg stmts | disk rd KB | disk wr KB | flushes |",
+             "|" + "---|" * (14 + len(CATS))]
     for r in results:
         for op, a in r["ops"].items():
             if op.startswith(("agent.turn", "cold")):
@@ -185,7 +215,8 @@ def md(results: list[dict]) -> str:
             ch = f"{a['cache_hit']:.0%}" if a.get("cache_hit") is not None else "-"
             lines.append(f"| {r['label']} | {op} | {a['n']} | {a['wall']:.0f} | {a['p95']:.0f} | "
                          + " | ".join(f"{a[c]:.0f}" for c in CATS)
-                         + f" | {a['n_llm']:.1f} | {a['prompt_tok']:.0f} | {ch} | {a['completion_tok']:.0f} | {a.get('pg_calls', 0):.0f} |")
+                         + f" | {a['n_llm']:.1f} | {a['prompt_tok']:.0f} | {ch} | {a['completion_tok']:.0f} | {a.get('pg_calls', 0):.0f}"
+                         + f" | {a.get('io_rd_bytes', 0) / 1024:.0f} | {a.get('io_wr_bytes', 0) / 1024:.0f} | {a.get('dev_flush_ios', 0):.1f} |")
     return "\n".join(lines)
 
 

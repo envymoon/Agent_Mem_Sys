@@ -6,7 +6,10 @@ Every --interval seconds writes one jsonl record:
           prompt/generation token counters                                   (scraped from /metrics)
   procs:  CPU% and RSS per process group (llm server, embed server, postgres, qdrant, neo4j,
           letta server, harness)                                              (psutil)
-  sys:    total CPU%, disk read/write bytes, used RAM
+  sys:    total CPU%, disk read/write bytes, used RAM, swap, page-cache size
+  io:     per-group block-layer + syscall I/O bytes, /proc/diskstats of the data device(s) (incl. flush
+          count / latency), IO pressure (PSI) -- cumulative counters, diff at analysis time
+  gpu:    + PCIe TX/RX KB/s (KV offload / MoE-on-CPU traffic)          (all llama.cpp metrics too)
 
 usage: python -m memprof.hwmon --out results/x/hw.jsonl --vllm http://127.0.0.1:8000 --interval 0.25
 Stops on SIGTERM / SIGINT.
@@ -21,6 +24,8 @@ import time
 import urllib.request
 
 import psutil
+
+from memprof import iostat
 
 GROUPS = {  # name -> regex on cmdline
     "llm_server": r"vllm.*serve(?!.*[Ee]mbed)|llama-server(?!.*--embeddings)|sglang",
@@ -40,6 +45,12 @@ VLLM_KEYS = {
     "vllm:gpu_prefix_cache_queries_total": "pc_queries", "vllm:gpu_prefix_cache_hits_total": "pc_hits",
     "vllm:num_preemptions_total": "preemptions", "vllm:prompt_tokens_total": "prompt_tokens",
     "vllm:generation_tokens_total": "gen_tokens",
+    # llama.cpp server (--metrics)
+    "llamacpp:prompt_tokens_total": "prompt_tokens", "llamacpp:prompt_tokens_cached_total": "pc_hits_tok",
+    "llamacpp:tokens_predicted_total": "gen_tokens", "llamacpp:prompt_seconds_total": "prompt_s",
+    "llamacpp:tokens_predicted_seconds_total": "gen_s", "llamacpp:requests_processing": "running",
+    "llamacpp:requests_deferred": "waiting", "llamacpp:n_busy_slots_per_decode": "busy_slots",
+    "llamacpp:n_decode_total": "n_decode",
 }
 _re_line = re.compile(r"^([a-zA-Z_:][a-zA-Z0-9_:]*)(\{[^}]*\})?\s+([0-9.eE+-]+|NaN)")
 
@@ -63,7 +74,8 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--interval", type=float, default=0.25)
     ap.add_argument("--vllm", default="", help="comma list of vLLM base URLs to scrape")
-    ap.add_argument("--vllm-every", type=int, default=4, help="scrape vLLM every N samples")
+    ap.add_argument("--vllm-every", type=int, default=4, help="scrape vLLM / llama.cpp every N samples")
+    ap.add_argument("--io-every", type=int, default=4, help="per-process I/O snapshot every N samples")
     args = ap.parse_args()
 
     stop = False
@@ -100,6 +112,7 @@ def main() -> None:
                     break
 
     vurls = [u for u in args.vllm.split(",") if u]
+    pcie_ok = True
     f = open(args.out, "a", buffering=1)
     psutil.cpu_percent(None)
     d0 = psutil.disk_io_counters()
@@ -115,11 +128,18 @@ def main() -> None:
                 try:
                     u = pynvml.nvmlDeviceGetUtilizationRates(h)
                     mem = pynvml.nvmlDeviceGetMemoryInfo(h)
-                    g.append({"util": u.gpu, "mem_bw_util": u.memory, "mem_mb": mem.used / 2**20,
-                              "power_w": pynvml.nvmlDeviceGetPowerUsage(h) / 1e3,
-                              "sm_mhz": pynvml.nvmlDeviceGetClockInfo(h, pynvml.NVML_CLOCK_SM)})
+                    x = {"util": u.gpu, "mem_bw_util": u.memory, "mem_mb": mem.used / 2**20,
+                         "power_w": pynvml.nvmlDeviceGetPowerUsage(h) / 1e3,
+                         "sm_mhz": pynvml.nvmlDeviceGetClockInfo(h, pynvml.NVML_CLOCK_SM)}
                 except Exception:
-                    pass
+                    continue
+                if pcie_ok:  # unsupported on some drivers / WSL: probe once
+                    try:
+                        x["pcie_tx_kbs"] = pynvml.nvmlDeviceGetPcieThroughput(h, pynvml.NVML_PCIE_UTIL_TX_BYTES)
+                        x["pcie_rx_kbs"] = pynvml.nvmlDeviceGetPcieThroughput(h, pynvml.NVML_PCIE_UTIL_RX_BYTES)
+                    except Exception:
+                        pcie_ok = False
+                g.append(x)
             rec["gpu"] = g
         if vurls and i % args.vllm_every == 0:
             rec["vllm"] = {u: scrape_vllm(u) for u in vurls}
@@ -138,7 +158,13 @@ def main() -> None:
         d = psutil.disk_io_counters()
         vm = psutil.virtual_memory()
         rec["sys"] = {"cpu": psutil.cpu_percent(None), "ram_used_mb": vm.used / 2**20,
+                      "cached_mb": getattr(vm, "cached", 0) / 2**20, "swap_mb": psutil.swap_memory().used / 2**20,
                       "disk_r": d.read_bytes - d0.read_bytes, "disk_w": d.write_bytes - d0.write_bytes}
+        if i % args.io_every == 0:
+            try:
+                rec["io"] = iostat.snapshot()
+            except Exception:
+                pass
         f.write(json.dumps(rec) + "\n")
         i += 1
         time.sleep(args.interval)

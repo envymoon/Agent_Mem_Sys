@@ -9,6 +9,20 @@
 - `analysis/`：分解、对比、作图脚本；`results/`：原始 trace（`spans.jsonl`）与汇总
 - `scripts/`：llama-server 启动与实验套件
 
+## 本机实验：RTX 4060 + 真实 NVMe（当前主线）
+
+在用户自己的 Windows 机器上（WSL2 Ubuntu，llama.cpp `b12559`）对比 rag-pg / mem0（嵌入式 Qdrant、pgvector、Qdrant server）/
+Graphiti(Neo4j)，并逐层测 KV 放置（GPU / 主机内存 / SSD）与存储 I/O（块设备读写、fsync、冷热页缓存）。
+方案：[`docs/local_plan.md`](docs/local_plan.md)。入口：`scripts/win/memprof.ps1`（Windows）→ `scripts/local/run_local_suite.sh`（WSL）。
+
+| 组件 | 文件 |
+|---|---|
+| 8 GB 显存模型档位 / llama.cpp 启动（记录实际显存分配） | `scripts/local/profiles.sh`, `scripts/local/start_llama.sh` |
+| 安装（CUDA toolkit、llama.cpp、服务、模型）/ 硬件与磁盘基线 | `scripts/local/setup.sh`, `scripts/local/preflight.sh` |
+| 每操作的存储 I/O（/proc/pid/io、diskstats、flush、PSI） | `memprof/iostat.py` |
+| KV 分层微基准（重算 / GPU / 内存缓存 / SSD slot） | `bench/kv_tier_bench.py` |
+| 存储规模 × 冷热页缓存 | `bench/scale_disk.py` |
+
 ## GPU / multi-architecture extension (Colab)
 
 Same workload across five memory architectures (RAG baseline, mem0 on pgvector / Qdrant server,

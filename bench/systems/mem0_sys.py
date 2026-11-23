@@ -1,7 +1,8 @@
 """mem0 OSS (2.x): LLM fact extraction + vector store (+ entity store, BM25 keyword search).
 
 Production-style config: OpenAI-compatible LLM + embedder (served locally behind the proxy),
-pgvector (as in mem0's self-hosted server) or Qdrant server. Everything else = mem0 defaults.
+pgvector (as in mem0's self-hosted server), Qdrant server, or embedded on-disk Qdrant ("local", mem0's
+out-of-the-box mode for a single-machine agent). Everything else = mem0 defaults.
 """
 from __future__ import annotations
 
@@ -54,6 +55,10 @@ class Mem0System(MemSystem):
             vs = {"provider": "pgvector", "config": {
                 "connection_string": c["pg_dsn"], "collection_name": self.coll,
                 "embedding_model_dims": c["emb_dim"], "hnsw": True}}
+        elif self.backend == "local":  # mem0's out-of-the-box local mode: embedded Qdrant on disk
+            vs = {"provider": "qdrant", "config": {
+                "path": os.path.join(self.run_dir, "store", "qdrant"), "on_disk": True,
+                "collection_name": self.coll, "embedding_model_dims": c["emb_dim"]}}
         else:
             host, port = c["qdrant"].split("//")[1].split(":")
             vs = {"provider": "qdrant", "config": {
@@ -88,10 +93,10 @@ class Mem0System(MemSystem):
         for root, _, files in os.walk(os.path.join(self.run_dir, "store")):
             for f in files:
                 p = os.path.join(root, f)
-                fp["sqlite:" + f] = os.path.getsize(p)
+                fp[("qdrant_local:" if "qdrant" in root else "sqlite:") + f] = os.path.getsize(p)
         if self.backend == "pg":
             fp.update({"pg:" + k: v for k, v in pg_table_sizes(self.cfg["pg_dsn"], self.coll + "%").items()})
-        else:
+        elif self.backend == "qdrant":
             try:
                 import urllib.request, json
                 for col in (self.coll, self.coll + "_entities"):
@@ -100,3 +105,9 @@ class Mem0System(MemSystem):
             except Exception:
                 pass
         return fp
+
+    def stop(self) -> None:  # flush/close embedded stores (local mode persists on close)
+        import contextlib
+        for st in (getattr(self.m, "vector_store", None), getattr(self.m, "_entity_store", None)):
+            with contextlib.suppress(Exception):
+                st.client.close()

@@ -95,6 +95,7 @@ def _rewrite(body: dict, kind: str) -> dict:
             ck.setdefault("enable_thinking", False)
         for k in A.drop_params:
             body.pop(k, None)
+        body.update(A.inject)  # e.g. {"cache_prompt": false} for the llama.cpp prefix-cache ablation
     elif kind == "embed":
         if A.embed_model:
             body["model"] = A.embed_model
@@ -284,8 +285,10 @@ def main() -> None:
     ap.add_argument("--no-think", action="store_true")
     ap.add_argument("--no-stream-convert", dest="stream_convert", action="store_false")
     ap.add_argument("--drop-params", default="", help="comma list of request keys to drop")
+    ap.add_argument("--inject", default="{}", help="JSON merged into every chat request body")
     ap.add_argument("--log", default="results/llm_calls.jsonl")
     A = ap.parse_args()
+    A.inject = json.loads(A.inject)
     A.drop_params = [x for x in A.drop_params.split(",") if x]
 
     async def on_start(app):

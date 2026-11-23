@@ -30,6 +30,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from bench.systems import make  # noqa: E402
 from bench.systems.base import default_cfg  # noqa: E402
+from memprof import iostat  # noqa: E402
 from memprof.tracer import TRACER, measure_overhead  # noqa: E402
 
 AGENT_SYS = ("You are a warm, concise personal assistant chatting with {user}. "
@@ -67,8 +68,15 @@ def pg_stats(dsn: str) -> dict:
             r = c.execute("SELECT coalesce(sum(calls),0), coalesce(sum(total_exec_time),0), "
                           "coalesce(sum(shared_blks_hit),0), coalesce(sum(shared_blks_read),0), "
                           "coalesce(sum(wal_bytes),0) FROM pg_stat_statements").fetchone()
+            w = c.execute("SELECT wal_write, wal_sync, wal_write_time, wal_sync_time FROM pg_stat_wal").fetchone()
+            io = c.execute("SELECT coalesce(sum(reads),0), coalesce(sum(writes),0), coalesce(sum(fsyncs),0), "
+                           "coalesce(sum(read_time),0), coalesce(sum(write_time),0), coalesce(sum(fsync_time),0) "
+                           "FROM pg_stat_io").fetchone()
         return {"calls": int(r[0]), "exec_ms": float(r[1]), "blks_hit": int(r[2]), "blks_read": int(r[3]),
-                "wal_bytes": int(r[4])}
+                "wal_bytes": int(r[4]), "wal_write": int(w[0]), "wal_sync": int(w[1]),
+                "wal_write_ms": float(w[2]), "wal_sync_ms": float(w[3]),
+                "io_reads": int(io[0]), "io_writes": int(io[1]), "io_fsyncs": int(io[2] or 0),
+                "io_read_ms": float(io[3] or 0), "io_write_ms": float(io[4] or 0), "io_fsync_ms": float(io[5] or 0)}
     except Exception as e:  # pragma: no cover
         return {"error": repr(e)[:100]}
 
@@ -120,6 +128,8 @@ def main() -> None:
     agent_llm = OpenAI(base_url=cfg["proxy"], api_key="sk-local", default_headers={"X-Memprof-Client": "agent"})
     sysm = make(args.system, cfg, out)
     meta["pg_before"] = pg_stats(cfg["pg_dsn"]) if sysm.uses_pg else None
+    meta["io_devices"] = iostat.devices()
+    io_start = iostat.snapshot()
     t_start = time.perf_counter()
     TRACER.context = {"phase": "cold"}
     with TRACER.span("cold.start"):
@@ -129,16 +139,21 @@ def main() -> None:
         return pg_stats(cfg["pg_dsn"]) if sysm.uses_pg else {}
 
     def op(name: str, fn, **attrs):
-        """Run fn inside a span; attach server-side Postgres deltas for this op (sync mode only)."""
+        """Run fn inside a span; attach server-side Postgres deltas and storage-I/O deltas (sync mode only:
+        with a background writer the deltas could not be attributed to one op)."""
         p0 = pg_attrs() if not args.async_add else {}
-        with TRACER.span(name, **attrs) as sa:
+        io0 = iostat.snapshot() if not args.async_add else None
+        with TRACER.span(name, **attrs):
             res = fn()
+        sa_ = TRACER.spans[-1]
+        if io0 is not None:
+            sa_.update(iostat.flat(iostat.delta(io0, iostat.snapshot())))
         if p0 and "calls" in p0:
             p1 = pg_attrs()
             # the stats query itself is excluded by being outside the span; its own row adds 1 call
-            sa_ = TRACER.spans[-1]
-            for k in ("calls", "exec_ms", "blks_hit", "blks_read", "wal_bytes"):
-                sa_["pg_" + k] = p1[k] - p0[k]
+            for k, v in p1.items():
+                if k in p0 and isinstance(v, (int, float)):
+                    sa_["pg_" + k] = v - p0[k]
         return res
 
     history: list[dict] = []
@@ -212,6 +227,7 @@ def main() -> None:
                  "count": sysm.count(uid), "footprint": sysm.footprint(),
                  "pg_after": pg_stats(cfg["pg_dsn"]) if sysm.uses_pg else None})
     sysm.stop()
+    meta["io_total"] = iostat.delta(io_start, iostat.snapshot())  # after stop(): includes final flushes
     TRACER.dump(os.path.join(out, "spans.jsonl"))
     json.dump(meta, open(os.path.join(out, "meta.json"), "w"), indent=2, default=str)
     json.dump(qa_log, open(os.path.join(out, "qa.json"), "w"), indent=2)
