@@ -60,7 +60,7 @@ fi
 
 # page-cache / host-cache check
 dd if=/dev/urandom of="$T/cachecheck" bs=1M count=2048 status=none conv=fsync
-sync; echo 3 >/proc/sys/vm/drop_caches 2>/dev/null && dropped=true || dropped=false
+sync; echo 3 >/proc/sys/vm/drop_caches 2>/dev/null && dropped=True || dropped=False
 t0=$(date +%s.%N); dd if="$T/cachecheck" of=/dev/null bs=1M status=none; t1=$(date +%s.%N)
 t2=$(date +%s.%N); dd if="$T/cachecheck" of=/dev/null bs=1M status=none; t3=$(date +%s.%N)
 python3 -c "

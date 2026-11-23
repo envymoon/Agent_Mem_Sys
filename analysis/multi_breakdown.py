@@ -167,10 +167,10 @@ def hw_summary(H: list[dict]) -> dict:
         dp = v[-1].get("prompt_tokens", 0) - v[0].get("prompt_tokens", 0)
         out["prefix_cache_hit"] = dh / (dh + dp) if dh + dp else None
         out["max_waiting"] = max(x.get("waiting", 0) for x in v)
-        g = (v[-1].get("gen_tokens", 0) - v[0].get("gen_tokens", 0))
+        gt = (v[-1].get("gen_tokens", 0) - v[0].get("gen_tokens", 0))
         gs = (v[-1].get("gen_s", 0) - v[0].get("gen_s", 0))
         ps = (v[-1].get("prompt_s", 0) - v[0].get("prompt_s", 0))
-        out["llm_decode_tok_s"] = g / gs if gs else None
+        out["llm_decode_tok_s"] = gt / gs if gs else None
         out["llm_prefill_tok_s"] = dp / ps if ps else None
     elif len(v) >= 2:
         out["kv_usage_max"] = max(x.get("kv_usage", 0) for x in v)

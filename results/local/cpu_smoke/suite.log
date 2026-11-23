@@ -1,0 +1,126 @@
+{
+  "kernel": "6.18.44-fc-v726",
+  "wsl": false,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cores": 4,
+  "ram_gb": 15.7,
+  "swap_gb": 0.0,
+  "gpu": null,
+  "data_dir": "/opt/svc/data",
+  "data_fs": "ext4",
+  "data_dev": "/dev/vda",
+  "block_devices": {
+    "blockdevices": [
+      {
+        "name": "zram0",
+        "model": null,
+        "size": "0B",
+        "rota": false,
+        "tran": null
+      },
+      {
+        "name": "vda",
+        "model": null,
+        "size": "256G",
+        "rota": true,
+        "tran": "virtio"
+      },
+      {
+        "name": "vdb",
+        "model": null,
+        "size": "9.5M",
+        "rota": true,
+        "tran": "virtio"
+      },
+      {
+        "name": "vdc",
+        "model": null,
+        "size": "397.6M",
+        "rota": true,
+        "tran": "virtio"
+      },
+      {
+        "name": "vdd",
+        "model": null,
+        "size": "49.5M",
+        "rota": true,
+        "tran": "virtio"
+      },
+      {
+        "name": "vde",
+        "model": null,
+        "size": "752K",
+        "rota": true,
+        "tran": "virtio"
+      },
+      {
+        "name": "vdf",
+        "model": null,
+        "size": "5.9M",
+        "rota": true,
+        "tran": "virtio"
+      }
+    ]
+  },
+  "data_free_gb": 52
+}
+  fio seqread        3039 MB/s      3039 IOPS  clat p50=2441us p99=3916us
+  fio randread        111 MB/s     28384 IOPS  clat p50=20us p99=51us
+  fio fsyncwrite       28 MB/s      7270 IOPS  clat p50=25us p99=64us fsync p50=98us p99=281us
+
+suggested: PROFILE=cpu (main).  q8b/llama8b may not fit; moe30b needs >= 32 GB RAM (WSL: raise memory= in .wslconfig)
+[00:11:11] load mmap/cold: {"mode": "mmap", "page_cache": "cold", "load_wall_s": 1.2761316299438477, "dev_read_mb": 1076.09765625, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+[00:11:17] load mmap/warm: {"mode": "mmap", "page_cache": "warm", "load_wall_s": 0.8783471584320068, "dev_read_mb": 0.0, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+[00:11:23] load none/cold: {"mode": "none", "page_cache": "cold", "load_wall_s": 1.5006415843963623, "dev_read_mb": 1075.76171875, "buffers_mib": {"model:AMX": 950.7, "model:CPU": 125.7, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+[00:11:29] load none/warm: {"mode": "none", "page_cache": "warm", "load_wall_s": 1.2955200672149658, "dev_read_mb": 0.0, "buffers_mib": {"model:AMX": 950.7, "model:CPU": 125.7, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 8192 -np 2 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto
+LLM (qwen2.5-1.5b-instruct-q4_k_m.gguf, PROFILE=cpu) up
+{"load_wall_s": 1.1100223064422607, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "n_ctx_slot": 8192}
+proxy up
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 8192 -np 1 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto
+LLM (qwen2.5-1.5b-instruct-q4_k_m.gguf, PROFILE=cpu) up
+{"load_wall_s": 0.8549256324768066, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.5}, "n_ctx_slot": 8192}
+proxy up
+[00:11:35] === kv_cpu_ram8192
+L=   512 rep0 recompute=2099 gpu=55 ram=72(cache_n=511) ssd_cold=59 ssd_warm=53 ms kv=14MB
+L=   512 rep1 recompute=1812 gpu=47 ram=59(cache_n=511) ssd_cold=63 ssd_warm=53 ms kv=14MB
+L=   512 rep2 recompute=1655 gpu=45 ram=51(cache_n=511) ssd_cold=61 ssd_warm=49 ms kv=14MB
+L=  1024 rep0 recompute=3862 gpu=54 ram=79(cache_n=1023) ssd_cold=79 ssd_warm=58 ms kv=28MB
+L=  1024 rep1 recompute=3721 gpu=48 ram=90(cache_n=1023) ssd_cold=61 ssd_warm=66 ms kv=28MB
+L=  1024 rep2 recompute=3837 gpu=52 ram=59(cache_n=1023) ssd_cold=72 ssd_warm=64 ms kv=28MB
+| L | recompute | gpu hit | RAM cache | SSD cold | SSD warm | save | KV MB |
+|---|---|---|---|---|---|---|---|
+| 512 | 1812 | 47 | 59 | 61 | 53 | 12 | 14 |
+| 1024 | 3837 | 52 | 79 | 72 | 64 | 26 | 28 |
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 8192 -np 1 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 0 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto
+LLM (qwen2.5-1.5b-instruct-q4_k_m.gguf, PROFILE=cpu) up
+{"load_wall_s": 0.8739805221557617, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.5}, "n_ctx_slot": 8192}
+proxy up
+[00:12:31] === kv_cpu_ram0
+L=   512 rep0 recompute=1790 gpu=49 ram=1850(cache_n=0) ssd_cold=67 ssd_warm=54 ms kv=14MB
+L=   512 rep1 recompute=1624 gpu=50 ram=1642(cache_n=0) ssd_cold=90 ssd_warm=50 ms kv=14MB
+L=   512 rep2 recompute=1711 gpu=44 ram=1628(cache_n=0) ssd_cold=53 ssd_warm=54 ms kv=14MB
+L=  1024 rep0 recompute=3641 gpu=72 ram=3578(cache_n=0) ssd_cold=68 ssd_warm=54 ms kv=28MB
+L=  1024 rep1 recompute=3466 gpu=48 ram=3630(cache_n=0) ssd_cold=85 ssd_warm=66 ms kv=28MB
+L=  1024 rep2 recompute=3801 gpu=48 ram=3583(cache_n=0) ssd_cold=64 ssd_warm=57 ms kv=28MB
+| L | recompute | gpu hit | RAM cache | SSD cold | SSD warm | save | KV MB |
+|---|---|---|---|---|---|---|---|
+| 512 | 1711 | 49 | 1642 | 67 | 54 | 12 | 14 |
+| 1024 | 3641 | 48 | 3583 | 68 | 57 | 22 | 28 |
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 8192 -np 2 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto
+LLM (qwen2.5-1.5b-instruct-q4_k_m.gguf, PROFILE=cpu) up
+{"load_wall_s": 0.8505761623382568, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "n_ctx_slot": 8192}
+proxy up
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 8192 -np 2 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto
+LLM (qwen2.5-1.5b-instruct-q4_k_m.gguf, PROFILE=cpu) up
+{"load_wall_s": 0.8718612194061279, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "n_ctx_slot": 8192}
+proxy up
+[00:13:59] === smoke_rag-pg (rag-pg) PROFILE=cpu
+[00:14:33] done smoke_rag-pg: {"n_turns": 3, "n_qa": 2, "count": 3, "total_s": 7.863094753000041}
+[00:14:33] === smoke_mem0-local (mem0-local) PROFILE=cpu
+[00:18:15] done smoke_mem0-local: {"n_turns": 3, "n_qa": 2, "count": 1, "total_s": 195.0689305320002}
+[00:18:15] === smoke_mem0-pg (mem0-pg) PROFILE=cpu
+[00:20:57] done smoke_mem0-pg: {"n_turns": 3, "n_qa": 2, "count": 3, "total_s": 135.88120802599997}
+[00:20:57] === smoke_graphiti (graphiti) PROFILE=cpu
+[00:24:52] done smoke_graphiti: {"n_turns": 3, "n_qa": 2, "count": 7, "total_s": 209.62403621900012}
+[00:24:52] suite done -> /tmp/claude-0/suite

@@ -1,0 +1,1 @@
+{"load_wall_s": 1.0695250034332275, "offloaded": null, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 448.0, "compute:CPU": 83.6}, "n_ctx_slot": 16384}

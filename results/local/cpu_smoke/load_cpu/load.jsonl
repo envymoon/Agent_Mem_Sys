@@ -1,0 +1,4 @@
+{"mode": "mmap", "page_cache": "cold", "load_wall_s": 1.2761316299438477, "dev_read_mb": 1076.09765625, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+{"mode": "mmap", "page_cache": "warm", "load_wall_s": 0.8783471584320068, "dev_read_mb": 0.0, "buffers_mib": {"model:AMX": 950.7, "model:CPU_Mapped": 125.2, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+{"mode": "none", "page_cache": "cold", "load_wall_s": 1.5006415843963623, "dev_read_mb": 1075.76171875, "buffers_mib": {"model:AMX": 950.7, "model:CPU": 125.7, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}
+{"mode": "none", "page_cache": "warm", "load_wall_s": 1.2955200672149658, "dev_read_mb": 0.0, "buffers_mib": {"model:AMX": 950.7, "model:CPU": 125.7, "KV:CPU": 224.0, "compute:CPU": 75.6}, "offloaded": null}

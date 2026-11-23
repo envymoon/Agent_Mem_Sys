@@ -113,3 +113,37 @@ pwsh -File scripts\win\memprof.ps1 status
 - `status`：随时查看进度。
 
 结果写在 WSL 的 `results/local/<主机名>/` 下，跑完由我提交到分支并分析。
+
+## 7. 本容器 CPU 冒烟结果（只验证管线；原始数据在 `results/local/cpu_smoke/`）
+
+测试环境为 CPU 加 Qwen2.5-1.5B Q4，数字只能说明定性趋势。
+
+- **全部套件跑通**：preflight、load、kv、smoke（4 个系统）、l5（rag-pg 和 mem0-local，每个 2 个规模点），均可续跑。
+- **kv 微基准**，前缀 1k token：
+
+  | 方式 | 耗时 |
+  |---|---|
+  | 重算 | 3.8 s |
+  | KV 仍在 | 52 ms |
+  | 主机内存缓存 | 79 ms |
+  | SSD 冷恢复（28 MB 文件） | 72 ms |
+
+  关掉 `--cache-ram` 后，“内存缓存”这一项退化成重算（3.6 s），但 SSD 恢复仍然有效。三个层级都能被准确开关和测到。
+- **KV 池容量决定 mem0 的写路径成本，这是已经看到的第一个硬件现象**：
+
+  | 统一 KV 池 | mem0 抽取 prompt 的缓存命中 | 每次 memorize |
+  |---|---|---|
+  | 8k（mem0 约 8.1k 前缀 + agent 对话放不下） | 0% | 60 s |
+  | 16k | 98% | 12.5 s |
+
+  前台 agent 的请求会把 mem0 的长前缀挤出显存。llama.cpp 的主机内存 prompt 缓存也没能把它救回来。l3 的 ctx8k / noram 两组实验会在 4060 上把这一点量化。
+- **磁盘写入**：每次 memorize 的块设备写入量和 flush 次数（即 fsync）都能按操作拆分出来：
+
+  | 系统 | flush 次数 / 每次 memorize |
+  |---|---|
+  | RAG | 1 |
+  | mem0-local | 约 13 |
+  | mem0-pg | 约 15 |
+  | Graphiti | 约 10 |
+
+  其中 Graphiti 的写主要由 Neo4j 产生。

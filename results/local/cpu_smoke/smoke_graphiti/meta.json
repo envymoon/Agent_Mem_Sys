@@ -1,0 +1,129 @@
+{
+  "args": {
+    "system": "graphiti",
+    "data": "/home/user/locomo/data/locomo10.json",
+    "conv": 0,
+    "turns": 3,
+    "qa": 2,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 256,
+    "async_add": false,
+    "think": 0.0,
+    "no_hwmon": false,
+    "vllm_metrics": "http://127.0.0.1:8000",
+    "label": "smoke_graphiti",
+    "out": "/tmp/claude-0/suite/smoke_graphiti"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "smoke_graphiti",
+  "tracer_overhead_us": 19.6382788,
+  "t_start_ns": 2872875342618,
+  "pg_before": null,
+  "io_devices": [
+    "vda"
+  ],
+  "n_turns": 3,
+  "n_qa": 2,
+  "total_s": 209.62403621900012,
+  "count": 7,
+  "footprint": {
+    "nodes:Entity": 12,
+    "nodes:Episodic": 3,
+    "nodes:Community": 0,
+    "edges:RELATES_TO": 7,
+    "edges:MENTIONS": 25,
+    "disk_bytes": 542084205
+  },
+  "pg_after": null,
+  "io_total": {
+    "procs": {
+      "embed_server": {
+        "rchar": 0,
+        "wchar": 20435,
+        "syscr": 0,
+        "syscw": 630,
+        "read_bytes": 4096,
+        "write_bytes": 40960
+      },
+      "llm_server": {
+        "rchar": 0,
+        "wchar": 242824,
+        "syscr": 0,
+        "syscw": 6633,
+        "read_bytes": 0,
+        "write_bytes": 290816
+      },
+      "proxy": {
+        "rchar": 0,
+        "wchar": 21263,
+        "syscr": 0,
+        "syscw": 45,
+        "read_bytes": 0,
+        "write_bytes": 40960
+      },
+      "postgres": {
+        "rchar": 1533749,
+        "wchar": 1438268,
+        "syscr": 425,
+        "syscw": 268,
+        "read_bytes": 2605056,
+        "write_bytes": 1687552
+      },
+      "qdrant": {
+        "rchar": 0,
+        "wchar": 20160,
+        "syscr": 0,
+        "syscw": 2520,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      "neo4j": {
+        "rchar": 15858888,
+        "wchar": 4070050,
+        "syscr": 10398,
+        "syscw": 1829,
+        "read_bytes": 34189312,
+        "write_bytes": 3284992
+      },
+      "harness": {
+        "rchar": 17465691,
+        "wchar": 47967,
+        "syscr": 4023,
+        "syscw": 60,
+        "read_bytes": 61927424,
+        "write_bytes": 167936
+      }
+    },
+    "dev": {
+      "vda": {
+        "rd_ios": 5175,
+        "rd_sec": 193888,
+        "rd_ms": 474,
+        "wr_ios": 1018,
+        "wr_sec": 12792,
+        "wr_ms": 118,
+        "io_ms": 420,
+        "flush_ios": 305,
+        "flush_ms": 29
+      }
+    },
+    "psi_io": {
+      "some_total_us": 124998,
+      "full_total_us": 99677
+    }
+  }
+}

@@ -1,0 +1,1 @@
+/home/user/llama.cpp/build/bin/llama-server -m /home/user/Agent_Mem_Sys/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias local --port 8000 --host 127.0.0.1 -c 16384 -np 2 -ngl 0 -ctk f16 -ctv f16 -fa auto --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 4 -lv 4 --load-mode auto

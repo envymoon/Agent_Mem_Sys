@@ -1,0 +1,4 @@
+[rag-pg] turn   0 t=    2.5s
+[rag-pg] turn   1 t=    3.9s
+[rag-pg] turn   2 t=    5.9s
+{"n_turns": 3, "n_qa": 2, "count": 3, "total_s": 7.863094753000041}

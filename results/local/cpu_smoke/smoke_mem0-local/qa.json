@@ -1,0 +1,18 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "I'm sorry, but I don't have any specific information about Caroline going to the LGBTQ support group. The conversation we had was about the user and the assistant discussing their well-being and recent interactions.",
+    "mem": [
+      "User and assistant are discussing their well-being and recent interactions."
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Caroline is a fictional character from the popular science fiction series \"The Expanse.\" She is a character in the series and is portrayed as a strong, independent woman who is often at odds with the male-dominated society of the universe.",
+    "mem": [
+      "User and assistant are discussing their well-being and recent interactions."
+    ]
+  }
+]

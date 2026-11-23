@@ -1,0 +1,30 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline went to the LGBTQ support group yesterday.",
+    "mem": [
+      "The assistant mentioned that user 'Mel' went to a LGBTQ support group yesterday and it was so powerful.",
+      "user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds wonderful, Caroline. It's great to hear that you found such a supportive environment.",
+      "The assistant mentioned that user 'Mel' went to a LGBTQ support group yesterday and it was so powerful.",
+      "assistant: That sounds wonderful, Caroline. It's great to hear that you found such a supportive environment.",
+      "Mel knows Caroline",
+      "user: Good to see you! How have you been?\nassistant: Hello Caroline! I'm doing well, thanks for asking. How about you?",
+      "user: Hey Mel! Good to see you! How have you been?\nassistant: Hello Caroline! I'm doing well, thanks for asking. How about you?"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Based on the conversation, Caroline appears to be part of the LGBTQ+ community. The assistant mentioned that Caroline found a supportive environment at a LGBTQ support group, indicating that Caroline is likely identifying as LGBTQ+.",
+    "mem": [
+      "Mel knows Caroline",
+      "assistant: That sounds wonderful, Caroline. It's great to hear that you found such a supportive environment.",
+      "user: Good to see you! How have you been?\nassistant: Hello Caroline! I'm doing well, thanks for asking. How about you?",
+      "user: Hey Mel! Good to see you! How have you been?\nassistant: Hello Caroline! I'm doing well, thanks for asking. How about you?",
+      "user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds wonderful, Caroline. It's great to hear that you found such a supportive environment.",
+      "The assistant mentioned that user 'Mel' went to a LGBTQ support group yesterday and it was so powerful.",
+      "The assistant mentioned that user 'Mel' went to a LGBTQ support group yesterday and it was so powerful."
+    ]
+  }
+]

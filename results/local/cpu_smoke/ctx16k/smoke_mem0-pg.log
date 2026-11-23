@@ -1,0 +1,26 @@
+Error in cursor context (psycopg3)
+Traceback (most recent call last):
+  File "/home/user/Agent_Mem_Sys/.venv/lib/python3.13/site-packages/mem0/vector_stores/pgvector.py", line 235, in _get_cursor
+    yield cur
+  File "/home/user/Agent_Mem_Sys/.venv/lib/python3.13/site-packages/mem0/vector_stores/pgvector.py", line 269, in create_col
+    cur.execute(
+    ~~~~~~~~~~~^
+        sql.SQL("""
+        ^^^^^^^^^^^
+    ...<5 lines>...
+        """).format(self._col(), sql.Literal(self.embedding_model_dims))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/user/Agent_Mem_Sys/memprof/tracer.py", line 196, in wrapped
+    return orig(*a, **k)
+  File "/home/user/Agent_Mem_Sys/.venv/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(mem0_smoke_mem0_pg_entities, 2200) already exists.
+Entity boost search failed for one entity: duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(mem0_smoke_mem0_pg_entities, 2200) already exists.
+[mem0-pg] turn   0 t=   67.8s
+[mem0-pg] turn   1 t=   81.7s
+[mem0-pg] turn   2 t=   96.5s
+{"n_turns": 3, "n_qa": 2, "count": 4, "total_s": 99.22923121099984}

@@ -1,0 +1,8 @@
+/home/user/Agent_Mem_Sys/.venv/lib/python3.13/site-packages/mem0/vector_stores/qdrant.py:177: UserWarning: Payload indexes have no effect in the local Qdrant, except text indexes with `scoring`, which enable text queries. Please use server Qdrant if you need payload indexes.
+  self.client.create_payload_index(
+[mem0-local] turn   0 t=   62.2s
+Error parsing extraction response: Expecting ',' delimiter: line 13 column 6 (char 345)
+[mem0-local] turn   1 t=  127.4s
+Error parsing extraction response: Unterminated string starting at: line 6 column 7 (char 148)
+[mem0-local] turn   2 t=  189.7s
+{"n_turns": 3, "n_qa": 2, "count": 1, "total_s": 195.0689305320002}

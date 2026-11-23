@@ -1,0 +1,55 @@
+{
+"kernel": "6.18.44-fc-v726", "wsl": false,
+"cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz", "cores": 4,
+"ram_gb": 15.7, "swap_gb": 0.0,
+"gpu": null,
+"data_dir": "/opt/svc/data", "data_fs": "ext4", "data_dev": "/dev/vda",
+"block_devices": {
+   "blockdevices": [
+      {
+         "name": "zram0",
+         "model": null,
+         "size": "0B",
+         "rota": false,
+         "tran": null
+      },{
+         "name": "vda",
+         "model": null,
+         "size": "256G",
+         "rota": true,
+         "tran": "virtio"
+      },{
+         "name": "vdb",
+         "model": null,
+         "size": "9.5M",
+         "rota": true,
+         "tran": "virtio"
+      },{
+         "name": "vdc",
+         "model": null,
+         "size": "397.6M",
+         "rota": true,
+         "tran": "virtio"
+      },{
+         "name": "vdd",
+         "model": null,
+         "size": "49.5M",
+         "rota": true,
+         "tran": "virtio"
+      },{
+         "name": "vde",
+         "model": null,
+         "size": "752K",
+         "rota": true,
+         "tran": "virtio"
+      },{
+         "name": "vdf",
+         "model": null,
+         "size": "5.9M",
+         "rota": true,
+         "tran": "virtio"
+      }
+   ]
+},
+"data_free_gb": 52
+}
