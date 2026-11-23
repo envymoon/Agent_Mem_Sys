@@ -208,6 +208,7 @@ def main() -> None:
             sysm.start()
             if a.backend.startswith("mem0"):
                 sysm.m.llm.generate_response = gen
+            iostat.refresh()
             row.update(cold_dropped=dropped, cold_restart_s=restart_s, cold_open_s=time.perf_counter() - t0)
             row["cold"] = timed_queries(sysm, qs, uid, a.topk)
         row["footprint"] = sysm.footprint()

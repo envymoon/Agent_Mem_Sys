@@ -30,7 +30,12 @@ _IO_KEYS = ("rchar", "wchar", "syscr", "syscw", "read_bytes", "write_bytes")
 _cache: dict = {"t": 0.0, "pids": {}}
 
 
-def _pids(max_age: float = 2.0) -> dict[int, str]:
+def refresh() -> None:
+    """Forget the cached pid->group map (call after restarting a backend)."""
+    _cache["t"] = 0.0
+
+
+def _pids(max_age: float = 1.0) -> dict[int, str]:
     now = time.monotonic()
     if now - _cache["t"] < max_age:
         return _cache["pids"]
