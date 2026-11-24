@@ -1,0 +1,571 @@
+{
+ "local_rates": {
+  "gpu_info": "",
+  "model_type": "qwen2 1.5B Q4_K - Medium",
+  "model_filename": "models/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+  "type_k": "f16",
+  "n_gpu_layers": 0,
+  "n_cpu_moe": 0,
+  "build_number": 1
+ },
+ "t_commit_ms": 0.164327181179,
+ "disks": {},
+ "gpus": {},
+ "runs": {
+  "smoke_graphiti": {
+   "system": "graphiti",
+   "overhead_ms": 37.944356000000425,
+   "kappa": {
+    "agent.memorize": 1.3318473072712198,
+    "agent.retrieve": 1.0,
+    "agent.generate": 1.0
+   },
+   "local": {
+    "agent.retrieve": {
+     "wall": 145.69625100000002,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 100.5413295,
+     "storage": 0.0,
+     "fixed": 45.1549215,
+     "pred_total": 145.69625100000002,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    },
+    "agent.generate": {
+     "wall": 1401.8227425,
+     "llm_meas": 1398.3825455,
+     "llm_pred": 1603.3292900065617,
+     "db": 0.0,
+     "storage": 0.0,
+     "fixed": 3.440197,
+     "pred_total": 1606.7694870065618,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 1,
+     "p_tok": 129,
+     "c_tok": 58.5,
+     "g_tok": 22,
+     "n": 2
+    },
+    "agent.memorize": {
+     "wall": 80635.2603825,
+     "llm_meas": 78613.280959,
+     "llm_pred": 64267.6673634163,
+     "db": 780.1986294999999,
+     "storage": 1.64327181179,
+     "fixed": 1241.780794,
+     "pred_total": 66289.6467869163,
+     "flush": 10,
+     "flush_ms": 2.5,
+     "n_llm": 9,
+     "p_tok": 7535.5,
+     "c_tok": 2287.5,
+     "g_tok": 927,
+     "n": 2
+    }
+   },
+   "whatif": {
+    "local GPU, no KV reuse": {
+     "agent.retrieve": {
+      "wall": 145.69625100000002,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 100.5413295,
+      "storage": 0.0,
+      "fixed": 45.1549215,
+      "pred_total": 145.69625100000002,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     },
+     "agent.generate": {
+      "wall": 1401.8227425,
+      "llm_meas": 1398.3825455,
+      "llm_pred": 1809.2240582253116,
+      "db": 0.0,
+      "storage": 0.0,
+      "fixed": 3.440197,
+      "pred_total": 1812.6642552253118,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 1,
+      "p_tok": 129,
+      "c_tok": 58.5,
+      "g_tok": 22,
+      "n": 2
+     },
+     "agent.memorize": {
+      "wall": 80635.2603825,
+      "llm_meas": 78613.280959,
+      "llm_pred": 70314.74638484122,
+      "db": 780.1986294999999,
+      "storage": 1.64327181179,
+      "fixed": 1241.780794,
+      "pred_total": 72336.72580834122,
+      "flush": 10,
+      "flush_ms": 2.5,
+      "n_llm": 9,
+      "p_tok": 7535.5,
+      "c_tok": 2287.5,
+      "g_tok": 927,
+      "n": 2
+     }
+    }
+   }
+  },
+  "smoke_mem0-local": {
+   "system": "mem0-local",
+   "overhead_ms": 31.31091399999741,
+   "kappa": {
+    "agent.memorize": 1.0,
+    "agent.retrieve": 1.0,
+    "agent.generate": 1.0
+   },
+   "local": {
+    "agent.retrieve": {
+     "wall": 110.3157445,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 2.5377945,
+     "storage": 0.0,
+     "fixed": 107.77795,
+     "pred_total": 110.3157445,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    },
+    "agent.generate": {
+     "wall": 2232.8388965,
+     "llm_meas": 2229.9997445,
+     "llm_pred": 2094.0970226453946,
+     "db": 0.0,
+     "storage": 0.0,
+     "fixed": 2.839152,
+     "pred_total": 2096.9361746453947,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 1,
+     "p_tok": 135.5,
+     "c_tok": 29,
+     "g_tok": 31.5,
+     "n": 2
+    },
+    "agent.memorize": {
+     "wall": 61401.399679,
+     "llm_meas": 61274.0103505,
+     "llm_pred": 59992.80088551501,
+     "db": 3.862793,
+     "storage": 1.7968041341265,
+     "fixed": 123.5265355,
+     "pred_total": 60120.190214015005,
+     "flush": 13,
+     "flush_ms": 2.5,
+     "n_llm": 1,
+     "p_tok": 8127,
+     "c_tok": 0,
+     "g_tok": 65,
+     "n": 2
+    }
+   },
+   "whatif": {
+    "local GPU, no KV reuse": {
+     "agent.retrieve": {
+      "wall": 110.3157445,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 2.5377945,
+      "storage": 0.0,
+      "fixed": 107.77795,
+      "pred_total": 110.3157445,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     },
+     "agent.generate": {
+      "wall": 2232.8388965,
+      "llm_meas": 2229.9997445,
+      "llm_pred": 2196.1645145828943,
+      "db": 0.0,
+      "storage": 0.0,
+      "fixed": 2.839152,
+      "pred_total": 2199.0036665828948,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 1,
+      "p_tok": 135.5,
+      "c_tok": 29,
+      "g_tok": 31.5,
+      "n": 2
+     },
+     "agent.memorize": {
+      "wall": 61401.399679,
+      "llm_meas": 61274.0103505,
+      "llm_pred": 59992.80088551501,
+      "db": 3.862793,
+      "storage": 1.7968041341265,
+      "fixed": 123.5265355,
+      "pred_total": 60120.190214015005,
+      "flush": 13,
+      "flush_ms": 2.5,
+      "n_llm": 1,
+      "p_tok": 8127,
+      "c_tok": 0,
+      "g_tok": 65,
+      "n": 2
+     }
+    }
+   }
+  },
+  "smoke_mem0-pg": {
+   "system": "mem0-pg",
+   "overhead_ms": 79.72917900000334,
+   "kappa": {
+    "agent.memorize": 1.0,
+    "agent.retrieve": 1.0,
+    "agent.generate": 1.0
+   },
+   "local": {
+    "agent.retrieve": {
+     "wall": 106.8431835,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 6.515009500000001,
+     "storage": 0.0,
+     "fixed": 100.32817399999999,
+     "pred_total": 106.8431835,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    },
+    "agent.generate": {
+     "wall": 1958.919558,
+     "llm_meas": 1956.088085,
+     "llm_pred": 1856.433925831001,
+     "db": 0.0,
+     "storage": 0.0,
+     "fixed": 2.831473,
+     "pred_total": 1859.2653988310008,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 1,
+     "p_tok": 139.5,
+     "c_tok": 29,
+     "g_tok": 25.5,
+     "n": 2
+    },
+    "agent.memorize": {
+     "wall": 59815.1834445,
+     "llm_meas": 59613.7886765,
+     "llm_pred": 58413.1344113247,
+     "db": 12.93459,
+     "storage": 2.4649077176849996,
+     "fixed": 188.460178,
+     "pred_total": 58614.5291793247,
+     "flush": 15,
+     "flush_ms": 3.5,
+     "n_llm": 1,
+     "p_tok": 8135,
+     "c_tok": 0,
+     "g_tok": 50,
+     "n": 2
+    }
+   },
+   "whatif": {
+    "local GPU, no KV reuse": {
+     "agent.retrieve": {
+      "wall": 106.8431835,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 6.515009500000001,
+      "storage": 0.0,
+      "fixed": 100.32817399999999,
+      "pred_total": 106.8431835,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     },
+     "agent.generate": {
+      "wall": 1958.919558,
+      "llm_meas": 1956.088085,
+      "llm_pred": 1958.5014177685007,
+      "db": 0.0,
+      "storage": 0.0,
+      "fixed": 2.831473,
+      "pred_total": 1961.3328907685009,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 1,
+      "p_tok": 139.5,
+      "c_tok": 29,
+      "g_tok": 25.5,
+      "n": 2
+     },
+     "agent.memorize": {
+      "wall": 59815.1834445,
+      "llm_meas": 59613.7886765,
+      "llm_pred": 58413.1344113247,
+      "db": 12.93459,
+      "storage": 2.4649077176849996,
+      "fixed": 188.460178,
+      "pred_total": 58614.5291793247,
+      "flush": 15,
+      "flush_ms": 3.5,
+      "n_llm": 1,
+      "p_tok": 8135,
+      "c_tok": 0,
+      "g_tok": 50,
+      "n": 2
+     }
+    }
+   }
+  },
+  "smoke_rag-pg": {
+   "system": "rag-pg",
+   "overhead_ms": 4.736227000000071,
+   "kappa": {
+    "agent.memorize": 1.0,
+    "agent.retrieve": 1.0,
+    "agent.generate": 1.0
+   },
+   "local": {
+    "agent.retrieve": {
+     "wall": 46.652995000000004,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 2.029453,
+     "storage": 0.0,
+     "fixed": 44.623542,
+     "pred_total": 46.652995000000004,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    },
+    "agent.generate": {
+     "wall": 1525.3752399999998,
+     "llm_meas": 1522.5045235,
+     "llm_pred": 1574.1277560752985,
+     "db": 0.0,
+     "storage": 0.0,
+     "fixed": 2.8707165000000003,
+     "pred_total": 1576.9984725752984,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 1,
+     "p_tok": 137,
+     "c_tok": 59.5,
+     "g_tok": 21.5,
+     "n": 2
+    },
+    "agent.memorize": {
+     "wall": 130.5507125,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 2.2440305,
+     "storage": 0.164327181179,
+     "fixed": 128.306682,
+     "pred_total": 130.55071249999997,
+     "flush": 1,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    }
+   },
+   "whatif": {
+    "local GPU, no KV reuse": {
+     "agent.retrieve": {
+      "wall": 46.652995000000004,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 2.029453,
+      "storage": 0.0,
+      "fixed": 44.623542,
+      "pred_total": 46.652995000000004,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     },
+     "agent.generate": {
+      "wall": 1525.3752399999998,
+      "llm_meas": 1522.5045235,
+      "llm_pred": 1783.5420929815482,
+      "db": 0.0,
+      "storage": 0.0,
+      "fixed": 2.8707165000000003,
+      "pred_total": 1786.4128094815483,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 1,
+      "p_tok": 137,
+      "c_tok": 59.5,
+      "g_tok": 21.5,
+      "n": 2
+     },
+     "agent.memorize": {
+      "wall": 130.5507125,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 2.2440305,
+      "storage": 0.164327181179,
+      "fixed": 128.306682,
+      "pred_total": 130.55071249999997,
+      "flush": 1,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     }
+    }
+   }
+  },
+  "ctx16k/smoke_mem0-pg": {
+   "system": "mem0-pg",
+   "overhead_ms": 69.55723799999942,
+   "kappa": {
+    "agent.memorize": 1.0,
+    "agent.retrieve": 1.0,
+    "agent.generate": 1.0
+   },
+   "local": {
+    "agent.retrieve": {
+     "wall": 100.97779249999999,
+     "llm_meas": 0.0,
+     "llm_pred": 0.0,
+     "db": 6.56335,
+     "storage": 0.0,
+     "fixed": 94.4144425,
+     "pred_total": 100.9777925,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 0,
+     "p_tok": 0,
+     "c_tok": 0,
+     "g_tok": 0,
+     "n": 2
+    },
+    "agent.generate": {
+     "wall": 1751.0635355,
+     "llm_meas": 1745.3916325,
+     "llm_pred": 1637.605055187198,
+     "db": 0.0,
+     "storage": 0.0,
+     "fixed": 5.671903,
+     "pred_total": 1643.276958187198,
+     "flush": 0,
+     "flush_ms": 0,
+     "n_llm": 1,
+     "p_tok": 123,
+     "c_tok": 59,
+     "g_tok": 22.5,
+     "n": 2
+    },
+    "agent.memorize": {
+     "wall": 12464.923196,
+     "llm_meas": 12162.253738,
+     "llm_pred": 14253.226678521816,
+     "db": 19.2748845,
+     "storage": 2.7113984894535,
+     "fixed": 283.3945735,
+     "pred_total": 14555.896136521817,
+     "flush": 16.5,
+     "flush_ms": 2.5,
+     "n_llm": 1,
+     "p_tok": 189,
+     "c_tok": 7955.5,
+     "g_tok": 107,
+     "n": 2
+    }
+   },
+   "whatif": {
+    "local GPU, no KV reuse": {
+     "agent.retrieve": {
+      "wall": 100.97779249999999,
+      "llm_meas": 0.0,
+      "llm_pred": 0.0,
+      "db": 6.56335,
+      "storage": 0.0,
+      "fixed": 94.4144425,
+      "pred_total": 100.9777925,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 0,
+      "p_tok": 0,
+      "c_tok": 0,
+      "g_tok": 0,
+      "n": 2
+     },
+     "agent.generate": {
+      "wall": 1751.0635355,
+      "llm_meas": 1745.3916325,
+      "llm_pred": 1845.2596077496983,
+      "db": 0.0,
+      "storage": 0.0,
+      "fixed": 5.671903,
+      "pred_total": 1850.9315107496982,
+      "flush": 0,
+      "flush_ms": 0,
+      "n_llm": 1,
+      "p_tok": 123,
+      "c_tok": 59,
+      "g_tok": 22.5,
+      "n": 2
+     },
+     "agent.memorize": {
+      "wall": 12464.923196,
+      "llm_meas": 12162.253738,
+      "llm_pred": 64989.40525757613,
+      "db": 19.2748845,
+      "storage": 2.7113984894535,
+      "fixed": 283.3945735,
+      "pred_total": 65292.074715576135,
+      "flush": 16.5,
+      "flush_ms": 2.5,
+      "n_llm": 1,
+      "p_tok": 189,
+      "c_tok": 7955.5,
+      "g_tok": 107,
+      "n": 2
+     }
+    }
+   }
+  }
+ }
+}

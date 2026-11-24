@@ -10,7 +10,7 @@
 # the fio direct seqread means the Windows host is still caching the VHDX -> "cold" numbers are only guest-cold.
 set -uo pipefail
 cd "$(dirname "$0")/../.."
-OUT=${OUT:-results/local/$(hostname)}
+OUT=${OUT:-results/local/$(hostname)-$(grep -qi microsoft /proc/version && echo wsl || echo native)}
 D=$OUT/preflight; mkdir -p "$D"
 SVC_DATA=${SVC_DATA:-/opt/svc/data}; mkdir -p "$SVC_DATA"
 T=$SVC_DATA/_fio; mkdir -p "$T"

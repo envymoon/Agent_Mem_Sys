@@ -5,13 +5,14 @@
 # Idempotent; ~20-30 min the first time (CUDA toolkit + llama.cpp build + model downloads).
 #
 #   LLAMA_TAG=b12559     pinned llama.cpp release (the build the harness was developed against)
-#   CUDA_ARCH=89         RTX 40xx (Ada). 86 = RTX 30xx, 120 = RTX 50xx
+#   CUDA_ARCH=auto       from nvidia-smi compute_cap (89 = RTX 40xx / L4, 86 = RTX 30xx / A10, 80 = A100, 90 = H100)
 #   DL_PROFILES="q4b q8b llama8b"   model profiles to download (add moe30b if RAM >= 32 GB, ~17 GB)
 #   MEMPROF_MODELS=$HOME/models     keep models on the same SSD you want to profile (NOT /mnt/c in WSL)
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 export DEBIAN_FRONTEND=noninteractive
 LLAMA_TAG=${LLAMA_TAG:-b12559}
+CUDA_ARCH=${CUDA_ARCH:-$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d '. ')}
 CUDA_ARCH=${CUDA_ARCH:-89}
 LLAMA_DIR=${LLAMA_DIR:-$HOME/llama.cpp}
 export MEMPROF_MODELS=${MEMPROF_MODELS:-$HOME/models}
@@ -45,11 +46,11 @@ echo "[3/7] llama.cpp $LLAMA_TAG"
 [ -d "$LLAMA_DIR/.git" ] || git clone -q https://github.com/ggml-org/llama.cpp "$LLAMA_DIR"
 git -C "$LLAMA_DIR" fetch -q --tags origin
 git -C "$LLAMA_DIR" checkout -q "$LLAMA_TAG"
-if [ ! -x "$LLAMA_DIR/build/bin/llama-server" ] || [ "$(cat "$LLAMA_DIR/build/.memprof_tag" 2>/dev/null)" != "$LLAMA_TAG-$GPU" ]; then
+if [ ! -x "$LLAMA_DIR/build/bin/llama-server" ] || [ "$(cat "$LLAMA_DIR/build/.memprof_tag" 2>/dev/null)" != "$LLAMA_TAG-$GPU-$CUDA_ARCH" ]; then
   cmake -S "$LLAMA_DIR" -B "$LLAMA_DIR/build" -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF \
     $([ $GPU = 1 ] && echo "-DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=$CUDA_ARCH") >/dev/null
   cmake --build "$LLAMA_DIR/build" -j "$(nproc)" --target llama-server llama-bench >/dev/null
-  echo "$LLAMA_TAG-$GPU" >"$LLAMA_DIR/build/.memprof_tag"
+  echo "$LLAMA_TAG-$GPU-$CUDA_ARCH" >"$LLAMA_DIR/build/.memprof_tag"
 fi
 "$LLAMA_DIR/build/bin/llama-server" --version 2>&1 | tail -2
 

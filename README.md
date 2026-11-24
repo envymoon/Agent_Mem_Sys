@@ -22,6 +22,8 @@ Graphiti(Neo4j)，并逐层测 KV 放置（GPU / 主机内存 / SSD）与存储 
 | 每操作的存储 I/O（/proc/pid/io、diskstats、flush、PSI） | `memprof/iostat.py` |
 | KV 分层微基准（重算 / GPU / 内存缓存 / SSD slot） | `bench/kv_tier_bench.py` |
 | 存储规模 × 冷热页缓存 | `bench/scale_disk.py` |
+| 延迟模型：微基准速率 × trace 计数 → 本机验证误差、换 GPU / 换盘推算 | `analysis/latency_model.py` |
+| WSL2 对原生 Linux 复测对照 | `analysis/platform_compare.py` |
 
 ## GPU / multi-architecture extension (Colab)
 

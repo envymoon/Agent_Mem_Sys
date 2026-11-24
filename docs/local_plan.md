@@ -9,6 +9,18 @@
 - 推理引擎从 vLLM 换成 llama.cpp；
 - 去掉 Letta。
 
+## 0. 论证结构：为什么主实验放在本机
+
+结论的性质是“瓶颈在哪里”：fsync、KV 被挤出、冷加载读盘、后台写干扰。这些只有在能控制、能复现的真实硬件上测出来才站得住。云 GPU 的磁盘是虚拟化的网络盘，旁边还有别的租户，往往也清不掉页缓存，测到的存储行为说明不了记忆系统本身。所以整个实验分三层：
+
+| 层 | 在哪跑 | 回答什么 | 对应 |
+|---|---|---|---|
+| ① 真实测量 | 本机 RTX 4060 + NVMe（WSL2），4 档模型 | 每个操作的 LLM / 嵌入 / DB / fsync / 读写字节分解，以及它们之间的相互作用（KV 池容量 → 前缀被挤出 → 重新 prefill） | l1–l5 |
+| ② 平台复测 | 同一台机器，原生 Ubuntu（U 盘或双系统） | 存储相关的结论是不是 WSL2 虚拟磁盘（NTFS 上的 VHDX + Hyper-V 存储栈）带来的假象 | 第 9 节 |
+| ③ 延迟模型 + 大显卡验证点 | 本机的 trace + 任意 Linux GPU（Colab/云）上的 llama-bench | 换成更快的 GPU 或更慢/更快的盘，瓶颈怎么转移。云上只测 LLM 速率，不对存储下结论 | 第 8、10 节 |
+
+和模型有关的部分（prefill / decode）随 GPU 和模型变化；和系统有关的部分（存储、fsync、索引、KV 能否复用）基本不随模型变化。第①层把两部分在真实硬件上测准，第③层用简单模型把它们拼起来做外推，第②层排除平台本身的干扰。
+
 ## 1. 平台
 
 | 项 | 选择 | 原因 |
@@ -76,11 +88,14 @@ KV 存储层级与开关：
 | smoke | 每个系统跑 3 轮 | 环境是否正常 | 10 min |
 | **kv** | 前缀长度 1k–12k，比较重算、GPU 命中、内存缓存、SSD 冷读、SSD 热读（开 / 关 `--cache-ram` 各一次） | 在这台机器上，从各层取回 KV 比重算快多少？SSD 在哪个长度开始划算？ | 10 min |
 | load | 模型冷加载（丢掉页缓存）对比热加载，mmap 对比 read | 冷启动有多少是 SSD 的代价？ | 5 min |
+| rates | llama-bench：pp512 和 tg64，KV 深度 0 到上下文上限，与服务端相同的模型、KV 类型和卸载参数 | 延迟模型用的每 token prefill / decode 成本（l4 对每档模型自动跑一遍） | 5 min |
 | **l1** | 5 个系统同步写，100 轮 + 50 题 QA | 写路径在各架构里是否都占主导？每轮的 LLM、DB、磁盘写和 fsync 开销各是多少？ | 2–4 h |
 | **l2** | 异步写（think 时间 0 s / 5 s），测 rag、mem0-local、mem0-pg、graphiti | 2 个 slot 共享一张 8 GB 卡时，后台写对前台 TTFT 和 decode 的干扰有多大？积压和提交延迟是多少？ | 2 h |
 | **l3** | mem0-pg 和 graphiti 在异步写下跑 6 种 KV 配置：基线、关前缀缓存、关内存缓存、KV q8_0、KV 放主机内存、上下文 8k | 不同架构对 KV 放置的敏感度：mem0 是长静态前缀，Graphiti 是多个中等长度的 prompt | 3 h |
 | l4 | q8b、llama8b、moe30b，测 mem0-pg 和 graphiti，并对每个模型跑一遍 kv 微基准 | 结论是否随模型规模、模型家族、MoE 放 CPU 而保持？ | 2–3 h |
 | **l5** | 存储规模 10³–10⁵ 条，热页缓存对比冷页缓存（重启服务并丢掉页缓存），测 rag-pg、mem0-pg、mem0-qdrant、mem0-local | 生产后端会不会出现嵌入式 Qdrant 那种线性退化？冷查询要读多少字节 SSD？重新打开存储要多久？ | 1–2 h |
+
+| model | 对 l1 / l4 的每个 run 跑 `analysis/latency_model.py`，输出 `latency_model_<档位>.md` | 模型在本机上的预测误差；换 GPU / 换盘 / 不复用 KV 的推算 | 1 min |
 
 全套约 12–15 小时，可以分几个晚上跑。
 
@@ -101,8 +116,8 @@ KV 存储层级与开关：
 pwsh -File scripts\win\memprof.ps1 check
 pwsh -File scripts\win\memprof.ps1 clone
 pwsh -File scripts\win\memprof.ps1 setup
-pwsh -File scripts\win\memprof.ps1 suite preflight smoke kv load
-pwsh -File scripts\win\memprof.ps1 suite l1 l2 l3 l4 l5
+pwsh -File scripts\win\memprof.ps1 suite preflight smoke kv load rates
+pwsh -File scripts\win\memprof.ps1 suite l1 l2 l3 l4 l5 model
 pwsh -File scripts\win\memprof.ps1 status
 ```
 
@@ -112,7 +127,7 @@ pwsh -File scripts\win\memprof.ps1 status
 - 第二次 `suite`：长时间实验，在后台运行。
 - `status`：随时查看进度。
 
-结果写在 WSL 的 `results/local/<主机名>/` 下，跑完由我提交到分支并分析。
+结果写在 WSL 的 `results/local/<主机名>-wsl/` 下（原生 Linux 上是 `-native`），跑完由我提交到分支并分析。
 
 ## 7. 本容器 CPU 冒烟结果（只验证管线；原始数据在 `results/local/cpu_smoke/`）
 
@@ -147,3 +162,79 @@ pwsh -File scripts\win\memprof.ps1 status
   | Graphiti | 约 10 |
 
   其中 Graphiti 的写主要由 Neo4j 产生。
+
+- **延迟模型在 CPU 上的自检**（`results/local/cpu_smoke/latency_model_cpu.md`）：用 llama-bench 测出的速率乘以 trace 里的 token 数，预测每个操作的耗时，没有用 trace 的耗时做拟合。
+
+  | run | 操作 | 实测 | 预测 | 误差 |
+  |---|---|---|---|---|
+  | mem0-pg（8k 池） | memorize | 59.8 s | 58.6 s | −2% |
+  | mem0-local（8k 池） | memorize | 61.4 s | 60.1 s | −2% |
+  | mem0-pg（16k 池） | memorize | 12.5 s | 14.6 s | +17% |
+  | Graphiti | memorize（9 次 LLM 调用） | 80.6 s | 66.3 s | −18% |
+  | 各系统 | generate | — | — | −6% ~ +15% |
+
+  另外，16k 池那组 run 用“不复用 KV”推算得到 65 s，和 8k 池实测的 60 s（命中率 0%）一致，说明模型抓住了 KV 复用这个主因。flush 次数 × fio 测得的单次 4k 写+fsync 延迟，与 diskstats 记录的 flush 耗时在同一量级（1.8–2.7 ms 对 2.5–3.5 ms）。
+
+## 8. 延迟模型（`analysis/latency_model.py`）
+
+把一次操作的耗时拆成和模型有关、和系统有关的两部分：
+
+```
+T_op ≈ T_LLM + T_emb + T_DB + T_NLP + T_other
+T_LLM = Σ_调用 [ prefill(p | 已缓存 c) + decode(g | 深度 c+p) + h ] / κ
+T_DB 中的存储部分 ≈ n_flush × t_commit
+```
+
+| 量 | 从哪来 |
+|---|---|
+| p、c、g：每次调用实际 prefill、复用和生成的 token 数 | trace（llama.cpp 每次请求返回的 timings） |
+| 每 token 的 prefill / decode 成本，随 KV 深度变化 | `rates` 套件的 llama-bench，**不是**从 trace 拟合，所以在本机上是预测而不是拟合 |
+| h：每次请求在 GPU 之外的开销（HTTP、proxy、采样） | trace 的中位数 |
+| κ：调用并发度（Graphiti 会并行发请求）= 调用耗时之和 ÷ 调用区间的并集 | 本机 trace，视为系统结构性质 |
+| n_flush：每次操作的块设备 flush 次数 | `/proc/diskstats` |
+| t_commit：4k 写 + fsync 延迟 | 同一块盘的 fio |
+| T_emb、T_NLP、T_other | 实测，推算时保持不变 |
+
+用法有三种：
+1. **本机验证**：预测值对比实测值，按系统、按操作给出误差。
+2. **推算**：同样的 token 数和 flush 数，换上别的 GPU 的 llama-bench 结果（`--gpu`）或别的盘的 fio 结果（`--disk`），看 LLM 和存储的占比怎么变；另外自动给出“完全不复用 KV”的推算，可以和 l3 的 noprefix 实测对照。
+3. **交叉验证**：如果那块 GPU 也跑了同名的 run（`--check`），直接比较它实测的 LLM 部分和从本机 trace 推出来的预测。
+
+不建模的部分：前台和后台请求的争用。这部分由 l2/l3 直接测量，不靠模型。
+
+## 9. 原生 Linux 复测（排除 WSL2 的影响）
+
+WSL2 是一台 Hyper-V 虚拟机，Linux 的 ext4 放在 Windows NTFS 上的 VHDX 文件里。fsync 会传到物理盘，但中间多了一层虚拟化，Windows 那边可能还有缓存。preflight 的页缓存检查可以量化这一点，但最有说服力的办法是在同一台机器上用原生 Ubuntu 再跑一遍关键实验：
+
+```bash
+# 从 U 盘启动 Ubuntu 24.04（或双系统），装好 NVIDIA 驱动后：
+git clone -b claude/gifted-maxwell-td8cnz https://github.com/envymoon/Agent_Mem_Sys.git && cd Agent_Mem_Sys
+sudo -E DL_PROFILES=q4b scripts/local/setup.sh
+sudo -E SYSTEMS="mem0-local mem0-pg graphiti" scripts/local/run_local_suite.sh preflight kv load rates l1 l5 model
+python analysis/platform_compare.py results/local/<主机名>-wsl results/local/<主机名>-native
+```
+
+- 选择 U 盘 live 系统时，数据要放在内部 NVMe 上的分区，不能放 U 盘，否则测到的是 U 盘。
+- 约 5–6 小时（l1 只跑 3 个系统，l5 全跑）。
+- `platform_compare.py` 对每个指标给出 native / WSL 的比值。预期：LLM 相关的行接近 1；如果存储相关的行（fsync 延迟、冷查询、冷加载）明显偏离 1，就说明这部分要以原生结果为准，并在论文里报告这个差异。
+
+## 10. 大显卡验证点（可选，只验证 LLM 部分）
+
+在 Colab（A100 / L4）或任意云 GPU 上，同一个 llama.cpp 版本、同一个 GGUF：
+
+```bash
+sudo -E DL_PROFILES=q4b scripts/local/setup.sh          # CUDA 架构会自动识别
+OUT=results/cloud/a100 scripts/local/run_local_suite.sh rates
+OUT=results/cloud/a100 SYSTEMS="mem0-pg graphiti" TURNS=30 QA=0 scripts/local/run_local_suite.sh l1   # 交叉验证用，可选
+```
+
+回到本机的结果上：
+
+```bash
+python analysis/latency_model.py --runs results/local/<主机名>-wsl/l1_q4b_*_sync \
+  --rates results/local/<主机名>-wsl/rates_q4b/llama_bench.json --fio results/local/<主机名>-wsl/preflight/fio_fsyncwrite.json \
+  --gpu A100=results/cloud/a100/rates_q4b/llama_bench.json --check A100=results/cloud/a100
+```
+
+- 云上的 run 只用它的 LLM 部分（prefill、decode、调用次数）。存储数字一律不用，论文里也要这样写明。
+- 想推算更大的模型（例如 Qwen3-32B）在大显卡上的情况：在云上用那个模型跑 `rates`，token 数沿用本机同一 tokenizer 家族（Qwen3）的 trace。抽取输出的长度会随模型变化，所以这一项只能标为推算。

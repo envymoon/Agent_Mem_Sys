@@ -20,10 +20,11 @@ case ${PROFILE:-q4b} in
   llama8b) LLM_REPO=bartowski/Meta-Llama-3.1-8B-Instruct-GGUF; LLM_FILE=Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
            P_CTX=12288; P_KV=q8_0; P_NGL=99; P_EXTRA="" ;;
   moe30b)  LLM_REPO=unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF; LLM_FILE=Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf
-           P_CTX=16384; P_KV=f16; P_NGL=99; P_EXTRA="--n-cpu-moe ${N_CPU_MOE:-48}" ;;
+           P_CTX=16384; P_KV=f16; P_NGL=99; P_EXTRA="--n-cpu-moe ${N_CPU_MOE:-48}"; P_BENCH="-ncmoe ${N_CPU_MOE:-48}" ;;
   cpu)     LLM_REPO=Qwen/Qwen2.5-1.5B-Instruct-GGUF; LLM_FILE=qwen2.5-1.5b-instruct-q4_k_m.gguf
            P_CTX=16384; P_KV=f16; P_NGL=0; P_EXTRA=""; EMB_NGL=0 ;;
   *) echo "unknown PROFILE=$PROFILE" >&2; return 1 2>/dev/null || exit 1 ;;
 esac
+P_BENCH=${P_BENCH:-}   # llama-bench equivalent of P_EXTRA (rates suite)
 LLM_GGUF=$MODELS/$LLM_FILE
 EMB_GGUF=$MODELS/$EMB_FILE

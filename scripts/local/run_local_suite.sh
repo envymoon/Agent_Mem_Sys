@@ -8,14 +8,19 @@
 #   kv         KV-tier micro-benchmark: recompute vs GPU vs host-RAM prompt cache vs SSD slot file
 #              (with --cache-ram 8192 and 0)                                                   ~10 min
 #   load       model cold (page cache dropped) vs warm load, mmap vs read                      ~5 min
+#   rates      llama-bench pp512 / tg64 at KV depth 0..ctx for PROFILE: the per-token costs the latency model
+#              (analysis/latency_model.py) uses. GPU-only, no storage claims -> also the suite to run on a
+#              bigger cloud GPU for the what-if / cross-check                                   ~5 min
 #   l1         main profile, sync write path, every system, TURNS turns + QA questions        ~2-4 h
 #   l2         foreground/background interference: async memorize, think time 0 / 5 s         ~2 h
 #   l3         KV placement on real workloads (mem0-pg, graphiti; async; T3 turns):
 #              base | no prefix cache | no host-RAM cache | KV q8_0 | KV in host RAM | 8k ctx   ~3 h
 #   l4         model choice: q8b, llama8b, moe30b (if downloaded) on mem0-pg + graphiti      ~2-3 h
+#   model      latency model per profile (l1 / l4 runs + rates + fio): validation error and GPU / disk what-ifs.
+#              Extra comparisons: MODEL_GPU="A100=dir/llama_bench.json"  MODEL_DISK="native=dir/fio_fsyncwrite.json"
 #   l5         store scale 1e3..1e5 with hot/cold page cache: rag-pg, mem0-pg, mem0-qdrant, mem0-local ~1-2 h
 #
-# env: PROFILE=q4b  TURNS=100  QA=50  T3=60  T4=60  SIZES=1000,10000,50000,100000  OUT=results/local/<host>
+# env: PROFILE=q4b  TURNS=100  QA=50  T3=60  T4=60  SIZES=1000,10000,50000,100000  OUT=results/local/<host>-<wsl|native>
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 export PROFILE=${PROFILE:-q4b}
@@ -24,7 +29,7 @@ export LOCOMO=${LOCOMO:-$HOME/locomo/data/locomo10.json}
 export SVC_DATA=${SVC_DATA:-/opt/svc/data}
 export SLOT_SAVE=${SLOT_SAVE:-$SVC_DATA/kv_slots}
 export MEMPROF_VLLM_METRICS=${MEMPROF_VLLM_METRICS:-http://127.0.0.1:8000}   # hwmon scrapes llama.cpp /metrics
-OUT=${OUT:-results/local/$(hostname)}
+OUT=${OUT:-results/local/$(hostname)-$(grep -qi microsoft /proc/version && echo wsl || echo native)}
 TURNS=${TURNS:-100}; QA=${QA:-50}; CONV=${CONV:-0}
 SYSTEMS=${SYSTEMS:-"rag-pg mem0-local mem0-pg mem0-qdrant graphiti"}
 PY=.venv/bin/python
@@ -37,6 +42,21 @@ stack() {  # (re)start llama-server + proxy with the current env; embedder only 
   curl -sf http://127.0.0.1:8001/health >/dev/null || $L emb >>"$OUT/suite.log" 2>&1 || { log "embedder failed"; exit 1; }
   $L llm >>"$OUT/suite.log" 2>&1 || { log "LLM failed: $(tail -3 results/server_logs/llm.log)"; exit 1; }
   $L proxy >>"$OUT/suite.log" 2>&1 || { log "proxy failed"; exit 1; }
+}
+rates() {  # rates <profile>: llama-bench with the same model / KV type / offload flags as the server
+  local p=$1 n=rates_$1
+  [ -s "$OUT/$n/llama_bench.json" ] && { log "skip $n"; return 0; }
+  ( export PROFILE=$p; source scripts/local/profiles.sh
+    [ -s "$LLM_GGUF" ] || { log "skip $n (model not downloaded)"; exit 0; }
+    mkdir -p "$OUT/$n"; $L stop >/dev/null   # the bench needs the whole card
+    local d=0 x; for x in 2048 4096 8192 12288 16384; do [ $x -lt "$P_CTX" ] && d="$d,$x"; done; d=${RATE_DEPTHS:-$d}
+    log "=== $n depths $d"
+    "${LLAMA_BIN:-$HOME/llama.cpp/build/bin}/llama-bench" -m "$LLM_GGUF" -ngl "$P_NGL" -fa 1 -ctk "$P_KV" -ctv "$P_KV" \
+      $P_BENCH -p 512 -n 64 -d "$d" -r "${RATE_REPS:-3}" -o json >"$OUT/$n/llama_bench.json" 2>"$OUT/$n/llama_bench.err" \
+      || log "rates $p failed: $(tail -2 "$OUT/$n/llama_bench.err")"
+    nvidia-smi --query-gpu=name,memory.total,clocks.max.sm,power.limit --format=csv >"$OUT/$n/gpu.csv" 2>/dev/null
+    $PY -c "import json,sys; [print(f\"  d={r['n_depth']:6d} {'pp' if r['n_prompt'] else 'tg'} {r['avg_ts']:8.1f} tok/s\") for r in json.load(open(sys.argv[1]))]" \
+      "$OUT/$n/llama_bench.json" 2>/dev/null | tee -a "$OUT/suite.log" )
 }
 fresh_stores() { scripts/services.sh reset all >/dev/null 2>&1; scripts/services.sh start all >/dev/null 2>&1 || { log "services failed"; return 1; }; }
 
@@ -82,6 +102,15 @@ print(json.dumps({"mode": sys.argv[1], "page_cache": sys.argv[2], "load_wall_s":
 PYX
       log "load $mode/$temp: $(tail -1 "$OUT/$n/load.jsonl")"
     done; done; stack ;;
+  rates) rates "$PROFILE"; stack ;;
+  model)
+    for p in $PROFILE ${L4_PROFILES:-q8b llama8b moe30b}; do
+      runs=$(ls -d "$OUT"/l1_${p}_*_sync "$OUT"/l4_${p}_*_sync 2>/dev/null)
+      [ -n "$runs" ] && [ -s "$OUT/rates_$p/llama_bench.json" ] || continue
+      extra=(); for g in ${MODEL_GPU:-}; do extra+=(--gpu "$g"); done; for d in ${MODEL_DISK:-}; do extra+=(--disk "$d"); done
+      $PY analysis/latency_model.py --runs $runs --rates "$OUT/rates_$p/llama_bench.json" --fio "$OUT/preflight/fio_fsyncwrite.json" \
+        "${extra[@]}" --out "$OUT/latency_model_$p.json" >"$OUT/latency_model_$p.md" 2>&1 && log "model $p -> latency_model_$p.md"
+    done ;;
   l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync" "$s" --turns "$TURNS" --qa "$QA"; done ;;
   l2) stack
       for s in rag-pg mem0-local mem0-pg graphiti; do
@@ -97,7 +126,8 @@ PYX
         for s in ${L3_SYSTEMS:-mem0-pg graphiti}; do run "l3_${PROFILE}_${s}_${v}" "$s" --turns "$T3" --qa 0 --async-add; done
       done; stack ;;
   l4) for p in ${L4_PROFILES:-q8b llama8b moe30b}; do
-        ( export PROFILE=$p; source scripts/local/profiles.sh
+        rates "$p"
+      ( export PROFILE=$p; source scripts/local/profiles.sh
           [ -s "$LLM_GGUF" ] || { log "skip profile $p (model not downloaded)"; exit 0; }
           stack
           for s in ${L4_SYSTEMS:-mem0-pg graphiti}; do run "l4_${p}_${s}_sync" "$s" --turns "${T4:-60}" --qa 20; done
