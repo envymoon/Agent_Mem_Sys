@@ -80,6 +80,21 @@ Claude 不登录你的 Google 账号，也碰不到 Colab 界面。远程管理�
 | 花销 | 队列跑完后等 `IDLE_MIN`（默认 20 分钟）；没有新行就推送最终状态、刷新 Drive、释放运行时，不再计费。Drive 副本不完整时不释放 |
 | 仍需要你 | 一次性：在 Colab Secrets 设 `GH_TOKEN`（细粒度 token，只授权这个仓库的 Contents 读写）。每次新运行时：打开 notebook，选 L4，“全部运行”。没有后台执行权限时，浏览器标签页需要一直开着 |
 
+## 5b. 托管运行（当前方式）：Colab CLI，Claude 直接操作
+
+官方 Colab CLI（`google-colab-cli`）装在 Claude 的云端容器里，只授权了 Colab 和基本资料（没有 Drive、Google Cloud）。
+
+| 环节 | 做法 |
+|---|---|
+| 启动 | `colab new -s memprof --gpu L4`；`colab exec -s memprof -f colab/cli_bootstrap.py --timeout 0 --env MAX_HOURS=5 --env CU_PER_HOUR=2.33`。在内核里执行，整个实验期间内核都处于忙碌状态 |
+| 安装 | `setup.sh`（只下载当前档位的模型）；失败后等待代码分支出现新提交（最多 30 分钟），拉取后重试，最多 3 次；否则释放运行时 |
+| 数据 | 每个完成的 run 打包放到 `/content/outbox/runs/`；Claude 的 `colab/patrol.sh` 下载、解压到 `results/colab/<gpu>/`、提交到 GitHub，然后上传 `/content/inbox/ack.txt` 确认 |
+| 关机 | 都在虚拟机上执行，不依赖 Claude 在线：队列跑完（空闲 `IDLE_MIN`）、时长上限 `MAX_HOURS`、`/content/inbox/stop`、启动程序崩溃。先等全部 run 被确认（最多 `ACK_WAIT_MIN`），再 `runtime.unassign()` |
+| 巡视 | 每小时一次（定时任务），`colab/patrol.sh memprof` |
+
+在 CPU 运行时上做过端到端验证：下载、确认、时长上限、自动释放（计费归零）。
+第一次在 L4 上安装时发现 `services.sh` 的函数名 `install` 覆盖了系统的 `install` 命令，导致无限递归（开发容器里因为已装好而没有触发），已修复。
+
 ## 6. 新增的脚本
 
 | 文件 | 作用 |
@@ -93,4 +108,5 @@ Claude 不登录你的 Google 账号，也碰不到 Colab 界面。远程管理�
 | `scripts/local/profiles.sh` | `gptoss20b`、`q14b` 档位 |
 | `memprof/llm_proxy.py` | `--chat-kwargs`（gpt-oss 的推理强度） |
 | `colab/memprof_colab_l1.ipynb` | Colab notebook |
+| `colab/cli_bootstrap.py`、`colab/patrol.sh` | CLI 托管：虚拟机端启动 + 安装重试；Claude 端巡视、下载、确认 |
 | `colab/supervisor.py`、`colab/queue.txt` | 托管运行：队列、重试、卡住检测、Drive 校验、GitHub 状态和备份、空闲释放 |
