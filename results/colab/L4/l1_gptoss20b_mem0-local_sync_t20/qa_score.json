@@ -1,0 +1,98 @@
+{
+ "n": 10,
+ "f1": 0.11877184112064973,
+ "judge_acc": 0.6,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "When did Caroline go to the LGBTQ support group?",
+   "gold": "7 May 2023",
+   "pred": "Caroline attended the LGBTQ support group on **November\u202f25,\u202f2026**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What fields would Caroline be likely to pursue in her educaton?",
+   "gold": "Psychology, counseling certification",
+   "pred": "Caroline would probably focus on fields that help people\u2014counseling, psychology, social work, or other mental\u2011health\u2011related disciplines.",
+   "qtype": "locomo-cat3",
+   "f1": 0.10526315789473684,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What did Caroline research?",
+   "gold": "Adoption agencies",
+   "pred": "Caroline was researching adoption agencies\u2014specifically those that support LGBTQ+ families\u2014to gather information on eligibility, services, and next steps for her long\u2011term goal of creating a loving home for children.",
+   "qtype": "locomo-cat1",
+   "f1": 0.06896551724137931,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline's identity?",
+   "gold": "Transgender woman",
+   "pred": "I\u2019m not aware of any details about a person named Caroline in our conversation. If you have more context or a specific question about her, feel free to share!",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline give a speech at a school?",
+   "gold": "The week before 9 June 2023",
+   "pred": "Caroline gave a speech at a school on **November\u202f19,\u202f2026**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What did the charity race raise awareness for?",
+   "gold": "mental health",
+   "pred": "The charity race was aimed at raising awareness for mental health.",
+   "qtype": "locomo-cat4",
+   "f1": 0.33333333333333337,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What are Caroline's plans for the summer?",
+   "gold": "researching adoption agencies",
+   "pred": "I\u2019m not aware of any plans for someone named Caroline. If you have more details or context, let me know and I\u2019ll do my best to help!",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What type of individuals does the adoption agency Caroline is considering support?",
+   "gold": "LGBTQ+ individuals",
+   "pred": "Caroline\u2019s agency focuses on supporting LGBTQ+ families\u2014especially single parents and couples\u2014who want to create a loving, inclusive home for children in need.",
+   "qtype": "locomo-cat4",
+   "f1": 0.09090909090909091,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Why did Caroline choose the adoption agency?",
+   "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+   "pred": "Caroline chose the adoption agency because it specifically supports LGBTQ+ families, offering the inclusivity and support she values for creating a loving home for children in need.",
+   "qtype": "locomo-cat4",
+   "f1": 0.3225806451612903,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline excited about in the adoption process?",
+   "gold": "creating a family for kids who need one",
+   "pred": "Caroline is thrilled to begin the adoption journey\u2014she\u2019s eager to find inclusive, LGBTQ\u2011friendly agencies and to build a loving, single\u2011parent home for children who need one.",
+   "qtype": "locomo-cat4",
+   "f1": 0.26666666666666666,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "n": 10,
+ "f1": 0.16339522639522638,
+ "judge_acc": 0.8,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "When did Caroline go to the LGBTQ support group?",
+   "gold": "7 May 2023",
+   "pred": "Caroline mentioned she went to the LGBTQ support group **yesterday**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What fields would Caroline be likely to pursue in her educaton?",
+   "gold": "Psychology, counseling certification",
+   "pred": "Caroline\u2019s interests point toward fields that blend caring with advocacy\u2014think social work, psychology, counseling (especially LGBTQ+ or trauma\u2011focused), child\u2011welfare/early childhood education, or even family\u2011services administration. These paths let her support kids, families, and mental\u2011health communities.",
+   "qtype": "locomo-cat3",
+   "f1": 0.10810810810810811,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What did Caroline research?",
+   "gold": "Adoption agencies",
+   "pred": "Caroline was looking into adoption agencies\u2014she\u2019s researching options to give kids a loving home.",
+   "qtype": "locomo-cat1",
+   "f1": 0.13333333333333336,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline's identity?",
+   "gold": "Transgender woman",
+   "pred": "Caroline is a trans woman who\u2019s building a loving home for children, actively involved in LGBTQ advocacy, mental\u2011health support, and community outreach.",
+   "qtype": "locomo-cat1",
+   "f1": 0.09523809523809525,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "When did Caroline give a speech at a school?",
+   "gold": "The week before 9 June 2023",
+   "pred": "Caroline gave her school speech last week.",
+   "qtype": "locomo-cat2",
+   "f1": 0.16666666666666666,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What did the charity race raise awareness for?",
+   "gold": "mental health",
+   "pred": "It raised awareness for mental health.",
+   "qtype": "locomo-cat4",
+   "f1": 0.5,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What are Caroline's plans for the summer?",
+   "gold": "researching adoption agencies",
+   "pred": "I\u2019m not sure\u2014Caroline hasn\u2019t mentioned any summer plans yet. If she does, I\u2019ll be happy to hear about them!",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What type of individuals does the adoption agency Caroline is considering support?",
+   "gold": "LGBTQ+ individuals",
+   "pred": "The agency Caroline is looking into specifically supports LGBTQ+ individuals and families who want to adopt.",
+   "qtype": "locomo-cat4",
+   "f1": 0.25,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Why did Caroline choose the adoption agency?",
+   "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+   "pred": "Caroline chose the agency because it specifically supports LGBTQ+ families, offering the inclusivity and support that mattered most to her.",
+   "qtype": "locomo-cat4",
+   "f1": 0.31999999999999995,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline excited about in the adoption process?",
+   "gold": "creating a family for kids who need one",
+   "pred": "Caroline\u2019s excitement is all about turning her dream of giving kids a loving home into reality\u2014she\u2019s hopeful, optimistic, and proud of choosing an inclusive agency that supports LGBTQ+ families.",
+   "qtype": "locomo-cat4",
+   "f1": 0.060606060606060615,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}

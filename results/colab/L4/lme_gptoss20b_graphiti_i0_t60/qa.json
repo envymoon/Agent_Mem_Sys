@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What degree did I graduate with?",
+    "gold": "Business Administration",
+    "pred": "You graduated with a degree in Business Administration.",
+    "qtype": "single-session-user",
+    "date": "2023/05/30 (Tue) 23:40",
+    "question_id": "e47becba",
+    "mem": [
+      "user graduated with a degree in Business Administration",
+      "World War I included the Gallipoli campaign",
+      "assistant gives tips to user about creating a routine for new job",
+      "ANZAC organization was influenced by World War I",
+      "???",
+      "Italian cuisine pairs with Prosecco",
+      "Assistant provides tips for user",
+      "Italian cuisine pairs with Chianti",
+      "user asks assistant about pre\u2011workout supplements",
+      "assistant uses telephoto lens with a focal length of at least 200mm"
+    ]
+  }
+]

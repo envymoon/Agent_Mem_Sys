@@ -1,0 +1,98 @@
+{
+ "n": 10,
+ "f1": 0.04577533577533578,
+ "judge_acc": 0.1,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "When did Caroline go to the LGBTQ support group?",
+   "gold": "7 May 2023",
+   "pred": "I\u2019m not sure of the exact date\u2014there\u2019s no record of when Caroline went to the LGBTQ support group.",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What fields would Caroline be likely to pursue in her educaton?",
+   "gold": "Psychology, counseling certification",
+   "pred": "Caroline\u2019s interests and the supportive tone from Mel suggest she might gravitate toward fields that blend creativity, empathy, and community impact\u2014such as education, social work, counseling, or the arts (e.g., teaching, art therapy, or community arts programs).",
+   "qtype": "locomo-cat3",
+   "f1": 0.05555555555555555,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What did Caroline research?",
+   "gold": "Adoption agencies",
+   "pred": "I\u2019m not sure what Caroline specifically researched\u2014there\u2019s no detail in the memories about her research topic.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What is Caroline's identity?",
+   "gold": "Transgender woman",
+   "pred": "Caroline is someone Mel supports.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline give a speech at a school?",
+   "gold": "The week before 9 June 2023",
+   "pred": "Caroline gave her speech at the school last week.",
+   "qtype": "locomo-cat2",
+   "f1": 0.15384615384615385,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What did the charity race raise awareness for?",
+   "gold": "mental health",
+   "pred": "The race was organized to raise awareness for the charity\u2019s cause\u2014helping people in need and supporting the community it serves.",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What are Caroline's plans for the summer?",
+   "gold": "researching adoption agencies",
+   "pred": "I\u2019m not sure\u2014Caroline hasn\u2019t shared her summer plans yet.",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What type of individuals does the adoption agency Caroline is considering support?",
+   "gold": "LGBTQ+ individuals",
+   "pred": "Caroline\u2019s agency is looking to support children who need loving, permanent homes.",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "Why did Caroline choose the adoption agency?",
+   "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+   "pred": "Caroline chose the adoption agency because it aligns with her goal of giving kids a loving home\u2014she wanted a place that shares that mission and can provide the support and resources she needs.",
+   "qtype": "locomo-cat4",
+   "f1": 0.17142857142857143,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What is Caroline excited about in the adoption process?",
+   "gold": "creating a family for kids who need one",
+   "pred": "Caroline\u2019s excitement is all about the next steps in the adoption process\u2014she\u2019s looking forward to meeting the child and building that new family.",
+   "qtype": "locomo-cat4",
+   "f1": 0.07692307692307693,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}

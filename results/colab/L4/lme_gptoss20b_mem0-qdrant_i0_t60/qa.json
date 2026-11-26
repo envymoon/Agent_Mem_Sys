@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What degree did I graduate with?",
+    "gold": "Business Administration",
+    "pred": "You graduated with a degree in Business Administration.",
+    "qtype": "single-session-user",
+    "date": "2023/05/30 (Tue) 23:40",
+    "question_id": "e47becba",
+    "mem": [
+      "User graduated with a degree in Business Administration, which has helped them in their new role",
+      "User wants to keep the assistant updated on progress and asks for ongoing advice or tips",
+      "User is interested in learning which bird species are commonly found in their local park during summer months",
+      "Assistant offered general tips on how to politely ask someone for their secret recipe",
+      "User expressed a desire to learn more about specific events or battles that helped shape the ANZAC identity",
+      "User is interested in learning which supplements are most effective for bodybuilding",
+      "User is interested in learning about the effectiveness of pre-workout supplements",
+      "Assistant noted that the true crime podcast the user listened to inspired them to take risks and pursue their passions",
+      "User is considering starting their own business and has been listening to the podcast \"How I Built This\" for several months",
+      "Assistant encouraged the user to observe and record birds during daily walks, noting characteristics, habits, and habitats to narrow down species"
+    ]
+  }
+]

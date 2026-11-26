@@ -13,3 +13,19 @@
 [2026-11-26 20:34:27Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-local_i0_t60 | 11 runs done | backup=download+ack missing=5 | idle 0.0 min
 [2026-11-26 20:38:17Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-local_i0_t60 | 11 runs done | backup=download+ack missing=5 | idle 0.0 min
 [2026-11-26 20:44:27Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-pg_i0_t60 | 12 runs done | backup=download+ack missing=6 | idle 0.0 min
+[2026-11-26 20:48:17Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-pg_i0_t60 | 12 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-26 20:54:27Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-qdrant_i0_t60 | 13 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-26 20:58:18Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-qdrant_i0_t60 | 13 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-26 21:04:28Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-26 21:08:18Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-26 21:14:28Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.6 min
+[2026-11-26 21:18:18Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-26 21:24:28Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-26 21:28:18Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-26 21:34:28Z] running | line=pilot try=1 run=lme_gptoss20b_graphiti_i0_t60 | 14 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-26 21:37:28Z] finished 'pilot'
+[2026-11-26 21:37:28Z] running | line=None try=0 run=None | 15 runs done | backup=download+ack missing=3 | idle 0.2 min
+[2026-11-26 21:37:30Z] queue empty at 5dcc6fe colab patrol: L4 pilot, LoCoMo l1 done for 5 systems, LME in progress; waiting up to 15 min for new lines in colab/queue.txt
+[2026-11-26 21:37:30Z] idle (queue empty) | line=None try=0 run=None | 15 runs done | backup=download+ack missing=3 | idle 0.2 min
+[2026-11-26 21:38:18Z] idle (queue empty) | line=None try=0 run=None | 15 runs done | backup=download+ack missing=3 | idle 1.0 min
+[2026-11-26 21:44:28Z] idle (queue empty) | line=None try=0 run=None | 15 runs done | backup=download+ack missing=3 | idle 7.2 min

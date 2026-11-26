@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What degree did I graduate with?",
+    "gold": "Business Administration",
+    "pred": "You graduated with a degree in Business Administration.",
+    "qtype": "single-session-user",
+    "date": "2023/05/30 (Tue) 23:40",
+    "question_id": "e47becba",
+    "mem": [
+      "User graduated with a degree in Business Administration, which has helped them in their new role",
+      "User expressed a desire to learn more about specific events or battles that helped shape the ANZAC identity",
+      "Assistant noted that the true crime podcast the user listened to inspired them to take risks and pursue their passions",
+      "User plans to try both Mint and Personal Capital to determine which personal expense tracking app suits them better",
+      "User is considering starting their own business and has been listening to the podcast \"How I Built This\" for several months",
+      "User is considering starting their own business and is seeking inspiring entrepreneurship podcasts beyond \"How I Built This\".",
+      "User asked for tips on caring for a personalized blanket with embroidery or printed designs",
+      "User is considering implementing a system to track personal expenses in addition to work-related ones",
+      "User is ranked 10th in their county on eBird for the number of species seen this year",
+      "User expressed interest in participating in beach cleanups to remove plastic litter and asked for tips on locating local events"
+    ]
+  }
+]

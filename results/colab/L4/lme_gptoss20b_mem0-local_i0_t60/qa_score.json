@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.4444444444444445,
+ "judge_acc": 1.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "What degree did I graduate with?",
+   "gold": "Business Administration",
+   "pred": "You graduated with a degree in **Business Administration**.",
+   "qtype": "single-session-user",
+   "f1": 0.4444444444444445,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}
