@@ -443,6 +443,11 @@ def finish(reason: str) -> None:
     if not AUTO_RELEASE:
         event("AUTO_RELEASE=0: runtime left running")
         return
+    for f in ("/root/.local/share/python_keyring/keyring_pass.cfg", "/root/.config/python_keyring/keyringrc.cfg"):
+        try:  # Colab token uploaded for the VM-side keep-alive (cli_bootstrap.py): gone before the VM is
+            os.remove(f)
+        except FileNotFoundError:
+            pass
     try:
         from google.colab import drive, runtime  # type: ignore
         if os.path.ismount("/content/drive"):

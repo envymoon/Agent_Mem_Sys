@@ -32,12 +32,46 @@ except FileNotFoundError:
 tag = (gpu[0].replace("NVIDIA ", "").replace(" ", "") if gpu else "cpu")
 for k, v in {"HOME": "/root", "MEMPROF_MODELS": "/root/models", "OUT": f"/content/results/{tag}",
              "PROFILE": "gptoss20b", "L4_PROFILES": "q14b q4b", "SYNC_DIR": "", "STATUS_GITHUB": "0",
-             "MAX_HOURS": "5", "ACK_WAIT_MIN": "60", "IDLE_MIN": "15"}.items():
+             "MAX_HOURS": "5", "ACK_WAIT_MIN": "75", "IDLE_MIN": "15"}.items():
     os.environ.setdefault(k, v)
 os.environ.setdefault("DL_PROFILES", E("PROFILE"))
 os.makedirs(E("OUT"), exist_ok=True)
 
 sup = None
+CRED_FILES = ["/root/.local/share/python_keyring/keyring_pass.cfg", "/root/.config/python_keyring/keyringrc.cfg"]
+
+
+def start_vm_keepalive() -> str:
+    """Ping this runtime's keep-alive endpoint from the VM itself.
+
+    Without a browser or a connected `colab exec` client the runtime is reclaimed ~20 min later even while the kernel
+    is busy, and Claude's container (where `colab exec` runs) is paused between turns. Claude uploads the CLI's
+    Colab-scoped OAuth token (CRED_FILES) and passes COLAB_ENDPOINT; this installs the CLI in its own tool venv and
+    runs colab/keepalive.py. The token dies with the VM; supervisor.finish() also deletes it before releasing.
+    """
+    import shutil
+    for f in CRED_FILES:   # colab/launch.sh uploads them flat into /content/_ka/
+        src = os.path.join("/content/_ka", os.path.basename(f))
+        if os.path.exists(src):
+            os.makedirs(os.path.dirname(f), exist_ok=True)
+            shutil.move(src, f)
+            os.chmod(f, 0o600)
+    ep = E("COLAB_ENDPOINT")
+    if not ep or not os.path.exists(CRED_FILES[0]):
+        return "off (no COLAB_ENDPOINT or no uploaded token)"
+    py = "/root/.local/share/uv/tools/google-colab-cli/bin/python"
+    if not os.path.exists(py):
+        r = subprocess.run(["uv", "tool", "install", "-q", f"google-colab-cli=={E('COLAB_CLI_VERSION', '0.8.0')}",
+                            "--with", "keyrings.alt"], capture_output=True, text=True)
+        if r.returncode:
+            return f"install failed: {r.stderr[-300:]}"
+    os.makedirs("/content/outbox/status", exist_ok=True)
+    log = open("/content/outbox/status/keepalive.log", "a")
+    p = subprocess.Popen([py, os.path.join(REPO, "colab", "keepalive.py"), "--endpoint", ep,
+                          E("KEEPALIVE_S", "240")], stdout=log, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,
+                         env={**os.environ, "OAUTHLIB_RELAX_TOKEN_SCOPE": "1"}, start_new_session=True)
+    time.sleep(20)
+    return f"pid {p.pid}" if p.poll() is None else f"exited rc={p.returncode} (see keepalive.log)"
 
 
 def _main() -> None:
@@ -47,6 +81,7 @@ def _main() -> None:
     else:
         subprocess.run(["git", "-C", REPO, "pull", "-q", "--ff-only", "origin", BRANCH])
     os.chdir(REPO)
+    ka = start_vm_keepalive()
 
     spec = importlib.util.spec_from_file_location("supervisor", os.path.join(REPO, "colab", "supervisor.py"))
     sup = importlib.util.module_from_spec(spec)
@@ -56,7 +91,7 @@ def _main() -> None:
     import threading
     threading.Thread(target=sup.reporter, daemon=True).start()   # status every REPORT_MIN during setup too
     sup.event(f"bootstrap: gpu={gpu} OUT={E('OUT')} PROFILE={E('PROFILE')} DL_PROFILES={E('DL_PROFILES')} "
-              f"cap={E('MAX_HOURS')} h")
+              f"cap={E('MAX_HOURS')} h keepalive={ka}")
 
     ok = E("SKIP_SETUP") == "1"   # testing the CLI path only
     for attempt in range(1, 4 if not ok else 1):
@@ -108,5 +143,8 @@ except BaseException as e:  # never leave a paid VM idle: report the crash, then
         sup.event(f"bootstrap crashed: {e!r}"[:300])
         sup.finish("bootstrap crashed")
     else:
+        for f in CRED_FILES:
+            if os.path.exists(f):
+                os.remove(f)
         from google.colab import runtime  # type: ignore
         runtime.unassign()
