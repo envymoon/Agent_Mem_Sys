@@ -51,7 +51,12 @@ mkdir -p "$OUT"
 SYNC_DIR=${SYNC_DIR:-}
 BOOT=$(cut -c1-8 /proc/sys/kernel/random/boot_id)
 if [ -n "$SYNC_DIR" ] && [ -d "$SYNC_DIR" ]; then cp -rn "$SYNC_DIR/." "$OUT/" 2>/dev/null; fi   # resume on a new runtime
-sync_out() { [ -n "$SYNC_DIR" ] && { mkdir -p "$SYNC_DIR"; cp -ru "$OUT/." "$SYNC_DIR/" 2>/dev/null; }; return 0; }
+sync_out() {  # mirror OUT to Drive; a failure is logged (the Colab supervisor reports it and re-syncs)
+  [ -n "$SYNC_DIR" ] || return 0
+  { mkdir -p "$SYNC_DIR" && cp -ru "$OUT/." "$SYNC_DIR/"; } 2>"$OUT/.sync.err" || log "SYNC FAILED to $SYNC_DIR: $(tail -1 "$OUT/.sync.err")"
+  return 0; }
+stack_ok() { curl -sf -m 10 http://127.0.0.1:8000/health >/dev/null && curl -sf -m 10 http://127.0.0.1:8001/health >/dev/null \
+             && curl -sf -m 10 http://127.0.0.1:8100/memprof/health >/dev/null; }
 drop() { $PY -m memprof.iostat drop >/dev/null 2>&1; }   # drop_caches, or fadvise eviction where /proc/sys is read-only
 export PATH=/usr/lib/wsl/lib:$PATH
 log() { echo "[$(date +%T)] $*" | tee -a "$OUT/suite.log"; }
@@ -82,13 +87,21 @@ run() {  # run <name> <system> [args...]
   local name=$1${REP:+_r$REP} sys=$2; shift 2
   [ -f "$OUT/$name/meta.json" ] && { log "skip $name"; return 0; }
   log "=== $name ($sys) PROFILE=$PROFILE"
-  fresh_stores || return 1
-  drop   # every run starts from the same (cold store) state
-  $PY bench/multi_e2e.py --system "$sys" --conv "$CONV" --out "$OUT/$name" --label "$name" "$@" >"$OUT/$name.log" 2>&1
-  local rc=$?
+  local rc try
+  for try in 1 2; do   # one retry, only when the inference stack died under the run (e.g. a server OOM)
+    fresh_stores || return 1
+    drop   # every run starts from the same (cold store) state
+    timeout -k 60 "${RUN_TIMEOUT:-21600}" \
+      $PY bench/multi_e2e.py --system "$sys" --conv "$CONV" --out "$OUT/$name" --label "$name" "$@" >"$OUT/$name.log" 2>&1
+    rc=$?
+    [ $rc -eq 124 ] && log "TIMEOUT $name after ${RUN_TIMEOUT:-21600}s"
+    [ $rc -eq 0 ] || [ $try = 2 ] || stack_ok && break
+    log "stack down after $name rc=$rc ($(tail -1 results/server_logs/llm.log | cut -c1-150)); restarting, retry"
+    cp "$OUT/$name.log" "$OUT/$name.try1.log" 2>/dev/null; stack
+  done
   cp results/server_logs/llm.cmd results/server_logs/llm.load.json "$OUT/$name/" 2>/dev/null
   echo "boot=$BOOT gpu=$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1) profile=$PROFILE" >"$OUT/$name/vm.txt" 2>/dev/null
-  if [ $rc -ne 0 ]; then log "FAILED $name rc=$rc: $(tail -3 "$OUT/$name.log" | tr '\n' ' ')"; return 0; fi
+  if [ $rc -ne 0 ]; then log "FAILED $name rc=$rc: $(tail -3 "$OUT/$name.log" | tr '\n' ' ' | cut -c1-300)"; sync_out; return 0; fi
   $PY analysis/multi_breakdown.py "$OUT/$name" >/dev/null 2>&1
   log "done $name: $(tail -1 "$OUT/$name.log")"
   sync_out

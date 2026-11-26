@@ -67,7 +67,20 @@ pilot 用截短的历史（`LME_TURNS=60`）：保留全部证据会话，再随
    - `breakdown.md`：每个操作的耗时分解。
 4. 第 6 格：选要跑的套件，默认 `l1 lme score`。
 
-## 5. 新增的脚本
+## 5. 托管运行（Claude 远程监控）
+
+Claude 不登录你的 Google 账号，也碰不到 Colab 界面。远程管理靠仓库：
+
+| 环节 | 做法 |
+|---|---|
+| 跑什么 | `colab/queue.txt`，每行一次套件调用。Claude 按你的决定改这个文件并推送；运行中的 `colab/supervisor.py` 每次开始新一行前会拉取代码 |
+| 状态 | 每 10 分钟把 `status.md` / `status.json`（队列进度、当前 run、失败、Drive 校验、磁盘、内存、GPU、已用 CU）、`suite.log`、汇总表推送到 `colab-status` 分支。Claude 定时 fetch 这个分支检查 |
+| 失败 | run 中途推理服务挂掉：重启服务，这个 run 重跑一次（套件内）。整行失败（有 run 失败、套件退出码非 0、超过 45 分钟没有任何输出则终止）：拉取最新代码后重试，最多 3 次。Claude 看到失败后修代码、推送，再在队列里加一行 `xxx  # retry 2` 重跑；已完成的 run 自动跳过 |
+| 数据 | 两份副本：每个 run 结束即镜像到 Drive，托管程序再校验 Drive 上的副本（`meta.json` 存在、`spans.jsonl` 大小一致），不一致就重新同步；另外每个完成的 run 打包（不含数据库文件，小于 50 MB）推送到 `colab-status` 分支的 `runs/` |
+| 花销 | 队列跑完后等 `IDLE_MIN`（默认 20 分钟）；没有新行就推送最终状态、刷新 Drive、释放运行时，不再计费。Drive 副本不完整时不释放 |
+| 仍需要你 | 一次性：在 Colab Secrets 设 `GH_TOKEN`（细粒度 token，只授权这个仓库的 Contents 读写）。每次新运行时：打开 notebook，选 L4，“全部运行”。没有后台执行权限时，浏览器标签页需要一直开着 |
+
+## 6. 新增的脚本
 
 | 文件 | 作用 |
 |---|---|
@@ -80,3 +93,4 @@ pilot 用截短的历史（`LME_TURNS=60`）：保留全部证据会话，再随
 | `scripts/local/profiles.sh` | `gptoss20b`、`q14b` 档位 |
 | `memprof/llm_proxy.py` | `--chat-kwargs`（gpt-oss 的推理强度） |
 | `colab/memprof_colab_l1.ipynb` | Colab notebook |
+| `colab/supervisor.py`、`colab/queue.txt` | 托管运行：队列、重试、卡住检测、Drive 校验、GitHub 状态和备份、空闲释放 |
