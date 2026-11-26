@@ -27,15 +27,21 @@ tag=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['tag'])" "
 mkdir -p "$D/$tag/_status"
 cp "$TMP/s/"* "$D/$tag/_status/"
 for r in $(python3 -c "import json,sys; print(' '.join(json.load(open(sys.argv[1])).get('outbox_runs', [])))" "$TMP/s/status.json"); do
-  [ -d "$D/$tag/$r" ] && continue
+  if [[ $r == *+late* ]]; then   # files a packed run gained later (scores): unpack into the run dir
+    grep -qx "$r" "$D/$tag/_status/late_fetched.txt" 2>/dev/null && continue
+  else
+    [ -d "$D/$tag/$r" ] && continue
+  fi
   if colab download -s "$S" "/content/outbox/runs/$r.tar.gz" "$TMP/$r.tar.gz" >/dev/null 2>&1 \
-     && tar xzf "$TMP/$r.tar.gz" -C "$D/$tag/" && [ -d "$D/$tag/$r" ]; then
+     && tar xzf "$TMP/$r.tar.gz" -C "$D/$tag/" && [ -d "$D/$tag/${r%+late*}" ]; then
+    [[ $r == *+late* ]] && echo "$r" >>"$D/$tag/_status/late_fetched.txt"
     echo "fetched $r"
   else
     echo "FETCH FAILED $r"
   fi
 done
-ls -d "$D/$tag"/*/ 2>/dev/null | xargs -rn1 basename | grep -v '^_status$' >"$TMP/ack.txt"
+{ ls -d "$D/$tag"/*/ 2>/dev/null | xargs -rn1 basename | grep -v '^_status$'
+  cat "$D/$tag/_status/late_fetched.txt" 2>/dev/null; } >"$TMP/ack.txt"
 colab upload -s "$S" "$TMP/ack.txt" /content/inbox/ack.txt >/dev/null 2>&1 || echo "ACK UPLOAD FAILED"
 python3 - "$TMP/s/status.json" <<'PY'
 import json, sys

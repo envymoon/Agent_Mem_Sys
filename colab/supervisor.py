@@ -267,7 +267,25 @@ def backup_state() -> dict:
     if github_on():
         return {"mode": "github", "ok": True, "why": "pushed with each report", "missing": []}
     a = acked()
-    return {"mode": "download+ack", "ok": True, "why": f"{len(a)} acked", "missing": [r for r in fin if r not in a]}
+    late = sorted(os.path.basename(f)[:-7] for f in glob.glob(os.path.join(OUTBOX, "runs", "*+late*.tar.gz")))
+    return {"mode": "download+ack", "ok": True, "why": f"{len(a)} acked",
+            "missing": [r for r in fin + late if r not in a]}
+
+
+def late_bundle(r: str, d: str) -> str | None:
+    """Files of an already packed run written after its tarball (the score step adds qa_score.json at the end of the
+    suite): pack them as <run>+late<k>.tar.gz, which must be acknowledged like a run."""
+    packed = glob.glob(os.path.join(d, r + ".tar.gz")) + glob.glob(os.path.join(d, r + "+late*.tar.gz"))
+    base = max(os.path.getmtime(f) for f in packed)
+    newer = [p for p in glob.glob(os.path.join(OUT, r, "**"), recursive=True)
+             if os.path.isfile(p) and "/store/" not in p and os.path.getmtime(p) > base + 1]
+    if not newer:
+        return None
+    name = f"{r}+late{len(packed)}"
+    with tarfile.open(os.path.join(d, name + ".tar.gz"), "w:gz") as t:
+        for p in newer:
+            t.add(p, arcname=os.path.relpath(p, OUT))
+    return name
 
 
 def gh_backup(d: str | None = None) -> list[str]:
@@ -277,7 +295,11 @@ def gh_backup(d: str | None = None) -> list[str]:
     new = []
     for r in finished_runs():
         f = os.path.join(d, r + ".tar.gz")
-        if os.path.exists(f) or os.path.exists(f + ".toolarge"):
+        if os.path.exists(f + ".toolarge"):
+            continue
+        if os.path.exists(f):
+            if d.startswith(OUTBOX) and (n := late_bundle(r, d)):
+                new.append(n)
             continue
         with tarfile.open(f, "w:gz") as t:
             t.add(os.path.join(OUT, r), arcname=r, filter=lambda ti: None if "/store" in ti.name else ti)
