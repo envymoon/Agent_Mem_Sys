@@ -1,12 +1,12 @@
 {
- "time": "2026-11-26 09:44:05Z",
+ "time": "2026-11-26 18:38:30Z",
  "final": false,
  "tag": "L4",
  "phase": "setup attempt 1",
- "code": "e19e69b queue: fresh runtime, single pilot line",
- "boot": "fa0d95da",
- "runtime_up_h": 0.07,
- "cu_used_this_runtime": 0.2,
+ "code": "4562f6b docs: VM-side keep-alive for CLI-hosted Colab runs",
+ "boot": "cf412ba1",
+ "runtime_up_h": 0.22,
+ "cu_used_this_runtime": 0.5,
  "queue": [
   "pilot"
  ],
@@ -26,11 +26,11 @@
   "why": "0 acked",
   "missing": []
  },
- "disk_free_gb": 235.6,
+ "disk_free_gb": 234.1,
  "stop": null,
- "hours_since_start": 0.0,
- "max_hours": 4.5,
- "ram_avail_gb": 51.4,
- "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 12.65 W",
+ "hours_since_start": 0.17,
+ "max_hours": 5.0,
+ "ram_avail_gb": 49.1,
+ "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 16.42 W",
  "outbox_runs": []
 }
