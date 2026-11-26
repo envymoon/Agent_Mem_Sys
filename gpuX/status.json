@@ -1,11 +1,11 @@
 {
- "time": "2026-11-26 06:31:02Z",
+ "time": "2026-11-26 06:31:10Z",
  "final": false,
  "tag": "gpuX",
  "phase": "released: time cap 0.02 h reached",
  "code": "db268fe q2",
  "boot": "295e3f23",
- "runtime_up_h": 0.25,
+ "runtime_up_h": 0.26,
  "cu_used_this_runtime": null,
  "queue": [
   "good",
@@ -20,7 +20,7 @@
  "attempt": 0,
  "current_run": "run_h",
  "suite_alive": true,
- "minutes_since_last_write": 0.2,
+ "minutes_since_last_write": 0.4,
  "finished_runs": [
   "run_a",
   "run_b"
