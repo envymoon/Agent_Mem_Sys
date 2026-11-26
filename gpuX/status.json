@@ -1,5 +1,5 @@
 {
- "time": "2026-11-26 06:30:47Z",
+ "time": "2026-11-26 06:30:55Z",
  "final": false,
  "tag": "gpuX",
  "phase": "released: time cap 0.02 h reached",
@@ -11,14 +11,16 @@
   "good",
   "hang"
  ],
- "done": [],
+ "done": [
+  "good"
+ ],
  "gave_up": [],
  "tries": {},
  "current_line": null,
  "attempt": 0,
- "current_run": null,
- "suite_alive": false,
- "minutes_since_last_write": 0.5,
+ "current_run": "run_h",
+ "suite_alive": true,
+ "minutes_since_last_write": 0.1,
  "finished_runs": [
   "run_a",
   "run_b"
