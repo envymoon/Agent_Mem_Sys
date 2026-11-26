@@ -27,9 +27,9 @@ tag=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['tag'])" "
 mkdir -p "$D/$tag/_status"
 cp "$TMP/s/"* "$D/$tag/_status/"
 for r in $(python3 -c "import json,sys; print(' '.join(json.load(open(sys.argv[1])).get('outbox_runs', [])))" "$TMP/s/status.json"); do
-  [ -f "$D/$tag/$r/meta.json" ] && continue
+  [ -d "$D/$tag/$r" ] && continue
   if colab download -s "$S" "/content/outbox/runs/$r.tar.gz" "$TMP/$r.tar.gz" >/dev/null 2>&1 \
-     && tar xzf "$TMP/$r.tar.gz" -C "$D/$tag/" && [ -f "$D/$tag/$r/meta.json" ]; then
+     && tar xzf "$TMP/$r.tar.gz" -C "$D/$tag/" && [ -d "$D/$tag/$r" ]; then
     echo "fetched $r"
   else
     echo "FETCH FAILED $r"

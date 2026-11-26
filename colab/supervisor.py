@@ -131,8 +131,17 @@ def pull_code() -> str:
 
 
 # ---------------------------------------------------------------- runs -----
+DONE_MARKERS = ("meta.json",            # an experiment run (multi_e2e)
+                "kv_tier.json",         # KV-tier micro-benchmark
+                "gpu.csv",              # llama-bench rates (written after llama_bench.json)
+                "cache_check.json",     # preflight (written last)
+                "load.jsonl")           # model-load benchmark
+
+
 def finished_runs() -> list[str]:
-    return sorted(os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(OUT, "*", "meta.json")))
+    """Result directories that are complete (each kind has a file written last), i.e. ready to back up."""
+    return sorted({os.path.basename(os.path.dirname(p)) for m in DONE_MARKERS
+                   for p in glob.glob(os.path.join(OUT, "*", m))})
 
 
 def suite_log() -> list[str]:
@@ -218,7 +227,7 @@ def drive_missing() -> list[str]:
     miss = []
     for r in finished_runs():
         a, b = os.path.join(OUT, r), os.path.join(SYNC, r)
-        if not os.path.exists(os.path.join(b, "meta.json")):
+        if not os.path.isdir(b) or not set(os.listdir(a)) <= set(os.listdir(b)):
             miss.append(r)
         elif os.path.exists(os.path.join(a, "spans.jsonl")) and (not os.path.exists(os.path.join(b, "spans.jsonl")) or
                                                                  os.path.getsize(os.path.join(a, "spans.jsonl")) !=
