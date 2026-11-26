@@ -1,36 +1,57 @@
 {
- "time": "2026-11-26 18:38:30Z",
+ "time": "2026-11-26 20:14:27Z",
  "final": false,
  "tag": "L4",
- "phase": "setup attempt 1",
- "code": "4562f6b docs: VM-side keep-alive for CLI-hosted Colab runs",
- "boot": "cf412ba1",
- "runtime_up_h": 0.22,
- "cu_used_this_runtime": 0.5,
+ "phase": "running",
+ "code": "2789482 docs: VM-side kernel client",
+ "boot": "df5db7a1",
+ "runtime_up_h": 0.48,
+ "cu_used_this_runtime": 1.1,
  "queue": [
   "pilot"
  ],
  "done": [],
  "gave_up": [],
  "tries": {},
- "current_line": null,
- "attempt": 0,
- "current_run": null,
- "suite_alive": false,
- "minutes_since_last_write": -0.0,
- "finished_runs": [],
+ "current_line": "pilot",
+ "attempt": 1,
+ "current_run": "l1_gptoss20b_mem0-local_sync_t20",
+ "suite_alive": true,
+ "minutes_since_last_write": 0.1,
+ "finished_runs": [
+  "kv_gptoss20b_ram0",
+  "kv_gptoss20b_ram8192",
+  "l1_gptoss20b_rag-pg_sync_t20",
+  "preflight",
+  "preflight_df5db7a1",
+  "rates_gptoss20b"
+ ],
  "failed_lines": [],
  "backup": {
   "mode": "download+ack",
   "ok": true,
   "why": "0 acked",
-  "missing": []
+  "missing": [
+   "kv_gptoss20b_ram0",
+   "kv_gptoss20b_ram8192",
+   "l1_gptoss20b_rag-pg_sync_t20",
+   "preflight",
+   "preflight_df5db7a1",
+   "rates_gptoss20b"
+  ]
  },
- "disk_free_gb": 234.1,
+ "disk_free_gb": 220.6,
  "stop": null,
- "hours_since_start": 0.17,
+ "hours_since_start": 0.44,
  "max_hours": 5.0,
- "ram_avail_gb": 49.1,
- "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 16.42 W",
- "outbox_runs": []
+ "ram_avail_gb": 46.0,
+ "gpu": "NVIDIA L4, 94 %, 14284 MiB, 23034 MiB, 71.82 W",
+ "outbox_runs": [
+  "kv_gptoss20b_ram0",
+  "kv_gptoss20b_ram8192",
+  "l1_gptoss20b_rag-pg_sync_t20",
+  "preflight",
+  "preflight_df5db7a1",
+  "rates_gptoss20b"
+ ]
 }

@@ -1,0 +1,10 @@
+[2026-11-26 19:48:17Z] bootstrap: gpu=['NVIDIA L4'] OUT=/content/results/L4 PROFILE=gptoss20b DL_PROFILES=gptoss20b cap=5 h keepalive=pid 748
+[2026-11-26 19:48:17Z] setup attempt 1 | line=None try=0 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-26 19:58:17Z] setup attempt 1 | line=None try=0 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-26 20:04:27Z] setup attempt 1: rc=0 in 16.2 min
+[2026-11-26 20:04:27Z] supervisor up: OUT=/content/results/L4 SYNC= queue=['pilot']
+[2026-11-26 20:04:28Z] start 'pilot' attempt 1/3 at 2789482 docs: VM-side kernel client
+[2026-11-26 20:04:28Z] running | line=pilot try=1 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-26 20:08:17Z] running | line=pilot try=1 run=kv_gptoss20b_ram8192 | 3 runs done | backup=download+ack missing=3 | idle 0.2 min
+[2026-11-26 20:14:27Z] running | line=pilot try=1 run=l1_gptoss20b_mem0-local_sync_t20 | 6 runs done | backup=download+ack missing=6 | idle 0.1 min
+[2026-11-26 20:18:17Z] running | line=pilot try=1 run=l1_gptoss20b_mem0-qdrant_sync_t20 | 8 runs done | backup=download+ack missing=8 | idle 0.0 min

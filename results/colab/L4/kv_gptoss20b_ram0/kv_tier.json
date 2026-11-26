@@ -1,0 +1,943 @@
+{
+ "meta": {
+  "label": "kv_gptoss20b_ram0",
+  "props": {
+   "model_path": "/root/models/gpt-oss-20b-MXFP4.gguf",
+   "total_slots": 1
+  },
+  "n_ctx": 32768,
+  "cmd": "/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 1 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 0 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto"
+ },
+ "rows": [
+  {
+   "L": 1024,
+   "reps": [
+    {
+     "recompute": {
+      "wall_ms": 327.0237649999217,
+      "prompt_ms": 325.17,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 18.728921000047194,
+      "prompt_ms": 17.167,
+      "prompt_n": 1,
+      "cache_n": 1023
+     },
+     "ram_hit": {
+      "wall_ms": 341.48290000007364,
+      "prompt_ms": 339.649,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 26.67079000002559,
+      "save_ms": 25.802,
+      "bytes": 34625384,
+      "n_tokens": 1024
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 24.864097999852675,
+      "restore_ms": 23.855,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.330427000137206,
+       "prompt_ms": 16.613,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 43.19452499998988,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 34627584
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 18.871615999842106,
+      "restore_ms": 17.944,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.67990400000963,
+       "prompt_ms": 16.841,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 37.551519999851735,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 352.8520639999897,
+      "prompt_ms": 351.101,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 18.053587999929732,
+      "prompt_ms": 16.552,
+      "prompt_n": 1,
+      "cache_n": 1023
+     },
+     "ram_hit": {
+      "wall_ms": 349.42637500012097,
+      "prompt_ms": 347.667,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 42.37742800000888,
+      "save_ms": 41.596,
+      "bytes": 34625384,
+      "n_tokens": 1024
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 22.249085000112245,
+      "restore_ms": 21.332,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.060582000089198,
+       "prompt_ms": 16.538,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 40.30966700020144,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 34627584
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 18.860309000046982,
+      "restore_ms": 18.031,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.368420999877344,
+       "prompt_ms": 16.802,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 37.228729999924326,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 329.8071879999043,
+      "prompt_ms": 328.174,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 17.830384000035338,
+      "prompt_ms": 16.444,
+      "prompt_n": 1,
+      "cache_n": 1023
+     },
+     "ram_hit": {
+      "wall_ms": 340.2576460000546,
+      "prompt_ms": 338.548,
+      "prompt_n": 1024,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 41.69591000004402,
+      "save_ms": 40.917,
+      "bytes": 34625384,
+      "n_tokens": 1024
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 23.003669999980048,
+      "restore_ms": 22.134,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.11045599993122,
+       "prompt_ms": 16.607,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 41.114125999911266,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 34627584
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 18.679980999877444,
+      "restore_ms": 17.935,
+      "bytes": 34625384,
+      "then_request": {
+       "wall_ms": 18.150083000136874,
+       "prompt_ms": 16.591,
+       "prompt_n": 1,
+       "cache_n": 1023
+      },
+      "total_ms": 36.83006400001432,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    }
+   ],
+   "median": {
+    "recompute_ms": 329.8071879999043,
+    "recompute_prefill_ms": 328.174,
+    "gpu_hit_ms": 18.053587999929732,
+    "ram_hit_ms": 341.48290000007364,
+    "ram_hit_cache_n": 0,
+    "ssd_cold_ms": 41.114125999911266,
+    "ssd_cold_restore_ms": 23.003669999980048,
+    "ssd_warm_ms": 37.228729999924326,
+    "save_ms": 41.69591000004402,
+    "kv_bytes": 34625384,
+    "kv_bytes_per_token": 33813.8515625
+   }
+  },
+  {
+   "L": 2048,
+   "reps": [
+    {
+     "recompute": {
+      "wall_ms": 627.1483699999862,
+      "prompt_ms": 624.831,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 18.555078999952457,
+      "prompt_ms": 16.627,
+      "prompt_n": 1,
+      "cache_n": 2047
+     },
+     "ram_hit": {
+      "wall_ms": 651.0407769999347,
+      "prompt_ms": 648.783,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 44.60820300005253,
+      "save_ms": 43.776,
+      "bytes": 59807592,
+      "n_tokens": 2048
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 35.14864299995679,
+      "restore_ms": 34.209,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 18.956138000021383,
+       "prompt_ms": 16.791,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 54.104780999978175,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 59809792
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 29.385466999883647,
+      "restore_ms": 28.624,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 18.826378999847293,
+       "prompt_ms": 16.757,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 48.21184599973094,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 639.9358219998703,
+      "prompt_ms": 637.797,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 18.71206600003461,
+      "prompt_ms": 16.67,
+      "prompt_n": 1,
+      "cache_n": 2047
+     },
+     "ram_hit": {
+      "wall_ms": 649.3109620000723,
+      "prompt_ms": 646.986,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 69.12854400002288,
+      "save_ms": 68.269,
+      "bytes": 59807592,
+      "n_tokens": 2048
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 35.62867899995581,
+      "restore_ms": 34.686,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 19.09701199997471,
+       "prompt_ms": 16.859,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 54.72569099993052,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 59809792
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 29.453760000023976,
+      "restore_ms": 28.634,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 18.917948000080287,
+       "prompt_ms": 16.819,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 48.37170800010426,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 662.8912549999768,
+      "prompt_ms": 660.694,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 18.74148799993236,
+      "prompt_ms": 16.761,
+      "prompt_n": 1,
+      "cache_n": 2047
+     },
+     "ram_hit": {
+      "wall_ms": 655.7169110001269,
+      "prompt_ms": 653.323,
+      "prompt_n": 2048,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 70.94369599985839,
+      "save_ms": 70.071,
+      "bytes": 59807592,
+      "n_tokens": 2048
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 35.79923500001314,
+      "restore_ms": 34.8,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 18.97616599990215,
+       "prompt_ms": 16.818,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 54.77540099991529,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 59809792
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 29.48771600017608,
+      "restore_ms": 28.705,
+      "bytes": 59807592,
+      "then_request": {
+       "wall_ms": 18.712927000024138,
+       "prompt_ms": 16.683,
+       "prompt_n": 1,
+       "cache_n": 2047
+      },
+      "total_ms": 48.200643000200216,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    }
+   ],
+   "median": {
+    "recompute_ms": 639.9358219998703,
+    "recompute_prefill_ms": 637.797,
+    "gpu_hit_ms": 18.71206600003461,
+    "ram_hit_ms": 651.0407769999347,
+    "ram_hit_cache_n": 0,
+    "ssd_cold_ms": 54.72569099993052,
+    "ssd_cold_restore_ms": 35.62867899995581,
+    "ssd_warm_ms": 48.21184599973094,
+    "save_ms": 69.12854400002288,
+    "kv_bytes": 59807592,
+    "kv_bytes_per_token": 29202.92578125
+   }
+  },
+  {
+   "L": 4096,
+   "reps": [
+    {
+     "recompute": {
+      "wall_ms": 1264.0344199999163,
+      "prompt_ms": 1260.603,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 20.393614000113303,
+      "prompt_ms": 17.258,
+      "prompt_n": 1,
+      "cache_n": 4095
+     },
+     "ram_hit": {
+      "wall_ms": 1276.6888470000595,
+      "prompt_ms": 1273.368,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 80.30448499994236,
+      "save_ms": 79.383,
+      "bytes": 110172008,
+      "n_tokens": 4096
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 60.00681499995153,
+      "restore_ms": 59.025,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.411147999993773,
+       "prompt_ms": 17.382,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 80.4179629999453,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 110174208
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 53.13101599995207,
+      "restore_ms": 51.887,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.977210999944873,
+       "prompt_ms": 17.452,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 74.10822699989694,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 1272.7254999999786,
+      "prompt_ms": 1269.469,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 20.719568000004074,
+      "prompt_ms": 17.468,
+      "prompt_n": 1,
+      "cache_n": 4095
+     },
+     "ram_hit": {
+      "wall_ms": 1292.8559960000712,
+      "prompt_ms": 1289.549,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 127.66372300006879,
+      "save_ms": 126.755,
+      "bytes": 110172008,
+      "n_tokens": 4096
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 65.96772699981557,
+      "restore_ms": 64.999,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.625729999892428,
+       "prompt_ms": 17.311,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 86.593456999708,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 110174208
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 51.30993900002068,
+      "restore_ms": 50.42,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.687963999989734,
+       "prompt_ms": 17.458,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 71.99790300001041,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 1268.4592890000204,
+      "prompt_ms": 1265.155,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 20.41393199988306,
+      "prompt_ms": 17.247,
+      "prompt_n": 1,
+      "cache_n": 4095
+     },
+     "ram_hit": {
+      "wall_ms": 1272.04922299984,
+      "prompt_ms": 1268.736,
+      "prompt_n": 4096,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 136.9072600000436,
+      "save_ms": 135.999,
+      "bytes": 110172008,
+      "n_tokens": 4096
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 61.40060899997479,
+      "restore_ms": 60.397,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.528065999997125,
+       "prompt_ms": 17.372,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 81.92867499997192,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 110174208
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 50.19255399997746,
+      "restore_ms": 49.298,
+      "bytes": 110172008,
+      "then_request": {
+       "wall_ms": 20.39514200009762,
+       "prompt_ms": 17.228,
+       "prompt_n": 1,
+       "cache_n": 4095
+      },
+      "total_ms": 70.58769600007508,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    }
+   ],
+   "median": {
+    "recompute_ms": 1268.4592890000204,
+    "recompute_prefill_ms": 1265.155,
+    "gpu_hit_ms": 20.41393199988306,
+    "ram_hit_ms": 1276.6888470000595,
+    "ram_hit_cache_n": 0,
+    "ssd_cold_ms": 81.92867499997192,
+    "ssd_cold_restore_ms": 61.40060899997479,
+    "ssd_warm_ms": 71.99790300001041,
+    "save_ms": 127.66372300006879,
+    "kv_bytes": 110172008,
+    "kv_bytes_per_token": 26897.462890625
+   }
+  },
+  {
+   "L": 8192,
+   "reps": [
+    {
+     "recompute": {
+      "wall_ms": 2576.930840999921,
+      "prompt_ms": 2571.225,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 23.13904399989042,
+      "prompt_ms": 18.089,
+      "prompt_n": 1,
+      "cache_n": 8191
+     },
+     "ram_hit": {
+      "wall_ms": 2564.2992529999447,
+      "prompt_ms": 2559.063,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 150.28772200003004,
+      "save_ms": 149.325,
+      "bytes": 210900840,
+      "n_tokens": 8192
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 109.8648699999103,
+      "restore_ms": 108.854,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.80602900007034,
+       "prompt_ms": 18.507,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 133.67089899998064,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 210903040
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 93.93397200005893,
+      "restore_ms": 92.971,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.635541999965426,
+       "prompt_ms": 18.452,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 117.56951400002436,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 2539.9580900000274,
+      "prompt_ms": 2534.752,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 23.516964000009466,
+      "prompt_ms": 18.354,
+      "prompt_n": 1,
+      "cache_n": 8191
+     },
+     "ram_hit": {
+      "wall_ms": 2565.3496310001174,
+      "prompt_ms": 2559.893,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 244.77097399994818,
+      "save_ms": 243.837,
+      "bytes": 210900840,
+      "n_tokens": 8192
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 119.5028640001965,
+      "restore_ms": 118.456,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.54570500006048,
+       "prompt_ms": 18.453,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 143.04856900025698,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 210903040
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 92.45424300002014,
+      "restore_ms": 91.536,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.714656000038303,
+       "prompt_ms": 18.544,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 116.16889900005845,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 2559.339805000036,
+      "prompt_ms": 2554.018,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 23.170346999904723,
+      "prompt_ms": 18.205,
+      "prompt_n": 1,
+      "cache_n": 8191
+     },
+     "ram_hit": {
+      "wall_ms": 2585.9950990000016,
+      "prompt_ms": 2580.659,
+      "prompt_n": 8192,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 259.7457370000029,
+      "save_ms": 258.829,
+      "bytes": 210900840,
+      "n_tokens": 8192
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 126.83432299991182,
+      "restore_ms": 125.824,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.592127000028995,
+       "prompt_ms": 18.4,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 150.42644999994081,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 210903040
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 94.11701899989566,
+      "restore_ms": 93.223,
+      "bytes": 210900840,
+      "then_request": {
+       "wall_ms": 23.77959900013593,
+       "prompt_ms": 18.582,
+       "prompt_n": 1,
+       "cache_n": 8191
+      },
+      "total_ms": 117.8966180000316,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    }
+   ],
+   "median": {
+    "recompute_ms": 2559.339805000036,
+    "recompute_prefill_ms": 2554.018,
+    "gpu_hit_ms": 23.170346999904723,
+    "ram_hit_ms": 2565.3496310001174,
+    "ram_hit_cache_n": 0,
+    "ssd_cold_ms": 143.04856900025698,
+    "ssd_cold_restore_ms": 119.5028640001965,
+    "ssd_warm_ms": 117.56951400002436,
+    "save_ms": 244.77097399994818,
+    "kv_bytes": 210900840,
+    "kv_bytes_per_token": 25744.7314453125
+   }
+  },
+  {
+   "L": 12288,
+   "reps": [
+    {
+     "recompute": {
+      "wall_ms": 3934.579701999837,
+      "prompt_ms": 3927.19,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 26.782576999949015,
+      "prompt_ms": 19.444,
+      "prompt_n": 1,
+      "cache_n": 12287
+     },
+     "ram_hit": {
+      "wall_ms": 3940.641730999914,
+      "prompt_ms": 3932.735,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 220.34283100015273,
+      "save_ms": 219.393,
+      "bytes": 311629672,
+      "n_tokens": 12288
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 178.93688599997404,
+      "restore_ms": 177.884,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 31.92804399986926,
+       "prompt_ms": 19.689,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 210.8649299998433,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 311631872
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 136.28282700005911,
+      "restore_ms": 135.354,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 26.67966399985744,
+       "prompt_ms": 19.596,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 162.96249099991655,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 3952.4383559999023,
+      "prompt_ms": 3945.016,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 25.98108699999102,
+      "prompt_ms": 19.071,
+      "prompt_n": 1,
+      "cache_n": 12287
+     },
+     "ram_hit": {
+      "wall_ms": 3967.86651299999,
+      "prompt_ms": 3960.564,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 356.58415600005355,
+      "save_ms": 355.707,
+      "bytes": 311629672,
+      "n_tokens": 12288
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 161.48126899997806,
+      "restore_ms": 160.481,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 26.770105000196054,
+       "prompt_ms": 19.571,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 188.2513740001741,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 311631872
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 134.2682629999672,
+      "restore_ms": 133.401,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 26.920302999997148,
+       "prompt_ms": 19.562,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 161.18856599996434,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    },
+    {
+     "recompute": {
+      "wall_ms": 3925.2203960002134,
+      "prompt_ms": 3917.995,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "gpu_hit": {
+      "wall_ms": 26.705689999971582,
+      "prompt_ms": 19.414,
+      "prompt_n": 1,
+      "cache_n": 12287
+     },
+     "ram_hit": {
+      "wall_ms": 3951.629072999822,
+      "prompt_ms": 3944.281,
+      "prompt_n": 12288,
+      "cache_n": 0
+     },
+     "save": {
+      "wall_ms": 381.7555519999587,
+      "save_ms": 380.771,
+      "bytes": 311629672,
+      "n_tokens": 12288
+     },
+     "ssd_cold": {
+      "restore_wall_ms": 167.34430499991504,
+      "restore_ms": 166.381,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 26.83292300002904,
+       "prompt_ms": 19.583,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 194.17722799994408,
+      "dropped_cache": "fadvise",
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 311631872
+     },
+     "ssd_warm": {
+      "restore_wall_ms": 136.4920680000523,
+      "restore_ms": 135.617,
+      "bytes": 311629672,
+      "then_request": {
+       "wall_ms": 26.818415999969147,
+       "prompt_ms": 19.541,
+       "prompt_n": 1,
+       "cache_n": 12287
+      },
+      "total_ms": 163.31048400002146,
+      "dropped_cache": false,
+      "dev_rd_ios": null,
+      "llm_rd_bytes": 0
+     }
+    }
+   ],
+   "median": {
+    "recompute_ms": 3934.579701999837,
+    "recompute_prefill_ms": 3927.19,
+    "gpu_hit_ms": 26.705689999971582,
+    "ram_hit_ms": 3951.629072999822,
+    "ram_hit_cache_n": 0,
+    "ssd_cold_ms": 194.17722799994408,
+    "ssd_cold_restore_ms": 167.34430499991504,
+    "ssd_warm_ms": 162.96249099991655,
+    "save_ms": 356.58415600005355,
+    "kv_bytes": 311629672,
+    "kv_bytes_per_token": 25360.487630208332
+   }
+  }
+ ]
+}

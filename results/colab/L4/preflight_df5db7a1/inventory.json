@@ -1,0 +1,32 @@
+{
+"boot_id": "df5db7a1-7ebd-4092-9d47-6cea8ac94fd1", "colab": true,
+"kernel": "6.6.159+", "wsl": false,
+"cpu": "Intel(R) Xeon(R) CPU @ 2.20GHz", "cores": 12,
+"ram_gb": 53.0, "swap_gb": 0.0,
+"gpu": "NVIDIA L4", "vram_mb": 23034, "vram_used_mb_idle": 0, "driver": "580.82.07", "pcie_gen": "3", "pcie_width": "16", "power_limit_w": "72.00",
+"data_dir": "/opt/svc/data", "data_fs": "overlay", "data_dev": "overlay",
+"block_devices": {
+   "blockdevices": [
+      {
+         "name": "loop0",
+         "model": null,
+         "size": "240G",
+         "rota": false,
+         "tran": null
+      },{
+         "name": "nvme0n1",
+         "model": "nvme_card-pd",
+         "size": "250G",
+         "rota": false,
+         "tran": "nvme"
+      },{
+         "name": "nvme0n2",
+         "model": "nvme_card-pd",
+         "size": "46G",
+         "rota": false,
+         "tran": "nvme"
+      }
+   ]
+},
+"data_free_gb": 222
+}
