@@ -1,4 +1,4 @@
-# gpuX  2026-11-26 06:29:43Z  (released: time cap 0.02 h reached, FINAL)
+# gpuX  2026-11-26 06:29:47Z  (released: time cap 0.02 h reached)
 
 - code `db268fe q2`, runtime up 0.23 h
 - queue: ['good', 'hang']  done: []  gave up: []
@@ -18,6 +18,7 @@ none
     [2026-11-26 06:27:55Z] waiting for the suite started before this cell was re-run
     [2026-11-26 06:29:24Z] STOP: time cap 0.02 h reached
     [2026-11-26 06:29:39Z] finishing (time cap 0.02 h reached); waiting up to 1 min for the backup of the last runs
+    [2026-11-26 06:29:44Z] release failed: ModuleNotFoundError("No module named 'google.colab'")
 
 ## suite.log (tail)
 
