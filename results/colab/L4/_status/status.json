@@ -1,43 +1,36 @@
 {
- "time": "2026-11-26 07:44:10Z",
+ "time": "2026-11-26 09:44:05Z",
  "final": false,
  "tag": "L4",
- "phase": "idle (queue empty)",
- "code": "fc5e5c7 Colab L4 pilot: setup log after attempt 1",
- "boot": "2820fe98",
- "runtime_up_h": 1.06,
- "cu_used_this_runtime": 2.5,
+ "phase": "setup attempt 1",
+ "code": "e19e69b queue: fresh runtime, single pilot line",
+ "boot": "fa0d95da",
+ "runtime_up_h": 0.07,
+ "cu_used_this_runtime": 0.2,
  "queue": [
   "pilot"
  ],
- "done": [
-  "pilot"
- ],
+ "done": [],
  "gave_up": [],
  "tries": {},
  "current_line": null,
  "attempt": 0,
- "current_run": "rates_gptoss20b",
+ "current_run": null,
  "suite_alive": false,
- "minutes_since_last_write": 0.5,
+ "minutes_since_last_write": -0.0,
  "finished_runs": [],
- "failed_lines": [
-  "[07:43:23] proxy failed",
-  "[07:43:29] proxy failed",
-  "[07:43:35] proxy failed",
-  "[07:43:40] proxy failed"
- ],
+ "failed_lines": [],
  "backup": {
   "mode": "download+ack",
   "ok": true,
   "why": "0 acked",
   "missing": []
  },
- "disk_free_gb": 221.8,
+ "disk_free_gb": 235.6,
  "stop": null,
- "hours_since_start": 1.03,
- "max_hours": 5.0,
- "ram_avail_gb": 50.3,
- "gpu": "NVIDIA L4, 0 %, 14258 MiB, 23034 MiB, 28.42 W",
+ "hours_since_start": 0.0,
+ "max_hours": 4.5,
+ "ram_avail_gb": 51.4,
+ "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 12.65 W",
  "outbox_runs": []
 }
