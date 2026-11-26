@@ -1,11 +1,11 @@
-# gpuX  2026-11-26 06:29:54Z  (released: time cap 0.02 h reached)
+# gpuX  2026-11-26 06:30:02Z  (released: time cap 0.02 h reached)
 
 - code `db268fe q2`, runtime up 0.24 h
 - queue: ['good', 'hang']  done: []  gave up: []
 - now: line `None` attempt 0, run `None`, suite alive False, last write -0.0 min ago
 - finished runs (0): 
 - backup: {'mode': 'github', 'ok': True, 'why': 'pushed with each report', 'missing': []}
-- stop: time cap 0.02 h reached; 0.03 h since start, cap 0.02 h
+- stop: time cap 0.02 h reached; 0.04 h since start, cap 0.02 h
 - disk free 39.5 GB, RAM avail 15.2 GB, GPU /bin/sh: 1: nvidia-smi: not found
 
 ## problems
