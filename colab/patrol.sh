@@ -2,7 +2,7 @@
 # Claude's side of an unattended Colab CLI run (colab/cli_bootstrap.py on the VM).
 #   colab/patrol.sh [SESSION]      default SESSION=memprof
 # 1. CU balance / rate and session status
-# 2. download /content/outbox/status/* (status.json, status.md, suite.log, setup.log, summaries)
+# 2. download /content/outbox/status/* (status.json, status.md, suite.log, setup.log, keepalive.log, summaries)
 # 3. download every run tarball not yet here, unpack to results/colab/<tag>/<run>/
 # 4. upload the list of runs held here as /content/inbox/ack.txt (the VM releases only when all are acked)
 # Prints a short report; exit 2 if the session is gone. Commit results/colab afterwards.
@@ -19,7 +19,7 @@ if ! colab status -s "$S" >"$TMP/st" 2>&1 || grep -qi "not found" "$TMP/st"; the
   echo "session $S: GONE"; cat "$TMP/st"; exit 2
 fi
 mkdir -p "$TMP/s"
-for f in status.json status.md suite.log setup.log qa_summary.md budget.md breakdown.md; do
+for f in status.json status.md suite.log setup.log keepalive.log qa_summary.md budget.md breakdown.md; do
   colab download -s "$S" "/content/outbox/status/$f" "$TMP/s/$f" >/dev/null 2>&1
 done
 [ -s "$TMP/s/status.json" ] || { echo "no status yet (bootstrap starting?)"; exit 0; }
