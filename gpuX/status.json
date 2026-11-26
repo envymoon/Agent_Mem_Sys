@@ -1,8 +1,8 @@
 {
- "time": "2026-11-26 06:29:41Z",
- "final": false,
+ "time": "2026-11-26 06:29:43Z",
+ "final": true,
  "tag": "gpuX",
- "phase": "finishing: time cap 0.02 h reached",
+ "phase": "released: time cap 0.02 h reached",
  "code": "db268fe q2",
  "boot": "295e3f23",
  "runtime_up_h": 0.23,

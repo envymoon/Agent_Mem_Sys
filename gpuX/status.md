@@ -1,4 +1,4 @@
-# gpuX  2026-11-26 06:29:41Z  (finishing: time cap 0.02 h reached)
+# gpuX  2026-11-26 06:29:43Z  (released: time cap 0.02 h reached, FINAL)
 
 - code `db268fe q2`, runtime up 0.23 h
 - queue: ['good', 'hang']  done: []  gave up: []
