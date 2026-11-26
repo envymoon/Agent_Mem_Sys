@@ -48,10 +48,16 @@ MAX_TRIES = int(E("MAX_TRIES", 3))
 AUTO_RELEASE = E("AUTO_RELEASE", "1") == "1"
 CU_PER_HOUR = float(E("CU_PER_HOUR", 0) or 0)
 STATE_F = os.path.join(SYNC or OUT, "queue_state.json")
+OUTBOX = E("OUTBOX", "/content/outbox")      # status + run tarballs for `colab download` (CLI mode: no Drive/GitHub)
+INBOX = E("INBOX", "/content/inbox")         # ack.txt (runs Claude has downloaded), stop (finish now)
+ACK_WAIT_MIN = float(E("ACK_WAIT_MIN", 60))  # before releasing: wait this long for the last runs to be backed up
+MAX_HOURS = float(E("MAX_HOURS", 0) or 0)     # hard cap from MEMPROF_T0 (bootstrap start): stop + release
+T0 = float(E("MEMPROF_T0", 0) or time.time())
 LOCK = threading.Lock()
 REPORT_LOCK = threading.Lock()
 EVENTS: list[str] = []
-NOW = {"line": None, "attempt": 0, "proc": None, "phase": "starting"}
+NOW = {"line": None, "attempt": 0, "proc": None, "phase": "starting", "stop": None}
+FINISH_LOCK = threading.Lock()
 
 
 def now() -> str:
@@ -106,7 +112,7 @@ def save_state(st: dict) -> None:
 
 def queue_lines() -> list[str]:
     try:
-        L = [x.rstrip() for x in open(os.path.join(REPO, "colab", "queue.txt"))]
+        L = [x.rstrip() for x in open(E("QUEUE_FILE") or os.path.join(REPO, "colab", "queue.txt"))]
     except FileNotFoundError:
         return []
     return [x for x in L if x.strip() and not x.lstrip().startswith("#")]
@@ -155,7 +161,7 @@ def last_write() -> float:
 
 
 def suite_pids() -> list[str]:
-    return sh(["pgrep", "-f", SUITE])[1].split()
+    return sh(["pgrep", "-f", "^bash .*" + re.escape(os.path.basename(SUITE))])[1].split()
 
 
 def kill(proc) -> None:
@@ -229,9 +235,32 @@ def check_drive() -> dict:
     return {"ok": ok, "why": why, "missing_runs": miss}
 
 
-def gh_backup() -> list[str]:
-    """runs/<name>.tar.gz for every finished run not yet pushed (written once)."""
-    d = os.path.join(SDIR, TAG, "runs")
+def github_on() -> bool:
+    return E("STATUS_GITHUB", "0") == "1" and os.path.isdir(os.path.join(SDIR, ".git"))
+
+
+def acked() -> set[str]:
+    try:
+        return {x.strip() for x in open(os.path.join(INBOX, "ack.txt")) if x.strip()}
+    except FileNotFoundError:
+        return set()
+
+
+def backup_state() -> dict:
+    """Where every finished run has a copy outside this VM: Drive (verified), GitHub, or downloaded by Claude (ack)."""
+    fin = finished_runs()
+    if SYNC:
+        drv = check_drive()
+        return {"mode": "drive", "ok": drv["ok"], "why": drv["why"], "missing": drv["missing_runs"]}
+    if github_on():
+        return {"mode": "github", "ok": True, "why": "pushed with each report", "missing": []}
+    a = acked()
+    return {"mode": "download+ack", "ok": True, "why": f"{len(a)} acked", "missing": [r for r in fin if r not in a]}
+
+
+def gh_backup(d: str | None = None) -> list[str]:
+    """<name>.tar.gz for every finished run not yet packed (written once): GitHub status branch or the outbox."""
+    d = d or os.path.join(SDIR, TAG, "runs")
     os.makedirs(d, exist_ok=True)
     new = []
     for r in finished_runs():
@@ -258,6 +287,8 @@ def gpu() -> str:
 
 
 def status_init() -> bool:
+    if E("STATUS_GITHUB", "0") != "1":   # opt-in: the notebook (GH_TOKEN secret) sets it; CLI mode does not push
+        return False
     t = token()
     if not t:
         event("no GH_TOKEN: status/backup to GitHub disabled (runs still go to Drive)")
@@ -294,7 +325,7 @@ def _report(final: bool) -> None:
             cur = m.group(1)
         if re.search(r"\] (done|FAILED|skip) ", line) and cur and cur in line:
             cur = None
-    drv = check_drive()
+    drv = backup_state()
     up_h = float(open("/proc/uptime").read().split()[0]) / 3600
     df = shutil.disk_usage(OUT)
     mem = dict(re.findall(r"(\w+):\s+(\d+)", open("/proc/meminfo").read()))
@@ -309,15 +340,26 @@ def _report(final: bool) -> None:
         "finished_runs": finished_runs(),
         "failed_lines": [x for x in log if re.search(r"\] (FAILED|TIMEOUT|SYNC FAILED|stack down|LLM failed|"
                                                       r"embedder failed|services failed|proxy failed)", x)][-30:],
-        "drive": drv, "disk_free_gb": round(df.free / 2**30, 1),
+        "backup": drv, "disk_free_gb": round(df.free / 2**30, 1), "stop": NOW["stop"],
+        "hours_since_start": round((time.time() - T0) / 3600, 2), "max_hours": MAX_HOURS or None,
         "ram_avail_gb": round(int(mem.get("MemAvailable", 0)) / 2**20, 1), "gpu": gpu(),
     }
     print(f"[{S['time']}] {S['phase']} | line={S['current_line']} try={S['attempt']} run={cur} | "
-          f"{len(S['finished_runs'])} runs done | drive={'ok' if drv['ok'] and not drv['missing_runs'] else drv} | "
+          f"{len(S['finished_runs'])} runs done | backup={drv['mode']} missing={len(drv['missing'])} | "
           f"idle {S['minutes_since_last_write']} min", flush=True)
-    if not os.path.isdir(os.path.join(SDIR, ".git")):
+    S["outbox_runs"] = sorted(os.path.basename(f)[:-7] for f in glob.glob(os.path.join(OUTBOX, "runs", "*.tar.gz")))
+    dirs = [os.path.join(OUTBOX, "status")] + ([os.path.join(SDIR, TAG)] if github_on() else [])
+    for d in dirs:
+        write_status(d, S, ev, log, cur, drv, final)
+    if not SYNC and not github_on():
+        S["outbox_runs"] = sorted(r for r in gh_backup(os.path.join(OUTBOX, "runs")) + S["outbox_runs"])
+        json.dump(S, open(os.path.join(dirs[0], "status.json"), "w"), indent=1)
+    if not github_on():
         return
-    d = os.path.join(SDIR, TAG)
+    push_github(S)
+
+
+def write_status(d, S, ev, log, cur, drv, final) -> None:
     os.makedirs(d, exist_ok=True)
     json.dump(S, open(os.path.join(d, "status.json"), "w"), indent=1)
     md = [f"# {TAG}  {S['time']}  ({S['phase']}{', FINAL' if final else ''})", "",
@@ -327,7 +369,8 @@ def _report(final: bool) -> None:
           f"- now: line `{S['current_line']}` attempt {S['attempt']}, run `{cur}`, suite alive {S['suite_alive']}, "
           f"last write {S['minutes_since_last_write']} min ago",
           f"- finished runs ({len(S['finished_runs'])}): {', '.join(S['finished_runs'])}",
-          f"- Drive: {drv}", f"- disk free {S['disk_free_gb']} GB, RAM avail {S['ram_avail_gb']} GB, GPU {S['gpu']}",
+          f"- backup: {drv}", f"- stop: {S['stop']}; {S['hours_since_start']} h since start, cap {S['max_hours']} h",
+          f"- disk free {S['disk_free_gb']} GB, RAM avail {S['ram_avail_gb']} GB, GPU {S['gpu']}",
           "", "## problems", "", *([f"    {x}" for x in S["failed_lines"]] or ["none"]),
           "", "## supervisor events", "", *[f"    {x}" for x in ev[-40:]], "",
           "## suite.log (tail)", "", *[f"    {x}" for x in log[-60:]]]
@@ -340,6 +383,9 @@ def _report(final: bool) -> None:
             dst = os.path.join(d, os.path.relpath(f, OUT))
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copy(f, dst)
+
+
+def push_github(S) -> None:
     new = gh_backup()
     sh(["git", "add", "-A"], cwd=SDIR)
     if sh(["git", "diff", "--cached", "--quiet"], cwd=SDIR)[0] == 0:
@@ -364,26 +410,75 @@ def reporter() -> None:
 
 
 # ---------------------------------------------------------------- main -----
-def release() -> None:
-    NOW["phase"] = "released"
+def finish(reason: str) -> None:
+    """Stop paying: wait (bounded) until every finished run has a copy off this VM, then release the runtime."""
+    if not FINISH_LOCK.acquire(blocking=False):
+        return  # another thread is already finishing
+    NOW["phase"] = f"finishing: {reason}"
+    event(f"finishing ({reason}); waiting up to {ACK_WAIT_MIN:.0f} min for the backup of the last runs")
+    t = time.time()
+    while True:
+        report()
+        b = backup_state()
+        if b["ok"] and not b["missing"]:
+            break
+        if time.time() - t > ACK_WAIT_MIN * 60:
+            event(f"backup still incomplete after {ACK_WAIT_MIN:.0f} min ({b}); releasing anyway to stop the cost")
+            break
+        time.sleep(60)
+    NOW["phase"] = f"released: {reason}"
     report(final=True)
     if not AUTO_RELEASE:
-        return
-    drv = check_drive()
-    if not drv["ok"] or drv["missing_runs"]:
-        event(f"NOT releasing the runtime: Drive copy incomplete {drv}")
+        event("AUTO_RELEASE=0: runtime left running")
         return
     try:
         from google.colab import drive, runtime  # type: ignore
-        drive.flush_and_unmount()
-        event("Drive flushed; releasing the runtime")
+        if os.path.ismount("/content/drive"):
+            drive.flush_and_unmount()
+        event("releasing the runtime")
         runtime.unassign()
     except Exception as e:
         event(f"release failed: {e!r}")
 
 
+def stop_suite() -> None:
+    for pid in suite_pids():
+        try:
+            os.killpg(int(pid), signal.SIGTERM)
+        except Exception:
+            sh(["kill", pid])
+    time.sleep(15)
+    sh("pkill -9 -f run_local_suite.sh; pkill -9 -f multi_e2e.py", timeout=30)
+    sh(["bash", "scripts/local/start_llama.sh", "stop"], cwd=REPO, timeout=60)
+
+
+def watchdog() -> None:
+    """Hard cap and remote stop, independent of the main loop (and of Claude being reachable)."""
+    while True:
+        time.sleep(30)
+        if MAX_HOURS and time.time() - T0 > MAX_HOURS * 3600:
+            reason = f"time cap {MAX_HOURS:g} h reached"
+        elif os.path.exists(os.path.join(INBOX, "stop")):
+            reason = "stop requested"
+        else:
+            continue
+        NOW["stop"] = reason
+        event(f"STOP: {reason}")
+        stop_suite()
+        finish(reason)
+        return
+
+
+def start_watchdog() -> None:
+    if not NOW.get("watchdog"):
+        NOW["watchdog"] = True
+        threading.Thread(target=watchdog, daemon=True).start()
+
+
 def main() -> None:
     os.chdir(REPO)
+    os.makedirs(INBOX, exist_ok=True)
+    start_watchdog()
     status_init()
     event(f"supervisor up: OUT={OUT} SYNC={SYNC} queue={queue_lines()}")
     threading.Thread(target=reporter, daemon=True).start()
@@ -394,6 +489,9 @@ def main() -> None:
             time.sleep(60)
     idle_since = None
     while True:
+        if NOW["stop"]:
+            time.sleep(3600)  # the watchdog is finishing / has released the runtime
+            continue
         head = pull_code()
         st = load_state()
         todo = pending(st)
@@ -404,7 +502,7 @@ def main() -> None:
                 event(f"queue empty at {head}; waiting up to {IDLE_MIN:.0f} min for new lines in colab/queue.txt")
                 report()
             if time.time() - idle_since > IDLE_MIN * 60:
-                release()
+                finish("queue done")
                 return
             time.sleep(min(300, IDLE_MIN * 30))
             continue
@@ -415,6 +513,8 @@ def main() -> None:
         event(f"start '{line}' attempt {n}/{MAX_TRIES} at {head}")
         report()
         ok = run_line(line)
+        if NOW["stop"]:
+            continue
         st = load_state()
         if ok:
             st["done"].append(line)
@@ -430,10 +530,15 @@ def main() -> None:
         report()
 
 
-try:
-    main()
-except KeyboardInterrupt:
-    if NOW["proc"] is not None:
-        print("interrupted: the suite keeps running in the background; re-run this cell to supervise it again")
-    NOW["phase"] = "supervisor stopped by user"
-    report()
+def entry() -> None:
+    try:
+        main()
+    except KeyboardInterrupt:
+        if NOW["proc"] is not None:
+            print("interrupted: the suite keeps running in the background; re-run this cell to supervise it again")
+        NOW["phase"] = "supervisor stopped by user"
+        report()
+
+
+if __name__ == "__main__":
+    entry()
