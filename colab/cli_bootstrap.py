@@ -20,6 +20,8 @@ import subprocess
 import time
 
 E = os.environ.get
+os.makedirs("/content/outbox/status", exist_ok=True)
+open("/content/outbox/status/bootstrap_started", "a").write(f"{time.time()}\n")   # colab/vm_client.sh: never twice
 os.environ.setdefault("MEMPROF_T0", str(time.time()))
 BRANCH = E("MEMPROF_BRANCH", "claude/gifted-maxwell-td8cnz")
 REPO = E("MEMPROF_REPO_DIR", "/content/Agent_Mem_Sys")
