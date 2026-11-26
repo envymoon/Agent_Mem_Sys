@@ -1,0 +1,202 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "I\u2019m not sure of the exact date\u2014there\u2019s no record of when Caroline went to the LGBTQ support group.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "user attended LGBTQ support group",
+      "Mel gives kind words to Caroline",
+      "Mel supports Caroline",
+      "user feels happy about transgender stories",
+      "user thanks for support",
+      "assistant heard that user felt support and inspiration",
+      "Painting is a wonderful way to unwind and get the creative juices flowing",
+      "user praises Melanie for prioritizing self\u2011care",
+      "user TOLD Melanie about school event last week",
+      "assistant thanks user for the reminder"
+    ]
+  },
+  {
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold": "Psychology, counseling certification",
+    "pred": "Caroline\u2019s interests and the supportive tone from Mel suggest she might gravitate toward fields that blend creativity, empathy, and community impact\u2014such as education, social work, counseling, or the arts (e.g., teaching, art therapy, or community arts programs).",
+    "qtype": "locomo-cat3",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel gives kind words to Caroline",
+      "Mel supports Caroline",
+      "assistant ENCOURAGES user to do research",
+      "user praises assistant for taking part in charity race",
+      "It\u2019s nice to hear painting resonates with you",
+      "user TOLD Melanie about school event last week",
+      "assistant heard that user felt support and inspiration",
+      "user receives encouragement from assistant",
+      "user praises Melanie for prioritizing self\u2011care",
+      "assistant is doing great"
+    ]
+  },
+  {
+    "q": "What did Caroline research?",
+    "gold": "Adoption agencies",
+    "pred": "I\u2019m not sure what Caroline specifically researched\u2014there\u2019s no detail in the memories about her research topic.",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel supports Caroline",
+      "assistant ENCOURAGES user to do research",
+      "Mel gives kind words to Caroline",
+      "user ASKS Melanie",
+      "assistant is doing great",
+      "assistant heard that user felt support and inspiration",
+      "user praises Melanie for prioritizing self\u2011care",
+      "Melanie RESPONDS_TO user",
+      "user feels happy about transgender stories",
+      "user attended LGBTQ support group"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Caroline is someone Mel supports.",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "assistant is doing great",
+      "Mel supports Caroline",
+      "assistant asks user how their day is going",
+      "Mel gives kind words to Caroline",
+      "Painting is a wonderful way to unwind and get the creative juices flowing",
+      "user ASKS Melanie",
+      "Melanie RESPONDS_TO user",
+      "user praises Melanie for prioritizing self\u2011care",
+      "assistant heard that user felt support and inspiration",
+      "assistant greets user"
+    ]
+  },
+  {
+    "q": "When did Caroline give a speech at a school?",
+    "gold": "The week before 9 June 2023",
+    "pred": "Caroline gave her speech at the school last week.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel supports Caroline",
+      "user -> GOALS -> give kids a loving home",
+      "Mel gives kind words to Caroline",
+      "user TOLD Melanie about school event last week",
+      "Painting looks like a great outlet for expressing yourself",
+      "user praises Melanie for prioritizing self\u2011care",
+      "user praises assistant for taking part in charity race",
+      "Painting is a wonderful way to unwind and get the creative juices flowing",
+      "assistant heard that user felt support and inspiration",
+      "Melanie RESPONDS_TO user"
+    ]
+  },
+  {
+    "q": "What did the charity race raise awareness for?",
+    "gold": "mental health",
+    "pred": "The race was organized to raise awareness for the charity\u2019s cause\u2014helping people in need and supporting the community it serves.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "user praises assistant for taking part in charity race",
+      "assistant thanks user for the reminder",
+      "user receives encouragement from assistant",
+      "user thanks for support",
+      "user praises Melanie for prioritizing self\u2011care",
+      "The colors really blend nicely",
+      "user -> GOALS -> give kids a loving home",
+      "assistant heard that user felt support and inspiration",
+      "assistant ENCOURAGES user to do research",
+      "Painting is a wonderful way to unwind and get the creative juices flowing"
+    ]
+  },
+  {
+    "q": "What are Caroline's plans for the summer?",
+    "gold": "researching adoption agencies",
+    "pred": "I\u2019m not sure\u2014Caroline hasn\u2019t shared her summer plans yet.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "assistant thanks user for the reminder",
+      "Mel supports Caroline",
+      "The colors really blend nicely",
+      "Mel gives kind words to Caroline",
+      "user praises Melanie for prioritizing self\u2011care",
+      "user thanks for support",
+      "assistant asks user how their day is going",
+      "user praises assistant for taking part in charity race",
+      "user TOLD Melanie about school event last week",
+      "Painting is a wonderful way to unwind and get the creative juices flowing"
+    ]
+  },
+  {
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gold": "LGBTQ+ individuals",
+    "pred": "Caroline\u2019s agency is looking to support children who need loving, permanent homes.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel supports Caroline",
+      "Mel gives kind words to Caroline",
+      "Painting is a wonderful way to unwind and get the creative juices flowing",
+      "user -> GOALS -> give kids a loving home",
+      "assistant is doing great",
+      "user attended LGBTQ support group",
+      "user praises assistant for taking part in charity race",
+      "assistant heard that user felt support and inspiration",
+      "user thanks for support",
+      "user praises Melanie for prioritizing self\u2011care"
+    ]
+  },
+  {
+    "q": "Why did Caroline choose the adoption agency?",
+    "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+    "pred": "Caroline chose the adoption agency because it aligns with her goal of giving kids a loving home\u2014she wanted a place that shares that mission and can provide the support and resources she needs.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel supports Caroline",
+      "Mel gives kind words to Caroline",
+      "The colors really blend nicely",
+      "user -> GOALS -> give kids a loving home",
+      "user praises assistant for taking part in charity race",
+      "user praises Melanie for prioritizing self\u2011care",
+      "assistant thanks user for the reminder",
+      "user ASKS Melanie",
+      "user feels happy about transgender stories",
+      "Melanie RESPONDS_TO user"
+    ]
+  },
+  {
+    "q": "What is Caroline excited about in the adoption process?",
+    "gold": "creating a family for kids who need one",
+    "pred": "Caroline\u2019s excitement is all about the next steps in the adoption process\u2014she\u2019s looking forward to meeting the child and building that new family.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Mel supports Caroline",
+      "Mel gives kind words to Caroline",
+      "user praises assistant for taking part in charity race",
+      "Painting is a wonderful way to unwind and get the creative juices flowing",
+      "user feels happy about transgender stories",
+      "user -> GOALS -> give kids a loving home",
+      "assistant is doing great",
+      "user praises Melanie for prioritizing self\u2011care",
+      "user TOLD Melanie about school event last week",
+      "assistant heard that user felt support and inspiration"
+    ]
+  }
+]

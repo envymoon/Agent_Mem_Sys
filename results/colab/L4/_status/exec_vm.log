@@ -8,3 +8,8 @@
 [2026-11-26 20:08:17Z] running | line=pilot try=1 run=kv_gptoss20b_ram8192 | 3 runs done | backup=download+ack missing=3 | idle 0.2 min
 [2026-11-26 20:14:27Z] running | line=pilot try=1 run=l1_gptoss20b_mem0-local_sync_t20 | 6 runs done | backup=download+ack missing=6 | idle 0.1 min
 [2026-11-26 20:18:17Z] running | line=pilot try=1 run=l1_gptoss20b_mem0-qdrant_sync_t20 | 8 runs done | backup=download+ack missing=8 | idle 0.0 min
+[2026-11-26 20:24:27Z] running | line=pilot try=1 run=l1_gptoss20b_graphiti_sync_t20 | 9 runs done | backup=download+ack missing=3 | idle 0.8 min
+[2026-11-26 20:28:17Z] running | line=pilot try=1 run=lme_gptoss20b_rag-pg_i0_t60 | 10 runs done | backup=download+ack missing=4 | idle 0.0 min
+[2026-11-26 20:34:27Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-local_i0_t60 | 11 runs done | backup=download+ack missing=5 | idle 0.0 min
+[2026-11-26 20:38:17Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-local_i0_t60 | 11 runs done | backup=download+ack missing=5 | idle 0.0 min
+[2026-11-26 20:44:27Z] running | line=pilot try=1 run=lme_gptoss20b_mem0-pg_i0_t60 | 12 runs done | backup=download+ack missing=6 | idle 0.0 min

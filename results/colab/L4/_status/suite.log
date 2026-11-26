@@ -134,3 +134,20 @@ proxy up
 [20:11:13] === l1_gptoss20b_rag-pg_sync_t20 (rag-pg) PROFILE=gptoss20b
 [20:12:06] done l1_gptoss20b_rag-pg_sync_t20: {"n_turns": 20, "n_qa": 10, "count": 20, "total_s": 34.97844913199992}
 [20:12:06] === l1_gptoss20b_mem0-local_sync_t20 (mem0-local) PROFILE=gptoss20b
+[20:14:45] done l1_gptoss20b_mem0-local_sync_t20: {"n_turns": 20, "n_qa": 10, "count": 34, "total_s": 129.11672842000007}
+[20:14:45] === l1_gptoss20b_mem0-pg_sync_t20 (mem0-pg) PROFILE=gptoss20b
+[20:17:09] done l1_gptoss20b_mem0-pg_sync_t20: {"n_turns": 20, "n_qa": 10, "count": 32, "total_s": 114.64504772300006}
+[20:17:09] === l1_gptoss20b_mem0-qdrant_sync_t20 (mem0-qdrant) PROFILE=gptoss20b
+[20:19:39] done l1_gptoss20b_mem0-qdrant_sync_t20: {"n_turns": 20, "n_qa": 10, "count": 39, "total_s": 120.08932625900002}
+[20:19:39] === l1_gptoss20b_graphiti_sync_t20 (graphiti) PROFILE=gptoss20b
+[20:25:26] done l1_gptoss20b_graphiti_sync_t20: {"n_turns": 20, "n_qa": 10, "count": 26, "total_s": 317.0623321859998}
+[20:25:26] suite done -> /content/results/L4
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) up
+{"load_wall_s": 8.148076295852661, "offloaded": "25/25", "buffers_mib": {"model:CPU_Mapped": 586.8, "model:CUDA0": 10949.4, "KV:CUDA0": 786.0, "compute:CUDA0": 123.0, "compute:CUDA_Host": 55.5}, "n_ctx_slot": 32768}
+proxy up
+[20:25:36] === lme_gptoss20b_rag-pg_i0_t60 (rag-pg) PROFILE=gptoss20b
+[20:29:30] done lme_gptoss20b_rag-pg_i0_t60: {"n_turns": 64, "n_qa": 1, "count": 64, "total_s": 204.88938056999996}
+[20:29:30] === lme_gptoss20b_mem0-local_i0_t60 (mem0-local) PROFILE=gptoss20b
+[20:40:00] done lme_gptoss20b_mem0-local_i0_t60: {"n_turns": 64, "n_qa": 1, "count": 236, "total_s": 596.421117293}
+[20:40:00] === lme_gptoss20b_mem0-pg_i0_t60 (mem0-pg) PROFILE=gptoss20b

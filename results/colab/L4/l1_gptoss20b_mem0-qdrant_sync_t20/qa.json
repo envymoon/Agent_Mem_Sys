@@ -1,0 +1,202 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline attended the LGBTQ support group on **November\u202f25,\u202f2026**.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBTQ support group on 2026-11-25 and found the experience to be powerful and impactful",
+      "User feels accepted and has gained courage to embrace their true self after attending the LGBTQ support group on 2026-11-25",
+      "User felt happy and thankful after attending the LGBTQ support group, expressing gratitude for the support received",
+      "User found the transgender stories shared at the LGBTQ support group to be inspiring",
+      "User hosted a school event on 2026-11-19 where they spoke about their transgender journey, encouraged students to engage with the LGBTQ community, and observed positive reactions from the audience",
+      "User chose an adoption agency because it specifically supports LGBTQ+ families, citing its inclusivity and support as key reasons for the decision",
+      "Assistant suggested that the user explore the agency\u2019s specific policies and resources for LGBTQ+ parents to build confidence moving forward",
+      "User reports having received abundant love and support throughout their journey and desires to pass that support on to others",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts"
+    ]
+  },
+  {
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold": "Psychology, counseling certification",
+    "pred": "Based on the context, Caroline would likely pursue fields related to counseling or mental\u2011health\u2014such as clinical psychology, social work, counseling psychology, or a related graduate program that prepares her to support people with similar issues.",
+    "qtype": "locomo-cat3",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant offered to help User look into programs, internships, or volunteer opportunities in counseling or mental\u2011health fields",
+      "User is interested in pursuing counseling or mental\u2011health work to support people with similar issues",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "User plans to continue their education and explore new career options, expressing excitement about the opportunity",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User expresses gratitude to Melanie for her kind words and emphasizes that sharing their experiences is important for promoting understanding and acceptance",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for expressing herself",
+      "Assistant confirmed that Melanie is skilled at mixing colors to tell a story in her paintings"
+    ]
+  },
+  {
+    "q": "What did Caroline research?",
+    "gold": "Adoption agencies",
+    "pred": "Caroline is researching a specific adoption agency as part of her plan to find a loving home for children.",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "User is researching a specific adoption agency, indicating a concrete step toward the goal of providing a loving home for children",
+      "User is researching adoption agencies as part of a long\u2011term goal to have a family and provide a loving home for children who need it",
+      "Assistant offers to help with research, provides a quick recap if needed, and wishes the user good luck",
+      "Assistant offered to help the user research adoption agencies and find the right fit for their future family, asking for specifics",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care",
+      "Assistant confirmed that Melanie is skilled at mixing colors to tell a story in her paintings",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts",
+      "User expresses gratitude to Melanie for her kind words and emphasizes that sharing their experiences is important for promoting understanding and acceptance"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "I\u2019m not aware of any information about a person named Caroline in the context we\u2019ve discussed. If you can give me more details or context, I\u2019ll do my best to help!",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User\u2019s talk inspired the audience to become better allies, with the user noting that conversations about gender identity and inclusion are essential",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "Assistant confirmed that Melanie is skilled at mixing colors to tell a story in her paintings",
+      "Assistant clarified that Melanie, not the assistant, painted the painting",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for expressing herself",
+      "User expresses gratitude to Melanie for her kind words and emphasizes that sharing their experiences is important for promoting understanding and acceptance",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts"
+    ]
+  },
+  {
+    "q": "When did Caroline give a speech at a school?",
+    "gold": "The week before 9 June 2023",
+    "pred": "Caroline gave a school speech on **November\u202f19,\u202f2026**.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User felt super powerful giving a school talk, sharing their own journey, the struggles they faced, and the growth achieved since coming out, and was grateful for the opportunity to give a voice to the trans community",
+      "User hosted a school event on 2026-11-19 where they spoke about their transgender journey, encouraged students to engage with the LGBTQ community, and observed positive reactions from the audience",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User expresses gratitude to Melanie for her kind words and emphasizes that sharing their experiences is important for promoting understanding and acceptance",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for expressing herself",
+      "User expresses deep gratitude to friends and mentors for their support while preparing to turn the dream of giving kids a loving home into reality"
+    ]
+  },
+  {
+    "q": "What did the charity race raise awareness for?",
+    "gold": "mental health",
+    "pred": "The race raised awareness for mental health.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts",
+      "Assistant offered to help User look into programs, internships, or volunteer opportunities in counseling or mental\u2011health fields",
+      "User believes that sharing stories can build a strong, supportive community of hope",
+      "User reports having received abundant love and support throughout their journey and desires to pass that support on to others",
+      "User is a single parent who is determined to create a safe and loving home for children in need",
+      "User is researching a specific adoption agency, indicating a concrete step toward the goal of providing a loving home for children",
+      "User expresses deep gratitude to friends and mentors for their support while preparing to turn the dream of giving kids a loving home into reality",
+      "User is researching adoption agencies as part of a long\u2011term goal to have a family and provide a loving home for children who need it",
+      "User hosted a school event on 2026-11-19 where they spoke about their transgender journey, encouraged students to engage with the LGBTQ community, and observed positive reactions from the audience",
+      "Assistant affirms that self\u2011care is a priority even when tough and thanks the user for their encouragement"
+    ]
+  },
+  {
+    "q": "What are Caroline's plans for the summer?",
+    "gold": "researching adoption agencies",
+    "pred": "I\u2019m not aware of any plans for someone named Caroline. If you have more details or context, let me know and I\u2019ll do my best to help!",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User plans to continue their education and explore new career options, expressing excitement about the opportunity",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "Assistant confirmed that Melanie is skilled at mixing colors to tell a story in her paintings",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for expressing herself",
+      "User expresses gratitude to Melanie for her kind words and emphasizes that sharing their experiences is important for promoting understanding and acceptance",
+      "Assistant offered to help the user research adoption agencies and find the right fit for their future family, asking for specifics",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts"
+    ]
+  },
+  {
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gold": "LGBTQ+ individuals",
+    "pred": "Caroline\u2019s chosen agency is geared toward supporting **LGBTQ+ families**\u2014including single parents\u2014who want to create a safe, loving home for children in need.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User chose an adoption agency because it specifically supports LGBTQ+ families, citing its inclusivity and support as key reasons for the decision",
+      "User is researching adoption agencies as part of a long\u2011term goal to have a family and provide a loving home for children who need it",
+      "User is researching a specific adoption agency, indicating a concrete step toward the goal of providing a loving home for children",
+      "Assistant offered to help the user research adoption agencies and find the right fit for their future family, asking for specifics",
+      "User acknowledges that the hard work to achieve the adoption goal is beginning, feeling hopeful and optimistic about the process",
+      "Assistant suggested that the user explore the agency\u2019s specific policies and resources for LGBTQ+ parents to build confidence moving forward",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User is a single parent who is determined to create a safe and loving home for children in need",
+      "User expresses deep gratitude to friends and mentors for their support while preparing to turn the dream of giving kids a loving home into reality",
+      "User reports having received abundant love and support throughout their journey and desires to pass that support on to others"
+    ]
+  },
+  {
+    "q": "Why did Caroline choose the adoption agency?",
+    "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+    "pred": "Caroline chose the adoption agency because it specifically supports LGBTQ+ families, citing its inclusivity and support as key reasons for her decision.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User chose an adoption agency because it specifically supports LGBTQ+ families, citing its inclusivity and support as key reasons for the decision",
+      "User is researching adoption agencies as part of a long\u2011term goal to have a family and provide a loving home for children who need it",
+      "User is researching a specific adoption agency, indicating a concrete step toward the goal of providing a loving home for children",
+      "Assistant offered to help the user research adoption agencies and find the right fit for their future family, asking for specifics",
+      "User acknowledges that the hard work to achieve the adoption goal is beginning, feeling hopeful and optimistic about the process",
+      "Assistant suggested that the user explore the agency\u2019s specific policies and resources for LGBTQ+ parents to build confidence moving forward",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User praised Melanie for participating in a charity race that raises awareness for mental health, expressing pride in her efforts"
+    ]
+  },
+  {
+    "q": "What is Caroline excited about in the adoption process?",
+    "gold": "creating a family for kids who need one",
+    "pred": "Caroline is excited about the prospect of creating a loving family for children who need one\u2014especially as a single parent\u2014and about the concrete steps she\u2019s taking, like researching and choosing an adoption agency that supports LGBTQ+ families. She\u2019s also looking forward to continuing her education and exploring new career options as part of building that future.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User acknowledges that the hard work to achieve the adoption goal is beginning, feeling hopeful and optimistic about the process",
+      "User is excited to create a family for children who need one and acknowledges that being a single parent will be challenging but is ready to face the difficulty",
+      "User plans to continue their education and explore new career options, expressing excitement about the opportunity",
+      "User is researching adoption agencies as part of a long\u2011term goal to have a family and provide a loving home for children who need it",
+      "User chose an adoption agency because it specifically supports LGBTQ+ families, citing its inclusivity and support as key reasons for the decision",
+      "User is researching a specific adoption agency, indicating a concrete step toward the goal of providing a loving home for children",
+      "Assistant offered to help the user research adoption agencies and find the right fit for their future family, asking for specifics",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do some research",
+      "Assistant thanked the user for their support, expressed gladness that the user sees the value in Melanie taking care of herself and her family",
+      "User agrees with Melanie that taking care of ourselves is essential, even when it feels difficult, and praises Melanie for prioritizing self\u2011care"
+    ]
+  }
+]

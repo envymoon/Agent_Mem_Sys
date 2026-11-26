@@ -1,0 +1,23 @@
+/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_remote.py:287: UserWarning: Qdrant client version 1.20.0 is incompatible with server version 1.15.5. Major versions should match and minor version difference must not exceed 1. Set check_compatibility=False to skip version check.
+  show_warning(
+[mem0-qdrant] turn   0 t=    6.7s
+[mem0-qdrant] turn   1 t=   10.0s
+[mem0-qdrant] turn   2 t=   14.9s
+[mem0-qdrant] turn   3 t=   18.5s
+[mem0-qdrant] turn   4 t=   21.8s
+[mem0-qdrant] turn   5 t=   26.1s
+[mem0-qdrant] turn   6 t=   31.3s
+[mem0-qdrant] turn   7 t=   35.7s
+[mem0-qdrant] turn   8 t=   40.0s
+[mem0-qdrant] turn   9 t=   43.2s
+[mem0-qdrant] turn  10 t=   49.6s
+[mem0-qdrant] turn  11 t=   55.7s
+[mem0-qdrant] turn  12 t=   60.4s
+[mem0-qdrant] turn  13 t=   67.2s
+[mem0-qdrant] turn  14 t=   70.7s
+[mem0-qdrant] turn  15 t=   76.6s
+[mem0-qdrant] turn  16 t=   82.1s
+[mem0-qdrant] turn  17 t=   93.8s
+[mem0-qdrant] turn  18 t=  103.2s
+[mem0-qdrant] turn  19 t=  108.3s
+{"n_turns": 20, "n_qa": 10, "count": 39, "total_s": 120.08932625900002}

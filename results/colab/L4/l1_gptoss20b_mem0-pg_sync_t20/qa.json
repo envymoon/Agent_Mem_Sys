@@ -1,0 +1,202 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline attended the LGBTQ support group on **November\u202f25,\u202f2026**.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBTQ support group on 2026-11-25 and found the experience to be very powerful",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group on 2026-11-25",
+      "User felt happy and thankful after hearing inspiring transgender stories at the LGBTQ support group on 2026-11-25",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "At that event, User spoke about their transgender journey and encouraged students to get involved in the LGBTQ community",
+      "User chose the adoption agency because it specifically helps LGBTQ+ individuals and families with adoption, a factor that resonated with them",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care"
+    ]
+  },
+  {
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold": "Psychology, counseling certification",
+    "pred": "Caroline\u2019s next steps point toward fields that blend caring for children with professional growth\u2014think social work, psychology, early childhood education, or counseling. These areas give her the skills to support the kids she hopes to adopt while also opening new career paths.",
+    "qtype": "locomo-cat3",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User plans to continue their education and explore new career options, expressing excitement about the opportunity",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for self\u2011expression",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home"
+    ]
+  },
+  {
+    "q": "What did Caroline research?",
+    "gold": "Adoption agencies",
+    "pred": "Caroline is researching adoption agencies as part of her plan to give children a loving home.",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for self\u2011expression",
+      "User is researching adoption agencies as a step toward having a family and providing a loving home for children in need"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Caroline is a trans woman who is actively working to adopt children and build a safe, loving home for them.",
+    "qtype": "locomo-cat1",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for self\u2011expression",
+      "User shared their own journey, struggles, and development since coming out during the talk",
+      "User believes conversations about gender identity and inclusion are essential and expresses gratitude for having a voice in the trans community"
+    ]
+  },
+  {
+    "q": "When did Caroline give a speech at a school?",
+    "gold": "The week before 9 June 2023",
+    "pred": "Caroline gave her school speech during the week of\u202fNovember\u202f19\u201325,\u202f2026.",
+    "qtype": "locomo-cat2",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for self\u2011expression",
+      "User shared their own journey, struggles, and development since coming out during the talk",
+      "User had a school event during the week of 2026-11-19 to 2026-11-25",
+      "Assistant noted that the user's story was powerful for everyone at the school event"
+    ]
+  },
+  {
+    "q": "What did the charity race raise awareness for?",
+    "gold": "mental health",
+    "pred": "I\u2019m not aware of any specific charity race mentioned in the memories you shared. If you have more details, I\u2019d be happy to help!",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "User expressed gratitude for the support received from friends and mentors while pursuing their adoption goals",
+      "User is researching adoption agencies as a step toward having a family and providing a loving home for children in need",
+      "Assistant noted that the user's story was powerful for everyone at the school event",
+      "User was advised that counseling and mental\u2011health work would be a wonderful way to give back, and that their own journey gives them a powerful perspective to help others",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User chose the adoption agency because it specifically helps LGBTQ+ individuals and families with adoption, a factor that resonated with them",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "Audience members related to User\u2019s story and felt inspired to become better allies",
+      "User had a school event during the week of 2026-11-19 to 2026-11-25"
+    ]
+  },
+  {
+    "q": "What are Caroline's plans for the summer?",
+    "gold": "researching adoption agencies",
+    "pred": "I\u2019m not aware of any specific summer plans that Caroline has mentioned. If she shares more details, I\u2019d be happy to help you think through them!",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care",
+      "User praised Melanie\u2019s painting, noting the colors blend nicely and that the artwork serves as a great outlet for self\u2011expression",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "User shared their own journey, struggles, and development since coming out during the talk"
+    ]
+  },
+  {
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gold": "LGBTQ+ individuals",
+    "pred": "The agency Caroline is looking into specifically supports LGBTQ+ individuals and families who want to adopt.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User is researching adoption agencies as a step toward having a family and providing a loving home for children in need",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "User chose the adoption agency because it specifically helps LGBTQ+ individuals and families with adoption, a factor that resonated with them",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "User expressed gratitude for the support received from friends and mentors while pursuing their adoption goals",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research"
+    ]
+  },
+  {
+    "q": "Why did Caroline choose the adoption agency?",
+    "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+    "pred": "Caroline chose the agency because it specifically supports LGBTQ+ individuals and families in the adoption process\u2014a factor that resonated with her and aligned with her goal of creating a safe, loving home for children.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User chose the adoption agency because it specifically helps LGBTQ+ individuals and families with adoption, a factor that resonated with them",
+      "User is researching adoption agencies as a step toward having a family and providing a loving home for children in need",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User expressed gratitude for the support received from friends and mentors while pursuing their adoption goals",
+      "Assistant encouraged the user, describing researching agencies as a powerful first step toward giving kids a loving home and wished them luck on this meaningful journey",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care"
+    ]
+  },
+  {
+    "q": "What is Caroline excited about in the adoption process?",
+    "gold": "creating a family for kids who need one",
+    "pred": "Caroline is excited about finding a loving, safe home for the children she plans to adopt\u2014especially through an agency that supports LGBTQ+ families, so she can share the love and support she\u2019s received and build a hopeful community.",
+    "qtype": "locomo-cat4",
+    "date": "7:55 pm on 9 June, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged Caroline, affirming that her love and dedication will create a safe, beautiful home for the children she adopts",
+      "User Caroline expressed gratitude to Melanie and committed to doing her best to ensure the children she adopts have a safe and loving home",
+      "User Caroline feels that sharing personal stories is essential for fostering understanding and acceptance, and she wants to pass on the love and support she has received to build a strong, hopeful community",
+      "User shared details about one of the adoption agencies they are researching as part of their plan to give kids a loving home",
+      "User expressed gratitude for the support received from friends and mentors while pursuing their adoption goals",
+      "User is researching adoption agencies as a step toward having a family and providing a loving home for children in need",
+      "User chose the adoption agency because it specifically helps LGBTQ+ individuals and families with adoption, a factor that resonated with them",
+      "User agrees with Melanie that relaxing and expressing themselves is key, and states they are going to do research",
+      "User agrees with Melanie that taking care of ourselves is essential, acknowledges it can be challenging, and praises Melanie for prioritizing self\u2011care",
+      "User praised Melanie for taking time for herself and for looking after her family, emphasizing the importance of self\u2011care"
+    ]
+  }
+]
