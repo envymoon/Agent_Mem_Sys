@@ -50,8 +50,8 @@ def start_vm_keepalive() -> str:
     runs colab/keepalive.py. The token dies with the VM; supervisor.finish() also deletes it before releasing.
     """
     import shutil
-    for f in CRED_FILES:   # colab/launch.sh uploads them flat into /content/_ka/
-        src = os.path.join("/content/_ka", os.path.basename(f))
+    for f in CRED_FILES:   # colab/launch.sh uploads them as /content/_ka_<name> (upload needs an existing dir)
+        src = "/content/_ka_" + os.path.basename(f)
         if os.path.exists(src):
             os.makedirs(os.path.dirname(f), exist_ok=True)
             shutil.move(src, f)
