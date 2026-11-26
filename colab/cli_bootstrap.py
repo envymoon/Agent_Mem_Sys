@@ -24,8 +24,11 @@ os.environ.setdefault("MEMPROF_T0", str(time.time()))
 BRANCH = E("MEMPROF_BRANCH", "claude/gifted-maxwell-td8cnz")
 REPO = E("MEMPROF_REPO_DIR", "/content/Agent_Mem_Sys")
 URL = E("MEMPROF_REPO_URL", "https://github.com/envymoon/Agent_Mem_Sys.git")
-gpu = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True,
-                     text=True).stdout.strip().splitlines()
+try:
+    gpu = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True,
+                         text=True).stdout.strip().splitlines()
+except FileNotFoundError:
+    gpu = []
 tag = (gpu[0].replace("NVIDIA ", "").replace(" ", "") if gpu else "cpu")
 for k, v in {"HOME": "/root", "MEMPROF_MODELS": "/root/models", "OUT": f"/content/results/{tag}",
              "PROFILE": "gptoss20b", "L4_PROFILES": "q14b q4b", "SYNC_DIR": "", "STATUS_GITHUB": "0",
@@ -34,52 +37,73 @@ for k, v in {"HOME": "/root", "MEMPROF_MODELS": "/root/models", "OUT": f"/conten
 os.environ.setdefault("DL_PROFILES", E("PROFILE"))
 os.makedirs(E("OUT"), exist_ok=True)
 
-if not os.path.isdir(os.path.join(REPO, ".git")):
-    subprocess.run(["git", "clone", "-q", "-b", BRANCH, URL, REPO], check=True)
-else:
-    subprocess.run(["git", "-C", REPO, "pull", "-q", "--ff-only", "origin", BRANCH])
-os.chdir(REPO)
+sup = None
 
-spec = importlib.util.spec_from_file_location("supervisor", os.path.join(REPO, "colab", "supervisor.py"))
-sup = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(sup)
-os.makedirs(sup.INBOX, exist_ok=True)
-sup.start_watchdog()
-sup.event(f"bootstrap: gpu={gpu} OUT={E('OUT')} PROFILE={E('PROFILE')} DL_PROFILES={E('DL_PROFILES')} "
-          f"cap={E('MAX_HOURS')} h")
 
-ok = E("SKIP_SETUP") == "1"   # testing the CLI path only
-for attempt in range(1, 4 if not ok else 1):
-    sup.NOW["phase"] = f"setup attempt {attempt}"
-    sup.report()
-    log = os.path.join(sup.OUTBOX, "status", "setup.log")
-    os.makedirs(os.path.dirname(log), exist_ok=True)
-    t = time.time()
-    with open(log, "a") as f:
-        f.write(f"\n===== setup attempt {attempt} at {sup.now()} code {sup.pull_code()}\n")
-        f.flush()
-        try:
-            rc = subprocess.run(["bash", "scripts/local/setup.sh"], stdout=f, stderr=subprocess.STDOUT,
-                                timeout=float(E("SETUP_TIMEOUT_MIN", 120)) * 60).returncode
-        except subprocess.TimeoutExpired:
-            rc = 124
-    sup.event(f"setup attempt {attempt}: rc={rc} in {(time.time() - t) / 60:.1f} min")
-    os.environ["SESSION_SETUP_MIN"] = f"{(time.time() - t) / 60:.0f}"
-    if rc == 0:
-        ok = True
-        break
-    if sup.NOW["stop"]:
-        break
-    head0 = sup.pull_code()
-    sup.NOW["phase"] = f"setup failed (attempt {attempt}): waiting for a fix"
-    sup.report()
-    t = time.time()
-    while time.time() - t < float(E("SETUP_FIX_MIN", 30)) * 60 and sup.pull_code() == head0 and not sup.NOW["stop"]:
-        time.sleep(120)
-    if sup.pull_code() == head0:
-        break
+def _main() -> None:
+    global sup
+    if not os.path.isdir(os.path.join(REPO, ".git")):
+        subprocess.run(["git", "clone", "-q", "-b", BRANCH, URL, REPO], check=True)
+    else:
+        subprocess.run(["git", "-C", REPO, "pull", "-q", "--ff-only", "origin", BRANCH])
+    os.chdir(REPO)
 
-if ok:
-    sup.entry()
-elif not sup.NOW["stop"]:
-    sup.finish("setup failed")
+    spec = importlib.util.spec_from_file_location("supervisor", os.path.join(REPO, "colab", "supervisor.py"))
+    sup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(sup)
+    os.makedirs(sup.INBOX, exist_ok=True)
+    sup.start_watchdog()
+    sup.event(f"bootstrap: gpu={gpu} OUT={E('OUT')} PROFILE={E('PROFILE')} DL_PROFILES={E('DL_PROFILES')} "
+              f"cap={E('MAX_HOURS')} h")
+
+    ok = E("SKIP_SETUP") == "1"   # testing the CLI path only
+    for attempt in range(1, 4 if not ok else 1):
+        sup.NOW["phase"] = f"setup attempt {attempt}"
+        sup.report()
+        log = os.path.join(sup.OUTBOX, "status", "setup.log")
+        os.makedirs(os.path.dirname(log), exist_ok=True)
+        t = time.time()
+        with open(log, "a") as f:
+            f.write(f"\n===== setup attempt {attempt} at {sup.now()} code {sup.pull_code()}\n")
+            f.flush()
+            try:
+                rc = subprocess.run(["bash", "scripts/local/setup.sh"], stdout=f, stderr=subprocess.STDOUT,
+                                    timeout=float(E("SETUP_TIMEOUT_MIN", 120)) * 60).returncode
+            except subprocess.TimeoutExpired:
+                rc = 124
+        sup.event(f"setup attempt {attempt}: rc={rc} in {(time.time() - t) / 60:.1f} min")
+        os.environ["SESSION_SETUP_MIN"] = f"{(time.time() - t) / 60:.0f}"
+        if rc == 0:
+            ok = True
+            break
+        if sup.NOW["stop"]:
+            break
+        head0 = sup.pull_code()
+        sup.NOW["phase"] = f"setup failed (attempt {attempt}): waiting for a fix"
+        sup.report()
+        t = time.time()
+        while time.time() - t < float(E("SETUP_FIX_MIN", 30)) * 60 and sup.pull_code() == head0 and not sup.NOW["stop"]:
+            time.sleep(120)
+        if sup.pull_code() == head0:
+            break
+
+    if ok:
+        sup.entry()
+    elif not sup.NOW["stop"]:
+        sup.finish("setup failed")
+
+
+try:
+    _main()
+except BaseException as e:  # never leave a paid VM idle: report the crash, then release
+    import traceback
+    os.makedirs("/content/outbox/status", exist_ok=True)
+    open("/content/outbox/status/bootstrap_error.txt", "w").write(traceback.format_exc())
+    if isinstance(e, KeyboardInterrupt):
+        raise
+    if sup is not None:
+        sup.event(f"bootstrap crashed: {e!r}"[:300])
+        sup.finish("bootstrap crashed")
+    else:
+        from google.colab import runtime  # type: ignore
+        runtime.unassign()
