@@ -22,11 +22,12 @@ PGBIN=/usr/lib/postgresql/$PG_VER/bin
 LOGS=$SVC_DATA/logs
 mkdir -p "$SVC_HOME" "$SVC_DATA" "$LOGS"; chmod 1777 "$LOGS"
 
-install() {
+do_install() {  # not named install(): that would shadow /usr/bin/install used below
   export DEBIAN_FRONTEND=noninteractive
-  if ! apt-cache policy "postgresql-$PG_VER-pgvector" 2>/dev/null | grep -q "Candidate: [0-9]"; then
+  local pol; pol=$(apt-cache policy "postgresql-$PG_VER-pgvector" 2>/dev/null || true)
+  if ! grep -q "Candidate: [0-9]" <<<"$pol"; then   # no pipe: grep -q + pipefail would report a false miss
     apt-get install -y -q curl ca-certificates gnupg lsb-release >/dev/null
-    install -d /usr/share/postgresql-common/pgdg
+    command install -d /usr/share/postgresql-common/pgdg
     curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc \
       https://www.postgresql.org/media/keys/ACCC4CF8.asc
     echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
@@ -36,7 +37,7 @@ install() {
   apt-get install -y -q "postgresql-$PG_VER" "postgresql-$PG_VER-pgvector" postgresql-contrib >/dev/null || \
     apt-get install -y -q "postgresql-$PG_VER" "postgresql-$PG_VER-pgvector" >/dev/null
   # Java 21 for Neo4j 5.26
-  command -v java >/dev/null && java -version 2>&1 | grep -q '"21\|"17' || apt-get install -y -q openjdk-21-jre-headless >/dev/null \
+  command -v java >/dev/null && java -version 2>&1 | grep '"21\|"17' >/dev/null || apt-get install -y -q openjdk-21-jre-headless >/dev/null \
     || apt-get install -y -q openjdk-17-jre-headless >/dev/null
   cd "$SVC_HOME"
   [ -x qdrant ] || { curl -fsSL -o qdrant.tgz "https://github.com/qdrant/qdrant/releases/download/v$QDRANT_VER/qdrant-x86_64-unknown-linux-gnu.tar.gz" && tar xzf qdrant.tgz && rm qdrant.tgz; }
@@ -68,7 +69,7 @@ track_wal_io_timing = on
 EOF
   fi
   su postgres -c "$PGBIN/pg_ctl -D $D -l $LOGS/pg.log -w start" >/dev/null 2>&1 </dev/null
-  psql -h 127.0.0.1 -p "$PG_PORT" -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='memprof'" | grep -q 1 || \
+  psql -h 127.0.0.1 -p "$PG_PORT" -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='memprof'" | grep 1 >/dev/null || \
     psql -h 127.0.0.1 -p "$PG_PORT" -U postgres -qc "CREATE DATABASE memprof"
   psql -h 127.0.0.1 -p "$PG_PORT" -U postgres -d memprof -qc "CREATE EXTENSION IF NOT EXISTS vector; CREATE EXTENSION IF NOT EXISTS pg_stat_statements;"
   echo "pg up :$PG_PORT (db memprof, user postgres, trust auth)"
@@ -114,7 +115,7 @@ stop_neo4j() { local N=$SVC_HOME/neo4j-community-$NEO4J_VER; NEO4J_CONF=$SVC_DAT
 each() { local act=$1 what=${2:-all}; for s in pg qdrant neo4j; do [ "$what" = all ] || [ "$what" = "$s" ] && "${act}_$s"; done; return 0; }
 cmd=${1:-status}; what=${2:-all}
 case $cmd in
-  install) install ;;
+  install) do_install ;;
   start) each start "$what" ;;
   stop) each stop "$what" ;;
   reset) each stop "$what"; for s in pg qdrant neo4j; do { [ "$what" = all ] || [ "$what" = "$s" ]; } && rm -rf "${SVC_DATA:?}/$s"; done; echo "reset $what" ;;

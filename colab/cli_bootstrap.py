@@ -53,6 +53,8 @@ def _main() -> None:
     spec.loader.exec_module(sup)
     os.makedirs(sup.INBOX, exist_ok=True)
     sup.start_watchdog()
+    import threading
+    threading.Thread(target=sup.reporter, daemon=True).start()   # status every REPORT_MIN during setup too
     sup.event(f"bootstrap: gpu={gpu} OUT={E('OUT')} PROFILE={E('PROFILE')} DL_PROFILES={E('DL_PROFILES')} "
               f"cap={E('MAX_HOURS')} h")
 
@@ -64,7 +66,8 @@ def _main() -> None:
         os.makedirs(os.path.dirname(log), exist_ok=True)
         t = time.time()
         with open(log, "a") as f:
-            f.write(f"\n===== setup attempt {attempt} at {sup.now()} code {sup.pull_code()}\n")
+            head_start = sup.pull_code()
+            f.write(f"\n===== setup attempt {attempt} at {sup.now()} code {head_start}\n")
             f.flush()
             try:
                 rc = subprocess.run(["bash", "scripts/local/setup.sh"], stdout=f, stderr=subprocess.STDOUT,
@@ -78,13 +81,13 @@ def _main() -> None:
             break
         if sup.NOW["stop"]:
             break
-        head0 = sup.pull_code()
         sup.NOW["phase"] = f"setup failed (attempt {attempt}): waiting for a fix"
         sup.report()
-        t = time.time()
-        while time.time() - t < float(E("SETUP_FIX_MIN", 30)) * 60 and sup.pull_code() == head0 and not sup.NOW["stop"]:
+        t = time.time()   # retry as soon as the branch has moved past the code this attempt ran
+        while time.time() - t < float(E("SETUP_FIX_MIN", 30)) * 60 and sup.pull_code() == head_start \
+                and not sup.NOW["stop"]:
             time.sleep(120)
-        if sup.pull_code() == head0:
+        if sup.pull_code() == head_start:
             break
 
     if ok:
