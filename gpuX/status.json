@@ -1,5 +1,5 @@
 {
- "time": "2026-11-26 06:28:09Z",
+ "time": "2026-11-26 06:28:16Z",
  "final": false,
  "tag": "gpuX",
  "phase": "waiting for the suite started before this cell was re-run",
@@ -29,7 +29,7 @@
  },
  "disk_free_gb": 39.5,
  "stop": null,
- "hours_since_start": 0.0,
+ "hours_since_start": 0.01,
  "max_hours": 0.02,
  "ram_avail_gb": 15.2,
  "gpu": "/bin/sh: 1: nvidia-smi: not found",
