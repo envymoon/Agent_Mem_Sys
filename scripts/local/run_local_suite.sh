@@ -18,14 +18,27 @@
 #   l4         model choice: q8b, llama8b, moe30b (if downloaded) on mem0-pg + graphiti      ~2-3 h
 #   model      latency model per profile (l1 / l4 runs + rates + fio): validation error and GPU / disk what-ifs.
 #              Extra comparisons: MODEL_GPU="A100=dir/llama_bench.json"  MODEL_DISK="native=dir/fio_fsyncwrite.json"
+#   lme        LongMemEval-S (standard long-history benchmark): LME_ITEMS haystacks x LME_SYSTEMS, sync, 1 QA each;
+#              default items 70 / 233 / 366 = first multi-session / temporal-reasoning / knowledge-update question;
+#              LME_TURNS=0 -> full haystack (~245 user turns), N -> evidence + distractor sessions up to N turns
+#   score      QA accuracy of every run with a qa.json (token F1 + LLM judge with the local model)
+#   pilot      cheap first pass to see quality and cost before committing CU: preflight smoke rates kv,
+#              l1 with PILOT_TURNS turns, one truncated LongMemEval item, score, budget
+#   budget     per-turn cost of every finished run -> hours / compute units for the full suites (analysis/budget.py)
 #   l5         store scale 1e3..1e5 with hot/cold page cache: rag-pg, mem0-pg, mem0-qdrant, mem0-local ~1-2 h
 #
+# Colab / cloud: SYNC_DIR=<Drive dir> mirrors OUT there after every run (and OUT is restored from it on start, so
+# a new runtime resumes); REP=2 suffixes run names (_r2) to repeat key runs on another VM for variance.
 # env: PROFILE=q4b  TURNS=100  QA=50  T3=60  T4=60  SIZES=1000,10000,50000,100000  OUT=results/local/<host>-<wsl|native>
 set -uo pipefail
+SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 cd "$(dirname "$0")/../.."
 export PROFILE=${PROFILE:-q4b}
+source scripts/local/profiles.sh
+[ "$PROFILE" = gptoss20b ] && { export ANSWER_TOKENS=${ANSWER_TOKENS:-1024} QA_TOKENS=${QA_TOKENS:-512}; }  # reasoning tokens count
 export MEMPROF_MODELS=${MEMPROF_MODELS:-$HOME/models}
 export LOCOMO=${LOCOMO:-$HOME/locomo/data/locomo10.json}
+export LONGMEMEVAL=${LONGMEMEVAL:-$HOME/longmemeval/longmemeval_s_cleaned.json}
 export SVC_DATA=${SVC_DATA:-/opt/svc/data}
 export SLOT_SAVE=${SLOT_SAVE:-$SVC_DATA/kv_slots}
 export MEMPROF_VLLM_METRICS=${MEMPROF_VLLM_METRICS:-http://127.0.0.1:8000}   # hwmon scrapes llama.cpp /metrics
@@ -35,6 +48,11 @@ SYSTEMS=${SYSTEMS:-"rag-pg mem0-local mem0-pg mem0-qdrant graphiti"}
 PY=.venv/bin/python
 L=scripts/local/start_llama.sh
 mkdir -p "$OUT"
+SYNC_DIR=${SYNC_DIR:-}
+BOOT=$(cut -c1-8 /proc/sys/kernel/random/boot_id)
+if [ -n "$SYNC_DIR" ] && [ -d "$SYNC_DIR" ]; then cp -rn "$SYNC_DIR/." "$OUT/" 2>/dev/null; fi   # resume on a new runtime
+sync_out() { [ -n "$SYNC_DIR" ] && { mkdir -p "$SYNC_DIR"; cp -ru "$OUT/." "$SYNC_DIR/" 2>/dev/null; }; return 0; }
+drop() { $PY -m memprof.iostat drop >/dev/null 2>&1; }   # drop_caches, or fadvise eviction where /proc/sys is read-only
 export PATH=/usr/lib/wsl/lib:$PATH
 log() { echo "[$(date +%T)] $*" | tee -a "$OUT/suite.log"; }
 
@@ -61,21 +79,26 @@ rates() {  # rates <profile>: llama-bench with the same model / KV type / offloa
 fresh_stores() { scripts/services.sh reset all >/dev/null 2>&1; scripts/services.sh start all >/dev/null 2>&1 || { log "services failed"; return 1; }; }
 
 run() {  # run <name> <system> [args...]
-  local name=$1 sys=$2; shift 2
+  local name=$1${REP:+_r$REP} sys=$2; shift 2
   [ -f "$OUT/$name/meta.json" ] && { log "skip $name"; return 0; }
   log "=== $name ($sys) PROFILE=$PROFILE"
   fresh_stores || return 1
-  sync; echo 3 >/proc/sys/vm/drop_caches 2>/dev/null   # every run starts from the same (cold store) state
+  drop   # every run starts from the same (cold store) state
   $PY bench/multi_e2e.py --system "$sys" --conv "$CONV" --out "$OUT/$name" --label "$name" "$@" >"$OUT/$name.log" 2>&1
   local rc=$?
   cp results/server_logs/llm.cmd results/server_logs/llm.load.json "$OUT/$name/" 2>/dev/null
+  echo "boot=$BOOT gpu=$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1) profile=$PROFILE" >"$OUT/$name/vm.txt" 2>/dev/null
   if [ $rc -ne 0 ]; then log "FAILED $name rc=$rc: $(tail -3 "$OUT/$name.log" | tr '\n' ' ')"; return 0; fi
   $PY analysis/multi_breakdown.py "$OUT/$name" >/dev/null 2>&1
   log "done $name: $(tail -1 "$OUT/$name.log")"
+  sync_out
 }
 
 for suite in "$@"; do case $suite in
-  preflight) [ -f "$OUT/preflight/inventory.json" ] || OUT=$OUT scripts/local/preflight.sh | tee -a "$OUT/suite.log" ;;
+  preflight)  # once per VM (a new Colab runtime may be a different machine / disk): preflight_<boot id>
+    P=$OUT/preflight_$BOOT
+    [ -f "$P/inventory.json" ] || PREFLIGHT_DIR=$P OUT=$OUT PY=$PY scripts/local/preflight.sh | tee -a "$OUT/suite.log"
+    rm -rf "$OUT/preflight"; cp -r "$P" "$OUT/preflight"; sync_out ;;
   smoke) stack; for s in $SYSTEMS; do run "smoke_$s" "$s" --turns 3 --qa 2; done ;;
   kv)
     for cr in 8192 0; do
@@ -88,7 +111,7 @@ for suite in "$@"; do case $suite in
     mkdir -p "$OUT/$n"; curl -sf http://127.0.0.1:8001/health >/dev/null || $L emb >/dev/null
     for mode in mmap none; do for temp in cold warm; do
       $L stop >/dev/null; $L emb >/dev/null
-      [ $temp = cold ] && { sync; echo 3 >/proc/sys/vm/drop_caches; }
+      [ $temp = cold ] && drop
       $PY -c "from memprof import iostat; import json; json.dump(iostat.snapshot(), open('/tmp/_io0.json','w'))"
       LOAD_MODE=$mode $L llm >/dev/null
       $PY - "$mode" "$temp" >>"$OUT/$n/load.jsonl" <<'PYX'
@@ -105,13 +128,26 @@ PYX
   rates) rates "$PROFILE"; stack ;;
   model)
     for p in $PROFILE ${L4_PROFILES:-q8b llama8b moe30b}; do
-      runs=$(ls -d "$OUT"/l1_${p}_*_sync "$OUT"/l4_${p}_*_sync 2>/dev/null)
+      runs=$(ls -d "$OUT"/l1_${p}_*_sync* "$OUT"/l4_${p}_*_sync* 2>/dev/null)
       [ -n "$runs" ] && [ -s "$OUT/rates_$p/llama_bench.json" ] || continue
       extra=(); for g in ${MODEL_GPU:-}; do extra+=(--gpu "$g"); done; for d in ${MODEL_DISK:-}; do extra+=(--disk "$d"); done
       $PY analysis/latency_model.py --runs $runs --rates "$OUT/rates_$p/llama_bench.json" --fio "$OUT/preflight/fio_fsyncwrite.json" \
         "${extra[@]}" --out "$OUT/latency_model_$p.json" >"$OUT/latency_model_$p.md" 2>&1 && log "model $p -> latency_model_$p.md"
     done ;;
-  l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync" "$s" --turns "$TURNS" --qa "$QA"; done ;;
+  lme) stack
+      for it in ${LME_ITEMS:-70 233 366}; do for s in ${LME_SYSTEMS:-$SYSTEMS}; do
+        run "lme_${PROFILE}_${s}_i${it}_t${LME_TURNS:-0}" "$s" --dataset longmemeval --item "$it" --turns "${LME_TURNS:-0}" --qa 1
+      done; done ;;
+  score) stack
+      for d in "$OUT"/*/; do [ -f "$d/qa.json" ] && [ ! -f "$d/qa_score.json" ] && $PY analysis/qa_score.py "$d" >>"$OUT/suite.log" 2>&1; done
+      $PY analysis/qa_score.py --summary "$OUT" | tee "$OUT/qa_summary.md"; sync_out ;;
+  budget) $PY analysis/budget.py "$OUT" | tee "$OUT/budget.md"; sync_out ;;
+  pilot)
+    OUT=$OUT "$SELF" preflight rates kv
+    TURNS=${PILOT_TURNS:-20} QA=${PILOT_QA:-10} OUT=$OUT "$SELF" l1
+    LME_ITEMS=${PILOT_LME_ITEMS:-0} LME_TURNS=${PILOT_LME_TURNS:-60} OUT=$OUT "$SELF" lme
+    OUT=$OUT "$SELF" score budget ;;
+  l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync_t$TURNS" "$s" --turns "$TURNS" --qa "$QA"; done ;;
   l2) stack
       for s in rag-pg mem0-local mem0-pg graphiti; do
         run "l2_${PROFILE}_${s}_async" "$s" --turns "$TURNS" --qa 0 --async-add
@@ -141,4 +177,5 @@ PYX
       done ;;
   *) log "unknown suite $suite" ;;
 esac; done
+sync_out
 log "suite done -> $OUT"

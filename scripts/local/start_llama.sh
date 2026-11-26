@@ -5,7 +5,7 @@
 #   :8100 memprof proxy (every memory system talks to this)
 #
 # env knobs (defaults come from PROFILE in profiles.sh):
-#   PROFILE=q4b|q8b|llama8b|moe30b|cpu
+#   PROFILE=gptoss20b|q14b|q4b|q8b|llama8b|moe30b|cpu
 #   CTX=  NP=2 (slots: foreground agent + background memory writer)  KV=f16|q8_0
 #   CACHE_RAM=8192  host-RAM prompt cache MiB (llama.cpp default; 0 = off)        -> DRAM tier
 #   CACHE_PROMPT=1  0 -> proxy injects cache_prompt=false (no prefix reuse at all) -> ablation
@@ -75,7 +75,8 @@ proxy() {
   pkill -f memprof.llm_proxy 2>/dev/null || true; sleep 0.5
   local inj='{}'; [ "${CACHE_PROMPT:-1}" = 0 ] && inj='{"cache_prompt": false}'
   nohup .venv/bin/python -m memprof.llm_proxy --port 8100 --chat http://127.0.0.1:8000 --embed http://127.0.0.1:8001 \
-    --chat-model local --embed-model local-embed --ctx "$CTX" --no-think --inject "$inj" \
+    --chat-model local --embed-model local-embed --ctx "$CTX" $([ "$P_NOTHINK" = 1 ] && echo --no-think) \
+    --chat-kwargs "$P_CHAT_KWARGS" --inject "$inj" \
     --log results/_proxy_idle.jsonl >"$LOGD/proxy.log" 2>&1 </dev/null &
   wait_http http://127.0.0.1:8100/memprof/health proxy 100 "$LOGD/proxy.log" $!
 }

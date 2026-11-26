@@ -1,5 +1,7 @@
 # 本机实验方案：RTX 4060 (8 GB) + 真实 NVMe
 
+> 现在的主线改为 Colab（`docs/colab_plan.md`），本方案保留为备选。两边共用 `scripts/local/` 下的脚本。
+
 目标与 `docs/gpu_plan.md` 相同：
 1. 判断“写路径主导、长静态前缀、KV 放置、后台写干扰、存储随规模退化”这些现象，是不是 agent 记忆系统的**共性问题**；
 2. 在**真实的消费级硬件**上找到瓶颈，包括 GPU 显存、PCIe、DRAM 和 SSD 各层。

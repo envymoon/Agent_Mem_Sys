@@ -6,7 +6,7 @@
 #
 #   LLAMA_TAG=b12559     pinned llama.cpp release (the build the harness was developed against)
 #   CUDA_ARCH=auto       from nvidia-smi compute_cap (89 = RTX 40xx / L4, 86 = RTX 30xx / A10, 80 = A100, 90 = H100)
-#   DL_PROFILES="q4b q8b llama8b"   model profiles to download (add moe30b if RAM >= 32 GB, ~17 GB)
+#   DL_PROFILES="q4b q8b llama8b"   model profiles to download (Colab L4: "gptoss20b q14b q4b", ~23 GB)
 #   MEMPROF_MODELS=$HOME/models     keep models on the same SSD you want to profile (NOT /mnt/c in WSL)
 set -euo pipefail
 cd "$(dirname "$0")/../.."
@@ -71,7 +71,10 @@ dl() { [ -s "$MEMPROF_MODELS/$2" ] && [ ! -f "$MEMPROF_MODELS/$2.part" ] && retu
 for p in ${DL_PROFILES:-q4b q8b llama8b}; do (PROFILE=$p; source scripts/local/profiles.sh; dl "$LLM_REPO" "$LLM_FILE"); done
 (source scripts/local/profiles.sh; dl "$EMB_REPO" "$EMB_FILE")
 
-echo "[7/7] LoCoMo"
+echo "[7/7] benchmarks: LoCoMo, LongMemEval-S (cleaned)"
 LOCOMO=${LOCOMO:-$HOME/locomo/data/locomo10.json}
 [ -f "$LOCOMO" ] || git clone -q --depth 1 https://github.com/snap-research/locomo "$(dirname "$(dirname "$LOCOMO")")"
+LONGMEMEVAL=${LONGMEMEVAL:-$HOME/longmemeval/longmemeval_s_cleaned.json}
+[ -s "$LONGMEMEVAL" ] || { mkdir -p "$(dirname "$LONGMEMEVAL")"; curl -fL --retry 5 -C - -o "$LONGMEMEVAL" \
+  https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned/resolve/main/longmemeval_s_cleaned.json; }
 echo "setup ok  (WSL=$IS_WSL GPU=$GPU llama.cpp=$LLAMA_TAG models=$MEMPROF_MODELS)"

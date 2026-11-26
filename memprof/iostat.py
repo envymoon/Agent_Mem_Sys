@@ -179,12 +179,55 @@ def flat(d: dict) -> dict:
     return out
 
 
-def drop_caches() -> bool:
-    """sync + drop the (guest) page cache. Root only. Returns False if not permitted."""
+def evict(paths=None) -> int:
+    """Unprivileged fallback for drop_caches: posix_fadvise(DONTNEED) every regular file under `paths`
+    (default: the stores, the models, the KV slot dir). Evicts clean, unmapped page-cache pages of exactly the
+    files the experiment reads (pages mmap'd by a running process -- e.g. Qdrant segments -- stay). Returns bytes."""
+    if paths is None:
+        paths = [os.environ.get("SVC_DATA", "/opt/svc/data"), os.environ.get("MEMPROF_MODELS", os.path.expanduser("~/models")),
+                 os.environ.get("SLOT_SAVE", "")]
+    os.sync()
+    n = 0
+    for root in filter(None, paths):
+        for dp, _, fs in os.walk(root):
+            for f in fs:
+                fp = os.path.join(dp, f)
+                try:
+                    fd = os.open(fp, os.O_RDONLY | os.O_NOFOLLOW)
+                except OSError:
+                    continue
+                try:
+                    os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_DONTNEED)
+                    n += os.fstat(fd).st_size
+                except OSError:
+                    pass
+                finally:
+                    os.close(fd)
+    return n
+
+
+DROP_METHOD = None
+
+
+def drop_caches(paths=None):
+    """sync + drop the (guest) page cache. Needs root and a writable /proc/sys (not every container has one: then
+    falls back to evict()). Returns "drop_caches", "fadvise" or False; DROP_METHOD remembers the last method."""
+    global DROP_METHOD
     try:
         os.sync()
         with open("/proc/sys/vm/drop_caches", "w") as f:
             f.write("3\n")
-        return True
+        DROP_METHOD = "drop_caches"
     except OSError:
-        return False
+        try:
+            evict(paths)
+            DROP_METHOD = "fadvise"
+        except OSError:
+            DROP_METHOD = False
+    return DROP_METHOD
+
+
+if __name__ == "__main__":  # python -m memprof.iostat drop [paths...]   (used by the shell suites)
+    import sys
+    if sys.argv[1:2] == ["drop"]:
+        print(drop_caches(sys.argv[2:] or None))

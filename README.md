@@ -9,7 +9,13 @@
 - `analysis/`：分解、对比、作图脚本；`results/`：原始 trace（`spans.jsonl`）与汇总
 - `scripts/`：llama-server 启动与实验套件
 
-## 本机实验：RTX 4060 + 真实 NVMe（当前主线）
+## Colab 实验：第一层标准 benchmark，L4 24 GB（当前主线）
+
+LoCoMo + LongMemEval-S 回放到 5 种记忆架构上，主模型 gpt-oss-20b（对照 Qwen3-14B、Qwen3-4B），llama.cpp 推理，
+逐操作记录 LLM / 嵌入 / 数据库 / 块设备读写与 fsync。先跑 pilot 看效果和花销，再决定全套。
+方案：[`docs/colab_plan.md`](docs/colab_plan.md)。入口：[`colab/memprof_colab_l1.ipynb`](colab/memprof_colab_l1.ipynb)。
+
+## 本机实验：RTX 4060 + 真实 NVMe（备选，脚本与 Colab 共用）
 
 在用户自己的 Windows 机器上（WSL2 Ubuntu，llama.cpp `b12559`）对比 rag-pg / mem0（嵌入式 Qdrant、pgvector、Qdrant server）/
 Graphiti(Neo4j)，并逐层测 KV 放置（GPU / 主机内存 / SSD）与存储 I/O（块设备读写、fsync、冷热页缓存）。

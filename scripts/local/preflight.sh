@@ -11,13 +11,14 @@
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 OUT=${OUT:-results/local/$(hostname)-$(grep -qi microsoft /proc/version && echo wsl || echo native)}
-D=$OUT/preflight; mkdir -p "$D"
+D=${PREFLIGHT_DIR:-$OUT/preflight}; mkdir -p "$D"
 SVC_DATA=${SVC_DATA:-/opt/svc/data}; mkdir -p "$SVC_DATA"
 T=$SVC_DATA/_fio; mkdir -p "$T"
 export PATH=/usr/lib/wsl/lib:$PATH
 
 {
   echo "{"
+  echo "\"boot_id\": \"$(cat /proc/sys/kernel/random/boot_id)\", \"colab\": $([ -d /content ] && echo true || echo false),"
   echo "\"kernel\": \"$(uname -r)\", \"wsl\": $(grep -qi microsoft /proc/version && echo true || echo false),"
   echo "\"cpu\": \"$(lscpu | sed -n 's/^Model name:\s*//p' | head -1)\", \"cores\": $(nproc),"
   echo "\"ram_gb\": $(awk '/MemTotal/{printf "%.1f", $2/1048576}' /proc/meminfo), \"swap_gb\": $(awk '/SwapTotal/{printf "%.1f", $2/1048576}' /proc/meminfo),"
@@ -60,13 +61,18 @@ fi
 
 # page-cache / host-cache check
 dd if=/dev/urandom of="$T/cachecheck" bs=1M count=2048 status=none conv=fsync
-sync; echo 3 >/proc/sys/vm/drop_caches 2>/dev/null && dropped=True || dropped=False
+# drop_caches if /proc/sys is writable, else posix_fadvise(DONTNEED) on the file (containers, e.g. Colab)
+method=$(PY=${PY:-.venv/bin/python}; [ -x "$PY" ] || PY=python3; "$PY" -m memprof.iostat drop "$T")
+r0=$(awk '$3 !~ /^(loop|ram|zram|dm-)|[0-9]p[0-9]+$|^[shvx]v?d[a-z]+[0-9]+$/ {s+=$6} END{print s}' /proc/diskstats)
 t0=$(date +%s.%N); dd if="$T/cachecheck" of=/dev/null bs=1M status=none; t1=$(date +%s.%N)
+r1=$(awk '$3 !~ /^(loop|ram|zram|dm-)|[0-9]p[0-9]+$|^[shvx]v?d[a-z]+[0-9]+$/ {s+=$6} END{print s}' /proc/diskstats)
 t2=$(date +%s.%N); dd if="$T/cachecheck" of=/dev/null bs=1M status=none; t3=$(date +%s.%N)
 python3 -c "
 import json; c=2048/($t1-$t0); w=2048/($t3-$t2)
-json.dump({'dropped': $dropped, 'cold_buffered_mb_s': c, 'warm_mb_s': w}, open('$D/cache_check.json','w'))
-print(f'  page cache: cold read {c:.0f} MB/s (after drop_caches=$dropped), warm read {w:.0f} MB/s')"
+dev=($r1-$r0)*512/2**20  # whole disks only; ~2048 means the eviction worked
+json.dump({'dropped': '$method' not in ('False', ''), 'method': '$method', 'cold_buffered_mb_s': c, 'warm_mb_s': w,
+           'cold_dev_read_mb': dev}, open('$D/cache_check.json','w'))
+print(f'  page cache: cold read {c:.0f} MB/s ({dev:.0f} MB from the block layer after $method), warm read {w:.0f} MB/s')"
 rm -rf "$T"
 
 python3 - "$D/inventory.json" <<'PY'

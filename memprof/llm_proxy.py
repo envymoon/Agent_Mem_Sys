@@ -93,6 +93,10 @@ def _rewrite(body: dict, kind: str) -> dict:
         if A.no_think:
             ck = body.setdefault("chat_template_kwargs", {})
             ck.setdefault("enable_thinking", False)
+        if A.chat_kwargs:  # e.g. gpt-oss {"reasoning_effort": "low"}
+            ck = body.setdefault("chat_template_kwargs", {})
+            for k, v in A.chat_kwargs.items():
+                ck.setdefault(k, v)
         for k in A.drop_params:
             body.pop(k, None)
         body.update(A.inject)  # e.g. {"cache_prompt": false} for the llama.cpp prefix-cache ablation
@@ -285,10 +289,12 @@ def main() -> None:
     ap.add_argument("--no-think", action="store_true")
     ap.add_argument("--no-stream-convert", dest="stream_convert", action="store_false")
     ap.add_argument("--drop-params", default="", help="comma list of request keys to drop")
+    ap.add_argument("--chat-kwargs", default="{}", help="JSON added to chat_template_kwargs of every chat request")
     ap.add_argument("--inject", default="{}", help="JSON merged into every chat request body")
     ap.add_argument("--log", default="results/llm_calls.jsonl")
     A = ap.parse_args()
     A.inject = json.loads(A.inject)
+    A.chat_kwargs = json.loads(A.chat_kwargs)
     A.drop_params = [x for x in A.drop_params.split(",") if x]
 
     async def on_start(app):

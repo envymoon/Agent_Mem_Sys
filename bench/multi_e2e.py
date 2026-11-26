@@ -1,6 +1,7 @@
 """End-to-end profiled run of a memory-augmented agent, for any memory architecture.
 
-Same workload for every system (LoCoMo user turns replayed, then QA on facts already seen):
+Same workload for every system (user turns of a standard benchmark replayed, then QA on facts already seen;
+datasets in bench/workloads.py: LoCoMo, LongMemEval-S):
   explicit-memory systems (mem0, Graphiti, RAG):  retrieve -> build ctx -> generate -> memorize
   agentic memory (Letta):                          chat (the agent LLM itself reads/writes memory)
 
@@ -28,6 +29,7 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from bench import workloads  # noqa: E402
 from bench.systems import make  # noqa: E402
 from bench.systems.base import default_cfg  # noqa: E402
 from memprof import iostat  # noqa: E402
@@ -37,27 +39,7 @@ AGENT_SYS = ("You are a warm, concise personal assistant chatting with {user}. "
              "Use the long-term memories about the user when relevant. Reply in 1-3 sentences.")
 
 
-def load_turns(path: str, conv: int):
-    d = json.load(open(path))[conv]
-    c = d["conversation"]
-    user = c["speaker_a"]
-    sess = sorted((k for k in c if k.startswith("session_") and not k.endswith("date_time")),
-                  key=lambda k: int(k.split("_")[1]))
-    turns = []
-    for s in sess:
-        for u in c[s]:
-            if u["speaker"] == user:
-                turns.append({"session": s, "date": c.get(f"{s}_date_time"), "dia_id": u["dia_id"], "text": u["text"]})
-    return user, turns, d["qa"]
-
-
-def parse_date(s: str | None) -> datetime:
-    for fmt in ("%I:%M %p on %d %B, %Y", "%I:%M %p on %d %b, %Y"):
-        try:
-            return datetime.strptime((s or "").strip(), fmt)
-        except ValueError:
-            pass
-    return datetime(2023, 5, 1)
+parse_date = workloads.parse_date
 
 
 def pg_stats(dsn: str) -> dict:
@@ -91,13 +73,19 @@ def proxy_ctl(proxy: str, path: str) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--system", required=True)
-    ap.add_argument("--data", default=os.environ.get("LOCOMO", "/home/user/locomo/data/locomo10.json"))
-    ap.add_argument("--conv", type=int, default=0)
+    ap.add_argument("--dataset", default="locomo", choices=["locomo", "longmemeval"])
+    ap.add_argument("--data", default="", help="dataset file (default: $LOCOMO / $LONGMEMEVAL)")
+    ap.add_argument("--conv", "--item", dest="conv", type=int, default=0, help="LoCoMo conversation / LongMemEval item")
+    ap.add_argument("--memorize-source", default="auto", choices=["auto", "generated", "dataset"],
+                    help="assistant side of the memorized pair: the agent's own reply, or the dataset's reply "
+                         "(auto: dataset if it has one, i.e. LongMemEval)")
     ap.add_argument("--turns", type=int, default=40)
     ap.add_argument("--qa", type=int, default=20)
     ap.add_argument("--topk", type=int, default=10)
     ap.add_argument("--window", type=int, default=6)
-    ap.add_argument("--answer-tokens", type=int, default=256)
+    ap.add_argument("--answer-tokens", type=int, default=int(os.environ.get("ANSWER_TOKENS", 256)),
+                    help="agent reply budget (reasoning models spend part of it on reasoning)")
+    ap.add_argument("--qa-tokens", type=int, default=int(os.environ.get("QA_TOKENS", 64)))
     ap.add_argument("--async-add", action="store_true", help="memorize in a background worker")
     ap.add_argument("--think", type=float, default=0.0, help="user think time between turns (s)")
     ap.add_argument("--no-hwmon", action="store_true")
@@ -118,9 +106,12 @@ def main() -> None:
         hw = subprocess.Popen([sys.executable, "-m", "memprof.hwmon", "--out", os.path.join(out, "hw.jsonl"),
                                "--vllm", args.vllm_metrics], cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    user, turns, qa = load_turns(args.data, args.conv)
-    turns = turns[: args.turns]
-    uid = user.lower()
+    if not args.data:
+        args.data = os.environ.get("LONGMEMEVAL" if args.dataset == "longmemeval" else "LOCOMO",
+                                   os.path.expanduser("~/longmemeval/longmemeval_s_cleaned.json" if args.dataset == "longmemeval"
+                                                      else "~/locomo/data/locomo10.json"))
+    user, turns, qa = workloads.load(args.dataset, args.data, args.conv, args.turns)
+    uid = "user" if args.dataset == "longmemeval" else user.lower()
     meta = {"args": vars(args), "cfg": cfg, "label": args.label or args.system,
             "tracer_overhead_us": measure_overhead(), "t_start_ns": time.perf_counter_ns()}
 
@@ -185,7 +176,9 @@ def main() -> None:
                     r = agent_llm.chat.completions.create(model="agent", messages=msgs,
                                                           max_tokens=args.answer_tokens, temperature=0.7)
                     answer = r.choices[0].message.content or ""
-                new = [{"role": "user", "content": t["text"]}, {"role": "assistant", "content": answer}]
+                ref = t.get("ref_reply")
+                use_ref = args.memorize_source == "dataset" or (args.memorize_source == "auto" and ref is not None)
+                new = [{"role": "user", "content": t["text"]}, {"role": "assistant", "content": (ref or "") if use_ref else answer}]
                 if pool is None:
                     op("agent.memorize", lambda: sysm.add(new, uid, ts))
                 else:
@@ -203,8 +196,8 @@ def main() -> None:
                 f.result()
         meta["commit_lag_s"] = commit_lag
 
-    seen = {t["dia_id"] for t in turns}
-    qs = [q for q in qa if q.get("evidence") and set(q["evidence"]) <= seen and "answer" in q][: args.qa]
+    seen = workloads.seen_ids(args.dataset, turns)
+    qs = [q for q in qa if q["evidence"] <= seen][: args.qa]
     qa_log = []
     for j, q in enumerate(qs):
         TRACER.context = {"phase": "qa", "turn": j}
@@ -216,11 +209,13 @@ def main() -> None:
                 mem = op("agent.retrieve", lambda: sysm.search(q["question"], uid, args.topk))
                 mem_txt = "\n".join(f"- {h}" for h in mem) or "(none)"
                 with TRACER.span("agent.generate"):
-                    r = agent_llm.chat.completions.create(model="agent", max_tokens=64, temperature=0.0, messages=[
-                        {"role": "system", "content": f"Answer briefly using the memories.\nMemories:\n{mem_txt}"},
+                    r = agent_llm.chat.completions.create(model="agent", max_tokens=args.qa_tokens, temperature=0.0, messages=[
+                        {"role": "system", "content": f"Answer briefly using the memories.\nCurrent date: {q['date']}\n"
+                                                      f"Memories:\n{mem_txt}"},
                         {"role": "user", "content": q["question"]}])
                 pred = r.choices[0].message.content
-        qa_log.append({"q": q["question"], "gold": str(q["answer"]), "pred": pred, "mem": mem})
+        qa_log.append({"q": q["question"], "gold": q["answer"], "pred": pred, "qtype": q["qtype"], "date": q["date"],
+                       "question_id": q.get("question_id"), "mem": mem})
     TRACER.context = {}
 
     meta.update({"n_turns": len(turns), "n_qa": len(qs), "total_s": time.perf_counter() - t_start,
