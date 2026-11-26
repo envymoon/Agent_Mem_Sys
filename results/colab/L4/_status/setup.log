@@ -1,0 +1,8 @@
+
+===== setup attempt 1 at 2026-11-26 06:42:33Z code 3ee56a2 cli_bootstrap: tolerate no GPU; on any crash report and release the runtime
+[1/7] apt packages
+W: Skipping acquire of configured file 'main/source/Sources' as repository 'https://r2u.stat.illinois.edu/ubuntu noble InRelease' does not seem to provide it (sources.list entry misspelt?)
+[2/7] CUDA toolkit (compiler only; the driver comes from Windows / the host)
+Build cuda_13.0.r13.0/compiler.36424714_0
+[3/7] llama.cpp b12559
+CMAKE_BUILD_TYPE=Release

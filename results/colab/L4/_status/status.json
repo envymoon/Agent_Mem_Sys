@@ -1,0 +1,36 @@
+{
+ "time": "2026-11-26 06:42:33Z",
+ "final": false,
+ "tag": "L4",
+ "phase": "setup attempt 1",
+ "code": "3ee56a2 cli_bootstrap: tolerate no GPU; on any crash report and release the runtime",
+ "boot": "2820fe98",
+ "runtime_up_h": 0.04,
+ "cu_used_this_runtime": 0.1,
+ "queue": [
+  "pilot"
+ ],
+ "done": [],
+ "gave_up": [],
+ "tries": {},
+ "current_line": null,
+ "attempt": 0,
+ "current_run": null,
+ "suite_alive": false,
+ "minutes_since_last_write": -0.0,
+ "finished_runs": [],
+ "failed_lines": [],
+ "backup": {
+  "mode": "download+ack",
+  "ok": true,
+  "why": "0 acked",
+  "missing": []
+ },
+ "disk_free_gb": 235.6,
+ "stop": null,
+ "hours_since_start": 0.0,
+ "max_hours": 5.0,
+ "ram_avail_gb": 51.3,
+ "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 12.56 W",
+ "outbox_runs": []
+}
