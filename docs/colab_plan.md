@@ -28,7 +28,11 @@ Colab 运行时是一台云 GPU 虚拟机。进程看到的内存、磁盘和 `/
 - gpt-oss 的推理强度设为 low（`REASONING=medium|high` 可改），由 proxy 通过 `chat_template_kwargs` 加到每个请求上。
 - gpt-oss 的回复预算放宽到 1024 token、问答 512 token，因为推理 token 也算在里面。
 - 推理引擎：llama.cpp `b12559`，`setup.sh` 会根据 `nvidia-smi` 自动选择 CUDA 架构（L4 是 89，和 4060 同属 Ada）。
-- 本容器里已经验证：gpt-oss-20b 在 llama.cpp 上的 JSON 模式可用，推理内容和最终 JSON 分开返回，mem0 能正常解析。
+- 本容器里（CPU，无 GPU）已经验证：
+  - gpt-oss-20b 在 llama.cpp 上的 JSON 模式可用，推理内容和最终 JSON 分开返回；mem0-pg 通过整套 harness 跑完一轮 LoCoMo（检索、回复、约 7.8k token 的抽取请求），抽取结果能正常解析；
+  - Graphiti 用的 `json_schema` 结构化输出返回合法 JSON；
+  - `qa_score.py` 通过 proxy 调用评判：日期换种写法判对、时间题差一天判对、知识更新题只给旧值判错。
+  - 第二轮时 llama-server 被本容器的 16 GB 内存上限 OOM 杀掉：CPU 模式下 12 GB 权重全在内存里，再加上内存里的 prompt cache。Colab L4 上权重在显存，主机内存约 50 GB，不受影响；如果在小内存机器上跑，用 `CACHE_RAM=0`。
 
 ## 3. 负载：标准 benchmark
 
