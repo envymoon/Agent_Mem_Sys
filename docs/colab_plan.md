@@ -87,7 +87,7 @@ Claude 不登录你的 Google 账号，也碰不到 Colab 界面。远程管理�
 | 环节 | 做法 |
 |---|---|
 | 启动 | `colab/launch.sh memprof L4 --env MAX_HOURS=5 --env CU_PER_HOUR=2.33`：`colab new`，上传保活凭据，再 `colab exec colab/cli_bootstrap.py`。在内核里执行，整个实验期间内核都处于忙碌状态 |
-| 保活 | 没有浏览器、也没有连着的 `colab exec` 客户端时，运行时约 20 分钟后被回收，即使内核还在忙。Claude 的容器在两次对话之间会暂停，本地保活进程也随之停止（11 月 26 日两次 L4 pilot 因此丢失）。现在由虚拟机自己保活：`launch.sh` 把只有 Colab 权限的 CLI 凭据上传到虚拟机，`cli_bootstrap.py` 在虚拟机上装 CLI、运行 `colab/keepalive.py --endpoint`，每 4 分钟请求一次保活接口。释放前删除凭据；虚拟机销毁后凭据也不存在。经用户同意；可在 Google 账号的“第三方应用和服务”里随时撤销 |
+| 保活 | 没有浏览器、也没有连着的 `colab exec` 客户端时，运行时约 20 分钟后被回收，即使内核还在忙。Claude 的容器在两次对话之间会暂停，本地客户端随之断开（11 月 26 日三次 L4 pilot 因此丢失；第三次虚拟机上已有保活请求仍被回收，CPU 运行时只靠保活请求就能保住）。现在客户端和保活都在虚拟机上：`launch.sh` 上传只有 Colab 权限的 CLI 凭据和会话状态，`colab/vm_start.py` 在虚拟机上启动 `colab/vm_client.sh`，由虚拟机上的 CLI 在内核里执行 `cli_bootstrap.py`，断线后重新连上；`cli_bootstrap.py` 另外运行 `colab/keepalive.py --endpoint`，每 4 分钟请求一次保活接口。释放前删除凭据；虚拟机销毁后凭据也不存在。经用户同意；可在 Google 账号的“第三方应用和服务”里随时撤销 |
 | 安装 | `setup.sh`（只下载当前档位的模型）；失败后等待代码分支出现新提交（最多 30 分钟），拉取后重试，最多 3 次；否则释放运行时 |
 | 数据 | 每个完成的 run 打包放到 `/content/outbox/runs/`；Claude 的 `colab/patrol.sh` 下载、解压到 `results/colab/<gpu>/`、提交到 GitHub，然后上传 `/content/inbox/ack.txt` 确认 |
 | 关机 | 都在虚拟机上执行，不依赖 Claude 在线：队列跑完（空闲 `IDLE_MIN`）、时长上限 `MAX_HOURS`、`/content/inbox/stop`、启动程序崩溃。先等全部 run 被确认（最多 `ACK_WAIT_MIN`），再 `runtime.unassign()` |
