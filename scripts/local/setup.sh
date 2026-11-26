@@ -59,8 +59,10 @@ scripts/services.sh install
 
 echo "[5/7] harness venv"
 [ -x .venv/bin/python ] || uv venv -q -p 3.12 .venv
-VIRTUAL_ENV=.venv uv pip install -q -r requirements-gpu.txt
-.venv/bin/python -c "import en_core_web_sm" 2>/dev/null || VIRTUAL_ENV=.venv uv pip install -q \
+# --python, not VIRTUAL_ENV: Colab's preinstalled uv ignores VIRTUAL_ENV and installs into the system Python
+uv pip install -q --python .venv/bin/python -r requirements-gpu.txt
+.venv/bin/python -c "import aiohttp, mem0" || { echo "venv is missing packages"; exit 1; }
+.venv/bin/python -c "import en_core_web_sm" 2>/dev/null || uv pip install -q --python .venv/bin/python \
   https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
 
 echo "[6/7] models -> $MEMPROF_MODELS"

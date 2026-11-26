@@ -155,11 +155,13 @@ PYX
       for d in "$OUT"/*/; do [ -f "$d/qa.json" ] && [ ! -f "$d/qa_score.json" ] && $PY analysis/qa_score.py "$d" >>"$OUT/suite.log" 2>&1; done
       $PY analysis/qa_score.py --summary "$OUT" | tee "$OUT/qa_summary.md"; sync_out ;;
   budget) $PY analysis/budget.py "$OUT" | tee "$OUT/budget.md"; sync_out ;;
-  pilot)
-    OUT=$OUT "$SELF" preflight rates kv
-    TURNS=${PILOT_TURNS:-20} QA=${PILOT_QA:-10} OUT=$OUT "$SELF" l1
-    LME_ITEMS=${PILOT_LME_ITEMS:-0} LME_TURNS=${PILOT_LME_TURNS:-60} OUT=$OUT "$SELF" lme
-    OUT=$OUT "$SELF" score budget ;;
+  pilot)  # a failing step (e.g. the stack does not come up) fails the whole pilot, so the supervisor retries it
+    prc=0
+    OUT=$OUT "$SELF" preflight rates kv || prc=1
+    TURNS=${PILOT_TURNS:-20} QA=${PILOT_QA:-10} OUT=$OUT "$SELF" l1 || prc=1
+    LME_ITEMS=${PILOT_LME_ITEMS:-0} LME_TURNS=${PILOT_LME_TURNS:-60} OUT=$OUT "$SELF" lme || prc=1
+    OUT=$OUT "$SELF" score budget || prc=1
+    [ $prc = 0 ] || { log "pilot: a step failed"; exit 1; } ;;
   l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync_t$TURNS" "$s" --turns "$TURNS" --qa "$QA"; done ;;
   l2) stack
       for s in rag-pg mem0-local mem0-pg graphiti; do

@@ -146,6 +146,9 @@ def failed_since(n0: int) -> list[str]:
     """Runs that logged FAILED / TIMEOUT after line n0 of suite.log and still have no meta.json."""
     bad = []
     for line in suite_log()[n0:]:
+        if re.search(r"\] (LLM failed|embedder failed|services failed|proxy failed|pilot: a step failed)", line):
+            bad.append("(stack) " + line.split("] ", 1)[-1][:80])
+            continue
         m = re.search(r"\] (?:FAILED|TIMEOUT) (\S+)", line)
         if m and not os.path.exists(os.path.join(OUT, m.group(1), "meta.json")):
             bad.append(m.group(1))
