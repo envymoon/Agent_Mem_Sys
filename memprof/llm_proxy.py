@@ -11,6 +11,9 @@ Per request it logs (jsonl, one line per call):
                                every system without touching its code
   prompt_tokens, completion_tokens, cached_tokens (vLLM --enable-prompt-tokens-details / llama.cpp)
   llama.cpp 'timings' block when present (prompt_ms, predicted_ms, cache_n)
+  reasoning models: t_answer_ns (first answer token), reasoning_ms / answer_ms (decode split),
+                    reasoning_chunks / answer_chunks (= tokens: one token per streamed chunk),
+                    reasoning_tokens when the server reports completion_tokens_details
   request shape: n_messages, prompt_chars, tools, response_format, max_tokens, client tag
 
 Rewrites: `model` -> served model name (systems ship with gpt-4o-mini etc. as defaults);
@@ -77,6 +80,9 @@ def _usage(rec: dict, usage: dict | None) -> None:
     d = usage.get("prompt_tokens_details") or {}
     if d.get("cached_tokens") is not None:
         rec["cached_tokens"] = d["cached_tokens"]
+    r = (usage.get("completion_tokens_details") or {}).get("reasoning_tokens")
+    if r is not None:  # server-side count where provided (vLLM, OpenAI); else reasoning_chunks
+        rec["reasoning_tokens"] = r
 
 
 def _timings(rec: dict, t: dict | None) -> None:
@@ -147,6 +153,8 @@ async def handle_chat(request: web.Request) -> web.StreamResponse:
     so = body.setdefault("stream_options", {})
     so["include_usage"] = True
     first = None
+    t_ans = None           # first answer (content / tool-call) token; before it: reasoning tokens (gpt-oss, qwen3 ...)
+    n_rs = n_ans = 0       # streamed chunks per phase (llama.cpp / vLLM stream one token per chunk)
     content, reasoning, tool_calls = [], [], {}
     meta, finish, usage, timings, vmetrics = {}, None, None, None, None
     out = None
@@ -192,13 +200,13 @@ async def handle_chat(request: web.Request) -> web.StreamResponse:
                     vmetrics = ev["metrics"]
                 for ch in ev.get("choices") or []:
                     d = ch.get("delta") or {}
-                    got = False
+                    got = ans = False
                     if d.get("content"):
-                        content.append(d["content"]); got = True
+                        content.append(d["content"]); got = ans = True
                     if d.get("reasoning_content"):
-                        reasoning.append(d["reasoning_content"]); got = True
+                        reasoning.append(d["reasoning_content"]); got = True; n_rs += 1
                     for tc in d.get("tool_calls") or []:
-                        got = True
+                        got = ans = True
                         slot = tool_calls.setdefault(tc.get("index", 0), {"id": None, "type": "function",
                                                                           "function": {"name": "", "arguments": ""}})
                         if tc.get("id"):
@@ -210,12 +218,21 @@ async def handle_chat(request: web.Request) -> web.StreamResponse:
                             slot["function"]["arguments"] += f["arguments"]
                     if got and first is None:
                         first = now()
+                    if ans:
+                        n_ans += 1
+                        if t_ans is None:
+                            t_ans = now()
                     if ch.get("finish_reason"):
                         finish = ch["finish_reason"]
     t1 = now()
     rec.update({"t1_ns": t1, "t_first_ns": first, "wall_ms": (t1 - t0) / 1e6,
                 "ttft_ms": ((first or t1) - t0) / 1e6, "decode_ms": (t1 - (first or t1)) / 1e6,
                 "finish": finish, "converted": convert})
+    # split of the decode phase: reasoning [first, t_ans) vs answer [t_ans, t1); zeros = no reasoning
+    rec.update({"t_answer_ns": t_ans, "reasoning_chunks": n_rs, "answer_chunks": n_ans,
+                "reasoning_chars": sum(map(len, reasoning)), "answer_chars": sum(map(len, content)),
+                "reasoning_ms": ((t_ans or t1) - first) / 1e6 if first and n_rs else 0.0,
+                "answer_ms": (t1 - (t_ans or t1)) / 1e6 if n_rs else (t1 - (first or t1)) / 1e6})
     _usage(rec, usage)
     _timings(rec, timings)
     if vmetrics:

@@ -11,6 +11,7 @@
 #   rates      llama-bench pp512 / tg64 at KV depth 0..ctx for PROFILE: the per-token costs the latency model
 #              (analysis/latency_model.py) uses. GPU-only, no storage claims -> also the suite to run on a
 #              bigger cloud GPU for the what-if / cross-check                                   ~5 min
+#   rsplit     l1 again (+ LongMemEval item 70, rag-pg + mem0-pg) as repetition _r2, with the reasoning split   ~1.5 h
 #   l1         main profile, sync write path, every system, TURNS turns + QA questions        ~2-4 h
 #   l2         foreground/background interference: async memorize, think time 0 / 5 s         ~2 h
 #   l3         KV placement on real workloads (mem0-pg, graphiti; async; T3 turns):
@@ -162,6 +163,9 @@ PYX
     LME_ITEMS=${PILOT_LME_ITEMS:-0} LME_TURNS=${PILOT_LME_TURNS:-60} OUT=$OUT "$SELF" lme || prc=1
     OUT=$OUT "$SELF" score budget || prc=1
     [ $prc = 0 ] || { log "pilot: a step failed"; exit 1; } ;;
+  rsplit)  # repetition r2 of l1 + LongMemEval item 70 with the proxy's reasoning/answer decode split (t_answer_ns)
+    REP=${REP:-2} OUT=$OUT "$SELF" l1 && \
+      REP=${REP:-2} LME_ITEMS=${RS_LME_ITEMS:-70} LME_SYSTEMS="${RS_LME_SYSTEMS:-rag-pg mem0-pg}" OUT=$OUT "$SELF" lme ;;
   l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync_t$TURNS" "$s" --turns "$TURNS" --qa "$QA"; done ;;
   l2) stack
       for s in rag-pg mem0-local mem0-pg graphiti; do

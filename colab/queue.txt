@@ -5,3 +5,6 @@ l1
 score budget # after l1
 lme
 score budget # after lme
+# 补充：reasoning / answer decode 拆分（重复一遍 l1 + LongMemEval 第 70 条，命名 _r2）
+rsplit
+score budget # after rsplit

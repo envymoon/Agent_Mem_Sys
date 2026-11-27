@@ -21,7 +21,13 @@ import statistics as st
 import sys
 
 CATS = ["LLM decode", "LLM prefill+queue", "LLM queue", "Embedding", "DB", "NLP", "other"]
+# "LLM decode" stays the whole decode phase; for reasoning models the proxy marks the first answer token
+# (t_answer_ns), and the reasoning part is attributed as an internal category "LLM reasoning" (same priority
+# as decode) and reported as decode_reasoning_ms (decode_answer_ms = the rest), then folded back into
+# "LLM decode", so tables / other scripts keep their meaning and runs without the split still work.
+RS = "LLM reasoning"
 PRIO = {c: i for i, c in enumerate(CATS)}
+PRIO[RS] = PRIO["LLM decode"]
 OPS = ["agent.retrieve", "agent.generate", "agent.memorize", "agent.memorize_async", "agent.chat", "agent.turn",
        "cold.start"]
 
@@ -56,7 +62,14 @@ def intervals(S, L):
                 iv.append((tq, tf, "LLM prefill+queue", agent))
             else:
                 iv.append((c["t0_ns"], tf, "LLM prefill+queue", agent))
-            iv.append((tf, c["t1_ns"], "LLM decode", agent))
+            ta = c.get("t_answer_ns")
+            if c.get("reasoning_chunks") and c.get("t_first_ns"):
+                ta = min(ta or c["t1_ns"], c["t1_ns"])
+                iv.append((tf, ta, RS, agent))
+                if ta < c["t1_ns"]:
+                    iv.append((ta, c["t1_ns"], "LLM decode", agent))
+            else:
+                iv.append((tf, c["t1_ns"], "LLM decode", agent))
     for s in S:
         n = s["name"]
         cat = "DB" if n.startswith("db.") else "NLP" if n.startswith("nlp.") else None
@@ -80,17 +93,21 @@ def attribute(a: int, b: int, iv, want_agent: bool | None) -> dict:
         ev.append((max(t0, a), 0, cat))
         ev.append((min(t1, b), 1, cat))
     ev.sort()
-    out = {c: 0.0 for c in CATS}
-    active = {c: 0 for c in CATS}
+    out = {c: 0.0 for c in CATS + [RS]}
+    active = {c: 0 for c in CATS + [RS]}
     t = a
     for x, kind, cat in ev:
         if x > t:
-            top = min((c for c in CATS if active[c] > 0), key=PRIO.get, default="other")
+            top = min((c for c in CATS + [RS] if active[c] > 0), key=PRIO.get, default="other")
             out[top] += (x - t) / 1e6
             t = x
         active[cat] += 1 if kind == 0 else -1
     if b > t:
         out["other"] += (b - t) / 1e6
+    rs = out.pop(RS)
+    out["decode_reasoning_ms"] = rs
+    out["decode_answer_ms"] = out["LLM decode"]
+    out["LLM decode"] += rs
     return out
 
 
@@ -102,6 +119,9 @@ def calls_in(a, b, L, want_agent):
             "prompt_tok": sum(c.get("prompt_tokens") or 0 for c in ch),
             "cached_tok": sum(c.get("cached_tokens") or 0 for c in ch),
             "completion_tok": sum(c.get("completion_tokens") or 0 for c in ch),
+            "reasoning_tok": sum(c.get("reasoning_tokens") or c.get("reasoning_chunks") or 0 for c in ch),
+            "answer_tok": sum(c.get("answer_chunks") or 0 for c in ch),
+            "split_calls": sum(1 for c in ch if "reasoning_chunks" in c),
             "llm_busy_ms": sum(c["wall_ms"] for c in ch)}
 
 
@@ -136,6 +156,8 @@ def analyze(run: str) -> dict:
             agg.update({"n": len(rows), "p50": walls[len(walls) // 2], "p95": walls[min(len(walls) - 1, int(len(walls) * .95))],
                         "max": walls[-1]})
             agg["cache_hit"] = agg["cached_tok"] / agg["prompt_tok"] if agg.get("prompt_tok") else None
+            if not agg.get("split_calls"):  # proxy without the decode split (older runs) or no LLM calls
+                agg["decode_reasoning_ms"] = agg["decode_answer_ms"] = agg["reasoning_tok"] = agg["answer_tok"] = None
             res["ops"][f"{name}({phase})"] = agg
     # graphiti / mem0 internal phases (mean ms per memorize op, union not needed: informational)
     ph = {}
