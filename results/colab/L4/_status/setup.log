@@ -5,3 +5,4 @@ W: Skipping acquire of configured file 'main/source/Sources' as repository 'http
 [2/7] CUDA toolkit (compiler only; the driver comes from Windows / the host)
 Build cuda_13.0.r13.0/compiler.36424714_0
 [3/7] llama.cpp b12559
+CMAKE_BUILD_TYPE=Release
