@@ -34,3 +34,20 @@
 05:36:02 keep-alive ok
 05:40:04 keep-alive ok
 05:44:05 keep-alive ok
+05:48:06 keep-alive ok
+05:52:08 keep-alive ok
+05:56:09 keep-alive ok
+06:00:11 keep-alive ok
+06:04:12 keep-alive ok
+06:08:13 list failed: ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+06:09:13 keep-alive ok
+06:13:15 keep-alive ok
+06:17:16 list failed: ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+06:18:16 keep-alive ok
+06:22:18 keep-alive ok
+06:26:20 keep-alive ok
+06:30:21 list failed: ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+06:31:21 keep-alive ok
+06:35:23 keep-alive ok
+06:39:24 keep-alive ok
+06:43:26 keep-alive ok

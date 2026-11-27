@@ -35,3 +35,15 @@
 [2026-11-27 05:33:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=6 | idle 0.0 min
 [2026-11-27 05:35:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=6 | idle 0.1 min
 [2026-11-27 05:43:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=6 | idle 0.1 min
+[2026-11-27 05:45:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=6 | idle 0.1 min
+[2026-11-27 05:53:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 05:55:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-local_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:03:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-27 06:05:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:13:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:15:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:23:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-27 06:25:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:33:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.4 min
+[2026-11-27 06:35:39Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 06:43:03Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i70_t0 | 5 runs done | backup=download+ack missing=0 | idle 0.0 min

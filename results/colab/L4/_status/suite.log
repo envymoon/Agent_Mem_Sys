@@ -31,3 +31,7 @@ proxy up
 [05:04:11] === lme_gptoss20b_rag-pg_i70_t0 (rag-pg) PROFILE=gptoss20b
 [05:19:25] FAILED lme_gptoss20b_rag-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4066 tokens) exceeds the available context size (2048 tokens), t
 [05:19:25] === lme_gptoss20b_mem0-local_i70_t0 (mem0-local) PROFILE=gptoss20b
+[06:01:07] FAILED lme_gptoss20b_mem0-local_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py", line 181, in close   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/local/qdrant_local.py", line 113, in close ImportError: sys.meta_path is None, Python is likely shutti
+[06:01:07] === lme_gptoss20b_mem0-pg_i70_t0 (mem0-pg) PROFILE=gptoss20b
+[06:37:22] FAILED lme_gptoss20b_mem0-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4067 tokens) exceeds the available context size (2048 tokens), t
+[06:37:22] === lme_gptoss20b_mem0-qdrant_i70_t0 (mem0-qdrant) PROFILE=gptoss20b

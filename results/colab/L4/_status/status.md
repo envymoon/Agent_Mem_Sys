@@ -1,16 +1,18 @@
-# L4  2026-11-27 05:43:03Z  (running)
+# L4  2026-11-27 06:43:03Z  (running)
 
-- code `39d46ab Colab layer 1: rag-pg and mem0 l1 t100 runs fetched`, runtime up 2.18 h
+- code `39d46ab Colab layer 1: rag-pg and mem0 l1 t100 runs fetched`, runtime up 3.18 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme']  done: ['l1', 'score budget # after l1']  gave up: []
-- now: line `lme` attempt 1, run `lme_gptoss20b_mem0-local_i70_t0`, suite alive True, last write 0.1 min ago
+- now: line `lme` attempt 1, run `lme_gptoss20b_mem0-qdrant_i70_t0`, suite alive True, last write 0.0 min ago
 - finished runs (5): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_rag-pg_sync_t100
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '19 acked', 'missing': ['l1_gptoss20b_graphiti_sync_t100', 'l1_gptoss20b_graphiti_sync_t100+late1', 'l1_gptoss20b_mem0-local_sync_t100+late1', 'l1_gptoss20b_mem0-pg_sync_t100+late1', 'l1_gptoss20b_mem0-qdrant_sync_t100+late1', 'l1_gptoss20b_rag-pg_sync_t100+late1']}
-- stop: None; 2.13 h since start, cap 5.0 h
-- disk free 220.5 GB, RAM avail 39.3 GB, GPU NVIDIA L4, 91 %, 14286 MiB, 23034 MiB, 72.83 W
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '25 acked', 'missing': []}
+- stop: None; 3.13 h since start, cap 5.0 h
+- disk free 220.4 GB, RAM avail 39.2 GB, GPU NVIDIA L4, 90 %, 14296 MiB, 23034 MiB, 66.77 W
 
 ## problems
 
     [05:19:25] FAILED lme_gptoss20b_rag-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4066 tokens) exceeds the available context size (2048 tokens), t
+    [06:01:07] FAILED lme_gptoss20b_mem0-local_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py", line 181, in close   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/local/qdrant_local.py", line 113, in close ImportError: sys.meta_path is None, Python is likely shutti
+    [06:37:22] FAILED lme_gptoss20b_mem0-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4067 tokens) exceeds the available context size (2048 tokens), t
 
 ## supervisor events
 
@@ -58,3 +60,7 @@
     [05:04:11] === lme_gptoss20b_rag-pg_i70_t0 (rag-pg) PROFILE=gptoss20b
     [05:19:25] FAILED lme_gptoss20b_rag-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4066 tokens) exceeds the available context size (2048 tokens), t
     [05:19:25] === lme_gptoss20b_mem0-local_i70_t0 (mem0-local) PROFILE=gptoss20b
+    [06:01:07] FAILED lme_gptoss20b_mem0-local_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py", line 181, in close   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/qdrant_client/local/qdrant_local.py", line 113, in close ImportError: sys.meta_path is None, Python is likely shutti
+    [06:01:07] === lme_gptoss20b_mem0-pg_i70_t0 (mem0-pg) PROFILE=gptoss20b
+    [06:37:22] FAILED lme_gptoss20b_mem0-pg_i70_t0 rc=1:   File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4067 tokens) exceeds the available context size (2048 tokens), t
+    [06:37:22] === lme_gptoss20b_mem0-qdrant_i70_t0 (mem0-qdrant) PROFILE=gptoss20b
