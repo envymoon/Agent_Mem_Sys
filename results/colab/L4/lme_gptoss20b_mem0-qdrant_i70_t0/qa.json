@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "You only have one item to handle right now: the navy\u2011blue blazer that needs to be picked up from dry cleaning. No returns are on your list at the moment.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "User wants advice on how to decide what to keep, donate, or discard for their clothes, noting they have many items not worn in a while, including winter clothes unused since the holidays",
+      "User needs to pick up dry cleaning for a navy blue blazer that was worn to a meeting a few weeks ago",
+      "User wants help organizing their closet and decluttering clothes, asking for tips on how to declutter and categorize items",
+      "Assistant suggested creating a \"To-Pickup\" list to keep track of items to pick up or return",
+      "Assistant advised keeping receipts for items to return in a designated folder or envelope for easy access",
+      "User requested organization tips for a cluttered closet with winter clothes still pending; assistant offered practical steps such as purging items into keep/donate/sell piles, sorting by season, using storage bins, labeling, and arranging by color or frequency of use",
+      "Assistant recommended that the user use a phone notes app for pickups and returns, suggested adding reminders for each note and creating separate notes or lists per store such as \"Zara Pickups\" or \"Returns to Make\"",
+      "User intends to organize their closet by season, storing winter items such as a thick grey scarf and gloves in boxes and bringing out spring items like a yellow sundress",
+      "User plans to organize their closet by season, storing winter items like a thick grey scarf and gloves in boxes and bringing out spring items such as a yellow sundress",
+      "User will use boxes already at home to store winter clothes"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "You only need to pick up the new pair of Zara boots you exchanged on February\u202f5. No returns are pending.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "User will use existing boxes at home to store winter clothes and has recently exchanged a pair of Zara boots purchased on February 5, needing to pick up a new pair",
+      "User wants to declutter and categorize their clothes, asking for tips on how to organize a closet",
+      "User intends to use existing home boxes to store winter clothes and has exchanged a pair of Zara boots on February 5, needing to pick up a new pair",
+      "Assistant asked the user which clothing category\u2014tops, bottoms, or dresses\u2014to start with in the decluttering process.",
+      "Assistant suggested creating separate notes or lists for each store, such as \"Zara Pickups\" or \"Returns to Make\", to quickly see what needs to be done and when",
+      "User has recently purchased a pair of black jeans from Levi's and a white button-down shirt from H&M, both considered additions to their wardrobe",
+      "User wants organization tips for their closet, which has become messy since the holidays and still contains winter clothes to store",
+      "User has winter clothing items including a thick grey scarf and gloves that will be stored in boxes for seasonal rotation",
+      "Assistant provided detailed keep criteria for decluttering clothes, including last worn date, fit, condition, confidence, lifestyle relevance, and a hanger trick to test attachment.",
+      "User requested tips on how to keep workout clothes organized and fresh"
+    ]
+  }
+]
