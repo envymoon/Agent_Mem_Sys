@@ -1,12 +1,12 @@
-# L4  2026-11-27 20:31:48Z  (running)
+# L4  2026-11-27 21:12:09Z  (finishing: time cap 5 h reached)
 
-- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 4.49 h
+- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 5.16 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry', 'lme # async retry', 'score budget # after async lme retry']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
-- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_rag-pg_i233_t0_async_think5`, suite alive True, last write 0.0 min ago
-- finished runs (39): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '68 acked', 'missing': ['lme_gptoss20b_mem0-pg_i70_t0_async_think5', 'lme_gptoss20b_mem0-qdrant_i70_t0_async_think5']}
-- stop: None; 4.45 h since start, cap 5.0 h
-- disk free 219.6 GB, RAM avail 38.0 GB, GPU NVIDIA L4, 0 %, 16092 MiB, 23034 MiB, 35.94 W
+- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-local_i233_t0_async_think5`, suite alive False, last write 6.8 min ago
+- finished runs (40): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i233_t0_async_think5, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '70 acked', 'missing': ['lme_gptoss20b_rag-pg_i233_t0_async_think5']}
+- stop: time cap 5 h reached; 5.13 h since start, cap 5.0 h
+- disk free 219.6 GB, RAM avail 51.0 GB, GPU NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 17.32 W
 
 ## problems
 
@@ -29,9 +29,6 @@
 
 ## supervisor events
 
-    [2026-11-27 16:26:16Z] 'kprof' attempt ended rc=1; failed runs: ['(stack) LLM failed: ']
-    [2026-11-27 16:26:16Z] GAVE UP 'kprof' after 3 attempts (fix + append a '# retry' line to colab/queue.txt)
-    [2026-11-27 16:26:17Z] start 'l1 # async' attempt 1/3 at c11e895 Kernel-level GPU profiling (Nsight Systems window on the LLM server + kernel classification and attribution to request stages; Nsight Compute speed-of-light probe), async write path as the l1/lme default, patrol fetches queue_state.json
     [2026-11-27 16:26:47Z] 'l1 # async' attempt ended rc=1; failed runs: ['(stack) LLM failed: ']
     [2026-11-27 16:26:48Z] start 'l1 # async' attempt 2/3 at c11e895 Kernel-level GPU profiling (Nsight Systems window on the LLM server + kernel classification and attribution to request stages; Nsight Compute speed-of-light probe), async write path as the l1/lme default, patrol fetches queue_state.json
     [2026-11-27 16:27:18Z] 'l1 # async' attempt ended rc=1; failed runs: ['(stack) LLM failed: ']
@@ -69,11 +66,12 @@
     [2026-11-27 17:50:00Z] start 'score budget # after async l1 retry' attempt 1/3 at e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)
     [2026-11-27 17:53:00Z] finished 'score budget # after async l1 retry'
     [2026-11-27 17:53:01Z] start 'lme # async retry' attempt 1/3 at e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)
+    [2026-11-27 21:04:52Z] STOP: time cap 5 h reached
+    [2026-11-27 21:05:02Z] 'lme # async retry' attempt ended rc=-15; failed runs: -
+    [2026-11-27 21:05:08Z] finishing (time cap 5 h reached); waiting up to 75 min for the backup of the last runs
 
 ## suite.log (tail)
 
-    [16:47:52] LLM failed: ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5.
-    The cpuctxsw switch can be set on the profile and start commands.
     /root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
     nsys: no --cuda-graph-trace; GGML_CUDA_DISABLE_GRAPHS=1
     nsys: nsys launch --session-new=memprof --trace=cuda
@@ -132,3 +130,5 @@
     [19:40:14] === lme_gptoss20b_mem0-qdrant_i70_t0_async_think5 (mem0-qdrant) PROFILE=gptoss20b
     [20:14:47] done lme_gptoss20b_mem0-qdrant_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 837, "total_s": 2037.4444540660006}
     [20:14:47] === lme_gptoss20b_rag-pg_i233_t0_async_think5 (rag-pg) PROFILE=gptoss20b
+    [20:50:32] done lme_gptoss20b_rag-pg_i233_t0_async_think5: {"n_turns": 240, "n_qa": 1, "count": 240, "total_s": 2111.8690549939984}
+    [20:50:32] === lme_gptoss20b_mem0-local_i233_t0_async_think5 (mem0-local) PROFILE=gptoss20b
