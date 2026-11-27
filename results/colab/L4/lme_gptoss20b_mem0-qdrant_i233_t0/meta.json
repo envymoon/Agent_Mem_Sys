@@ -1,0 +1,115 @@
+{
+  "args": {
+    "system": "mem0-qdrant",
+    "dataset": "longmemeval",
+    "data": "/root/longmemeval/longmemeval_s_cleaned.json",
+    "conv": 233,
+    "memorize_source": "auto",
+    "turns": 0,
+    "qa": 1,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 1024,
+    "qa_tokens": 512,
+    "async_add": false,
+    "think": 0.0,
+    "no_hwmon": false,
+    "vllm_metrics": "http://127.0.0.1:8000",
+    "label": "lme_gptoss20b_mem0-qdrant_i233_t0",
+    "out": "/content/results/L4/lme_gptoss20b_mem0-qdrant_i233_t0"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "lme_gptoss20b_mem0-qdrant_i233_t0",
+  "tracer_overhead_us": 43.6698851,
+  "t_start_ns": 14927581290754,
+  "pg_before": null,
+  "io_devices": [],
+  "n_turns": 240,
+  "n_qa": 1,
+  "total_s": 2241.160411308001,
+  "count": 818,
+  "footprint": {
+    "qdrant_local:history.db": 348160,
+    "qdrant:mem0_lme_gptoss20b_mem0_qdrant_i233_t0:points": 818,
+    "qdrant:mem0_lme_gptoss20b_mem0_qdrant_i233_t0_entities:points": 2653
+  },
+  "pg_after": null,
+  "io_total": {
+    "procs": {
+      "embed_server": {
+        "rchar": 0,
+        "wchar": 1579881,
+        "syscr": 0,
+        "syscw": 47349,
+        "read_bytes": 0,
+        "write_bytes": 2662400
+      },
+      "llm_server": {
+        "rchar": 0,
+        "wchar": 32382442,
+        "syscr": 0,
+        "syscw": 867329,
+        "read_bytes": 0,
+        "write_bytes": 33804288
+      },
+      "proxy": {
+        "rchar": 0,
+        "wchar": 591099,
+        "syscr": 0,
+        "syscw": 1638,
+        "read_bytes": 0,
+        "write_bytes": 1675264
+      },
+      "postgres": {
+        "rchar": 20984225,
+        "wchar": 9515955,
+        "syscr": 6216,
+        "syscw": 1258,
+        "read_bytes": 913408,
+        "write_bytes": 9547776
+      },
+      "qdrant": {
+        "rchar": 3729978,
+        "wchar": 7245158,
+        "syscr": 6655,
+        "syscw": 136650,
+        "read_bytes": 4096,
+        "write_bytes": 136597504
+      },
+      "neo4j": {
+        "rchar": 3353500,
+        "wchar": 600228,
+        "syscr": 1292,
+        "syscw": 92,
+        "read_bytes": 65536,
+        "write_bytes": 3309568
+      },
+      "harness": {
+        "rchar": 57461736,
+        "wchar": 23510563,
+        "syscr": 75738,
+        "syscw": 12386,
+        "read_bytes": 0,
+        "write_bytes": 27967488
+      }
+    },
+    "dev": {},
+    "psi_io": {
+      "some_total_us": 6002607,
+      "full_total_us": 5847667
+    }
+  }
+}

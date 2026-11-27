@@ -1,0 +1,1 @@
+boot=74ec1916 gpu=NVIDIA L4 profile=gptoss20b

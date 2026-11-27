@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 10:42:25Z",
+ "time": "2026-11-27 11:42:25Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
  "code": "a1b06c4 Colab status: first lme attempt stopped (embedder context), relaunching",
  "boot": "74ec1916",
- "runtime_up_h": 3.89,
+ "runtime_up_h": 4.89,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -22,9 +22,9 @@
  "tries": {},
  "current_line": "lme",
  "attempt": 1,
- "current_run": "lme_gptoss20b_mem0-pg_i233_t0",
+ "current_run": "lme_gptoss20b_rag-pg_i366_t0",
  "suite_alive": true,
- "minutes_since_last_write": 0.0,
+ "minutes_since_last_write": 0.1,
  "finished_runs": [
   "l1_gptoss20b_graphiti_sync_t100",
   "l1_gptoss20b_graphiti_sync_t20",
@@ -41,8 +41,10 @@
   "lme_gptoss20b_mem0-local_i233_t0",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-pg_i0_t60",
+  "lme_gptoss20b_mem0-pg_i233_t0",
   "lme_gptoss20b_mem0-pg_i70_t0",
   "lme_gptoss20b_mem0-qdrant_i0_t60",
+  "lme_gptoss20b_mem0-qdrant_i233_t0",
   "lme_gptoss20b_mem0-qdrant_i70_t0",
   "lme_gptoss20b_rag-pg_i0_t60",
   "lme_gptoss20b_rag-pg_i233_t0",
@@ -52,17 +54,18 @@
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "30 acked",
+  "why": "31 acked",
   "missing": [
-   "lme_gptoss20b_mem0-local_i233_t0"
+   "lme_gptoss20b_mem0-pg_i233_t0",
+   "lme_gptoss20b_mem0-qdrant_i233_t0"
   ]
  },
- "disk_free_gb": 220.2,
+ "disk_free_gb": 220.1,
  "stop": null,
- "hours_since_start": 3.84,
+ "hours_since_start": 4.84,
  "max_hours": 5.0,
- "ram_avail_gb": 38.4,
- "gpu": "NVIDIA L4, 93 %, 16092 MiB, 23034 MiB, 67.50 W",
+ "ram_avail_gb": 37.4,
+ "gpu": "NVIDIA L4, 93 %, 16092 MiB, 23034 MiB, 71.23 W",
  "outbox_runs": [
   "l1_gptoss20b_graphiti_sync_t100",
   "l1_gptoss20b_graphiti_sync_t20",
@@ -79,8 +82,10 @@
   "lme_gptoss20b_mem0-local_i233_t0",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-pg_i0_t60",
+  "lme_gptoss20b_mem0-pg_i233_t0",
   "lme_gptoss20b_mem0-pg_i70_t0",
   "lme_gptoss20b_mem0-qdrant_i0_t60",
+  "lme_gptoss20b_mem0-qdrant_i233_t0",
   "lme_gptoss20b_mem0-qdrant_i70_t0",
   "lme_gptoss20b_rag-pg_i0_t60",
   "lme_gptoss20b_rag-pg_i233_t0",

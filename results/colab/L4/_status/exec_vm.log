@@ -57,3 +57,15 @@ restored 15 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-27 10:32:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i233_t0 | 21 runs done | backup=download+ack missing=1 | idle 0.0 min
 [2026-11-27 10:39:45Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i233_t0 | 21 runs done | backup=download+ack missing=1 | idle 0.1 min
 [2026-11-27 10:42:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i233_t0 | 21 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 10:49:45Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i233_t0 | 21 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 10:52:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-pg_i233_t0 | 21 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-27 10:59:45Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.1 min
+[2026-11-27 11:02:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.1 min
+[2026-11-27 11:09:46Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 11:12:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 11:19:46Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 11:22:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 11:29:46Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 11:32:25Z] running | line=lme try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0 | 22 runs done | backup=download+ack missing=1 | idle 0.1 min
+[2026-11-27 11:39:46Z] running | line=lme try=1 run=lme_gptoss20b_rag-pg_i366_t0 | 23 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-27 11:42:25Z] running | line=lme try=1 run=lme_gptoss20b_rag-pg_i366_t0 | 23 runs done | backup=download+ack missing=2 | idle 0.1 min

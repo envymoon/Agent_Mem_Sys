@@ -30,3 +30,7 @@ proxy up
 [09:38:18] === lme_gptoss20b_mem0-local_i233_t0 (mem0-local) PROFILE=gptoss20b
 [10:19:32] done lme_gptoss20b_mem0-local_i233_t0: {"n_turns": 240, "n_qa": 1, "count": 866, "total_s": 2439.639567321001}
 [10:19:32] === lme_gptoss20b_mem0-pg_i233_t0 (mem0-pg) PROFILE=gptoss20b
+[10:57:30] done lme_gptoss20b_mem0-pg_i233_t0: {"n_turns": 240, "n_qa": 1, "count": 838, "total_s": 2243.8067675340008}
+[10:57:30] === lme_gptoss20b_mem0-qdrant_i233_t0 (mem0-qdrant) PROFILE=gptoss20b
+[11:35:25] done lme_gptoss20b_mem0-qdrant_i233_t0: {"n_turns": 240, "n_qa": 1, "count": 818, "total_s": 2241.160411308001}
+[11:35:25] === lme_gptoss20b_rag-pg_i366_t0 (rag-pg) PROFILE=gptoss20b

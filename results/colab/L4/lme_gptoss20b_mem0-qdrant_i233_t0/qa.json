@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "I\u2019m not sure\u2014your records don\u2019t include the exact date of your MoMA visit, so I can\u2019t calculate the number of days between the two trips. If you remember when you went to MoMA, let me know and I\u2019ll do the math!",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art in New York City on or before January 15, 2023",
+      "User recently returned from a guided tour at the Museum of Modern Art focused on 20th\u2011century modern art movements, sparking interest in modern art",
+      "User expressed interest in visiting the American Museum of Natural History and the Brooklyn Museum in New York City, specifically wanting to see dinosaur exhibits and ancient artifacts",
+      "User is interested in learning about Frida Kahlo's artistic style, inspirations, and notable works after visiting MoMA",
+      "User expressed a desire to explore how Frida Kahlo\u2019s Mexican folk art heritage influenced her artistic style after visiting MoMA",
+      "User was recommended several New York City museums and exhibits for ancient culture enthusiasts, including the American Museum of Natural History, Brooklyn Museum, NYU Institute for the Study of the Ancient World, Morgan Library & Museum, El Museo del Barrio, Hispanic Society of America, and specific highlights such as the Met's Temple of Dendur and Brooklyn Museum's antiquities collection",
+      "User is interested in the \"Ephemeral Landscapes\" exhibit at the Environmental Art Museum",
+      "User visited a modern art exhibit featuring recycled materials on January 15, 2023",
+      "User is interested in the Environmental Art Museum and the Recycled Art Gallery and wants details on their current exhibitions",
+      "Assistant suggested ways for the user to locate these venues, including searching online for \"art museums near me\" or \"galleries in [your city/state]\", checking Google Arts & Culture, Museum Association, or Art Guide listings, asking friends or family, and looking for local art events or street art walks"
+    ]
+  }
+]

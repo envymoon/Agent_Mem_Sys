@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "I\u2019m sorry, but I don\u2019t have the exact date of your visit to MoMA, so I can\u2019t calculate the number of days between the two trips. If you let me know when you went to MoMA, I\u2019ll be happy to figure it out for you.",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art in New York City on January 15, 2023",
+      "User recently returned from a guided tour at the Museum of Modern Art focused on 20th\u2011century modern art movements, sparking interest in modern art",
+      "User wants to consider visiting museums like the Metropolitan Museum of Art and the Museum of Modern Art during the trip",
+      "User learned about Frida Kahlo during a guided tour at the Museum of Modern Art focused on 20th\u2011century modern art movements",
+      "User expressed a strong interest in visiting the American Museum of Natural History for its dinosaur exhibits and the Brooklyn Museum for its ancient artifacts, and asked whether these museums offer guided tours or special programs for adults",
+      "User was recommended several New York City museums and exhibits for ancient culture enthusiasts, including the American Museum of Natural History, Brooklyn Museum, NYU Institute for the Study of the Ancient World, Morgan Library & Museum, El Museo del Barrio, Hispanic Society of America, and special events such as the Met's Temple of Dendur and Brooklyn Museum's antiquities collection",
+      "User was informed that both the American Museum of Natural History and the Brooklyn Museum offer guided tours for adults, including specialized tours such as the AMNH's Dino\u2011Mite Tour and curator\u2011led tours at the Brooklyn Museum",
+      "User visited a modern art exhibit featuring recycled materials on January 15, 2023, and found the installation particularly striking",
+      "User was informed that the American Museum of Natural History provides adult programs such as lectures, workshops, behind\u2011the\u2011scenes tours of collections and labs, and that these programs cover topics from dinosaurs to human origins",
+      "User was informed that the Brooklyn Museum offers adult programs including lectures, workshops, panel discussions, curator\u2011led tours of exhibitions, and behind\u2011the\u2011scenes tours of collections and conservation labs"
+    ]
+  }
+]
