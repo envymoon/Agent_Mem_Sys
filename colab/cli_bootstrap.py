@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import glob
+import shutil
 import subprocess
 import time
 
@@ -76,6 +78,23 @@ def start_vm_keepalive() -> str:
     return f"pid {p.pid}" if p.poll() is None else f"exited rc={p.returncode} (see keepalive.log)"
 
 
+def restore_finished() -> None:
+    """A new runtime starts with an empty OUT. Copy the runs Claude already downloaded and committed
+    (results/colab/<tag>/<run>/meta.json) back into OUT, so the suite skips them instead of redoing them,
+    and the queue state, so finished queue lines are not rerun."""
+    src = os.path.join(REPO, "results", "colab", tag)
+    n = 0
+    for m in glob.glob(os.path.join(src, "*", "meta.json")):
+        r = os.path.basename(os.path.dirname(m))
+        if not os.path.exists(os.path.join(E("OUT"), r)):
+            shutil.copytree(os.path.dirname(m), os.path.join(E("OUT"), r))
+            n += 1
+    q = os.path.join(src, "_status", "queue_state.json")
+    if os.path.exists(q) and not os.path.exists(os.path.join(E("OUT"), "queue_state.json")):
+        shutil.copy(q, E("OUT"))
+    print(f"restored {n} finished runs from {src}", flush=True)
+
+
 def _main() -> None:
     global sup
     if not os.path.isdir(os.path.join(REPO, ".git")):
@@ -83,6 +102,7 @@ def _main() -> None:
     else:
         subprocess.run(["git", "-C", REPO, "pull", "-q", "--ff-only", "origin", BRANCH])
     os.chdir(REPO)
+    restore_finished()
     ka = start_vm_keepalive()
 
     spec = importlib.util.spec_from_file_location("supervisor", os.path.join(REPO, "colab", "supervisor.py"))
