@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What was my personal best time in the charity 5K run?",
+    "gold": "25 minutes and 50 seconds (or 25:50)",
+    "pred": "Your personal best time in the charity 5K run was **25\u202fminutes\u202f50\u202fseconds**.",
+    "qtype": "knowledge-update",
+    "date": "2023/06/25 (Sun) 13:22",
+    "question_id": "6a1eabeb",
+    "mem": [
+      "User achieved a personal best time of 27:12 in a charity 5K run on or before May 23, 2023",
+      "User hopes to beat their personal best time of 25:50 in the upcoming charity 5K run",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is preparing for a charity 5K run and aims to beat their personal best time of 25:50",
+      "User is training for a charity 5K run and hopes to beat their personal best time of 25:50.",
+      "User is training for an upcoming charity 5K run and aims to beat a personal best time of 25:50.",
+      "User is training for an upcoming charity 5K run and wants to improve endurance to beat a personal best time of 25:50",
+      "User's sample training plan for the upcoming charity 5K run includes Monday 30\u2011minute easy run, Tuesday interval training (4\u20116\u00d7800\u202fm), Wednesday rest, Thursday 30\u2011minute easy run, Friday strength training (legs and core), Saturday 6\u20118\u202fkm long run, and Sunday rest or active recovery such as yoga or a leisurely bike ride",
+      "User plans to increase weekly mileage by 10\u201115% each week to build endurance for the 5K run",
+      "Assistant provided endurance training tips for a 5K run, including interval training, consistent training, strategic pacing, and mental preparation"
+    ]
+  }
+]

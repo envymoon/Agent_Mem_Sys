@@ -1,12 +1,12 @@
-# L4  2026-11-27 12:41:20Z  (running)
+# L4  2026-11-27 13:41:21Z  (running)
 
-- code `146baac Colab layer 1: lme item 233 progress`, runtime up 0.48 h
+- code `146baac Colab layer 1: lme item 233 progress`, runtime up 1.48 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme']  done: ['pilot', 'l1', 'score budget # after l1']  gave up: []
-- now: line `lme` attempt 1, run `lme_gptoss20b_rag-pg_i366_t0`, suite alive True, last write 0.0 min ago
-- finished runs (23): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i70_t0
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '0 acked', 'missing': ['l1_gptoss20b_graphiti_sync_t100', 'l1_gptoss20b_graphiti_sync_t20', 'l1_gptoss20b_mem0-local_sync_t100', 'l1_gptoss20b_mem0-local_sync_t20', 'l1_gptoss20b_mem0-pg_sync_t100', 'l1_gptoss20b_mem0-pg_sync_t20', 'l1_gptoss20b_mem0-qdrant_sync_t100', 'l1_gptoss20b_mem0-qdrant_sync_t20', 'l1_gptoss20b_rag-pg_sync_t100', 'l1_gptoss20b_rag-pg_sync_t20', 'lme_gptoss20b_graphiti_i0_t60', 'lme_gptoss20b_mem0-local_i0_t60', 'lme_gptoss20b_mem0-local_i233_t0', 'lme_gptoss20b_mem0-local_i70_t0', 'lme_gptoss20b_mem0-pg_i0_t60', 'lme_gptoss20b_mem0-pg_i233_t0', 'lme_gptoss20b_mem0-pg_i70_t0', 'lme_gptoss20b_mem0-qdrant_i0_t60', 'lme_gptoss20b_mem0-qdrant_i233_t0', 'lme_gptoss20b_mem0-qdrant_i70_t0', 'lme_gptoss20b_rag-pg_i0_t60', 'lme_gptoss20b_rag-pg_i233_t0', 'lme_gptoss20b_rag-pg_i70_t0', 'lme_gptoss20b_mem0-local_i233_t0+late1', 'lme_gptoss20b_mem0-local_i70_t0+late1', 'lme_gptoss20b_mem0-pg_i233_t0+late1', 'lme_gptoss20b_mem0-pg_i70_t0+late1', 'lme_gptoss20b_mem0-qdrant_i233_t0+late1', 'lme_gptoss20b_mem0-qdrant_i70_t0+late1', 'lme_gptoss20b_rag-pg_i233_t0+late1', 'lme_gptoss20b_rag-pg_i70_t0+late1']}
-- stop: None; 0.44 h since start, cap 5.0 h
-- disk free 220.3 GB, RAM avail 38.5 GB, GPU NVIDIA L4, 100 %, 16086 MiB, 23034 MiB, 69.92 W
+- now: line `lme` attempt 1, run `lme_gptoss20b_mem0-pg_i366_t0`, suite alive True, last write 0.0 min ago
+- finished runs (25): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '41 acked', 'missing': ['lme_gptoss20b_mem0-local_i366_t0', 'lme_gptoss20b_rag-pg_i366_t0']}
+- stop: None; 1.44 h since start, cap 5.0 h
+- disk free 220.2 GB, RAM avail 38.6 GB, GPU NVIDIA L4, 0 %, 16094 MiB, 23034 MiB, 58.91 W
 
 ## problems
 
@@ -61,3 +61,7 @@ none
     [12:32:27] skip lme_gptoss20b_mem0-pg_i233_t0
     [12:32:27] skip lme_gptoss20b_mem0-qdrant_i233_t0
     [12:32:27] === lme_gptoss20b_rag-pg_i366_t0 (rag-pg) PROFILE=gptoss20b
+    [12:49:36] done lme_gptoss20b_rag-pg_i366_t0: {"n_turns": 205, "n_qa": 1, "count": 205, "total_s": 1005.778542964}
+    [12:49:36] === lme_gptoss20b_mem0-local_i366_t0 (mem0-local) PROFILE=gptoss20b
+    [13:27:34] done lme_gptoss20b_mem0-local_i366_t0: {"n_turns": 205, "n_qa": 1, "count": 767, "total_s": 2244.217672335}
+    [13:27:34] === lme_gptoss20b_mem0-pg_i366_t0 (mem0-pg) PROFILE=gptoss20b
