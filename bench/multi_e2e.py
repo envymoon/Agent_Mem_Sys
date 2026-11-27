@@ -174,7 +174,13 @@ def main() -> None:
         TRACER.context = {"phase": "chat", "turn": i}
         if kp and i == kp[0]:
             os.makedirs(os.path.join(out, "store"), exist_ok=True)
-            meta["kprof"] = {"turns": kp, "start": nsys("start", f"--session={sess}", "--force-overwrite=true",
+            # sampling / context-switch / CUDA-graph options belong to `nsys start` (launch rejects them)
+            sh = subprocess.run(["nsys", "start", "--help"], capture_output=True, text=True).stdout
+            xo = [f for f in ("--sample=none", "--cpuctxsw=none") if f.split("=")[0] in sh]
+            lh = subprocess.run(["nsys", "launch", "--help"], capture_output=True, text=True).stdout
+            if "--cuda-graph-trace" in sh and "--cuda-graph-trace" not in lh:  # (set on launch when it takes it)
+                xo.append("--cuda-graph-trace=node")
+            meta["kprof"] = {"turns": kp, "start": nsys("start", f"--session={sess}", "--force-overwrite=true", *xo,
                                                          f"--output={os.path.join(out, 'store', 'kprof')}")}
         if kp and i == kp[1]:
             meta["kprof"]["stop"] = nsys("stop", f"--session={sess}")

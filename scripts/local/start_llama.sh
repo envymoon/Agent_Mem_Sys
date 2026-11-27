@@ -28,7 +28,8 @@ mkdir -p "$LOGD" "$SLOT_SAVE"
 wait_http() {  # url name tries log [pid]
   for _ in $(seq 1 "${3:-600}"); do
     curl -sf "$1" >/dev/null && { echo "$2 up"; return 0; }
-    [ -n "${5:-}" ] && ! kill -0 "$5" 2>/dev/null && break
+    # pid gone and (when given) no process matching $6 either (nsys launch may hand the app off) -> failed
+    [ -n "${5:-}" ] && ! kill -0 "$5" 2>/dev/null && { [ -z "${6:-}" ] || ! pgrep -f "$6" >/dev/null; } && break
     sleep 0.2
   done; echo "$2 FAILED"; tail -30 "$4"; return 1; }
 
@@ -49,13 +50,19 @@ llm() {
   local W=()
   if [ "${NSYS:-0}" = 1 ]; then  # kernel-level profiling: CUDA trace (incl. kernels inside CUDA graphs) collected only
     # between `nsys start` / `nsys stop` on this session (bench/multi_e2e.py --kprof); no CPU sampling
-    W=(nsys launch --session-new="${NSYS_SESSION:-memprof}" --trace=cuda --sample=none --cpuctxsw=none)
-    nsys launch --help 2>&1 | grep -q -- "--cuda-graph-trace" && W+=(--cuda-graph-trace=node)
+    # (sampling / cpuctxsw are `nsys start` options, set in multi_e2e.py; launch rejects them)
+    W=(nsys launch --session-new="${NSYS_SESSION:-memprof}" --trace=cuda)
+    if nsys launch --help 2>&1 | grep -q -- "--cuda-graph-trace"; then W+=(--cuda-graph-trace=node)
+    elif ! nsys start --help 2>&1 | grep -q -- "--cuda-graph-trace"; then
+      export GGML_CUDA_DISABLE_GRAPHS=1   # no per-node graph tracing: run kernels outside CUDA graphs so each is visible
+      echo "nsys: no --cuda-graph-trace; GGML_CUDA_DISABLE_GRAPHS=1" | tee -a "$LOGD/llm.cmd"
+    fi
     echo "nsys: ${W[*]}" | tee -a "$LOGD/llm.cmd"
   fi
   nohup "${W[@]}" "$BIN/llama-server" "${A[@]}" >"$LOGD/llm.log" 2>&1 </dev/null &
-  local pid=$!; [ ${#W[@]} -gt 0 ] && pid=""   # nsys launch may hand the app off and exit: no liveness check then
-  wait_http http://127.0.0.1:8000/health "LLM ($LLM_FILE, PROFILE=${PROFILE:-q4b})" 3000 "$LOGD/llm.log" $pid
+  local pid=$!
+  wait_http http://127.0.0.1:8000/health "LLM ($LLM_FILE, PROFILE=${PROFILE:-q4b})" 3000 "$LOGD/llm.log" "$pid" \
+    "llama-server.*--port 8000"
   local t1; t1=$(date +%s.%N)
   # what actually landed on the GPU (an OOM fallback would silently change the experiment)
   python3 - "$LOGD/llm.log" "$t0" "$t1" >"$LOGD/llm.load.json" <<'PY'
