@@ -29,6 +29,7 @@ class MemSystem:
     name = "base"
     agentic = False
     uses_pg = False
+    user_name = "user"  # how the replayed user is named in the conversation (LoCoMo: the speaker's name)
 
     def __init__(self, cfg: dict, run_dir: str):
         self.cfg = cfg

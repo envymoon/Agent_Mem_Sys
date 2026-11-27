@@ -107,8 +107,18 @@ def _rewrite(body: dict, kind: str) -> dict:
     return body
 
 
+def _dump(rec: dict, req_msgs, resp_msg) -> None:
+    """--dump-bodies FILE: full request messages + response message per chat call (debugging extraction
+    quality; off by default because it holds the conversation text)."""
+    if A.dump_bodies and req_msgs is not None:
+        with open(A.dump_bodies, "a") as f:
+            f.write(json.dumps({"seq": rec.get("seq"), "client": rec.get("client"), "messages": req_msgs,
+                                "response": resp_msg, "finish": rec.get("finish")}) + "\n")
+
+
 async def handle_chat(request: web.Request) -> web.StreamResponse:
     body = await request.json()
+    req_msgs = body.get("messages") if A.dump_bodies else None
     rec = {"kind": "chat", "client": request.headers.get("X-Memprof-Client", ""),
            "ua": request.headers.get("User-Agent", "")[:60], **_req_shape(body)}
     body = _rewrite(body, "chat")
@@ -130,6 +140,7 @@ async def handle_chat(request: web.Request) -> web.StreamResponse:
             rec["vllm_metrics"] = data["metrics"]
         rec["wall_ms"] = (rec["t1_ns"] - t0) / 1e6
         request.app["log"].write(rec)
+        _dump(rec, req_msgs, ((data.get("choices") or [{}])[0]).get("message"))
         return web.json_response(data, status=r.status)
 
     body["stream"] = True
@@ -218,6 +229,7 @@ async def handle_chat(request: web.Request) -> web.StreamResponse:
         msg["reasoning_content"] = "".join(reasoning)
     if tool_calls:
         msg["tool_calls"] = [tool_calls[i] for i in sorted(tool_calls)]
+    _dump(rec, req_msgs, msg)
     resp = {**meta, "object": "chat.completion",
             "choices": [{"index": 0, "message": msg, "finish_reason": finish, "logprobs": None}],
             "usage": usage}
@@ -292,6 +304,7 @@ def main() -> None:
     ap.add_argument("--chat-kwargs", default="{}", help="JSON added to chat_template_kwargs of every chat request")
     ap.add_argument("--inject", default="{}", help="JSON merged into every chat request body")
     ap.add_argument("--log", default="results/llm_calls.jsonl")
+    ap.add_argument("--dump-bodies", default="", help="append full chat request/response bodies to this jsonl")
     A = ap.parse_args()
     A.inject = json.loads(A.inject)
     A.chat_kwargs = json.loads(A.chat_kwargs)

@@ -7,6 +7,7 @@ out-of-the-box mode for a single-machine agent). Everything else = mem0 defaults
 from __future__ import annotations
 
 import os
+import threading
 from datetime import datetime
 
 from memprof.dbwrap import instrument_all
@@ -15,6 +16,30 @@ from memprof.tracer import TRACER
 from .base import MemSystem, pg_table_sizes
 
 os.environ.setdefault("MEM0_TELEMETRY", "False")
+
+
+class _Clock(threading.local):
+    today = None
+
+
+_CLOCK = _Clock()
+
+
+def _replay_clock() -> None:
+    """mem0 OSS dates facts with the wall clock (its `timestamp=` is platform-only). In a replay that would
+    date a 2023 conversation 'today', so the extraction prompt gets the turn's own date instead -- what the
+    wall clock would have said had the conversation happened live."""
+    import mem0.memory.main as mm
+    if getattr(mm, "__memprof_clock__", False):
+        return
+    mm.__memprof_clock__ = True
+    orig = mm.generate_additive_extraction_prompt
+
+    def gen(*a, **kw):
+        if _CLOCK.today and kw.get("current_date") is None:
+            kw["current_date"] = _CLOCK.today
+        return orig(*a, **kw)
+    mm.generate_additive_extraction_prompt = gen
 
 
 def _instrument(m) -> None:
@@ -77,12 +102,14 @@ class Mem0System(MemSystem):
         self.m = Memory.from_config(conf)
         _ = self.m.entity_store  # create lazily-built entity collection now (cold start)
         _instrument(self.m)
+        _replay_clock()
 
     def search(self, query: str, user_id: str, k: int) -> list[str]:
         r = self.m.search(query, filters={"user_id": user_id}, top_k=k)
         return [h["memory"] for h in r["results"]]
 
     def add(self, messages: list[dict], user_id: str, ts: datetime) -> None:
+        _CLOCK.today = ts.date().isoformat()  # replay clock: "Today's date" in mem0's extraction prompt
         self.m.add(messages, user_id=user_id)
 
     def count(self, user_id: str) -> int:

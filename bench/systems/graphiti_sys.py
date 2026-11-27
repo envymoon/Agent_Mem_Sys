@@ -55,6 +55,15 @@ def _make_tracer():
     return _Tracer()
 
 
+def _fmt_fact(e) -> str:
+    """A fact with its validity interval, as Graphiti's own search_results_to_context_string presents it
+    (valid_at defaults to the episode's reference time, so every fact carries a date)."""
+    d = lambda t: t.strftime("%Y-%m-%d") if t else None  # noqa: E731
+    if not e.valid_at:
+        return e.fact
+    return f"{e.fact} (valid {d(e.valid_at)} - {d(e.invalid_at) or 'present'})"
+
+
 class GraphitiSystem(MemSystem):
     name = "graphiti"
 
@@ -106,11 +115,13 @@ class GraphitiSystem(MemSystem):
 
     def search(self, query: str, user_id: str, k: int) -> list[str]:
         edges = self._run(self.g.search(query, group_ids=[user_id], num_results=k))
-        return [e.fact for e in edges]
+        return [_fmt_fact(e) for e in edges]
 
     def add(self, messages: list[dict], user_id: str, ts: datetime) -> None:
         from graphiti_core.nodes import EpisodeType
-        body = "\n".join(f"{'user' if m['role'] == 'user' else 'assistant'}: {m['content']}" for m in messages)
+        # Graphiti's message format is "<speaker>: <text>"; extraction always makes the speaker an entity,
+        # so the user's real name goes there (a bare "user" leaves facts unattached to the person asked about)
+        body = "\n".join(f"{self.user_name if m['role'] == 'user' else 'assistant'}: {m['content']}" for m in messages)
         self.n += 1
         if ts.tzinfo is None:
             ts = ts.replace(tzinfo=timezone.utc)

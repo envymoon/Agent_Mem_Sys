@@ -52,9 +52,9 @@ class RagSystem(MemSystem):
 
     def search(self, query: str, user_id: str, k: int) -> list[str]:
         (q,) = self._embed([query])
-        rows = self.conn.execute(f"SELECT text FROM {self.tbl} WHERE user_id=%s ORDER BY embedding <=> %s LIMIT %s",
+        rows = self.conn.execute(f"SELECT ts, text FROM {self.tbl} WHERE user_id=%s ORDER BY embedding <=> %s LIMIT %s",
                                  (user_id, q, k)).fetchall()
-        return [r[0] for r in rows]
+        return [f"[{r[0]:%Y-%m-%d}] {r[1]}" if r[0] else r[1] for r in rows]
 
     def count(self, user_id: str) -> int:
         return self.conn.execute(f"SELECT count(*) FROM {self.tbl} WHERE user_id=%s", (user_id,)).fetchone()[0]

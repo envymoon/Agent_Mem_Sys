@@ -118,6 +118,7 @@ def main() -> None:
     from openai import OpenAI
     agent_llm = OpenAI(base_url=cfg["proxy"], api_key="sk-local", default_headers={"X-Memprof-Client": "agent"})
     sysm = make(args.system, cfg, out)
+    sysm.user_name = user if args.dataset == "locomo" else "user"
     meta["pg_before"] = pg_stats(cfg["pg_dsn"]) if sysm.uses_pg else None
     meta["io_devices"] = iostat.devices()
     io_start = iostat.snapshot()
