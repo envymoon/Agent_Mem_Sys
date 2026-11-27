@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.14814814814814817,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+   "gold": "7 days. 8 days (including the last day) is also acceptable.",
+   "pred": "Zero days \u2013 you visited both the MoMA exhibit and the \u201cAncient Civilizations\u201d exhibit on the same day, January\u202f15,\u202f2023.",
+   "qtype": "temporal-reasoning",
+   "f1": 0.14814814814814817,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}

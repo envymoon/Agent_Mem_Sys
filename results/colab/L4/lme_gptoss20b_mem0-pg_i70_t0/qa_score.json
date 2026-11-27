@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.0,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many items of clothing do I need to pick up or return from a store?",
+   "gold": "3",
+   "pred": "You only need to pick up the new pair of Zara boots you exchanged on February\u202f5. No returns are pending.",
+   "qtype": "multi-session",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}

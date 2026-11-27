@@ -3,3 +3,11 @@ l1_gptoss20b_mem0-local_sync_t100+late1
 l1_gptoss20b_mem0-pg_sync_t100+late1
 l1_gptoss20b_mem0-qdrant_sync_t100+late1
 l1_gptoss20b_rag-pg_sync_t100+late1
+lme_gptoss20b_mem0-local_i233_t0+late1
+lme_gptoss20b_mem0-local_i70_t0+late1
+lme_gptoss20b_mem0-pg_i233_t0+late1
+lme_gptoss20b_mem0-pg_i70_t0+late1
+lme_gptoss20b_mem0-qdrant_i233_t0+late1
+lme_gptoss20b_mem0-qdrant_i70_t0+late1
+lme_gptoss20b_rag-pg_i233_t0+late1
+lme_gptoss20b_rag-pg_i70_t0+late1

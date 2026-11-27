@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.0,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many items of clothing do I need to pick up or return from a store?",
+   "gold": "3",
+   "pred": "Based on the lists you\u2019ve been keeping, you have two items that need to be handled at a store right now:\n\n1. **Navy blue blazer** \u2013 pick up from the dry\u2011cleaner.  \n2. **New boots from Zara** \u2013 pick up before the concert (and check Zara\u2019s return/exchange policy if you need to send the old pair back).\n\nIf you add any other items to your \u201cTo\u2011Pickup\u201d list, just update the count accordingly.",
+   "qtype": "multi-session",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}

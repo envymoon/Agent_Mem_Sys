@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.0,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many items of clothing do I need to pick up or return from a store?",
+   "gold": "3",
+   "pred": "You only have one item to handle right now: the navy\u2011blue blazer that needs to be picked up from dry cleaning. No returns are on your list at the moment.",
+   "qtype": "multi-session",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}
