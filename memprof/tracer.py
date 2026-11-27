@@ -42,7 +42,21 @@ class Tracer:
         self._next_id = 0
         self._lock = threading.Lock()
         self.enabled = True
-        self.context: dict[str, Any] = {}  # attached to every span (e.g. turn id)
+        self._ctx_main: dict[str, Any] = {}
+        self.context = {}  # attached to every span (e.g. turn id)
+
+    @property
+    def context(self) -> dict[str, Any]:
+        """Per thread: a thread that set its own context (e.g. the async memorize worker) keeps it; other
+        threads (e.g. an asyncio loop serving the main thread) see the main thread's."""
+        return getattr(self._tls, "ctx", None) or self._ctx_main
+
+    @context.setter
+    def context(self, v: dict[str, Any]) -> None:
+        if threading.current_thread() is threading.main_thread():
+            self._ctx_main = v
+        else:
+            self._tls.ctx = v
 
     # ------------------------------------------------------------------ core
     def _stack(self) -> list[int]:

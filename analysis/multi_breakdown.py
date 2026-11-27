@@ -125,6 +125,35 @@ def calls_in(a, b, L, want_agent):
             "llm_busy_ms": sum(c["wall_ms"] for c in ch)}
 
 
+def add_phases(S, iv) -> dict:
+    """mem0 add pipeline phases (bench/systems/mem0_sys.py ADD_PHASES markers): per phase mean wall ms per add
+    (phases an add skipped count as 0) and its exclusive LLM / Embedding / DB / NLP / other attribution."""
+    marks = sorted((s for s in S if s["name"] == "mem0.add.phase" and s.get("phase") == "chat"
+                    and s.get("turn", 0) >= 1), key=lambda s: s["t0_ns"])
+    if not marks:
+        return {}
+    adds, cur = [], []
+    for m in marks:  # one add = markers up to and including its "end"
+        cur.append(m)
+        if m["step_name"] == "end":
+            adds.append(cur)
+            cur = []
+    acc: dict = {}
+    for ms in adds:
+        for x, y in zip(ms, ms[1:]):
+            r = attribute(x["t0_ns"], y["t0_ns"], iv, False)
+            r["wall"] = (y["t0_ns"] - x["t0_ns"]) / 1e6
+            acc.setdefault((x["step"], x["step_name"]), []).append(r)
+    n = len(adds)
+    out = {}
+    for (k, name), rows in sorted(acc.items()):
+        keys = {kk for r in rows for kk in r if isinstance(r[kk], (int, float))}
+        out[name] = {kk: sum(r.get(kk) or 0 for r in rows) / n for kk in keys}
+        out[name].update({"index": k, "share_of_adds": len(rows) / n})
+    out["_n_adds"] = n
+    return out
+
+
 def analyze(run: str) -> dict:
     S, L, meta = load(run)
     iv = intervals(S, L)
@@ -165,6 +194,9 @@ def analyze(run: str) -> dict:
         if s["name"].startswith(("graphiti.phase.", "mem0.")) and s.get("phase") == "chat" and s.get("turn", 0) >= 1:
             ph.setdefault(s["name"], []).append(s["wall_ms"])
     res["phases"] = {k: {"n": len(v), "mean_ms": st.mean(v)} for k, v in ph.items()}
+    ap = add_phases(S, iv)
+    if ap:
+        res["add_phases"] = ap
     lag = meta.get("commit_lag_s")
     if lag:
         res["commit_lag_s"] = {"median": sorted(lag)[len(lag) // 2], "max": max(lag)}
