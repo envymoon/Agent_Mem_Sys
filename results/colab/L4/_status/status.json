@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 21:42:58Z",
+ "time": "2026-11-27 22:32:59Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
  "code": "92c3106 Colab status at runtime 1 release",
  "boot": "768bcafe",
- "runtime_up_h": 0.47,
+ "runtime_up_h": 1.3,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -50,7 +50,7 @@
  },
  "current_line": "lme # async retry",
  "attempt": 1,
- "current_run": "lme_gptoss20b_mem0-local_i233_t0_async_think5",
+ "current_run": "lme_gptoss20b_mem0-pg_i233_t0_async_think5",
  "suite_alive": true,
  "minutes_since_last_write": 0.0,
  "finished_runs": [
@@ -75,6 +75,7 @@
   "lme_gptoss20b_graphiti_i0_t60",
   "lme_gptoss20b_mem0-local_i0_t60",
   "lme_gptoss20b_mem0-local_i233_t0",
+  "lme_gptoss20b_mem0-local_i233_t0_async_think5",
   "lme_gptoss20b_mem0-local_i366_t0",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-local_i70_t0_async_think5",
@@ -100,14 +101,16 @@
   "mode": "download+ack",
   "ok": true,
   "why": "71 acked",
-  "missing": []
+  "missing": [
+   "lme_gptoss20b_mem0-local_i233_t0_async_think5"
+  ]
  },
- "disk_free_gb": 220.1,
+ "disk_free_gb": 220.0,
  "stop": null,
- "hours_since_start": 0.43,
+ "hours_since_start": 1.26,
  "max_hours": 5.0,
- "ram_avail_gb": 43.7,
- "gpu": "NVIDIA L4, 91 %, 16088 MiB, 23034 MiB, 71.41 W",
+ "ram_avail_gb": 38.4,
+ "gpu": "NVIDIA L4, 93 %, 16092 MiB, 23034 MiB, 70.85 W",
  "outbox_runs": [
   "kprof_gptoss20b_mem0-local_async_think5",
   "kprof_gptoss20b_mem0-pg_async_think5",
@@ -130,6 +133,7 @@
   "lme_gptoss20b_graphiti_i0_t60",
   "lme_gptoss20b_mem0-local_i0_t60",
   "lme_gptoss20b_mem0-local_i233_t0",
+  "lme_gptoss20b_mem0-local_i233_t0_async_think5",
   "lme_gptoss20b_mem0-local_i366_t0",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-local_i70_t0_async_think5",

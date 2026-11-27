@@ -1,12 +1,12 @@
-# L4  2026-11-27 21:42:58Z  (running)
+# L4  2026-11-27 22:32:59Z  (running)
 
-- code `92c3106 Colab status at runtime 1 release`, runtime up 0.47 h
+- code `92c3106 Colab status at runtime 1 release`, runtime up 1.3 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry', 'lme # async retry', 'score budget # after async lme retry']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
-- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-local_i233_t0_async_think5`, suite alive True, last write 0.0 min ago
-- finished runs (40): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i233_t0_async_think5, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '71 acked', 'missing': []}
-- stop: None; 0.43 h since start, cap 5.0 h
-- disk free 220.1 GB, RAM avail 43.7 GB, GPU NVIDIA L4, 91 %, 16088 MiB, 23034 MiB, 71.41 W
+- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-pg_i233_t0_async_think5`, suite alive True, last write 0.0 min ago
+- finished runs (41): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i233_t0_async_think5, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i233_t0_async_think5, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '71 acked', 'missing': ['lme_gptoss20b_mem0-local_i233_t0_async_think5']}
+- stop: None; 1.26 h since start, cap 5.0 h
+- disk free 220.0 GB, RAM avail 38.4 GB, GPU NVIDIA L4, 93 %, 16092 MiB, 23034 MiB, 70.85 W
 
 ## problems
 
@@ -32,3 +32,5 @@ none
     [21:33:08] skip lme_gptoss20b_mem0-qdrant_i70_t0_async_think5
     [21:33:08] skip lme_gptoss20b_rag-pg_i233_t0_async_think5
     [21:33:08] === lme_gptoss20b_mem0-local_i233_t0_async_think5 (mem0-local) PROFILE=gptoss20b
+    [22:08:43] done lme_gptoss20b_mem0-local_i233_t0_async_think5: {"n_turns": 240, "n_qa": 1, "count": 833, "total_s": 2111.303919627}
+    [22:08:43] === lme_gptoss20b_mem0-pg_i233_t0_async_think5 (mem0-pg) PROFILE=gptoss20b

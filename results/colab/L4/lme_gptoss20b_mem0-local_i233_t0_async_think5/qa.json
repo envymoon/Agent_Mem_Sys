@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "I\u2019m not sure\u2014your records don\u2019t include a date for the MoMA visit, so I can\u2019t calculate the number of days between that and the January\u202f15,\u202f2023 \u201cAncient Civilizations\u201d exhibit at the Met. If you remember when you went to MoMA, let me know and I\u2019ll do the math!",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art on January 15, 2023",
+      "User visited a guided tour at the Museum of Modern Art focused on 20th-century modern art movements, which sparked a strong interest in modern art.",
+      "User expressed interest in visiting the American Museum of Natural History for its dinosaur exhibits and the Brooklyn Museum for its ancient artifacts, and asked whether these museums offer guided tours or special programs for adults",
+      "User expressed curiosity about Frida Kahlo's works after learning about her during a guided tour at the Museum of Modern Art",
+      "User visited a modern art museum exhibit featuring recycled materials on January 15, 2023",
+      "User is interested in visiting iconic landmarks such as the Statue of Liberty, Central Park, and the Empire State Building, as well as museums like the Met and MoMA",
+      "Assistant highlighted specific New York City exhibits such as the Met's Temple of Dendur, Brooklyn Museum's antiquities collection, and NYU ISAW's lecture series as notable events for ancient culture fans",
+      "Assistant recommended several New York City museums for ancient culture enthusiasts, including the American Museum of Natural History, Brooklyn Museum, NYU Institute for the Study of the Ancient World, Morgan Library & Museum, El Museo del Barrio, and the Hispanic Society of America",
+      "User is particularly interested in visiting the Environmental Art Museum and the Recycled Art Gallery",
+      "User is interested in visiting the \"Ephemeral Landscapes\" exhibit at the Environmental Art Museum and wants more information about the artist Maria Cristina Finucci."
+    ]
+  }
+]

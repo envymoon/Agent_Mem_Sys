@@ -9,3 +9,5 @@ proxy up
 [21:33:08] skip lme_gptoss20b_mem0-qdrant_i70_t0_async_think5
 [21:33:08] skip lme_gptoss20b_rag-pg_i233_t0_async_think5
 [21:33:08] === lme_gptoss20b_mem0-local_i233_t0_async_think5 (mem0-local) PROFILE=gptoss20b
+[22:08:43] done lme_gptoss20b_mem0-local_i233_t0_async_think5: {"n_turns": 240, "n_qa": 1, "count": 833, "total_s": 2111.303919627}
+[22:08:43] === lme_gptoss20b_mem0-pg_i233_t0_async_think5 (mem0-pg) PROFILE=gptoss20b
