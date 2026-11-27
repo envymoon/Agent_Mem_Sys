@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "Based on the lists you\u2019ve been keeping, you have two items that need to be handled at a store right now:\n\n1. **Navy blue blazer** \u2013 pick up from the dry\u2011cleaner.  \n2. **New boots from Zara** \u2013 pick up before the concert (and check Zara\u2019s return/exchange policy if you need to send the old pair back).\n\nIf you add any other items to your \u201cTo\u2011Pickup\u201d list, just update the count accordingly.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "User wants help organizing their closet, including decluttering and categorizing clothes, and needs to pick up dry cleaning for a navy blue blazer worn a few weeks ago",
+      "Assistant recommended using a notes app on the phone to keep track of pickups and returns, suggesting setting reminders and creating separate lists for each store",
+      "User has winter clothing that has been stored since the holidays and is still in need of organization",
+      "User's closet has become disorganized since the holidays and still contains winter clothing that needs to be stored",
+      "User plans to organize their closet by season, storing winter items such as a thick grey scarf and gloves in boxes and bringing out spring items like a yellow sundress when the season changes",
+      "Assistant recommended creating a \"To-Pickup\" list with item, store, and pickup date to track items to collect",
+      "Assistant recommended keeping receipts organized in a designated folder or envelope for easy retrieval when returning items",
+      "Assistant advised the user to develop a clear returns policy specifying a 30\u2011day window, original condition, and tag requirements, and to outline refund methods such as full refund to original payment, store credit, or partial refund",
+      "User is seeking guidance on establishing a returns and refunds process for their online store, expressing uncertainty about how to set it up",
+      "Assistant advised the user to prioritize picking up the new boots from Zara before the concert and to verify Zara's return and exchange policies to ensure sufficient time for collection and return of the old boots"
+    ]
+  }
+]
