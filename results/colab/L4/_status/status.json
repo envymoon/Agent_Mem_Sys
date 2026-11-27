@@ -1,74 +1,39 @@
 {
- "time": "2026-11-26 21:44:28Z",
+ "time": "2026-11-27 03:35:39Z",
  "final": false,
  "tag": "L4",
- "phase": "idle (queue empty)",
- "code": "5dcc6fe colab patrol: L4 pilot, LoCoMo l1 done for 5 systems, LME in progress",
- "boot": "df5db7a1",
- "runtime_up_h": 1.98,
- "cu_used_this_runtime": 4.6,
+ "phase": "setup attempt 1",
+ "code": "ccf8bd4 Graphiti adapter: show the episode date for facts the extractor left undated",
+ "boot": "750da98a",
+ "runtime_up_h": 0.05,
+ "cu_used_this_runtime": null,
  "queue": [
-  "pilot"
+  "l1",
+  "score budget # after l1",
+  "lme",
+  "score budget # after lme"
  ],
- "done": [
-  "pilot"
- ],
+ "done": [],
  "gave_up": [],
  "tries": {},
  "current_line": null,
  "attempt": 0,
  "current_run": null,
  "suite_alive": false,
- "minutes_since_last_write": 7.2,
- "finished_runs": [
-  "kv_gptoss20b_ram0",
-  "kv_gptoss20b_ram8192",
-  "l1_gptoss20b_graphiti_sync_t20",
-  "l1_gptoss20b_mem0-local_sync_t20",
-  "l1_gptoss20b_mem0-pg_sync_t20",
-  "l1_gptoss20b_mem0-qdrant_sync_t20",
-  "l1_gptoss20b_rag-pg_sync_t20",
-  "lme_gptoss20b_graphiti_i0_t60",
-  "lme_gptoss20b_mem0-local_i0_t60",
-  "lme_gptoss20b_mem0-pg_i0_t60",
-  "lme_gptoss20b_mem0-qdrant_i0_t60",
-  "lme_gptoss20b_rag-pg_i0_t60",
-  "preflight",
-  "preflight_df5db7a1",
-  "rates_gptoss20b"
- ],
+ "minutes_since_last_write": -0.0,
+ "finished_runs": [],
  "failed_lines": [],
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "12 acked",
-  "missing": [
-   "lme_gptoss20b_graphiti_i0_t60",
-   "lme_gptoss20b_mem0-pg_i0_t60",
-   "lme_gptoss20b_mem0-qdrant_i0_t60"
-  ]
+  "why": "0 acked",
+  "missing": []
  },
- "disk_free_gb": 220.5,
+ "disk_free_gb": 235.3,
  "stop": null,
- "hours_since_start": 1.94,
+ "hours_since_start": 0.01,
  "max_hours": 5.0,
- "ram_avail_gb": 46.8,
- "gpu": "NVIDIA L4, 0 %, 14286 MiB, 23034 MiB, 30.50 W",
- "outbox_runs": [
-  "kv_gptoss20b_ram0",
-  "kv_gptoss20b_ram8192",
-  "l1_gptoss20b_graphiti_sync_t20",
-  "l1_gptoss20b_mem0-local_sync_t20",
-  "l1_gptoss20b_mem0-pg_sync_t20",
-  "l1_gptoss20b_mem0-qdrant_sync_t20",
-  "l1_gptoss20b_rag-pg_sync_t20",
-  "lme_gptoss20b_graphiti_i0_t60",
-  "lme_gptoss20b_mem0-local_i0_t60",
-  "lme_gptoss20b_mem0-pg_i0_t60",
-  "lme_gptoss20b_mem0-qdrant_i0_t60",
-  "lme_gptoss20b_rag-pg_i0_t60",
-  "preflight",
-  "preflight_df5db7a1",
-  "rates_gptoss20b"
- ]
+ "ram_avail_gb": 51.3,
+ "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 13.15 W",
+ "outbox_runs": []
 }
