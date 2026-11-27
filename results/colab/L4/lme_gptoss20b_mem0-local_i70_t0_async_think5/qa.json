@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "You have two items to handle:  \n- **Return** the old pair of Zara boots you exchanged.  \n- **Pick up** the new pair you ordered.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "Assistant recommended creating a \"To-Pickup\" list and using a notes app to track items to pick up or return",
+      "Assistant recommended a set of strategies for tracking items to pick up or return, including creating a to\u2011pickup list, setting reminders, designating a returns spot, organizing receipts, using a task management app, and taking photos as backups.",
+      "Assistant suggested creating a \"To\u2011Pickup\" list and using a notes app to keep track of items to pick up or return",
+      "User wants organization tips for their closet, which has become a mess since the holidays and still contains winter clothes to store",
+      "User asked for guidance on deciding which clothes to keep, donate, or discard, noting they have many items not worn since the holidays, including winter garments, and wants to start with either tops, bottoms, or dresses",
+      "Assistant recommended that the user use a phone notes app, set reminders for each note, and create separate lists per store (e.g., \"Zara Pickups\") to stay organized with pickups and returns",
+      "User plans to organize their closet by season, storing winter items like a thick grey scarf and gloves in boxes and bringing out spring items such as a yellow sundress",
+      "User plans to organize their closet by season, intending to store winter items like a thick grey scarf and gloves in boxes and bring out spring items such as a yellow sundress",
+      "User wants advice on how to handle returns and refunds for their online store, noting it is an important part of customer service",
+      "User will use existing home boxes to store winter clothes and has exchanged a pair of Zara boots purchased on February 5, 2023, while still needing to pick up a new pair"
+    ]
+  }
+]

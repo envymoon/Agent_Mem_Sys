@@ -75,3 +75,5 @@ proxy up
 [17:53:07] === lme_gptoss20b_rag-pg_i70_t0_async_think5 (rag-pg) PROFILE=gptoss20b
 [18:28:29] done lme_gptoss20b_rag-pg_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 242, "total_s": 2087.26190418}
 [18:28:29] === lme_gptoss20b_mem0-local_i70_t0_async_think5 (mem0-local) PROFILE=gptoss20b
+[19:03:47] done lme_gptoss20b_mem0-local_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 771, "total_s": 2083.1840475189983}
+[19:03:47] === lme_gptoss20b_mem0-pg_i70_t0_async_think5 (mem0-pg) PROFILE=gptoss20b

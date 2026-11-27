@@ -116,3 +116,61 @@ restored 27 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-27 18:24:53Z] running | line=lme # async retry try=1 run=lme_gptoss20b_rag-pg_i70_t0_async_think5 | 35 runs done | backup=download+ack missing=10 | idle 0.1 min
 [2026-11-27 18:31:46Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=11 | idle 0.0 min
 [2026-11-27 18:34:53Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=11 | idle 0.1 min
+[2026-11-27 18:41:46Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 18:44:53Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 18:51:46Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 18:54:53Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 19:01:46Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i70_t0_async_think5 | 36 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 19:04:53Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i70_t0_async_think5 | 37 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 19:11:46Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i70_t0_async_think5 | 37 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 19:14:54Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i70_t0_async_think5 | 37 runs done | backup=download+ack missing=1 | idle 0.0 min
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /root/.local/share/uv/tools/google-colab-cli/lib/python3.13/site-packages/co │
+│ lab_cli/commands/execution.py:266 in exec_command                            │
+│                                                                              │
+│   263 │   │   │   )                                                          │
+│   264 │   │   │   state.store.add(s)                                         │
+│   265 │   │   │                                                              │
+│ ❱ 266 │   │   │   outputs = runtime.execute_code(                            │
+│   267 │   │   │   │   code,                                                  │
+│   268 │   │   │   │   output_hook=lambda o: display_output(o, output_image), │
+│   269 │   │   │   │   timeout=timeout,                                       │
+│                                                                              │
+│ /root/.local/share/uv/tools/google-colab-cli/lib/python3.13/site-packages/co │
+│ lab_cli/runtime.py:259 in execute_code                                       │
+│                                                                              │
+│   256 │   │   │   │   │   │   if idx < len(outputs):                         │
+│   257 │   │   │   │   │   │   │   output_hook(outputs[idx])                  │
+│   258 │   │   │                                                              │
+│ ❱ 259 │   │   │   reply = self._execute_streaming(code, wrapped_output_hook, │
+│       timeout)                                                               │
+│   260 │   │   │   reply_content = reply["content"] if reply else {"status":  │
+│       "error"}                                                               │
+│   261 │   │                                                                  │
+│   262 │   │   # If there's an error status but no error in outputs,          │
+│       synthesize one                                                         │
+│                                                                              │
+│ /root/.local/share/uv/tools/google-colab-cli/lib/python3.13/site-packages/co │
+│ lab_cli/runtime.py:329 in _execute_streaming                                 │
+│                                                                              │
+│   326 │   │   │   │   │   return msg                                         │
+│   327 │   │                                                                  │
+│   328 │   │   while True:                                                    │
+│ ❱ 329 │   │   │   msg = next_message(client.get_iopub_msg, "output")         │
+│   330 │   │   │   output_hook(msg)                                           │
+│   331 │   │   │   if (                                                       │
+│   332 │   │   │   │   msg["header"]["msg_type"] == "status"                  │
+│                                                                              │
+│ /root/.local/share/uv/tools/google-colab-cli/lib/python3.13/site-packages/co │
+│ lab_cli/runtime.py:305 in next_message                                       │
+│                                                                              │
+│   302 │   │   │   deadline = (time.monotonic() + timeout) if timeout is not  │
+│       None else None                                                         │
+│   303 │   │   │   while True:                                                │
+│   304 │   │   │   │   if not client.connection_ready.is_set():               │
+│ ❱ 305 │   │   │   │   │   raise RuntimeError("Connection was lost.")         │
+│   306 │   │   │   │   wait = _WAIT_SLICE_SEC                                 │
+│   307 │   │   │   │   if deadline is not None:                               │
+│   308 │   │   │   │   │   left = deadline - time.monotonic()                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RuntimeError: Connection was lost.
