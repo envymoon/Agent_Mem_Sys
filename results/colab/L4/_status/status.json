@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 03:35:39Z",
+ "time": "2026-11-27 04:25:39Z",
  "final": false,
  "tag": "L4",
- "phase": "setup attempt 1",
- "code": "ccf8bd4 Graphiti adapter: show the episode date for facts the extractor left undated",
+ "phase": "running",
+ "code": "821542b Colab status: layer-1 runtime building llama.cpp",
  "boot": "750da98a",
- "runtime_up_h": 0.05,
+ "runtime_up_h": 0.89,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -16,24 +16,36 @@
  "done": [],
  "gave_up": [],
  "tries": {},
- "current_line": null,
- "attempt": 0,
- "current_run": null,
- "suite_alive": false,
- "minutes_since_last_write": -0.0,
- "finished_runs": [],
+ "current_line": "l1",
+ "attempt": 1,
+ "current_run": "l1_gptoss20b_mem0-qdrant_sync_t100",
+ "suite_alive": true,
+ "minutes_since_last_write": 0.0,
+ "finished_runs": [
+  "l1_gptoss20b_mem0-local_sync_t100",
+  "l1_gptoss20b_mem0-pg_sync_t100",
+  "l1_gptoss20b_rag-pg_sync_t100"
+ ],
  "failed_lines": [],
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "0 acked",
-  "missing": []
+  "why": "15 acked",
+  "missing": [
+   "l1_gptoss20b_mem0-local_sync_t100",
+   "l1_gptoss20b_mem0-pg_sync_t100",
+   "l1_gptoss20b_rag-pg_sync_t100"
+  ]
  },
- "disk_free_gb": 235.3,
+ "disk_free_gb": 220.5,
  "stop": null,
- "hours_since_start": 0.01,
+ "hours_since_start": 0.84,
  "max_hours": 5.0,
- "ram_avail_gb": 51.3,
- "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 13.15 W",
- "outbox_runs": []
+ "ram_avail_gb": 39.1,
+ "gpu": "NVIDIA L4, 92 %, 14284 MiB, 23034 MiB, 71.27 W",
+ "outbox_runs": [
+  "l1_gptoss20b_mem0-local_sync_t100",
+  "l1_gptoss20b_mem0-pg_sync_t100",
+  "l1_gptoss20b_rag-pg_sync_t100"
+ ]
 }

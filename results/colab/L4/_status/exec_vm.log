@@ -1,2 +1,14 @@
 [2026-11-27 03:35:39Z] bootstrap: gpu=['NVIDIA L4'] OUT=/content/results/L4 PROFILE=gptoss20b DL_PROFILES=gptoss20b cap=5 h keepalive=pid 780
 [2026-11-27 03:35:39Z] setup attempt 1 | line=None try=0 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-27 03:45:39Z] setup attempt 1 | line=None try=0 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-27 03:53:02Z] setup attempt 1: rc=0 in 17.4 min
+[2026-11-27 03:53:02Z] supervisor up: OUT=/content/results/L4 SYNC= queue=['l1', 'score budget # after l1', 'lme', 'score budget # after lme']
+[2026-11-27 03:53:03Z] start 'l1' attempt 1/3 at 821542b Colab status: layer-1 runtime building llama.cpp
+[2026-11-27 03:53:03Z] running | line=l1 try=1 run=None | 0 runs done | backup=download+ack missing=0 | idle -0.0 min
+[2026-11-27 03:55:39Z] running | line=l1 try=1 run=l1_gptoss20b_rag-pg_sync_t100 | 0 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 04:03:02Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-local_sync_t100 | 1 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 04:05:39Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-local_sync_t100 | 1 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 04:13:02Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-pg_sync_t100 | 2 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-27 04:15:39Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-pg_sync_t100 | 2 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 04:23:02Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-qdrant_sync_t100 | 3 runs done | backup=download+ack missing=3 | idle 0.0 min
+[2026-11-27 04:25:39Z] running | line=l1 try=1 run=l1_gptoss20b_mem0-qdrant_sync_t100 | 3 runs done | backup=download+ack missing=3 | idle 0.0 min

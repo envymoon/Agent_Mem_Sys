@@ -44,7 +44,7 @@ export SLOT_SAVE=${SLOT_SAVE:-$SVC_DATA/kv_slots}
 export MEMPROF_VLLM_METRICS=${MEMPROF_VLLM_METRICS:-http://127.0.0.1:8000}   # hwmon scrapes llama.cpp /metrics
 OUT=${OUT:-results/local/$(hostname)-$(grep -qi microsoft /proc/version && echo wsl || echo native)}
 TURNS=${TURNS:-100}; QA=${QA:-50}; CONV=${CONV:-0}
-SYSTEMS=${SYSTEMS:-"rag-pg mem0-local mem0-pg mem0-qdrant graphiti"}
+SYSTEMS=${SYSTEMS:-"rag-pg mem0-local mem0-pg mem0-qdrant"}   # graphiti: add with SYSTEMS="... graphiti"
 PY=.venv/bin/python
 L=scripts/local/start_llama.sh
 mkdir -p "$OUT"

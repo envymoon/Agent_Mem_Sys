@@ -1,0 +1,942 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline mentioned going to an LGBTQ support group on **May\u202f8,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08",
+      "[2023-07-17] user: Hey Melanie! That sounds great! Last weekend I joined a mentorship program for LGBTQ youth - it's really rewarding to help the community.\nassistant: That\u2019s wonderful\u2014being a mentor is such a powerful way to give back! \ud83c\udf08 How did the experience feel for you?",
+      "[2023-07-12] user: Yeah, it's true! Having people who back you makes such a huge difference. It's great to see how far LGBTQ rights have come, but there's still plenty of progress to be made. I wanna help make a difference.\nassistant: It\u2019s awesome that you\u2019re ready to step up! Even small actions\u2014sharing stories, joining local groups, or advocating for policy change\u2014can move the needle. Let me know if you\u2019d like resources or ideas to get started. \ud83c\udf08",
+      "[2023-05-08] user: The support group has made me feel accepted and given me courage to embrace myself.\nassistant: I\u2019m so glad the group helped you feel seen and brave. Embracing yourself is a beautiful journey\u2014what\u2019s next on your path?",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-07-03] user: Since we last spoke, some big things have happened. Last week I went to an LGBTQ+ pride parade. Everyone was so happy and it made me feel like I belonged. It showed me how much our community has grown, it was amazing!\nassistant: That\u2019s fantastic\u2014seeing the pride parade buzz must have felt so empowering! It\u2019s a beautiful reminder of how far the community has come and how much belonging can feel. \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold": "Psychology, counseling certification",
+    "pred": "Caroline\u2019s interests point toward fields that help people cope and heal\u2014think counseling, psychology, social work, or other mental\u2011health\u2011focused programs.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-05-08] user: Gonna continue my edu and check out career options, which is pretty exciting!\nassistant: That\u2019s fantastic\u2014learning and exploring careers can be so empowering. What fields are you thinking about?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?"
+    ]
+  },
+  {
+    "q": "What did Caroline research?",
+    "gold": "Adoption agencies",
+    "pred": "Caroline was researching adoption agencies.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "Caroline is the user who chats with you\u2014she\u2019s a friend, an LGBTQ activist, and someone who shares her life updates and creative interests.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead."
+    ]
+  },
+  {
+    "q": "What is Caroline's relationship status?",
+    "gold": "Single",
+    "pred": "I don\u2019t have any info on Caroline\u2019s relationship status.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-06-09] user: Wow, what an amazing family pic! How long have you been married?\nassistant: I\u2019m not married\u2014just a virtual chat buddy keeping the conversation bright and supportive!",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f"
+    ]
+  },
+  {
+    "q": "When did Caroline give a speech at a school?",
+    "gold": "The week before 9 June 2023",
+    "pred": "I\u2019m not aware of any instance where Caroline gave a speech at a school. If you have more details or a specific event in mind, let me know and I\u2019ll try to help!",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?"
+    ]
+  },
+  {
+    "q": "When did Caroline meet up with her friends, family, and mentors?",
+    "gold": "The week before 9 June 2023",
+    "pred": "She mentioned meeting up with her friends, family, and mentors \u201clast week.\u201d",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-09] user: Thanks, Mel! My friends, family and mentors are my rocks \u2013 they motivate me and give me the strength to push on. Here's a pic from when we met up last week!\nassistant: It sounds like you\u2019re surrounded by such a supportive crew\u2014what a blessing! I\u2019d love to hear how the meetup went and what moments stood out.",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-15] user: Thanks, Melanie! Really glad to have you as a friend to share my journey. You're awesome!\nassistant: I\u2019m thrilled to be on this journey with you! \ud83c\udf1f Your positivity lights up everything. \ud83c\udf38",
+      "[2023-06-09] user: Yeah, I'm really lucky to have them. They've been there through everything, I've known these friends for 4 years, since I moved from my home country. Their love and help have been so important especially after that tough breakup. I'm super thankful. Who supports you, Mel?\nassistant: I\u2019m grateful for the friends and family who lift me up too\u2014especially the folks who listen when I need to vent or celebrate a win. It sounds like you\u2019ve got an amazing support circle\u2014what\u2019s one thing they did that really hit home?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e"
+    ]
+  },
+  {
+    "q": "How long has Caroline had her current group of friends for?",
+    "gold": "4 years",
+    "pred": "Caroline\u2019s current group of friends has been together for just over a week\u2014she joined the LGBTQ activist group last Tuesday (July\u202f20,\u202f2023).",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-06-09] user: Wow, what an amazing family pic! How long have you been married?\nassistant: I\u2019m not married\u2014just a virtual chat buddy keeping the conversation bright and supportive!",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-15] user: Thanks, Melanie! Really glad to have you as a friend to share my journey. You're awesome!\nassistant: I\u2019m thrilled to be on this journey with you! \ud83c\udf1f Your positivity lights up everything. \ud83c\udf38"
+    ]
+  },
+  {
+    "q": "Where did Caroline move from 4 years ago?",
+    "gold": "Sweden",
+    "pred": "I\u2019m not sure\u2014Caroline didn\u2019t mention the specific country she moved from. If you have more details, let me know!",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-09] user: Yeah, I'm really lucky to have them. They've been there through everything, I've known these friends for 4 years, since I moved from my home country. Their love and help have been so important especially after that tough breakup. I'm super thankful. Who supports you, Mel?\nassistant: I\u2019m grateful for the friends and family who lift me up too\u2014especially the folks who listen when I need to vent or celebrate a win. It sounds like you\u2019ve got an amazing support circle\u2014what\u2019s one thing they did that really hit home?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: That's awesome, Melanie! How have your family been supportive during your move?\nassistant: I\u2019ve been grateful for my family\u2019s steady encouragement\u2014sending texts, helping with logistics, and just listening when I needed to vent. Their support makes every step feel less daunting and more hopeful. How about you\u2014what\u2019s been your biggest source of encouragement lately? \ud83c\udf38"
+    ]
+  },
+  {
+    "q": "How long ago was Caroline's 18th birthday?",
+    "gold": "10 years ago",
+    "pred": "I\u2019m not sure\u2014there\u2019s no record of when Caroline turned 18 in our chat history. If you let me know her birthdate, I can calculate how long ago it was!",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-06-09] user: Wow, what an amazing family pic! How long have you been married?\nassistant: I\u2019m not married\u2014just a virtual chat buddy keeping the conversation bright and supportive!"
+    ]
+  },
+  {
+    "q": "What career path has Caroline decided to persue?",
+    "gold": "counseling or mental health for Transgender people",
+    "pred": "Caroline has decided to pursue a career in counseling and mental\u2011health work.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-08] user: Gonna continue my edu and check out career options, which is pretty exciting!\nassistant: That\u2019s fantastic\u2014learning and exploring careers can be so empowering. What fields are you thinking about?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e"
+    ]
+  },
+  {
+    "q": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+    "gold": "Likely no",
+    "pred": "Based on what Caroline has shared, the support she received was a key catalyst for her interest in counseling. If she hadn\u2019t had that support growing up, it\u2019s likely she would still be drawn to the field\u2014her own struggles and desire to help others are strong drivers\u2014but she might feel less confident or motivated to pursue it. The lack of early encouragement could make the path feel more daunting, though her passion for helping people would probably remain.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-12] user: Thanks, Mell! I'm still looking into counseling and mental health jobs. It's important to me that people have someone to talk to, and I want to help make that happen.\nassistant: That\u2019s a powerful direction\u2014your own journey will make you a relatable counselor. I can share program options or internship ideas if you\u2019d like. \ud83c\udf1f",
+      "[2023-07-03] user: Thanks, Mel! It really motivated me for sure. Talking to the community made me want to use my story to help others too - I'm still thinking that counseling and mental health is the way to go. I'm super excited to give back. \nassistant: That\u2019s exactly the spark we need\u2014your story can light the way for others. Keep exploring counseling paths; your passion will make a real difference. \ud83c\udf1f",
+      "[2023-07-12] user: I struggled with mental health, and support I got was really helpful. It made me realize how important it is for others to have a support system. So, I started looking into counseling and mental health career options, so I could help other people on their own journeys like I was helped.\nassistant: Your experience gives you such a genuine voice\u2014people will feel seen by someone who\u2019s been there. If you want, I can highlight some counseling programs or internship spots that focus on trans\u2011friendly support. \ud83c\udf08",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Thanks, Melanie. It really mattered. My own journey and the support I got made a huge difference. Now I want to help people go through it too. I saw how counseling and support groups improved my life, so I started caring more about mental health and understanding myself. Now I'm passionate about creating a safe, inviting place for people to grow.\nassistant: That\u2019s wonderful\u2014your journey gives you a powerful, authentic voice. Focusing on safe, welcoming spaces for trans folks is a great way to share the support you received. Keep building that vision!",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan."
+    ]
+  },
+  {
+    "q": "When is Caroline going to the transgender conference?",
+    "gold": "July 2023",
+    "pred": "Caroline said she\u2019s heading to a transgender conference **this month (July\u202f2023)**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-03] user: Thanks Mel! I'm going to a transgender conference this month. I'm so excited to meet other people in the community and learn more about advocacy. It's gonna be great!\nassistant: That sounds amazing\u2014conferences are such great ways to connect and learn! I\u2019m sure you\u2019ll meet inspiring allies and gain fresh ideas for advocacy. Have a fantastic time and soak up all the positivity! \ud83c\udf08",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-12] user: Hey Mel, great to chat with you again! So much has happened since we last spoke - I went to an LGBTQ conference two days ago and it was really special. I got the chance to meet and connect with people who've gone through similar journeys. It was such a welcoming environment and I felt totally accepted. I'm really thankful for this amazing community - it's shown me how important it is to fight for trans rights and spread awareness.\nassistant: That sounds incredible\u2014meeting others who\u2019ve walked similar paths must feel so validating! Your enthusiasm for advocacy will keep the momentum going. Keep shining and spreading that awareness! \ud83c\udf1f",
+      "[2023-06-09] user: Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago.\nassistant: That sounds amazing\u2014so proud of you for sharing your story and inspiring others! Hearing their reactions must feel like a powerful reminder of how far you\u2019ve come. Keep shining your light; it\u2019s making a real difference.",
+      "[2023-07-17] user: I mentor a transgender teen just like me. We've been working on building up confidence and finding positive strategies, and it's really been paying off! We had a great time at the LGBT pride event last month.\nassistant: That\u2019s fantastic\u2014seeing confidence grow together is such a beautiful reward! \ud83c\udf08 How did the pride event feel for both of you?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: The transgender stories were so inspiring! I was so happy and thankful for all the support.\nassistant: It\u2019s wonderful to hear you felt that support and inspiration. Any particular story or moment that stood out to you?",
+      "[2023-07-17] user: Yay! Next month I'm having an LGBTQ art show with my paintings - can't wait!\nassistant: That\u2019s exciting\u2014can\u2019t wait to see your pieces shine! \ud83c\udfa8\ud83c\udf08 Good luck with the show!"
+    ]
+  },
+  {
+    "q": "When did Caroline have a picnic?",
+    "gold": "The week before 6 July 2023",
+    "pred": "Caroline mentioned having a picnic the week before July\u202f6\u202f\u2014so it was sometime in early July, just a few days earlier.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-06] user: Wow, that's great! It sure shows how important friendship and compassion are. It's made me appreciate how lucky I am to have my friends and family helping with my transition. They make all the difference. We even had a picnic last week!\nassistant: Sounds like a lovely mix of support and sunshine! What\u2019s the highlight from your picnic? \ud83c\udf1e",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-15] user: Wow, Mel! Sounds like you and the kids had a blast. How'd they like it?\nassistant: They loved every moment\u2014especially the silly games and the surprise cupcake bake. The kids were laughing all day, and it felt like a mini\u2011vacation together. How about you, how\u2019s your week been?"
+    ]
+  },
+  {
+    "q": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+    "gold": "Yes, since she collects classic children's books",
+    "pred": "Yes\u2014Caroline\u2019s collection of kids\u2019 classics and educational titles would almost certainly include a few Dr.\u202fSeuss books.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Being a mom is awesome. I'm creating a library for when I have kids. I'm really looking forward to reading to them and opening up their minds.\nassistant: That sounds wonderful\u2014building a library is such a gift for little minds. Do you have any favorite books you\u2019re already planning to start with?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-06] user: I've got lots of kids' books- classics, stories from different cultures, educational books, all of that. What's a favorite book you remember from your childhood?\nassistant: I grew up loving \u201cThe Tale of Peter Rabbit\u201d \u2013 its gentle adventure and vivid illustrations felt like a secret doorway to wonder. It\u2019s a classic that still sparks curiosity and imagination, no matter how old you get. \ud83c\udf08",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-12] user: Thanks so much, Mel! Seeing this pic just made me appreciate my love of reading even more. Books guide me, motivate me and help me discover who I am. They're a huge part of my journey, and this one's reminding me to keep going and never give up!\nassistant: That\u2019s beautiful\u2014books can be such a steady compass on the journey. Keep turning those pages and you\u2019ll keep finding new ways to shine! \ud83d\udcda\u2728",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead."
+    ]
+  },
+  {
+    "q": "When did Caroline go to the LGBTQ conference?",
+    "gold": "10 July 2023",
+    "pred": "Caroline mentioned she went to an LGBTQ conference **two days before July\u202f12,\u202f2023**\u2014so that would be **July\u202f10,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-12] user: Hey Mel, great to chat with you again! So much has happened since we last spoke - I went to an LGBTQ conference two days ago and it was really special. I got the chance to meet and connect with people who've gone through similar journeys. It was such a welcoming environment and I felt totally accepted. I'm really thankful for this amazing community - it's shown me how important it is to fight for trans rights and spread awareness.\nassistant: That sounds incredible\u2014meeting others who\u2019ve walked similar paths must feel so validating! Your enthusiasm for advocacy will keep the momentum going. Keep shining and spreading that awareness! \ud83c\udf1f",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-03] user: Thanks Mel! I'm going to a transgender conference this month. I'm so excited to meet other people in the community and learn more about advocacy. It's gonna be great!\nassistant: That sounds amazing\u2014conferences are such great ways to connect and learn! I\u2019m sure you\u2019ll meet inspiring allies and gain fresh ideas for advocacy. Have a fantastic time and soak up all the positivity! \ud83c\udf08",
+      "[2023-07-17] user: I mentor a transgender teen just like me. We've been working on building up confidence and finding positive strategies, and it's really been paying off! We had a great time at the LGBT pride event last month.\nassistant: That\u2019s fantastic\u2014seeing confidence grow together is such a beautiful reward! \ud83c\udf08 How did the pride event feel for both of you?",
+      "[2023-06-09] user: Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago.\nassistant: That sounds amazing\u2014so proud of you for sharing your story and inspiring others! Hearing their reactions must feel like a powerful reminder of how far you\u2019ve come. Keep shining your light; it\u2019s making a real difference.",
+      "[2023-07-03] user: Since we last spoke, some big things have happened. Last week I went to an LGBTQ+ pride parade. Everyone was so happy and it made me feel like I belonged. It showed me how much our community has grown, it was amazing!\nassistant: That\u2019s fantastic\u2014seeing the pride parade buzz must have felt so empowering! It\u2019s a beautiful reminder of how far the community has come and how much belonging can feel. \ud83c\udf08",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "Would Caroline pursue writing as a career option?",
+    "gold": "LIkely no; though she likes reading, she wants to be a counselor",
+    "pred": "Yes, Caroline has expressed interest in writing and has been exploring it as a potential career path.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-08] user: Gonna continue my edu and check out career options, which is pretty exciting!\nassistant: That\u2019s fantastic\u2014learning and exploring careers can be so empowering. What fields are you thinking about?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e"
+    ]
+  },
+  {
+    "q": "When did Caroline go to the adoption meeting?",
+    "gold": "The friday before 15 July 2023",
+    "pred": "Caroline went to the adoption meeting on **Friday, July\u202f15,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan.",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f"
+    ]
+  },
+  {
+    "q": "What LGBTQ+ events has Caroline participated in?",
+    "gold": "Pride parade, school speech, support group",
+    "pred": "Caroline has taken part in several LGBTQ+ events, including:\n\n| Date | Event | Details |\n|------|-------|---------|\n| **July\u202f3\u202f2023** | LGBTQ+ Pride Parade | She attended the parade, feeling a strong sense of belonging and witnessing community growth. |\n| **July\u202f12\u202f2023** | LGBTQ Conference | She attended a conference, met people with similar journeys, and felt welcomed and accepted. |\n| **July\u202f17\u202f2023** | Pride Event (mentioned in a prior message) | She and a transgender teen she mentors attended a pride event, boosting confidence and celebrating community. |\n| **July\u202f20\u202f2023** | Joined \u201cConnected LGBTQ Activists\u201d group | While not a single event, she joined this activist group and participates in regular meetings, planning events and campaigns. |\n| **July\u202f20\u202f2023** | New LGBTQ activist group meeting | She joined a new LGBTQ activist group on Tuesday, meeting passionate people and actively contributing. |\n\nThese are the events and group activities Caroline has shared in her recent messages.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-17] user: I mentor a transgender teen just like me. We've been working on building up confidence and finding positive strategies, and it's really been paying off! We had a great time at the LGBT pride event last month.\nassistant: That\u2019s fantastic\u2014seeing confidence grow together is such a beautiful reward! \ud83c\udf08 How did the pride event feel for both of you?",
+      "[2023-07-03] user: Since we last spoke, some big things have happened. Last week I went to an LGBTQ+ pride parade. Everyone was so happy and it made me feel like I belonged. It showed me how much our community has grown, it was amazing!\nassistant: That\u2019s fantastic\u2014seeing the pride parade buzz must have felt so empowering! It\u2019s a beautiful reminder of how far the community has come and how much belonging can feel. \ud83c\udf08",
+      "[2023-07-12] user: Hey Mel, great to chat with you again! So much has happened since we last spoke - I went to an LGBTQ conference two days ago and it was really special. I got the chance to meet and connect with people who've gone through similar journeys. It was such a welcoming environment and I felt totally accepted. I'm really thankful for this amazing community - it's shown me how important it is to fight for trans rights and spread awareness.\nassistant: That sounds incredible\u2014meeting others who\u2019ve walked similar paths must feel so validating! Your enthusiasm for advocacy will keep the momentum going. Keep shining and spreading that awareness! \ud83c\udf1f",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08",
+      "[2023-06-09] user: Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago.\nassistant: That sounds amazing\u2014so proud of you for sharing your story and inspiring others! Hearing their reactions must feel like a powerful reminder of how far you\u2019ve come. Keep shining your light; it\u2019s making a real difference.",
+      "[2023-07-17] user: Yay! Next month I'm having an LGBTQ art show with my paintings - can't wait!\nassistant: That\u2019s exciting\u2014can\u2019t wait to see your pieces shine! \ud83c\udfa8\ud83c\udf08 Good luck with the show!"
+    ]
+  },
+  {
+    "q": "When did Caroline go to a pride parade during the summer?",
+    "gold": "The week before 3 July 2023",
+    "pred": "Caroline mentioned going to a pride parade twice in the summer:\n\n- **July\u202f3,\u202f2023** \u2013 She said she\u2019d gone to an LGBTQ+ pride parade the week before that date.  \n- **July\u202f15,\u202f2023** \u2013 She recalled attending a pride parade \u201ca few weeks ago,\u201d which would be around the same time.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: Wow, nice pic! You both looked amazing. One special memory for me was this pride parade I went to a few weeks ago.\nassistant: That sounds incredible\u2014pride parades are such vibrant, uplifting memories. \ud83c\udf89 Glad you had such a great experience!",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-03] user: Since we last spoke, some big things have happened. Last week I went to an LGBTQ+ pride parade. Everyone was so happy and it made me feel like I belonged. It showed me how much our community has grown, it was amazing!\nassistant: That\u2019s fantastic\u2014seeing the pride parade buzz must have felt so empowering! It\u2019s a beautiful reminder of how far the community has come and how much belonging can feel. \ud83c\udf08",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-20] user: Last weekend our city held a pride parade! So many people marched through the streets waving flags, holding signs and celebrating love and diversity. I missed it but it was a powerful reminder that we are not alone in this fight for equality and inclusivity. Change is possible!\nassistant: It sounds like the parade was a beautiful burst of unity\u2014so inspiring to hear it even from afar! Your reminder that we\u2019re all in this together fuels hope and action. Keep that momentum going! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f"
+    ]
+  },
+  {
+    "q": "What events has Caroline participated in to help children?",
+    "gold": "Mentoring program, school speech",
+    "pred": "Caroline has been looking into ways to support children by researching reputable adoption agencies and exploring volunteer opportunities to help give kids a loving home. She\u2019s also been involved in community outreach programs that focus on mental\u2011health support for young people.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-25] user: That charity race sounds great, Mel! Making a difference & raising awareness for mental health is super rewarding - I'm really proud of you for taking part!\nassistant: Thanks so much! It means a lot to hear your support\u2014looking forward to making a positive impact together.",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?"
+    ]
+  },
+  {
+    "q": "When did Caroline join a mentorship program?",
+    "gold": "The weekend before 17 July 2023",
+    "pred": "Caroline joined a mentorship program on **July\u202f17,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-17] user: Hey Melanie! That sounds great! Last weekend I joined a mentorship program for LGBTQ youth - it's really rewarding to help the community.\nassistant: That\u2019s wonderful\u2014being a mentor is such a powerful way to give back! \ud83c\udf08 How did the experience feel for you?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-17] user: The mentoring is going great! I've met some amazing young folks and supported them along the way. It's inspiring to see how resilient and strong they are.\nassistant: Sounds amazing\u2014meeting such resilient, inspiring youth must be truly rewarding! \ud83c\udf1f How are you finding the mentorship vibe so far?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f"
+    ]
+  },
+  {
+    "q": "In what ways is Caroline participating in the LGBTQ community?",
+    "gold": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+    "pred": "Caroline is actively involved in the LGBTQ community in several ways:\n\n1. **Joining activist groups** \u2013 She recently joined a new LGBTQ activist group (\u201cConnected LGBTQ Activists\u201d) and attends regular meetings, plans events, and campaigns.  \n2. **Mentoring youth** \u2013 She participated in a mentorship program for LGBTQ youth, helping to support and guide younger members of the community.  \n3. **Attending pride events** \u2013 She went to an LGBTQ+ pride parade, enjoying the sense of belonging and celebrating community growth.  \n4. **Engaging in support groups** \u2013 She has attended LGBTQ support groups, finding them powerful and meaningful.  \n\nThese activities show her commitment to advocacy, community building, and support for LGBTQ individuals.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08",
+      "[2023-07-12] user: Yeah, it's true! Having people who back you makes such a huge difference. It's great to see how far LGBTQ rights have come, but there's still plenty of progress to be made. I wanna help make a difference.\nassistant: It\u2019s awesome that you\u2019re ready to step up! Even small actions\u2014sharing stories, joining local groups, or advocating for policy change\u2014can move the needle. Let me know if you\u2019d like resources or ideas to get started. \ud83c\udf08",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-07-17] user: Hey Melanie! That sounds great! Last weekend I joined a mentorship program for LGBTQ youth - it's really rewarding to help the community.\nassistant: That\u2019s wonderful\u2014being a mentor is such a powerful way to give back! \ud83c\udf08 How did the experience feel for you?",
+      "[2023-07-03] user: Since we last spoke, some big things have happened. Last week I went to an LGBTQ+ pride parade. Everyone was so happy and it made me feel like I belonged. It showed me how much our community has grown, it was amazing!\nassistant: That\u2019s fantastic\u2014seeing the pride parade buzz must have felt so empowering! It\u2019s a beautiful reminder of how far the community has come and how much belonging can feel. \ud83c\udf08",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?"
+    ]
+  },
+  {
+    "q": "When did Caroline join a new activist group?",
+    "gold": "The Tuesday before 20 July 2023",
+    "pred": "Caroline joined the new LGBTQ activist group on **Tuesday, July\u202f18,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-05-08] user: The support group has made me feel accepted and given me courage to embrace myself.\nassistant: I\u2019m so glad the group helped you feel seen and brave. Embracing yourself is a beautiful journey\u2014what\u2019s next on your path?",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e"
+    ]
+  },
+  {
+    "q": "What did the charity race raise awareness for?",
+    "gold": "mental health",
+    "pred": "It raised awareness for mental health.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-05-25] user: That charity race sounds great, Mel! Making a difference & raising awareness for mental health is super rewarding - I'm really proud of you for taking part!\nassistant: Thanks so much! It means a lot to hear your support\u2014looking forward to making a positive impact together.",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-07-20] user: Last weekend our city held a pride parade! So many people marched through the streets waving flags, holding signs and celebrating love and diversity. I missed it but it was a powerful reminder that we are not alone in this fight for equality and inclusivity. Change is possible!\nassistant: It sounds like the parade was a beautiful burst of unity\u2014so inspiring to hear it even from afar! Your reminder that we\u2019re all in this together fuels hope and action. Keep that momentum going! \ud83c\udf08",
+      "[2023-07-17] user: The pride event was awesome! It was so encouraging to be surrounded by so much love and acceptance.\nassistant: Feeling that love and acceptance is such a powerful boost\u2014so glad you both rode that wave! \ud83c\udf1f",
+      "[2023-07-15] user: Wow, nice pic! You both looked amazing. One special memory for me was this pride parade I went to a few weeks ago.\nassistant: That sounds incredible\u2014pride parades are such vibrant, uplifting memories. \ud83c\udf89 Glad you had such a great experience!",
+      "[2023-07-12] user: Cool, Melanie! Running can really boost your mood. Keep it up!\nassistant: Thanks! I\u2019ll definitely keep going\u2014those mood\u2011boosting runs are a lifesaver. \ud83c\udf1f",
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-12] user: I struggled with mental health, and support I got was really helpful. It made me realize how important it is for others to have a support system. So, I started looking into counseling and mental health career options, so I could help other people on their own journeys like I was helped.\nassistant: Your experience gives you such a genuine voice\u2014people will feel seen by someone who\u2019s been there. If you want, I can highlight some counseling programs or internship spots that focus on trans\u2011friendly support. \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "What are Caroline's plans for the summer?",
+    "gold": "researching adoption agencies",
+    "pred": "I\u2019m not sure\u2014what\u2019s on your agenda for the summer? \ud83c\udf1e",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f"
+    ]
+  },
+  {
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gold": "LGBTQ+ individuals",
+    "pred": "Caroline is looking at an adoption agency that specifically supports LGBTQ+ individuals and families.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan.",
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-05-25] user: I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!\nassistant: That\u2019s a courageous and loving vision\u2014single\u2011parent adoptions can be incredibly rewarding. I can share tips on building a support network, financial planning, or resources that make the journey smoother. Let me know what you\u2019d like to dive into next!",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-05-25] user: Thanks, Melanie! Your kind words really mean a lot. I'll do my best to make sure these kids have a safe and loving home.\nassistant: You\u2019re already showing incredible strength and compassion\u2014those are the foundations that will create a safe, loving home. Keep leaning on your support network, and I\u2019m here whenever you need a quick tip or a listening ear. Good luck on this beautiful journey!",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?"
+    ]
+  },
+  {
+    "q": "Why did Caroline choose the adoption agency?",
+    "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+    "pred": "Caroline chose the agency because it specifically supports LGBTQ+ families, offering the inclusivity and support she values for her adoption journey.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan.",
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-25] user: I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!\nassistant: That\u2019s a courageous and loving vision\u2014single\u2011parent adoptions can be incredibly rewarding. I can share tips on building a support network, financial planning, or resources that make the journey smoother. Let me know what you\u2019d like to dive into next!",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?"
+    ]
+  },
+  {
+    "q": "What is Caroline excited about in the adoption process?",
+    "gold": "creating a family for kids who need one",
+    "pred": "Caroline\u2019s excitement is all about turning her dream of giving kids a loving home into reality\u2014she\u2019s eager to move forward with the adoption process, connect with agencies, and build the support network that will make it happen.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan.",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-25] user: I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!\nassistant: That\u2019s a courageous and loving vision\u2014single\u2011parent adoptions can be incredibly rewarding. I can share tips on building a support network, financial planning, or resources that make the journey smoother. Let me know what you\u2019d like to dive into next!",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f"
+    ]
+  },
+  {
+    "q": "What does Caroline's necklace symbolize?",
+    "gold": "love, faith, and strength",
+    "pred": "Caroline\u2019s necklace is a reminder of her roots and the love and support she receives from her family. It symbolizes **love, faith, and strength**\u2014a keepsake that keeps her connected to her grandma and her Swedish heritage.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Thanks, Melanie! This necklace is super special to me - a gift from my grandma in my home country, Sweden. She gave it to me when I was young, and it stands for love, faith and strength. It's like a reminder of my roots and all the love and support I get from my family.\nassistant: What a beautiful keepsake\u2014sounds like it carries so much love and history. It\u2019s wonderful that it keeps you connected to your roots and the strength of your family. \ud83c\udf38",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-07-15] user: Thanks Melanie - love the blue vase in the pic! Blue's my fave, it makes me feel relaxed. Sunflowers mean warmth and happiness, right? While roses stand for love and beauty? That's neat. What do flowers mean to you?\nassistant: Flowers feel like a quick hug\u2014sunflowers lift the mood, roses whisper romance, and a quiet blue vase just soothes the soul. \ud83c\udf38\ud83d\udc99",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38"
+    ]
+  },
+  {
+    "q": "What country is Caroline's grandma from?",
+    "gold": "Sweden",
+    "pred": "Her grandma is from Sweden.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-27] user: Thanks, Melanie! This necklace is super special to me - a gift from my grandma in my home country, Sweden. She gave it to me when I was young, and it stands for love, faith and strength. It's like a reminder of my roots and all the love and support I get from my family.\nassistant: What a beautiful keepsake\u2014sounds like it carries so much love and history. It\u2019s wonderful that it keeps you connected to your roots and the strength of your family. \ud83c\udf38",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-06-09] user: Wow, what an amazing family pic! How long have you been married?\nassistant: I\u2019m not married\u2014just a virtual chat buddy keeping the conversation bright and supportive!"
+    ]
+  },
+  {
+    "q": "What was grandma's gift to Caroline?",
+    "gold": "necklace",
+    "pred": "She gave her a necklace\u2014a special piece she received from her grandma in Sweden, symbolizing love, faith, and strength.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-06-27] user: Thanks, Melanie! This necklace is super special to me - a gift from my grandma in my home country, Sweden. She gave it to me when I was young, and it stands for love, faith and strength. It's like a reminder of my roots and all the love and support I get from my family.\nassistant: What a beautiful keepsake\u2014sounds like it carries so much love and history. It\u2019s wonderful that it keeps you connected to your roots and the strength of your family. \ud83c\udf38",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?"
+    ]
+  },
+  {
+    "q": "What is Melanie's hand-painted bowl a reminder of?",
+    "gold": "art and self-expression",
+    "pred": "It\u2019s a reminder of art and self\u2011expression.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Yep, Melanie! I've got some other stuff with sentimental value, like my hand-painted bowl. A friend made it for my 18th birthday ten years ago. The pattern and colors are awesome-- it reminds me of art and self-expression.\nassistant: That sounds like a truly special piece! A hand\u2011painted bowl from a friend is such a unique reminder of creativity and the people who celebrate you. It must bring a little burst of color and joy every time you use it. \ud83c\udf08",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-06] user: Melanie, that's a great pic! That must have been awesome. What were they so stoked about?\nassistant: Thanks! They were thrilled about the vibrant colors and the way the light caught the details\u2014felt like the picture was telling a story that everyone could connect with. \ud83c\udf1f",
+      "[2023-07-03] user: That bowl is gorgeous! The black and white design looks so fancy. Did you make it?\nassistant: I\u2019m not the one who made it\u2014just a virtual chat buddy! It\u2019s a beautiful piece from a friend, and I love how it brings such style into your space. \ud83c\udf1f",
+      "[2023-07-03] user: Wow, Melanie! I'm getting creative too, just learning the piano. What made you try pottery?\nassistant: I\u2019ve always loved the rhythm of shaping clay\u2014like a quiet piano solo for the hands. It lets me create something tactile and calming, and it\u2019s a fun way to mix art with a bit of therapy. \ud83c\udfa8\ud83d\udc9b",
+      "[2023-07-12] user: Glad it helped ya, Melanie!\nassistant: Glad to hear it! \ud83d\ude4c",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-06-27] user: Thanks, Melanie! Your kind words mean a lot.\nassistant: You\u2019re doing amazing work\u2014keep shining! \ud83c\udf08",
+      "[2023-07-03] user: Wow, Mel, I'm so stoked for you that art is helping you express yourself and bring you joy! Keep it up!\nassistant: That means a lot, thank you! I\u2019ll keep pouring my heart into the clay\u2014and maybe add a little music next time. \ud83c\udfb6\ud83d\udc50"
+    ]
+  },
+  {
+    "q": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+    "gold": "working with trans people, helping them accept themselves and supporting their mental health",
+    "pred": "Caroline is keen on counseling and mental\u2011health work that lets her use her own experience to help others\u2014especially in supportive, community\u2011based settings and trans\u2011friendly or inclusive programs. She\u2019s looking for roles where she can be a relatable ally and provide a safe space for people who\u2019ve faced similar challenges.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-07-12] user: Thanks, Mell! I'm still looking into counseling and mental health jobs. It's important to me that people have someone to talk to, and I want to help make that happen.\nassistant: That\u2019s a powerful direction\u2014your own journey will make you a relatable counselor. I can share program options or internship ideas if you\u2019d like. \ud83c\udf1f",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-03] user: Thanks, Mel! It really motivated me for sure. Talking to the community made me want to use my story to help others too - I'm still thinking that counseling and mental health is the way to go. I'm super excited to give back. \nassistant: That\u2019s exactly the spark we need\u2014your story can light the way for others. Keep exploring counseling paths; your passion will make a real difference. \ud83c\udf1f",
+      "[2023-07-12] user: I struggled with mental health, and support I got was really helpful. It made me realize how important it is for others to have a support system. So, I started looking into counseling and mental health career options, so I could help other people on their own journeys like I was helped.\nassistant: Your experience gives you such a genuine voice\u2014people will feel seen by someone who\u2019s been there. If you want, I can highlight some counseling programs or internship spots that focus on trans\u2011friendly support. \ud83c\udf08",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-12] user: Awesome, Melanie! Mental health's a priority, so make sure you take care of yourself.\nassistant: Absolutely\u2014self\u2011care is my top priority. I\u2019ll keep balancing runs, rest, and good vibes to stay mentally sharp. \ud83c\udf38"
+    ]
+  },
+  {
+    "q": "What workshop did Caroline attend recently?",
+    "gold": "LGBTQ+ counseling workshop",
+    "pred": "Caroline attended an LGBTQ+ counseling workshop.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-06-27] user: I'm still figuring out the details, but I'm thinking of working with trans people, helping them accept themselves and supporting their mental health. Last Friday, I went to an LGBTQ+ counseling workshop and it was really enlightening. They talked about different therapeutic methods and how to best work with trans people. Seeing how passionate these pros were about making a safe space for people like me was amazing.\nassistant: That sounds incredibly inspiring\u2014great to hear the workshop hit so close to home! Which therapeutic methods resonated with you the most, and are you looking into any specific training programs next?",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!"
+    ]
+  },
+  {
+    "q": "What was discussed in the LGBTQ+ counseling workshop?",
+    "gold": "therapeutic methods and how to best work with trans people",
+    "pred": "The workshop covered a range of therapeutic approaches and practical strategies for working with trans clients. Key points included:\n\n- **Evidence\u2011based methods** (e.g., CBT, ACT, person\u2011centered therapy) adapted for gender\u2011affirming care.  \n- **Creating a safe, affirming space**\u2014language, intake forms, and environment.  \n- **Understanding the unique mental\u2011health challenges** trans people face (minority stress, dysphoria, discrimination).  \n- **Collaborative goal\u2011setting** that respects each client\u2019s identity and journey.  \n- **Cultural humility and ongoing self\u2011education** to avoid bias and provide competent care.  \n\nOverall, it was a practical, compassionate guide to supporting trans clients\u2019 mental well\u2011being.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: I'm still figuring out the details, but I'm thinking of working with trans people, helping them accept themselves and supporting their mental health. Last Friday, I went to an LGBTQ+ counseling workshop and it was really enlightening. They talked about different therapeutic methods and how to best work with trans people. Seeing how passionate these pros were about making a safe space for people like me was amazing.\nassistant: That sounds incredibly inspiring\u2014great to hear the workshop hit so close to home! Which therapeutic methods resonated with you the most, and are you looking into any specific training programs next?",
+      "[2023-05-08] user: I went to a LGBTQ support group yesterday and it was so powerful.\nassistant: That sounds like a really meaningful experience. What was the most impactful part for you?",
+      "[2023-07-17] user: I mentor a transgender teen just like me. We've been working on building up confidence and finding positive strategies, and it's really been paying off! We had a great time at the LGBT pride event last month.\nassistant: That\u2019s fantastic\u2014seeing confidence grow together is such a beautiful reward! \ud83c\udf08 How did the pride event feel for both of you?",
+      "[2023-07-17] user: Hey Melanie! That sounds great! Last weekend I joined a mentorship program for LGBTQ youth - it's really rewarding to help the community.\nassistant: That\u2019s wonderful\u2014being a mentor is such a powerful way to give back! \ud83c\udf08 How did the experience feel for you?",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-07-12] user: Hey Mel, great to chat with you again! So much has happened since we last spoke - I went to an LGBTQ conference two days ago and it was really special. I got the chance to meet and connect with people who've gone through similar journeys. It was such a welcoming environment and I felt totally accepted. I'm really thankful for this amazing community - it's shown me how important it is to fight for trans rights and spread awareness.\nassistant: That sounds incredible\u2014meeting others who\u2019ve walked similar paths must feel so validating! Your enthusiasm for advocacy will keep the momentum going. Keep shining and spreading that awareness! \ud83c\udf1f",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-20] user: Thanks, Melanie! It's awesome to have our own platform to be ourselves and support others' rights. Our group, 'Connected LGBTQ Activists', is made of all kinds of people investing in positive changes. We have regular meetings, plan events and campaigns, to get together and support each other.\nassistant: Love hearing how vibrant \u2018Connected LGBTQ Activists\u2019 feels! Regular meetings and joint campaigns sound like a powerhouse for change and support. Keep those positive vibes flowing\u2014your community is making a real impact! \ud83c\udf08",
+      "[2023-07-12] user: I struggled with mental health, and support I got was really helpful. It made me realize how important it is for others to have a support system. So, I started looking into counseling and mental health career options, so I could help other people on their own journeys like I was helped.\nassistant: Your experience gives you such a genuine voice\u2014people will feel seen by someone who\u2019s been there. If you want, I can highlight some counseling programs or internship spots that focus on trans\u2011friendly support. \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "What motivated Caroline to pursue counseling?",
+    "gold": "her own journey and the support she received, and how counseling improved her life",
+    "pred": "Caroline was motivated to pursue counseling after her own experience with mental\u2011health challenges. The support she received made her realize how vital a caring, understanding listener can be, and she wanted to give that same help to others who have gone through similar struggles.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-03] user: Thanks, Mel! It really motivated me for sure. Talking to the community made me want to use my story to help others too - I'm still thinking that counseling and mental health is the way to go. I'm super excited to give back. \nassistant: That\u2019s exactly the spark we need\u2014your story can light the way for others. Keep exploring counseling paths; your passion will make a real difference. \ud83c\udf1f",
+      "[2023-07-06] user: Since our last chat, I've been looking into counseling or mental health work more. I'm passionate about helping people and making a positive impact. It's tough, but really rewarding too. Anything new happening with you?\nassistant: It\u2019s great to hear you\u2019re digging deeper into counseling\u2014your passion will make a real difference. I\u2019m still juggling projects, but I\u2019ve been volunteering at a community mental\u2011health outreach program. How\u2019s your research going?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-06-27] user: Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me.\nassistant: That\u2019s such a meaningful path\u2014your own experiences will make you a powerful ally for others. Have you started looking at specific programs or specialties?",
+      "[2023-05-08] user: I'm keen on counseling or working in mental health - I'd love to support those with similar issues.\nassistant: Counseling and mental\u2011health work is such a meaningful way to give back\u2014your own journey will make you a powerful ally. Have you thought about specific specialties or programs to start with?",
+      "[2023-07-12] user: Thanks, Mell! I'm still looking into counseling and mental health jobs. It's important to me that people have someone to talk to, and I want to help make that happen.\nassistant: That\u2019s a powerful direction\u2014your own journey will make you a relatable counselor. I can share program options or internship ideas if you\u2019d like. \ud83c\udf1f",
+      "[2023-07-12] user: I struggled with mental health, and support I got was really helpful. It made me realize how important it is for others to have a support system. So, I started looking into counseling and mental health career options, so I could help other people on their own journeys like I was helped.\nassistant: Your experience gives you such a genuine voice\u2014people will feel seen by someone who\u2019s been there. If you want, I can highlight some counseling programs or internship spots that focus on trans\u2011friendly support. \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "What kind of place does Caroline want to create for people?",
+    "gold": "a safe and inviting place for people to grow",
+    "pred": "Caroline dreams of a welcoming, vibrant space where people feel seen, heard, and supported\u2014especially those in the LGBTQ community. It\u2019s a place that blends creativity, activism, and genuine connection, offering a safe haven for sharing stories, celebrating diversity, and working together toward positive change.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-15] user: Wow Mel, that painting's amazing! The colors are so bold and it really highlights the beauty of nature. Y'all work on it together?\nassistant: Thanks, Caroline! We actually painted it together\u2014each of us got to choose a color and a part of the scene. It\u2019s amazing how the bold hues come together to show nature\u2019s beauty. \ud83c\udfa8\ud83c\udf3f",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?"
+    ]
+  },
+  {
+    "q": "What kind of books does Caroline have in her library?",
+    "gold": "kids' books - classics, stories from different cultures, educational books",
+    "pred": "Caroline\u2019s library is all about kids\u2019 books\u2014classic picture books, stories from a variety of cultures, and educational titles that spark curiosity and learning.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-06] user: Being a mom is awesome. I'm creating a library for when I have kids. I'm really looking forward to reading to them and opening up their minds.\nassistant: That sounds wonderful\u2014building a library is such a gift for little minds. Do you have any favorite books you\u2019re already planning to start with?",
+      "[2023-07-12] user: Thanks so much, Mel! Seeing this pic just made me appreciate my love of reading even more. Books guide me, motivate me and help me discover who I am. They're a huge part of my journey, and this one's reminding me to keep going and never give up!\nassistant: That\u2019s beautiful\u2014books can be such a steady compass on the journey. Keep turning those pages and you\u2019ll keep finding new ways to shine! \ud83d\udcda\u2728",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-06] user: I've got lots of kids' books- classics, stories from different cultures, educational books, all of that. What's a favorite book you remember from your childhood?\nassistant: I grew up loving \u201cThe Tale of Peter Rabbit\u201d \u2013 its gentle adventure and vivid illustrations felt like a secret doorway to wonder. It\u2019s a classic that still sparks curiosity and imagination, no matter how old you get. \ud83c\udf08",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-12] user: That's so nice! What pet do you have?\nassistant: I don\u2019t have a pet of my own, but I love hearing about the special ones people have! What\u2019s your favorite animal companion? \ud83d\udc36\ud83d\udc31\u2728",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead."
+    ]
+  },
+  {
+    "q": "What book did Caroline recommend to Melanie?",
+    "gold": "\"Becoming Nicole\"",
+    "pred": "I don\u2019t have a record of Caroline recommending a specific book to Melanie. If you\u2019re looking for a suggestion, feel free to let me know what kind of books you enjoy!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-07-12] user: Glad it helped ya, Melanie!\nassistant: Glad to hear it! \ud83d\ude4c",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-07-15] user: Thanks, Melanie! Really glad to have you as a friend to share my journey. You're awesome!\nassistant: I\u2019m thrilled to be on this journey with you! \ud83c\udf1f Your positivity lights up everything. \ud83c\udf38",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?",
+      "[2023-07-12] user: Thanks so much, Mel! Seeing this pic just made me appreciate my love of reading even more. Books guide me, motivate me and help me discover who I am. They're a huge part of my journey, and this one's reminding me to keep going and never give up!\nassistant: That\u2019s beautiful\u2014books can be such a steady compass on the journey. Keep turning those pages and you\u2019ll keep finding new ways to shine! \ud83d\udcda\u2728",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?"
+    ]
+  },
+  {
+    "q": "What did Caroline take away from the book \"Becoming Nicole\"?",
+    "gold": "Lessons on self-acceptance and finding support",
+    "pred": "Caroline said the book reminded her to keep going and never give up\u2014books guide, motivate, and help her discover who she is.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-12] user: I loved \"Becoming Nicole\" by Amy Ellis Nutt. It's a real inspiring true story about a trans girl and her family. It made me feel connected and gave me a lot of hope for my own path. Highly recommend it for sure!\nassistant: Sounds like a powerful read\u2014thanks for the recommendation! \u201cBecoming Nicole\u201d truly shows how love and courage can guide us forward. \ud83c\udf1f",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-07-12] user: Thanks so much, Mel! Seeing this pic just made me appreciate my love of reading even more. Books guide me, motivate me and help me discover who I am. They're a huge part of my journey, and this one's reminding me to keep going and never give up!\nassistant: That\u2019s beautiful\u2014books can be such a steady compass on the journey. Keep turning those pages and you\u2019ll keep finding new ways to shine! \ud83d\udcda\u2728",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-05-08] user: Hey Mel! Good to see you! How have you been?\nassistant: Hey Caroline! I\u2019m doing great\u2014just keeping busy with the usual tasks. How about you? Anything exciting happening?"
+    ]
+  },
+  {
+    "q": "What are the new shoes that Melanie got used for?",
+    "gold": "Running",
+    "pred": "I\u2019m not sure which specific shoes you\u2019re referring to\u2014there\u2019s no record of a recent shoe purchase in our chat history. If you can give me a bit more detail (e.g., the brand, style, or what she\u2019s using them for), I\u2019ll gladly help you out!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-12] user: Glad it helped ya, Melanie!\nassistant: Glad to hear it! \ud83d\ude4c",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Melanie, that's a great pic! That must have been awesome. What were they so stoked about?\nassistant: Thanks! They were thrilled about the vibrant colors and the way the light caught the details\u2014felt like the picture was telling a story that everyone could connect with. \ud83c\udf1f",
+      "[2023-07-15] user: Thanks, Melanie! Really glad to have you as a friend to share my journey. You're awesome!\nassistant: I\u2019m thrilled to be on this journey with you! \ud83c\udf1f Your positivity lights up everything. \ud83c\udf38",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-06-27] user: Thanks, Melanie! Your kind words mean a lot.\nassistant: You\u2019re doing amazing work\u2014keep shining! \ud83c\udf08",
+      "[2023-07-15] user: It was awesome, Melanie! Being around people who embrace and back me up is beyond words. It really inspired me.\nassistant: Sounds like pure magic\u2014those moments can light up the whole week. \ud83c\udf1f Keep riding that inspiration!",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?"
+    ]
+  },
+  {
+    "q": "What is Melanie's reason for getting into running?",
+    "gold": "To de-stress and clear her mind",
+    "pred": "Melanie says she got into running for the fresh\u2011air boost it gives her and the steady rhythm that keeps her mind clear and her feet happy.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-12] user: Cool, Melanie! Running can really boost your mood. Keep it up!\nassistant: Thanks! I\u2019ll definitely keep going\u2014those mood\u2011boosting runs are a lifesaver. \ud83c\udf1f",
+      "[2023-07-15] user: It was awesome, Melanie! Being around people who embrace and back me up is beyond words. It really inspired me.\nassistant: Sounds like pure magic\u2014those moments can light up the whole week. \ud83c\udf1f Keep riding that inspiration!",
+      "[2023-07-06] user: Thanks, Melanie! This support network has been amazing. They've been there for me every step of the way giving me love, guidance, and acceptance. I couldn't have done it without them.\nassistant: I\u2019m so glad your circle feels like a warm, steady hug\u2014those connections truly shape our journeys. Keep cherishing their love and know I\u2019m here whenever you need a quick chat or a book recommendation. \ud83c\udf38",
+      "[2023-07-15] user: Thanks, Melanie! Been a long road, but I'm proud of how far I've come. How're you doing finding peace?\nassistant: I\u2019m glad to hear how proud you are\u2014your journey is inspiring! I\u2019m finding peace by staying present and nurturing the little moments that bring calm. How\u2019s your own peace practice going? \ud83c\udf3f",
+      "[2023-07-12] user: Glad it helped ya, Melanie!\nassistant: Glad to hear it! \ud83d\ude4c",
+      "[2023-07-12] user: Awesome, Melanie! Mental health's a priority, so make sure you take care of yourself.\nassistant: Absolutely\u2014self\u2011care is my top priority. I\u2019ll keep balancing runs, rest, and good vibes to stay mentally sharp. \ud83c\udf38",
+      "[2023-07-15] user: Thanks, Melanie! Really glad to have you as a friend to share my journey. You're awesome!\nassistant: I\u2019m thrilled to be on this journey with you! \ud83c\udf1f Your positivity lights up everything. \ud83c\udf38",
+      "[2023-07-12] user: Wow! What got you into running?\nassistant: I\u2019m all about the fresh\u2011air boost it gives me\u2014plus the steady rhythm that keeps my mind clear and my feet happy. It\u2019s a simple way to stay energized and feel grounded. \ud83c\udfc3\u200d\u2640\ufe0f\ud83d\udc9c",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Melanie, that's a great pic! That must have been awesome. What were they so stoked about?\nassistant: Thanks! They were thrilled about the vibrant colors and the way the light caught the details\u2014felt like the picture was telling a story that everyone could connect with. \ud83c\udf1f"
+    ]
+  },
+  {
+    "q": "What creative project do Mel and her kids do together besides pottery?",
+    "gold": "painting",
+    "pred": "Besides pottery, Mel and her kids love mixing it up with paint\u2011by\u2011number kits, DIY slime, recycled\u2011magazine collages, simple felt\u2011animal sewing projects, and a quick paper\u2011m\u00e2ch\u00e9 mask session that turns into a mini\u2011theatre show.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-03] user: Wow, Melanie! I'm getting creative too, just learning the piano. What made you try pottery?\nassistant: I\u2019ve always loved the rhythm of shaping clay\u2014like a quiet piano solo for the hands. It lets me create something tactile and calming, and it\u2019s a fun way to mix art with a bit of therapy. \ud83c\udfa8\ud83d\udc9b",
+      "[2023-07-15] user: Aww, that's so sweet! That cup is so cute. It's awesome to see how kids show their personalities through art. What other creative projects do you do with them, besides pottery?\nassistant: I love mixing it up\u2014paint\u2011by\u2011number kits, DIY slime, and even a quick collage of recycled magazine cut\u2011outs. We also try simple sewing projects like making felt animals, and a little paper\u2011m\u00e2ch\u00e9 mask session that always turns into a mini\u2011theatre show. \ud83c\udfa8\ud83e\uddf8",
+      "[2023-07-03] user: Wow, Mel, I'm so stoked for you that art is helping you express yourself and bring you joy! Keep it up!\nassistant: That means a lot, thank you! I\u2019ll keep pouring my heart into the clay\u2014and maybe add a little music next time. \ud83c\udfb6\ud83d\udc50",
+      "[2023-07-15] user: Wow, Mel! Sounds like you and the kids had a blast. How'd they like it?\nassistant: They loved every moment\u2014especially the silly games and the surprise cupcake bake. The kids were laughing all day, and it felt like a mini\u2011vacation together. How about you, how\u2019s your week been?",
+      "[2023-07-15] user: Awesome, Mel! Family support's huge. What else do you guys like doing together?\nassistant: We love mixing it up\u2014think game nights, cooking experiments, or a quick hike to catch the sunset. It\u2019s all about sharing laughs and making memories. What\u2019s your favorite family activity? \ud83c\udf08",
+      "[2023-07-15] user: Wow, Mel, that sounds awesome! Exploring nature and family time is so special.\nassistant: That\u2019s the vibe\u2014nature, laughter, and a little adventure together. \ud83c\udf3f\u2728 What\u2019s your go-to family outing?",
+      "[2023-06-27] user: Sounds great, Mel. Glad you made some new family mems. How was it? Anything fun?\nassistant: Respond friendly.It was a lovely day\u2014just spent some quality time catching up with family and sharing stories. We laughed a lot, and I even tried a new recipe that turned out surprisingly good! How about you? Anything exciting on your end?",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-15] user: Wow, Mel, family love and support is the best!\nassistant: Absolutely\u2014family\u2019s love is the ultimate anchor. \ud83c\udf1f How\u2019s everything else going for you?",
+      "[2023-06-27] user: Yep, Melanie! I've got some other stuff with sentimental value, like my hand-painted bowl. A friend made it for my 18th birthday ten years ago. The pattern and colors are awesome-- it reminds me of art and self-expression.\nassistant: That sounds like a truly special piece! A hand\u2011painted bowl from a friend is such a unique reminder of creativity and the people who celebrate you. It must bring a little burst of color and joy every time you use it. \ud83c\udf08"
+    ]
+  },
+  {
+    "q": "What did Caroline see at the council meeting for adoption?",
+    "gold": "many people wanting to create loving homes for children in need",
+    "pred": "Caroline saw an inspiring, emotional council meeting where many people expressed a strong desire to create loving homes for children in need.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: That photo is stunning! So glad you bonded over our love of nature. Last Friday I went to a council meeting for adoption. It was inspiring and emotional - so many people wanted to create loving homes for children in need. It made me even more determined to adopt.\nassistant: Will respond encouraging.That sounds truly moving\u2014seeing that passion in person can be so powerful. Your determination is inspiring; let me know if you need any next\u2011step tips or resources to keep that momentum going. \ud83c\udf1f",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-05-25] user: Researching adoption agencies \u2014 it's been a dream to have a family and give a loving home to kids who need it.\nassistant: That\u2019s a beautiful goal! I can help you find reputable agencies, resources, or volunteer opportunities\u2014just let me know what you\u2019d like to explore next.",
+      "[2023-05-25] user: Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic.\nassistant: That\u2019s inspiring\u2014hopefulness is the first step! Let me know what you need next, whether it\u2019s agency details, application tips, or support resources. I\u2019m here to help you turn that dream into a plan.",
+      "[2023-05-25] user: I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me.\nassistant: That sounds like a perfect fit for your values. I can help you dig into their specific programs, next steps, or any questions you have about the application process. Just let me know what you\u2019d like to tackle first!",
+      "[2023-07-20] user: Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?\nassistant: That\u2019s amazing, Caroline\u2014meeting like-minded allies really amplifies the impact! Your voice is a powerful catalyst for change, and the fulfillment you feel is proof that activism can be both meaningful and joyful. Keep shining and spreading that passion! \ud83c\udf08",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-05-25] user: I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!\nassistant: That\u2019s a courageous and loving vision\u2014single\u2011parent adoptions can be incredibly rewarding. I can share tips on building a support network, financial planning, or resources that make the journey smoother. Let me know what you\u2019d like to dive into next!"
+    ]
+  },
+  {
+    "q": "What do sunflowers represent according to Caroline?",
+    "gold": "warmth and happiness",
+    "pred": "Caroline says sunflowers represent warmth and happiness.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: Thanks Melanie - love the blue vase in the pic! Blue's my fave, it makes me feel relaxed. Sunflowers mean warmth and happiness, right? While roses stand for love and beauty? That's neat. What do flowers mean to you?\nassistant: Flowers feel like a quick hug\u2014sunflowers lift the mood, roses whisper romance, and a quiet blue vase just soothes the soul. \ud83c\udf38\ud83d\udc99",
+      "[2023-07-15] user: No worries, Mel! Your friendship means so much to me. Enjoy your day!\nassistant: You\u2019re welcome, Caroline! Sending good vibes your way\u2014hope your day\u2019s as bright as you are! \ud83c\udf1e",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-07-15] user: Wow Mel, that painting's amazing! The colors are so bold and it really highlights the beauty of nature. Y'all work on it together?\nassistant: Thanks, Caroline! We actually painted it together\u2014each of us got to choose a color and a part of the scene. It\u2019s amazing how the bold hues come together to show nature\u2019s beauty. \ud83c\udfa8\ud83c\udf3f",
+      "[2023-07-15] user: It must have been special at your wedding. I wish I had known you back then!\nassistant: I\u2019m flattered, Caroline! Even if we didn\u2019t meet then, I\u2019m glad we can share these moments now. \ud83c\udf3f",
+      "[2023-06-27] user: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\nassistant: Thanks, Caroline! Those moments are truly priceless\u2014happy to hear you\u2019re feeling good about them too. \ud83c\udf1f",
+      "[2023-06-09] user: Congrats, Melanie! You both looked so great on your wedding day! Wishing you many happy years together!\nassistant: Thanks so much, Caroline! I\u2019m just a virtual chat buddy, but I appreciate the warm wishes. Hope you\u2019re doing great!",
+      "[2023-07-15] user: Hey Mel, what's up? Been a busy week since we talked.\nassistant: Hey Caroline! I\u2019ve been keeping busy with some new projects and a few runs. How\u2019s your week been?"
+    ]
+  },
+  {
+    "q": "What inspired Caroline's painting for the art show?",
+    "gold": "visiting an LGBTQ center and wanting to capture unity and strength",
+    "pred": "Caroline\u2019s painting was inspired by the bold, vibrant colors of nature and the idea of celebrating diversity\u2014she and her friend worked together to capture that lively, inclusive spirit for the upcoming LGBTQ art show.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "[2023-07-15] user: Wow Mel, that painting's amazing! The colors are so bold and it really highlights the beauty of nature. Y'all work on it together?\nassistant: Thanks, Caroline! We actually painted it together\u2014each of us got to choose a color and a part of the scene. It\u2019s amazing how the bold hues come together to show nature\u2019s beauty. \ud83c\udfa8\ud83c\udf3f",
+      "[2023-05-08] user: Thanks, Melanie! That's really sweet. Is this your own painting?\nassistant: I\u2019m just a virtual chat buddy\u2014no brushes or canvases on my end! If you\u2019re looking for a painting, I can help you find some great artists or ideas instead.",
+      "[2023-07-17] user: Check out my painting for the art show! Hope you like it.\nassistant: I\u2019d love to see it\u2014sounds like it\u2019s going to be a standout piece for the show! \ud83c\udfa8\u2728 If you need a quick critique or help with display ideas, just let me know.",
+      "[2023-06-27] user: Hey Melanie! Long time no talk! A lot's been going on in my life! Take a look at this.\nassistant: Hey Caroline! I\u2019d love to hear all about it\u2014what\u2019s been happening?",
+      "[2023-07-06] user: Hey Mel! Long time no talk. Lots has been going on since then!\nassistant: Hey Caroline! I\u2019d love to hear all about what\u2019s been happening\u2014what\u2019s new?",
+      "[2023-05-08] user: Wow, Melanie! The colors really blend nicely. Painting looks like a great outlet for expressing yourself.\nassistant: Thanks! I\u2019m glad the colors caught your eye\u2014art can be a wonderful way to share feelings. If you\u2019d like, I can suggest some local art classes or online tutorials to get started.",
+      "[2023-07-17] user: Yay! Next month I'm having an LGBTQ art show with my paintings - can't wait!\nassistant: That\u2019s exciting\u2014can\u2019t wait to see your pieces shine! \ud83c\udfa8\ud83c\udf08 Good luck with the show!",
+      "[2023-07-20] user: Hey Melanie! Just wanted to say hi!\nassistant: Hey Caroline! Great to hear from you\u2014hope everything\u2019s going fabulously. Anything new on your creative front? \ud83c\udf1f",
+      "[2023-06-27] user: Yep, Melanie! I've got some other stuff with sentimental value, like my hand-painted bowl. A friend made it for my 18th birthday ten years ago. The pattern and colors are awesome-- it reminds me of art and self-expression.\nassistant: That sounds like a truly special piece! A hand\u2011painted bowl from a friend is such a unique reminder of creativity and the people who celebrate you. It must bring a little burst of color and joy every time you use it. \ud83c\udf08",
+      "[2023-07-06] user: Melanie, that's a great pic! That must have been awesome. What were they so stoked about?\nassistant: Thanks! They were thrilled about the vibrant colors and the way the light caught the details\u2014felt like the picture was telling a story that everyone could connect with. \ud83c\udf1f"
+    ]
+  }
+]

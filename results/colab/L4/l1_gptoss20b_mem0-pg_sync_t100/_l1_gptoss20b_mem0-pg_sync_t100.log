@@ -1,0 +1,116 @@
+Error in cursor context (psycopg3)
+Traceback (most recent call last):
+  File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/mem0/vector_stores/pgvector.py", line 235, in _get_cursor
+    yield cur
+  File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/mem0/vector_stores/pgvector.py", line 269, in create_col
+    cur.execute(
+  File "/content/Agent_Mem_Sys/memprof/tracer.py", line 196, in wrapped
+    return orig(*a, **k)
+           ^^^^^^^^^^^^^
+  File "/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(mem0_l1_gptoss20b_mem0_pg_sync_t100_entities, 2200) already exists.
+Entity boost search failed for one entity: duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(mem0_l1_gptoss20b_mem0_pg_sync_t100_entities, 2200) already exists.
+[mem0-pg] turn   0 t=    4.4s
+[mem0-pg] turn   1 t=    8.0s
+[mem0-pg] turn   2 t=   12.9s
+[mem0-pg] turn   3 t=   17.4s
+[mem0-pg] turn   4 t=   21.8s
+[mem0-pg] turn   5 t=   29.5s
+[mem0-pg] turn   6 t=   34.8s
+[mem0-pg] turn   7 t=   42.1s
+[mem0-pg] turn   8 t=   45.7s
+[mem0-pg] turn   9 t=   48.8s
+[mem0-pg] turn  10 t=   54.0s
+[mem0-pg] turn  11 t=   61.2s
+[mem0-pg] turn  12 t=   65.4s
+[mem0-pg] turn  13 t=   76.1s
+[mem0-pg] turn  14 t=   82.1s
+[mem0-pg] turn  15 t=   86.9s
+[mem0-pg] turn  16 t=   90.9s
+[mem0-pg] turn  17 t=   97.0s
+[mem0-pg] turn  18 t=  105.7s
+[mem0-pg] turn  19 t=  110.8s
+[mem0-pg] turn  20 t=  116.8s
+[mem0-pg] turn  21 t=  121.7s
+[mem0-pg] turn  22 t=  126.4s
+[mem0-pg] turn  23 t=  135.1s
+[mem0-pg] turn  24 t=  139.2s
+[mem0-pg] turn  25 t=  143.6s
+[mem0-pg] turn  26 t=  148.3s
+[mem0-pg] turn  27 t=  154.1s
+[mem0-pg] turn  28 t=  157.5s
+[mem0-pg] turn  29 t=  160.2s
+[mem0-pg] turn  30 t=  163.8s
+[mem0-pg] turn  31 t=  167.8s
+[mem0-pg] turn  32 t=  172.6s
+[mem0-pg] turn  33 t=  175.4s
+[mem0-pg] turn  34 t=  183.0s
+[mem0-pg] turn  35 t=  191.1s
+[mem0-pg] turn  36 t=  204.1s
+[mem0-pg] turn  37 t=  212.1s
+[mem0-pg] turn  38 t=  215.6s
+[mem0-pg] turn  39 t=  219.5s
+[mem0-pg] turn  40 t=  223.1s
+[mem0-pg] turn  41 t=  230.0s
+[mem0-pg] turn  42 t=  236.1s
+[mem0-pg] turn  43 t=  239.1s
+[mem0-pg] turn  44 t=  243.2s
+[mem0-pg] turn  45 t=  246.2s
+[mem0-pg] turn  46 t=  250.2s
+[mem0-pg] turn  47 t=  256.9s
+[mem0-pg] turn  48 t=  260.9s
+[mem0-pg] turn  49 t=  265.2s
+[mem0-pg] turn  50 t=  269.0s
+[mem0-pg] turn  51 t=  278.1s
+[mem0-pg] turn  52 t=  281.7s
+[mem0-pg] turn  53 t=  285.1s
+[mem0-pg] turn  54 t=  290.0s
+[mem0-pg] turn  55 t=  298.0s
+[mem0-pg] turn  56 t=  304.6s
+[mem0-pg] turn  57 t=  312.0s
+[mem0-pg] turn  58 t=  315.7s
+[mem0-pg] turn  59 t=  319.6s
+[mem0-pg] turn  60 t=  327.3s
+[mem0-pg] turn  61 t=  329.5s
+[mem0-pg] turn  62 t=  332.0s
+[mem0-pg] turn  63 t=  336.6s
+[mem0-pg] turn  64 t=  340.0s
+[mem0-pg] turn  65 t=  345.8s
+[mem0-pg] turn  66 t=  352.3s
+[mem0-pg] turn  67 t=  354.8s
+[mem0-pg] turn  68 t=  359.5s
+[mem0-pg] turn  69 t=  364.6s
+[mem0-pg] turn  70 t=  377.3s
+[mem0-pg] turn  71 t=  388.4s
+[mem0-pg] turn  72 t=  395.5s
+[mem0-pg] turn  73 t=  406.6s
+[mem0-pg] turn  74 t=  412.0s
+[mem0-pg] turn  75 t=  416.9s
+[mem0-pg] turn  76 t=  425.0s
+[mem0-pg] turn  77 t=  431.4s
+[mem0-pg] turn  78 t=  440.7s
+[mem0-pg] turn  79 t=  446.8s
+[mem0-pg] turn  80 t=  453.4s
+[mem0-pg] turn  81 t=  461.3s
+[mem0-pg] turn  82 t=  467.8s
+[mem0-pg] turn  83 t=  472.3s
+[mem0-pg] turn  84 t=  477.1s
+[mem0-pg] turn  85 t=  481.2s
+[mem0-pg] turn  86 t=  486.1s
+[mem0-pg] turn  87 t=  495.8s
+[mem0-pg] turn  88 t=  499.3s
+[mem0-pg] turn  89 t=  503.2s
+[mem0-pg] turn  90 t=  511.1s
+[mem0-pg] turn  91 t=  516.1s
+[mem0-pg] turn  92 t=  519.9s
+[mem0-pg] turn  93 t=  524.9s
+[mem0-pg] turn  94 t=  531.3s
+[mem0-pg] turn  95 t=  536.4s
+[mem0-pg] turn  96 t=  538.6s
+[mem0-pg] turn  97 t=  543.8s
+[mem0-pg] turn  98 t=  553.8s
+[mem0-pg] turn  99 t=  560.5s
+{"n_turns": 100, "n_qa": 47, "count": 157, "total_s": 615.1927671079998}

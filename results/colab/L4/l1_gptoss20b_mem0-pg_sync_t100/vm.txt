@@ -1,0 +1,1 @@
+boot=750da98a gpu=NVIDIA L4 profile=gptoss20b
