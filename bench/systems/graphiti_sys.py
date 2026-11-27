@@ -56,12 +56,14 @@ def _make_tracer():
 
 
 def _fmt_fact(e) -> str:
-    """A fact with its validity interval, as Graphiti's own search_results_to_context_string presents it
-    (valid_at defaults to the episode's reference time, so every fact carries a date)."""
+    """A fact with its validity interval, as Graphiti's own search_results_to_context_string presents it.
+    The extractor may leave valid_at empty (its date pass sees only the fact text, which often drops "yesterday"
+    etc.); the edge still stores the episode's reference_time, shown then like rag-pg's dated turns."""
     d = lambda t: t.strftime("%Y-%m-%d") if t else None  # noqa: E731
-    if not e.valid_at:
-        return e.fact
-    return f"{e.fact} (valid {d(e.valid_at)} - {d(e.invalid_at) or 'present'})"
+    if e.valid_at or e.invalid_at:
+        return f"{e.fact} (valid {d(e.valid_at) or '?'} - {d(e.invalid_at) or 'present'})"
+    rt = getattr(e, "reference_time", None)
+    return f"{e.fact} (stated {d(rt)})" if rt else e.fact
 
 
 class GraphitiSystem(MemSystem):
