@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 04:43:03Z",
+ "time": "2026-11-27 05:43:03Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
- "code": "821542b Colab status: layer-1 runtime building llama.cpp",
+ "code": "39d46ab Colab layer 1: rag-pg and mem0 l1 t100 runs fetched",
  "boot": "750da98a",
- "runtime_up_h": 1.18,
+ "runtime_up_h": 2.18,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -13,39 +13,56 @@
   "lme",
   "score budget # after lme"
  ],
- "done": [],
+ "done": [
+  "l1",
+  "score budget # after l1"
+ ],
  "gave_up": [],
  "tries": {},
- "current_line": "l1",
+ "current_line": "lme",
  "attempt": 1,
- "current_run": "l1_gptoss20b_graphiti_sync_t100",
+ "current_run": "lme_gptoss20b_mem0-local_i70_t0",
  "suite_alive": true,
- "minutes_since_last_write": 0.0,
+ "minutes_since_last_write": 0.1,
  "finished_runs": [
+  "l1_gptoss20b_graphiti_sync_t100",
   "l1_gptoss20b_mem0-local_sync_t100",
   "l1_gptoss20b_mem0-pg_sync_t100",
   "l1_gptoss20b_mem0-qdrant_sync_t100",
   "l1_gptoss20b_rag-pg_sync_t100"
  ],
- "failed_lines": [],
+ "failed_lines": [
+  "[05:19:25] FAILED lme_gptoss20b_rag-pg_i70_t0 rc=1:   File \"/content/Agent_Mem_Sys/.venv/lib/python3.12/site-packages/openai/_base_client.py\", line 1248, in request     raise self._make_status_error_from_response(err.response) from None openai.BadRequestError: Error code: 400 - request (4066 tokens) exceeds the available context size (2048 tokens), t"
+ ],
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "18 acked",
+  "why": "19 acked",
   "missing": [
-   "l1_gptoss20b_mem0-qdrant_sync_t100"
+   "l1_gptoss20b_graphiti_sync_t100",
+   "l1_gptoss20b_graphiti_sync_t100+late1",
+   "l1_gptoss20b_mem0-local_sync_t100+late1",
+   "l1_gptoss20b_mem0-pg_sync_t100+late1",
+   "l1_gptoss20b_mem0-qdrant_sync_t100+late1",
+   "l1_gptoss20b_rag-pg_sync_t100+late1"
   ]
  },
  "disk_free_gb": 220.5,
  "stop": null,
- "hours_since_start": 1.13,
+ "hours_since_start": 2.13,
  "max_hours": 5.0,
- "ram_avail_gb": 38.2,
- "gpu": "NVIDIA L4, 90 %, 14294 MiB, 23034 MiB, 74.43 W",
+ "ram_avail_gb": 39.3,
+ "gpu": "NVIDIA L4, 91 %, 14286 MiB, 23034 MiB, 72.83 W",
  "outbox_runs": [
+  "l1_gptoss20b_graphiti_sync_t100",
+  "l1_gptoss20b_graphiti_sync_t100+late1",
   "l1_gptoss20b_mem0-local_sync_t100",
+  "l1_gptoss20b_mem0-local_sync_t100+late1",
   "l1_gptoss20b_mem0-pg_sync_t100",
+  "l1_gptoss20b_mem0-pg_sync_t100+late1",
   "l1_gptoss20b_mem0-qdrant_sync_t100",
-  "l1_gptoss20b_rag-pg_sync_t100"
+  "l1_gptoss20b_mem0-qdrant_sync_t100+late1",
+  "l1_gptoss20b_rag-pg_sync_t100",
+  "l1_gptoss20b_rag-pg_sync_t100+late1"
  ]
 }

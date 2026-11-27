@@ -64,10 +64,11 @@ print(json.dumps({"load_wall_s": float(sys.argv[3]) - float(sys.argv[2]),
 PY
   cat "$LOGD/llm.load.json"
 }
-emb() {
+emb() {  # --kv-unified: one request may use the whole EMB_CTX (raw LongMemEval turns reach 4-10k tokens;
+          # -np 4 without it gave each slot only 1/4 of the context)
   pkill -f "llama-server.*--port 8001" 2>/dev/null || true; sleep 1
   nohup "$BIN/llama-server" -m "$EMB_GGUF" --alias local-embed --port 8001 --host 127.0.0.1 --embeddings \
-    --pooling last -c 8192 -b 8192 -ub 8192 -np 4 -ngl "$EMB_NGL" -t "$THREADS" --metrics --no-webui \
+    --pooling last -c "${EMB_CTX:-16384}" -b "${EMB_CTX:-16384}" -ub "${EMB_CTX:-16384}" -np 4 --kv-unified -ngl "$EMB_NGL" -t "$THREADS" --metrics --no-webui \
     ${EMB_EXTRA:-} >"$LOGD/emb.log" 2>&1 </dev/null &
   wait_http http://127.0.0.1:8001/health "embedder ($EMB_FILE)" 1500 "$LOGD/emb.log" $!
 }

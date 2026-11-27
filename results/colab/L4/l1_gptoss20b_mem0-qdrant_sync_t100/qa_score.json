@@ -1,0 +1,431 @@
+{
+ "n": 47,
+ "f1": 0.16091099102162673,
+ "judge_acc": 0.5957446808510638,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "When did Caroline go to the LGBTQ support group?",
+   "gold": "7 May 2023",
+   "pred": "Caroline attended the LGBTQ support group on **May\u202f7,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.5,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What fields would Caroline be likely to pursue in her educaton?",
+   "gold": "Psychology, counseling certification",
+   "pred": "Caroline would probably focus on fields that support her counseling/mental\u2011health goals, such as:\n\n- **Counseling or Clinical Psychology** \u2013 programs that train her to assess, diagnose, and treat mental\u2011health issues.  \n- **Social Work (MSW)** \u2013 offers a broader community\u2011based perspective and prepares her for case management and advocacy.  \n- **School or Youth Counseling** \u2013 if she wants to work directly with children and teens.  \n- **Mental\u2011Health Counseling or Marriage & Family Therapy** \u2013 specialized tracks that emphasize therapeutic techniques and family dynamics.  \n\nThese areas align with her desire to help others navigate their own journeys.",
+   "qtype": "locomo-cat3",
+   "f1": 0.04597701149425287,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What did Caroline research?",
+   "gold": "Adoption agencies",
+   "pred": "Caroline has been researching two main areas:  \n1. **Adoption agencies** \u2013 looking into options that could help her build a loving family and support children in need.  \n2. **Counseling and mental\u2011health career paths** \u2013 exploring programs, internships, and volunteer opportunities so she can help others navigate their own journeys.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0851063829787234,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline's identity?",
+   "gold": "Transgender woman",
+   "pred": "I\u2019m not aware of anyone named Caroline in our conversation, so I don\u2019t have any information about her identity. If you can give me a bit more context, I\u2019ll do my best to help!",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What is Caroline's relationship status?",
+   "gold": "Single",
+   "pred": "I\u2019m not aware of any information about Caroline\u2019s relationship status.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline give a speech at a school?",
+   "gold": "The week before 9 June 2023",
+   "pred": "I\u2019m not aware of any record of Caroline giving a speech at a school.",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline meet up with her friends, family, and mentors?",
+   "gold": "The week before 9 June 2023",
+   "pred": "Caroline met up with her friends, family, and mentors last week for a picnic.",
+   "qtype": "locomo-cat2",
+   "f1": 0.11764705882352941,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "How long has Caroline had her current group of friends for?",
+   "gold": "4 years",
+   "pred": "Caroline has had her current group of friends for about four years, since she moved from her home country.",
+   "qtype": "locomo-cat2",
+   "f1": 0.09523809523809525,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Where did Caroline move from 4 years ago?",
+   "gold": "Sweden",
+   "pred": "Caroline moved from her home country four years ago.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "How long ago was Caroline's 18th birthday?",
+   "gold": "10 years ago",
+   "pred": "Caroline\u2019s 18th birthday was ten years ago.",
+   "qtype": "locomo-cat2",
+   "f1": 0.4,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What career path has Caroline decided to persue?",
+   "gold": "counseling or mental health for Transgender people",
+   "pred": "I\u2019m not aware of any information about a person named Caroline or the career path she\u2019s chosen. If you have more context or details, feel free to share!",
+   "qtype": "locomo-cat1",
+   "f1": 0.060606060606060615,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+   "gold": "Likely no",
+   "pred": "Based on what you\u2019ve shared, the support you received was a key catalyst for your interest in counseling. If that support hadn\u2019t been there, it\u2019s likely you would still feel drawn to helping others\u2014because you\u2019ve already seen how powerful a good support system can be\u2014but you might have taken a different path or needed a different trigger to pursue it. In short, the desire to help people would probably remain, but the specific decision to become a counselor might have emerged later or through another experience.",
+   "qtype": "locomo-cat3",
+   "f1": 0.025,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When is Caroline going to the transgender conference?",
+   "gold": "July 2023",
+   "pred": "I\u2019m not aware of any plans for someone named Caroline to attend a transgender conference. If you have more details or a specific event in mind, let me know and I\u2019ll try to help!",
+   "qtype": "locomo-cat2",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline have a picnic?",
+   "gold": "The week before 6 July 2023",
+   "pred": "Caroline had the picnic last week.",
+   "qtype": "locomo-cat2",
+   "f1": 0.20000000000000004,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+   "gold": "Yes, since she collects classic children's books",
+   "pred": "I don\u2019t have any record of Caroline\u2019s collection, so I can\u2019t say for sure. If she\u2019s building a kids\u2019 library like you, she might include a mix of classics and modern titles, but I don\u2019t know whether Dr.\u202fSeuss is part of it.",
+   "qtype": "locomo-cat3",
+   "f1": 0.0425531914893617,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline go to the LGBTQ conference?",
+   "gold": "10 July 2023",
+   "pred": "Caroline attended the LGBTQ conference on **July\u202f10,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.5454545454545454,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Would Caroline pursue writing as a career option?",
+   "gold": "LIkely no; though she likes reading, she wants to be a counselor",
+   "pred": "No \u2013 the user\u2019s focus is on counseling and mental\u2011health work, especially supporting trans people and the LGBTQ+ community. Writing isn\u2019t mentioned as a career path.",
+   "qtype": "locomo-cat3",
+   "f1": 0.0625,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "When did Caroline go to the adoption meeting?",
+   "gold": "The friday before 15 July 2023",
+   "pred": "Caroline attended the adoption meeting on **July\u202f14,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.3076923076923077,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What LGBTQ+ events has Caroline participated in?",
+   "gold": "Pride parade, school speech, support group",
+   "pred": "Caroline has taken part in several LGBTQ+ events, including:\n\n- A charity race that raises awareness for mental health  \n- A recent pride event (described as awesome, encouraging, and filled with love)  \n- The pride parade on **June\u202f27,\u202f2023**  \n- An LGBTQ+ conference on **July\u202f10,\u202f2023**  \n\nThese activities have helped her feel accepted, inspired, and connected to the community.",
+   "qtype": "locomo-cat1",
+   "f1": 0.07142857142857142,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline go to a pride parade during the summer?",
+   "gold": "The week before 3 July 2023",
+   "pred": "Caroline attended a pride parade on **June\u202f27,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.15384615384615385,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What events has Caroline participated in to help children?",
+   "gold": "Mentoring program, school speech",
+   "pred": "I\u2019m not aware of any events that Caroline has participated in to help children.",
+   "qtype": "locomo-cat1",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline join a mentorship program?",
+   "gold": "The weekend before 17 July 2023",
+   "pred": "Caroline joined a mentorship program for LGBTQ youth on **July\u202f15\u201316,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.25000000000000006,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "In what ways is Caroline participating in the LGBTQ community?",
+   "gold": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+   "pred": "Caroline is actively involved in the LGBTQ community in several ways:\n\n1. **Mentorship** \u2013 She joined a mentorship program for LGBTQ youth on July\u202f15\u201116, 2023, and reports that it\u2019s rewarding and a way to give back.  \n2. **Artistic Expression** \u2013 After visiting an LGBTQ center, she painted a new artwork depicting unity and strength among community members.  \n3. **Conference Participation** \u2013 She attended an LGBTQ conference on July\u202f10, 2023, where she felt fully accepted and expressed gratitude for the welcoming environment.  \n4. **Activist Group** \u2013 She helped found and participates in the \u201cConnected LGBTQ Activists\u201d group, which meets regularly, plans events, and campaigns to support each other and advance LGBTQ causes.  \n5. **Community Support** \u2013 Through these activities, she feels accepted, gains courage to embrace herself, and is inspired to consider a counseling/mental\u2011health career to help others.",
+   "qtype": "locomo-cat1",
+   "f1": 0.07407407407407407,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "When did Caroline join a new activist group?",
+   "gold": "The Tuesday before 20 July 2023",
+   "pred": "Caroline joined the new activist group on **July\u202f18,\u202f2023**.",
+   "qtype": "locomo-cat2",
+   "f1": 0.2857142857142857,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What did the charity race raise awareness for?",
+   "gold": "mental health",
+   "pred": "The race was all about raising awareness for mental health.",
+   "qtype": "locomo-cat4",
+   "f1": 0.3636363636363636,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What are Caroline's plans for the summer?",
+   "gold": "researching adoption agencies",
+   "pred": "I\u2019m not aware of any plans for someone named Caroline from our previous chats. If you have more details or want to share what she\u2019s up to, I\u2019d be happy to help!",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What type of individuals does the adoption agency Caroline is considering support?",
+   "gold": "LGBTQ+ individuals",
+   "pred": "Caroline\u2019s agency is focused on supporting LGBTQ+ individuals who are looking to adopt.",
+   "qtype": "locomo-cat4",
+   "f1": 0.2666666666666667,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "Why did Caroline choose the adoption agency?",
+   "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+   "pred": "Caroline chose the adoption agency because its focus on supporting LGBTQ+ families and its inclusive, supportive environment resonated with her. The agency\u2019s commitment to helping families like hers made it the right fit for her adoption journey.",
+   "qtype": "locomo-cat4",
+   "f1": 0.14634146341463414,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Caroline excited about in the adoption process?",
+   "gold": "creating a family for kids who need one",
+   "pred": "Caroline is excited about the progress she\u2019s making toward turning her adoption dream into reality\u2014especially the supportive, LGBTQ\u2011friendly agency she\u2019s chosen and the inspiring council meeting she attended. She\u2019s looking forward to the hard work ahead and to creating a loving home for a child.",
+   "qtype": "locomo-cat4",
+   "f1": 0.09090909090909091,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What does Caroline's necklace symbolize?",
+   "gold": "love, faith, and strength",
+   "pred": "Caroline\u2019s necklace, given to her by her grandmother in Sweden, symbolizes love, faith, and strength\u2014reminding her of her roots and the support of her family.",
+   "qtype": "locomo-cat4",
+   "f1": 0.16,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What country is Caroline's grandma from?",
+   "gold": "Sweden",
+   "pred": "Caroline\u2019s grandma is from Sweden.",
+   "qtype": "locomo-cat4",
+   "f1": 0.33333333333333337,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What was grandma's gift to Caroline?",
+   "gold": "necklace",
+   "pred": "Caroline\u2019s grandma gave her a necklace.",
+   "qtype": "locomo-cat4",
+   "f1": 0.33333333333333337,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What is Melanie's hand-painted bowl a reminder of?",
+   "gold": "art and self-expression",
+   "pred": "The bowl reminds you of art and self\u2011expression.",
+   "qtype": "locomo-cat4",
+   "f1": 0.25,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+   "gold": "working with trans people, helping them accept themselves and supporting their mental health",
+   "pred": "Caroline is focused on counseling and mental\u2011health services that support transgender individuals\u2014helping them accept themselves, build self\u2011esteem, and navigate gender\u2011affirming care\u2014while also creating welcoming support groups and safe spaces for broader mental\u2011health growth.",
+   "qtype": "locomo-cat4",
+   "f1": 0.14285714285714288,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What workshop did Caroline attend recently?",
+   "gold": "LGBTQ+ counseling workshop",
+   "pred": "Caroline attended an LGBTQ+ counseling workshop on June\u202f23,\u202f2023.",
+   "qtype": "locomo-cat4",
+   "f1": 0.5,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What was discussed in the LGBTQ+ counseling workshop?",
+   "gold": "therapeutic methods and how to best work with trans people",
+   "pred": "At the workshop on June\u202f23, experts covered a range of therapeutic methods tailored for trans clients\u2014things like affirmative counseling, trauma\u2011informed care, and culturally competent communication. They also stressed the importance of creating safe, welcoming spaces for LGBTQ+ clients, sharing practical tips for setting up an inclusive environment and building trust. The session left you feeling inspired and enlightened about how to support trans people effectively.",
+   "qtype": "locomo-cat4",
+   "f1": 0.17910447761194032,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What motivated Caroline to pursue counseling?",
+   "gold": "her own journey and the support she received, and how counseling improved her life",
+   "pred": "Caroline was motivated to pursue counseling by the recent community engagement she had with the LGBTQ+ community. Hearing and sharing stories there inspired her to use her own personal journey to help others and consider a career in counseling and mental\u2011health work.",
+   "qtype": "locomo-cat4",
+   "f1": 0.2553191489361702,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What kind of place does Caroline want to create for people?",
+   "gold": "a safe and inviting place for people to grow",
+   "pred": "Caroline wants to create a **safe, inviting place where people can grow**\u2014a supportive environment that nurtures mental health and personal development.",
+   "qtype": "locomo-cat4",
+   "f1": 0.3846153846153846,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What kind of books does Caroline have in her library?",
+   "gold": "kids' books - classics, stories from different cultures, educational books",
+   "pred": "I\u2019m not aware of a person named Caroline in the context of the library you\u2019re building. If you meant someone else or have a specific collection in mind, let me know!",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What book did Caroline recommend to Melanie?",
+   "gold": "\"Becoming Nicole\"",
+   "pred": "Caroline recommended **\u201cCharlotte\u2019s\u202fWeb.\u201d**",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What did Caroline take away from the book \"Becoming Nicole\"?",
+   "gold": "Lessons on self-acceptance and finding support",
+   "pred": "Caroline said that *Becoming Nicole* gave her a powerful sense of hope and inspiration.  She felt that the story of a trans girl and her family showed her that it\u2019s possible to find a path that feels true to oneself, and it reminded her to keep going and never give up.",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What are the new shoes that Melanie got used for?",
+   "gold": "Running",
+   "pred": "I\u2019m not sure\u2014there haven\u2019t been any details shared about new shoes for Melanie. If you have more info or want to ask something else, let me know!",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What is Melanie's reason for getting into running?",
+   "gold": "To de-stress and clear her mind",
+   "pred": "Melanie started running as a moving meditation and a way to raise awareness for mental\u2011health issues.",
+   "qtype": "locomo-cat4",
+   "f1": 0.1111111111111111,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What creative project do Mel and her kids do together besides pottery?",
+   "gold": "painting",
+   "pred": "Besides pottery, Mel and her kids love doing story\u2011driven puppet shows, quick collage sessions with recycled paper, and simple musical story improvisations using household items.",
+   "qtype": "locomo-cat4",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What did Caroline see at the council meeting for adoption?",
+   "gold": "many people wanting to create loving homes for children in need",
+   "pred": "Caroline saw a heartfelt, inspiring discussion at the council meeting on July\u202f14,\u202f2023. The session highlighted the emotional journey of prospective parents, shared stories of families who had adopted, and emphasized the agency\u2019s commitment to supporting LGBTQ+ parents. It left her feeling more determined and hopeful about pursuing adoption.",
+   "qtype": "locomo-cat4",
+   "f1": 0.037037037037037035,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  },
+  {
+   "q": "What do sunflowers represent according to Caroline?",
+   "gold": "warmth and happiness",
+   "pred": "According to you, Caroline, sunflowers represent warmth and happiness.",
+   "qtype": "locomo-cat4",
+   "f1": 0.4,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  },
+  {
+   "q": "What inspired Caroline's painting for the art show?",
+   "gold": "visiting an LGBTQ center and wanting to capture unity and strength",
+   "pred": "Caroline was inspired by her visit to an LGBTQ center. She wanted to capture the sense of unity and strength that she felt among community members, so her new artwork reflects that solidarity and the vibrant energy of the community.",
+   "qtype": "locomo-cat4",
+   "f1": 0.2857142857142857,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}

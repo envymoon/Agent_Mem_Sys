@@ -1,0 +1,5 @@
+l1_gptoss20b_graphiti_sync_t100+late1
+l1_gptoss20b_mem0-local_sync_t100+late1
+l1_gptoss20b_mem0-pg_sync_t100+late1
+l1_gptoss20b_mem0-qdrant_sync_t100+late1
+l1_gptoss20b_rag-pg_sync_t100+late1
