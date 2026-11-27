@@ -1,6 +1,10 @@
 {
  "done": [
-  "pilot"
+  "pilot",
+  "l1",
+  "score budget # after l1",
+  "lme",
+  "score budget # after lme"
  ],
  "gave_up": [],
  "tries": {}

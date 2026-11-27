@@ -11,15 +11,15 @@
 #   rates      llama-bench pp512 / tg64 at KV depth 0..ctx for PROFILE: the per-token costs the latency model
 #              (analysis/latency_model.py) uses. GPU-only, no storage claims -> also the suite to run on a
 #              bigger cloud GPU for the what-if / cross-check                                   ~5 min
-#   rsplit     l1 again (+ LongMemEval item 70, rag-pg + mem0-pg) as repetition _r2, with the reasoning split   ~1.5 h
-#   l1         main profile, sync write path, every system, TURNS turns + QA questions        ~2-4 h
+#   kprof      GPU kernel level: ncu speed-of-light counters (llama-bench) + nsys trace of KPROF_TURNS per system  ~40 min
+#   l1         main profile, WRITE path (async by default), every system, TURNS turns + QA questions        ~2-4 h
 #   l2         foreground/background interference: async memorize, think time 0 / 5 s         ~2 h
 #   l3         KV placement on real workloads (mem0-pg, graphiti; async; T3 turns):
 #              base | no prefix cache | no host-RAM cache | KV q8_0 | KV in host RAM | 8k ctx   ~3 h
 #   l4         model choice: q8b, llama8b, moe30b (if downloaded) on mem0-pg + graphiti      ~2-3 h
 #   model      latency model per profile (l1 / l4 runs + rates + fio): validation error and GPU / disk what-ifs.
 #              Extra comparisons: MODEL_GPU="A100=dir/llama_bench.json"  MODEL_DISK="native=dir/fio_fsyncwrite.json"
-#   lme        LongMemEval-S (standard long-history benchmark): LME_ITEMS haystacks x LME_SYSTEMS, sync, 1 QA each;
+#   lme        LongMemEval-S (standard long-history benchmark): LME_ITEMS haystacks x LME_SYSTEMS, WRITE path, 1 QA each;
 #              default items 70 / 233 / 366 = first multi-session / temporal-reasoning / knowledge-update question;
 #              LME_TURNS=0 -> full haystack (~245 user turns), N -> evidence + distractor sessions up to N turns
 #   score      QA accuracy of every run with a qa.json (token F1 + LLM judge with the local model)
@@ -30,7 +30,7 @@
 #
 # Colab / cloud: SYNC_DIR=<Drive dir> mirrors OUT there after every run (and OUT is restored from it on start, so
 # a new runtime resumes); REP=2 suffixes run names (_r2) to repeat key runs on another VM for variance.
-# env: PROFILE=q4b  TURNS=100  QA=50  T3=60  T4=60  SIZES=1000,10000,50000,100000  OUT=results/local/<host>-<wsl|native>
+# env: PROFILE=q4b  WRITE=async|sync  THINK=5  TURNS=100  QA=50  T3=60  T4=60  SIZES=1000,10000,50000,100000  OUT=results/local/<host>-<wsl|native>
 set -uo pipefail
 SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 cd "$(dirname "$0")/../.."
@@ -45,6 +45,10 @@ export SLOT_SAVE=${SLOT_SAVE:-$SVC_DATA/kv_slots}
 export MEMPROF_VLLM_METRICS=${MEMPROF_VLLM_METRICS:-http://127.0.0.1:8000}   # hwmon scrapes llama.cpp /metrics
 OUT=${OUT:-results/local/$(hostname)-$(grep -qi microsoft /proc/version && echo wsl || echo native)}
 TURNS=${TURNS:-100}; QA=${QA:-50}; CONV=${CONV:-0}
+# write path of l1 / lme: async (default: memorize in a background worker while the user "thinks" THINK s between
+# turns, as a deployed agent does) or sync (memorize inside the turn; the layer-1 runs of 2026-11-27)
+WRITE=${WRITE:-async}; THINK=${THINK:-5}
+if [ "$WRITE" = async ]; then WARGS=(--async-add --think "$THINK"); WTAG="async_think${THINK}"; else WARGS=(); WTAG=sync; fi
 SYSTEMS=${SYSTEMS:-"rag-pg mem0-local mem0-pg mem0-qdrant"}   # graphiti: add with SYSTEMS="... graphiti"
 PY=.venv/bin/python
 L=scripts/local/start_llama.sh
@@ -150,7 +154,8 @@ PYX
     done ;;
   lme) stack
       for it in ${LME_ITEMS:-70 233 366}; do for s in ${LME_SYSTEMS:-$SYSTEMS}; do
-        run "lme_${PROFILE}_${s}_i${it}_t${LME_TURNS:-0}" "$s" --dataset longmemeval --item "$it" --turns "${LME_TURNS:-0}" --qa 1
+        run "lme_${PROFILE}_${s}_i${it}_t${LME_TURNS:-0}$([ "$WRITE" = sync ] || echo "_$WTAG")" "$s" \
+          --dataset longmemeval --item "$it" --turns "${LME_TURNS:-0}" --qa 1 "${WARGS[@]}"
       done; done ;;
   score) stack
       for d in "$OUT"/*/; do [ -f "$d/qa.json" ] && [ ! -f "$d/qa_score.json" ] && $PY analysis/qa_score.py "$d" >>"$OUT/suite.log" 2>&1; done
@@ -163,10 +168,30 @@ PYX
     LME_ITEMS=${PILOT_LME_ITEMS:-0} LME_TURNS=${PILOT_LME_TURNS:-60} OUT=$OUT "$SELF" lme || prc=1
     OUT=$OUT "$SELF" score budget || prc=1
     [ $prc = 0 ] || { log "pilot: a step failed"; exit 1; } ;;
-  rsplit)  # repetition r2 of l1 + LongMemEval item 70 with the proxy's reasoning/answer decode split (t_answer_ns)
-    REP=${REP:-2} OUT=$OUT "$SELF" l1 && \
-      REP=${REP:-2} LME_ITEMS=${RS_LME_ITEMS:-70} LME_SYSTEMS="${RS_LME_SYSTEMS:-rag-pg mem0-pg}" OUT=$OUT "$SELF" lme ;;
-  l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_sync_t$TURNS" "$s" --turns "$TURNS" --qa "$QA"; done ;;
+  kprof)  # GPU kernel level. (1) Nsight Compute hardware counters (speed-of-light: DRAM / compute throughput %) of
+    # the main kernels in llama-bench decode (tg) and prefill (pp), LLM server stopped to free the GPU;
+    # (2) Nsight Systems CUDA trace of the LLM server for KPROF_TURNS of a short run per system (WRITE path),
+    # attributed to request stages by analysis/kernel_profile.py. Traces stay in <run>/store (not downloaded).
+    command -v nsys >/dev/null || { log "kprof: nsys not installed (setup.sh NSIGHT step)"; exit 1; }
+    BINL=${LLAMA_BIN:-$HOME/llama.cpp/build/bin}
+    if command -v ncu >/dev/null && [ ! -s "$OUT/kprof_ncu/tg.csv" ]; then
+      $L stop >/dev/null 2>&1; mkdir -p "$OUT/kprof_ncu"
+      for m in "tg:-p 0 -n 32" "pp:-p 1024 -n 0"; do
+        timeout 1800 ncu --section SpeedOfLight -k "regex:mul_mat|flash_attn|quantize|norm|soft_max|rope" \
+          --launch-skip "${NCU_SKIP:-300}" --launch-count "${NCU_COUNT:-80}" --csv --page raw \
+          "$BINL/llama-bench" -m "$LLM_GGUF" -ngl 99 -fa 1 -r 1 ${m#*:} \
+          >"$OUT/kprof_ncu/${m%%:*}.csv" 2>"$OUT/kprof_ncu/${m%%:*}.err"
+        log "kprof ncu ${m%%:*}: rc=$? $(grep -m1 -o 'ERR_NVGPUCTRPERM\|==ERROR==.*' "$OUT/kprof_ncu/${m%%:*}.err" | head -1)"
+      done
+    fi
+    export NSYS=1; stack
+    for s in ${KPROF_SYSTEMS:-$SYSTEMS}; do
+      n="kprof_${PROFILE}_${s}_${WTAG}"
+      run "$n" "$s" --turns "${KPROF_T:-16}" --qa 0 "${WARGS[@]}" --kprof "${KPROF_TURNS:-10:13}"
+      [ -f "$OUT/$n/kernel_profile.json" ] || $PY analysis/kernel_profile.py "$OUT/$n" >"$OUT/$n/kernel_profile.md" 2>&1
+    done
+    unset NSYS; stack ;;   # leave a normal (untraced) server for whatever runs next
+  l1) stack; for s in $SYSTEMS; do run "l1_${PROFILE}_${s}_${WTAG}_t$TURNS" "$s" --turns "$TURNS" --qa "$QA" "${WARGS[@]}"; done ;;
   l2) stack
       for s in rag-pg mem0-local mem0-pg graphiti; do
         run "l2_${PROFILE}_${s}_async" "$s" --turns "$TURNS" --qa 0 --async-add

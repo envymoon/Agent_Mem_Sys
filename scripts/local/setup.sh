@@ -38,6 +38,24 @@ if nvidia-smi >/dev/null 2>&1; then
   fi
   nvcc --version | tail -1
   GPU=1
+  if [ "${NSIGHT:-1}" = 1 ]; then  # kernel-level profiling (run_local_suite.sh kprof): Nsight Systems + Compute CLIs
+    for t in nsys ncu; do command -v $t >/dev/null || { f=$(ls -d /usr/local/cuda/bin/$t /opt/nvidia/nsight-*/*/bin/$t \
+      /opt/nvidia/nsight-*/*/$t 2>/dev/null | sort -V | tail -1); [ -n "$f" ] && ln -sf "$f" /usr/local/bin/$t; }; done
+    if ! command -v nsys >/dev/null || ! command -v ncu >/dev/null; then
+      if ! apt-cache policy 2>/dev/null | grep -q developer.download.nvidia.com/compute/cuda; then
+        . /etc/os-release
+        curl -fsSL -o /tmp/cuda-keyring.deb \
+          "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu${VERSION_ID//./}/x86_64/cuda-keyring_1.1-1_all.deb" \
+          && dpkg -i /tmp/cuda-keyring.deb >/dev/null && apt-get update -q >/dev/null
+      fi
+      pk=$(apt-cache search --names-only '^nsight-systems-[0-9]' | awk '{print $1}' | sort -V | tail -1)
+      pc=$(apt-cache search --names-only '^nsight-compute-[0-9]' | awk '{print $1}' | sort -V | tail -1)
+      apt-get install -y -q $pk $pc >/dev/null 2>&1 || echo "  nsight install failed ($pk $pc)"
+      for t in nsys ncu; do command -v $t >/dev/null || { f=$(ls -d /opt/nvidia/nsight-*/*/bin/$t /opt/nvidia/nsight-*/*/$t \
+        /usr/local/cuda*/bin/$t 2>/dev/null | sort -V | tail -1); [ -n "$f" ] && ln -sf "$f" /usr/local/bin/$t; }; done
+    fi
+    echo "  nsys: $(nsys --version 2>&1 | tail -1)   ncu: $(ncu --version 2>&1 | tail -1)"
+  fi
 else
   echo "  no NVIDIA GPU visible -> CPU-only build (PROFILE=cpu)"; GPU=0
 fi

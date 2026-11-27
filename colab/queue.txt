@@ -1,10 +1,13 @@
 # 实验队列：colab/supervisor.py 按顺序执行，每行一次 run_local_suite.sh 调用。
 # 由 Claude 根据你的决定修改并推送；运行中的 supervisor 会自动拉取新行。
-# 第一层完整版（只验证 mem0，rag-pg 作对照）：LoCoMo 100 轮 + 50 题，先打分；再跑 LongMemEval 三个完整 haystack。
+# 第一层（同步写入，2026-11-27 已完成）：
 l1
 score budget # after l1
 lme
 score budget # after lme
-# 补充：reasoning / answer decode 拆分（重复一遍 l1 + LongMemEval 第 70 条，命名 _r2）
-rsplit
-score budget # after rsplit
+# 第一层·异步版（WRITE=async, THINK=5，带 reasoning 拆分 + mem0 add 细分）；先跑 GPU kernel 级 profiling 以便尽早验证
+kprof
+l1 # async
+score budget # after async l1
+lme # async
+score budget # after async lme

@@ -34,6 +34,7 @@ wait_http() {  # url name tries log [pid]
 
 llm() {
   local FA=on; [ "$NGL" = 0 ] && FA=auto   # flash-attn (needed for quantized V cache) on GPU
+  command -v nsys >/dev/null && nsys shutdown --kill sigkill --session="${NSYS_SESSION:-memprof}" >/dev/null 2>&1
   pkill -f "llama-server.*--port 8000" 2>/dev/null || true; sleep 1
   A=(-m "$LLM_GGUF" --alias local --port 8000 --host 127.0.0.1 -c "$CTX" -np "$NP" -ngl "$NGL"
      -ctk "$KV" -ctv "$KV" -fa "$FA" --fit off --kv-unified --cache-ram "${CACHE_RAM:-8192}"
@@ -44,8 +45,16 @@ llm() {
   A+=($P_EXTRA ${LLAMA_EXTRA:-})
   echo "$BIN/llama-server ${A[*]}" | tee "$LOGD/llm.cmd"
   local t0; t0=$(date +%s.%N)
-  nohup "$BIN/llama-server" "${A[@]}" >"$LOGD/llm.log" 2>&1 </dev/null &
-  wait_http http://127.0.0.1:8000/health "LLM ($LLM_FILE, PROFILE=${PROFILE:-q4b})" 3000 "$LOGD/llm.log" $!
+  local W=()
+  if [ "${NSYS:-0}" = 1 ]; then  # kernel-level profiling: CUDA trace (incl. kernels inside CUDA graphs) collected only
+    # between `nsys start` / `nsys stop` on this session (bench/multi_e2e.py --kprof); no CPU sampling
+    W=(nsys launch --session-new="${NSYS_SESSION:-memprof}" --trace=cuda --sample=none --cpuctxsw=none)
+    nsys launch --help 2>&1 | grep -q -- "--cuda-graph-trace" && W+=(--cuda-graph-trace=node)
+    echo "nsys: ${W[*]}" | tee -a "$LOGD/llm.cmd"
+  fi
+  nohup "${W[@]}" "$BIN/llama-server" "${A[@]}" >"$LOGD/llm.log" 2>&1 </dev/null &
+  local pid=$!; [ ${#W[@]} -gt 0 ] && pid=""   # nsys launch may hand the app off and exit: no liveness check then
+  wait_http http://127.0.0.1:8000/health "LLM ($LLM_FILE, PROFILE=${PROFILE:-q4b})" 3000 "$LOGD/llm.log" $pid
   local t1; t1=$(date +%s.%N)
   # what actually landed on the GPU (an OOM fallback would silently change the experiment)
   python3 - "$LOGD/llm.log" "$t0" "$t1" >"$LOGD/llm.load.json" <<'PY'

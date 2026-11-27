@@ -88,6 +88,8 @@ def main() -> None:
     ap.add_argument("--qa-tokens", type=int, default=int(os.environ.get("QA_TOKENS", 64)))
     ap.add_argument("--async-add", action="store_true", help="memorize in a background worker")
     ap.add_argument("--think", type=float, default=0.0, help="user think time between turns (s)")
+    ap.add_argument("--kprof", default="", help="A:B -> Nsight Systems capture from turn A to turn B on the nsys "
+                    "session the LLM server was launched in (start_llama.sh NSYS=1); report in <out>/store/kprof.*")
     ap.add_argument("--no-hwmon", action="store_true")
     ap.add_argument("--vllm-metrics", default=os.environ.get("MEMPROF_VLLM_METRICS", ""),
                     help="comma list of vLLM base URLs for hwmon to scrape")
@@ -159,8 +161,23 @@ def main() -> None:
             sysm.add(msgs, uid, ts)
         commit_lag.append(time.perf_counter() - t_submit)
 
+    kp = [int(x) for x in args.kprof.split(":")] if args.kprof else None
+    sess = os.environ.get("NSYS_SESSION", "memprof")
+
+    def nsys(*a) -> dict:
+        t0 = time.perf_counter_ns()
+        r = subprocess.run(["nsys", *a], capture_output=True, text=True, timeout=1800)
+        return {"cmd": " ".join(a[:1]), "rc": r.returncode, "t0_ns": t0, "t1_ns": time.perf_counter_ns(),
+                "t0_wall_ns": time.time_ns(), "out": (r.stdout + r.stderr)[-400:]}
+
     for i, t in enumerate(turns):
         TRACER.context = {"phase": "chat", "turn": i}
+        if kp and i == kp[0]:
+            os.makedirs(os.path.join(out, "store"), exist_ok=True)
+            meta["kprof"] = {"turns": kp, "start": nsys("start", f"--session={sess}", "--force-overwrite=true",
+                                                         f"--output={os.path.join(out, 'store', 'kprof')}")}
+        if kp and i == kp[1]:
+            meta["kprof"]["stop"] = nsys("stop", f"--session={sess}")
         ts = parse_date(t["date"])
         with TRACER.span("agent.turn", session=t["session"]):
             if sysm.agentic:
@@ -191,6 +208,8 @@ def main() -> None:
             time.sleep(args.think)
         print(f"[{args.system}] turn {i:3d} t={time.perf_counter() - t_start:7.1f}s", flush=True)
 
+    if kp and "kprof" in meta and "stop" not in meta["kprof"]:
+        meta["kprof"]["stop"] = nsys("stop", f"--session={sess}")
     if pool is not None:
         with TRACER.span("agent.drain_backlog"):
             for f in pending:

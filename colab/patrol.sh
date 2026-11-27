@@ -19,7 +19,8 @@ if ! colab status -s "$S" >"$TMP/st" 2>&1 || grep -qi "not found" "$TMP/st"; the
   echo "session $S: GONE"; cat "$TMP/st"; exit 2
 fi
 mkdir -p "$TMP/s"
-for f in status.json status.md suite.log setup.log keepalive.log vm_client.log exec_vm.log qa_summary.md budget.md breakdown.md; do
+for f in status.json status.md suite.log setup.log keepalive.log vm_client.log exec_vm.log qa_summary.md budget.md breakdown.md \
+         queue_state.json; do   # queue_state.json: a relaunched runtime restores it (cli_bootstrap.py)
   colab download -s "$S" "/content/outbox/status/$f" "$TMP/s/$f" >/dev/null 2>&1
 done
 [ -s "$TMP/s/status.json" ] || { echo "no status yet (bootstrap starting?)"; exit 0; }
