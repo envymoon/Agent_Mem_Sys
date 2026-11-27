@@ -1,0 +1,17 @@
+[rag-pg] turn   0 t=    7.6s
+[rag-pg] turn   1 t=   13.3s
+[rag-pg] turn   2 t=   19.3s
+[rag-pg] turn   3 t=   25.1s
+[rag-pg] turn   4 t=   30.8s
+[rag-pg] turn   5 t=   36.7s
+[rag-pg] turn   6 t=   42.6s
+[rag-pg] turn   7 t=   48.5s
+[rag-pg] turn   8 t=   54.4s
+[rag-pg] turn   9 t=   60.5s
+[rag-pg] turn  10 t=   67.1s
+[rag-pg] turn  11 t=   73.4s
+[rag-pg] turn  12 t=   79.6s
+[rag-pg] turn  13 t=   92.2s
+[rag-pg] turn  14 t=   98.4s
+[rag-pg] turn  15 t=  104.8s
+{"n_turns": 16, "n_qa": 0, "count": 16, "total_s": 104.7535581269999}

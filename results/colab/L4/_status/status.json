@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 16:41:45Z",
+ "time": "2026-11-27 16:54:52Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
- "code": "a321a0a Fix LLM launcher aborting under set -e when nsys is installed (nsys shutdown with no session); requeue async + kprof lines",
+ "code": "41ac3ad Colab status snapshot",
  "boot": "b56b501b",
- "runtime_up_h": 0.66,
+ "runtime_up_h": 0.88,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -42,14 +42,17 @@
   "l1 # async": 3,
   "score budget # after async l1": 3,
   "lme # async": 3,
-  "score budget # after async lme": 3
+  "score budget # after async lme": 3,
+  "kprof # retry": 1
  },
  "current_line": "kprof # retry",
- "attempt": 1,
- "current_run": null,
+ "attempt": 2,
+ "current_run": "kprof_gptoss20b_mem0-pg_async_think5",
  "suite_alive": true,
- "minutes_since_last_write": 4.3,
+ "minutes_since_last_write": 0.0,
  "finished_runs": [
+  "kprof_gptoss20b_mem0-local_async_think5",
+  "kprof_gptoss20b_rag-pg_async_think5",
   "l1_gptoss20b_graphiti_sync_t100",
   "l1_gptoss20b_graphiti_sync_t20",
   "l1_gptoss20b_mem0-local_sync_t100",
@@ -93,21 +96,27 @@
   "[16:30:22] LLM failed: ",
   "[16:30:53] LLM failed: ",
   "[16:31:23] LLM failed: ",
-  "[16:31:54] LLM failed: "
+  "[16:31:54] LLM failed: ",
+  "[16:47:52] LLM failed: ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5."
  ],
  "backup": {
   "mode": "download+ack",
   "ok": true,
   "why": "49 acked",
-  "missing": []
+  "missing": [
+   "kprof_gptoss20b_mem0-local_async_think5",
+   "kprof_gptoss20b_rag-pg_async_think5"
+  ]
  },
- "disk_free_gb": 220.8,
+ "disk_free_gb": 220.1,
  "stop": null,
- "hours_since_start": 0.62,
+ "hours_since_start": 0.84,
  "max_hours": 5.0,
- "ram_avail_gb": 50.0,
- "gpu": "NVIDIA L4, 0 %, 3968 MiB, 23034 MiB, 32.42 W",
+ "ram_avail_gb": 45.1,
+ "gpu": "NVIDIA L4, 92 %, 16100 MiB, 23034 MiB, 71.29 W",
  "outbox_runs": [
+  "kprof_gptoss20b_mem0-local_async_think5",
+  "kprof_gptoss20b_rag-pg_async_think5",
   "l1_gptoss20b_graphiti_sync_t100",
   "l1_gptoss20b_graphiti_sync_t20",
   "l1_gptoss20b_mem0-local_sync_t100",

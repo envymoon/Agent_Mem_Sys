@@ -18,6 +18,7 @@
   "l1 # async": 3,
   "score budget # after async l1": 3,
   "lme # async": 3,
-  "score budget # after async lme": 3
+  "score budget # after async lme": 3,
+  "kprof # retry": 1
  }
 }

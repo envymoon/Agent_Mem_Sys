@@ -26,6 +26,7 @@ import numpy as np
 # first match wins; names are llama.cpp CUDA kernels (demangled, with template args)
 CATS = [
     ("matmul MoE experts (MXFP4)", r"mul_mat.*(MXFP4|\(ggml_type\)39\b)"),
+    ("matmul Q8_0 dense (attn proj / output head)", r"mul_mat.*\(ggml_type\)8\b"),
     ("matmul (quantized, other)", r"mul_mat_(vec_)?q|mul_mat_q|mmq"),
     ("matmul (f16/f32 / cuBLAS)", r"mul_mat|gemm|gemv|cutlass|xmma|cublas|ampere_|sm\d+_"),
     ("flash attention", r"flash_attn|fattn"),

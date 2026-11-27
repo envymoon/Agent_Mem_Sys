@@ -18,3 +18,19 @@ embedder (Qwen3-Embedding-0.6B-Q8_0.gguf) up
 [16:31:54] LLM failed: 
 /root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
 nsys: nsys launch --session-new=memprof --trace=cuda --sample=none --cpuctxsw=none
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) FAILED
+ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5.
+The cpuctxsw switch can be set on the profile and start commands.
+[16:47:52] LLM failed: ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5.
+The cpuctxsw switch can be set on the profile and start commands.
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+nsys: no --cuda-graph-trace; GGML_CUDA_DISABLE_GRAPHS=1
+nsys: nsys launch --session-new=memprof --trace=cuda
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) up
+{"load_wall_s": 4.7789740562438965, "offloaded": "25/25", "buffers_mib": {"model:CPU_Mapped": 586.8, "model:CUDA0": 10949.4, "KV:CUDA0": 786.0, "compute:CUDA0": 123.0, "compute:CUDA_Host": 55.5}, "n_ctx_slot": 32768}
+proxy up
+[16:48:04] === kprof_gptoss20b_rag-pg_async_think5 (rag-pg) PROFILE=gptoss20b
+[16:50:08] done kprof_gptoss20b_rag-pg_async_think5: {"n_turns": 16, "n_qa": 0, "count": 16, "total_s": 104.7535581269999}
+[16:50:17] === kprof_gptoss20b_mem0-local_async_think5 (mem0-local) PROFILE=gptoss20b
+[16:52:53] done kprof_gptoss20b_mem0-local_async_think5: {"n_turns": 16, "n_qa": 0, "count": 24, "total_s": 125.29743097500022}
+[16:53:42] === kprof_gptoss20b_mem0-pg_async_think5 (mem0-pg) PROFILE=gptoss20b

@@ -1,0 +1,590 @@
+{
+ "label": "kprof_gptoss20b_rag-pg_async_think5",
+ "turns": [
+  10,
+  13
+ ],
+ "n_kernels": 120559,
+ "kernel_ms": 2973.255158,
+ "capture_ms": 13595.004856,
+ "align": {
+  "offset_ns": 2827790592545,
+  "kernel_share_in_llm_calls": 0.9852808794824598
+ },
+ "by_category": {
+  "matmul MoE experts (MXFP4)": {
+   "ms": 1609.9632060000017,
+   "share": 0.541481682683085
+  },
+  "matmul (quantized, other)": {
+   "ms": 983.6496400000065,
+   "share": 0.3308325682554845
+  },
+  "flash attention": {
+   "ms": 87.60903499999762,
+   "share": 0.029465696801793832
+  },
+  "elementwise (add/mul/glu/...)": {
+   "ms": 82.5750959999955,
+   "share": 0.0277726234755919
+  },
+  "activation quantize": {
+   "ms": 41.04846199999481,
+   "share": 0.013805899533898935
+  },
+  "router / softmax / top-k": {
+   "ms": 40.19256300000124,
+   "share": 0.013518033557213203
+  },
+  "norm": {
+   "ms": 32.85911400000124,
+   "share": 0.011051562094019663
+  },
+  "rope": {
+   "ms": 26.055617999999804,
+   "share": 0.008763330631040246
+  },
+  "matmul (f16/f32 / cuBLAS)": {
+   "ms": 21.480035000000456,
+   "share": 0.007224416963409656
+  },
+  "other": {
+   "ms": 18.416779999999925,
+   "share": 0.006194147162394303
+  },
+  "KV cache write / copy": {
+   "ms": 17.456010999999446,
+   "share": 0.005871010078980731
+  },
+  "gather / get_rows": {
+   "ms": 11.949597999999737,
+   "share": 0.004019028763087321
+  }
+ },
+ "by_stage": {
+  "agent:answer": {
+   "kernel_ms": 1265.421643000103,
+   "n_kernels": 70408,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 554.6293819999961,
+     "n": 10088,
+     "share": 0.4382961087065515
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 552.3197179999992,
+     "n": 4992,
+     "share": 0.4364708957328575
+    },
+    "flash attention": {
+     "ms": 38.49583699999965,
+     "n": 7488,
+     "share": 0.030421351818143767
+    },
+    "activation quantize": {
+     "ms": 26.848225999999105,
+     "n": 15080,
+     "share": 0.021216822194021004
+    },
+    "router / softmax / top-k": {
+     "ms": 24.197313000000612,
+     "n": 4992,
+     "share": 0.01912193705066782
+    },
+    "norm": {
+     "ms": 16.985304000000173,
+     "n": 5096,
+     "share": 0.013422643823074546
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 10.694241999999958,
+     "n": 2496,
+     "share": 0.008451129360049272
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 10.199897999999816,
+     "n": 4992,
+     "share": 0.008060473800509343
+    },
+    "KV cache write / copy": {
+     "ms": 9.980921000000224,
+     "n": 4992,
+     "share": 0.00788742713166904
+    },
+    "rope": {
+     "ms": 9.07163900000012,
+     "n": 4992,
+     "share": 0.007168866638390017
+    },
+    "gather / get_rows": {
+     "ms": 6.185548999999827,
+     "n": 2704,
+     "share": 0.0048881327691969335
+    },
+    "other": {
+     "ms": 5.813613999999901,
+     "n": 2496,
+     "share": 0.004594210974783706
+    }
+   },
+   "wall_ms": 1462.324348,
+   "gpu_busy": 0.8653494997404658
+  },
+  "agent:prefill": {
+   "kernel_ms": 1131.5671929999878,
+   "n_kernels": 19413,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 803.2447089999996,
+     "n": 1245,
+     "share": 0.709851535082467
+    },
+    "matmul (quantized, other)": {
+     "ms": 178.64906499999987,
+     "n": 5064,
+     "share": 0.15787755787296123
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 65.74439400000001,
+     "n": 3813,
+     "share": 0.05810030054485746
+    },
+    "flash attention": {
+     "ms": 32.22620999999995,
+     "n": 1471,
+     "share": 0.028479272109827154
+    },
+    "rope": {
+     "ms": 12.778240000000004,
+     "n": 996,
+     "share": 0.011292515441458316
+    },
+    "other": {
+     "ms": 9.91413900000001,
+     "n": 1299,
+     "share": 0.008761423149531091
+    },
+    "norm": {
+     "ms": 8.405405999999974,
+     "n": 992,
+     "share": 0.007428110369403459
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 6.08904700000001,
+     "n": 756,
+     "share": 0.0053810741754158255
+    },
+    "router / softmax / top-k": {
+     "ms": 5.590449000000026,
+     "n": 972,
+     "share": 0.004940448110004623
+    },
+    "KV cache write / copy": {
+     "ms": 3.1557179999999936,
+     "n": 996,
+     "share": 0.0027888030154299705
+    },
+    "gather / get_rows": {
+     "ms": 3.058091999999995,
+     "n": 504,
+     "share": 0.002702527979706131
+    },
+    "activation quantize": {
+     "ms": 2.711723999999983,
+     "n": 1305,
+     "share": 0.00239643214894797
+    }
+   },
+   "wall_ms": 1290.877,
+   "gpu_busy": 0.876587926657604
+  },
+  "agent:reasoning": {
+   "kernel_ms": 509.84146899998984,
+   "n_kernels": 28434,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 223.8625120000012,
+     "n": 4074,
+     "share": 0.4390825886311058
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 222.84439199999997,
+     "n": 2016,
+     "share": 0.43708565416832423
+    },
+    "flash attention": {
+     "ms": 15.229287999999896,
+     "n": 3024,
+     "share": 0.029870634159812132
+    },
+    "activation quantize": {
+     "ms": 10.711453000000088,
+     "n": 6090,
+     "share": 0.02100937968229552
+    },
+    "router / softmax / top-k": {
+     "ms": 9.65654399999998,
+     "n": 2016,
+     "share": 0.018940287495523775
+    },
+    "norm": {
+     "ms": 6.7795339999998365,
+     "n": 2058,
+     "share": 0.013297337333695725
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 4.288489999999976,
+     "n": 1008,
+     "share": 0.008411418569798726
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 4.071405000000066,
+     "n": 2016,
+     "share": 0.00798562935256282
+    },
+    "KV cache write / copy": {
+     "ms": 3.985354000000079,
+     "n": 2016,
+     "share": 0.007816849437173104
+    },
+    "rope": {
+     "ms": 3.6200409999999996,
+     "n": 2016,
+     "share": 0.0071003267095954324
+    },
+    "gather / get_rows": {
+     "ms": 2.4683250000000236,
+     "n": 1092,
+     "share": 0.004841357853533238
+    },
+    "other": {
+     "ms": 2.3241310000000053,
+     "n": 1008,
+     "share": 0.004558536606601633
+    }
+   },
+   "wall_ms": 587.466066,
+   "gpu_busy": 0.8678653942881356
+  },
+  "none": {
+   "kernel_ms": 43.76370100000008,
+   "n_kernels": 2034,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 23.228640000000027,
+     "n": 294,
+     "share": 0.5307741225999141
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 15.937673000000002,
+     "n": 144,
+     "share": 0.36417562125287284
+    },
+    "flash attention": {
+     "ms": 1.1216989999999998,
+     "n": 216,
+     "share": 0.025630807595545854
+    },
+    "activation quantize": {
+     "ms": 0.777059000000003,
+     "n": 435,
+     "share": 0.017755788067375784
+    },
+    "router / softmax / top-k": {
+     "ms": 0.7004810000000009,
+     "n": 144,
+     "share": 0.01600598176100325
+    },
+    "norm": {
+     "ms": 0.4918409999999988,
+     "n": 147,
+     "share": 0.01123856046818339
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 0.3102399999999999,
+     "n": 72,
+     "share": 0.007088979974522706
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 0.29625699999999977,
+     "n": 144,
+     "share": 0.006769468605957234
+    },
+    "KV cache write / copy": {
+     "ms": 0.28953800000000013,
+     "n": 144,
+     "share": 0.006615939543138721
+    },
+    "rope": {
+     "ms": 0.26252900000000046,
+     "n": 144,
+     "share": 0.005998784243590367
+    },
+    "gather / get_rows": {
+     "ms": 0.1790720000000001,
+     "n": 78,
+     "share": 0.004091792876475409
+    },
+    "other": {
+     "ms": 0.16867200000000007,
+     "n": 72,
+     "share": 0.0038541530114192066
+    }
+   },
+   "wall_ms": 10035.343501,
+   "gpu_busy": 0.0043609569513628635
+  },
+  "agent:queue": {
+   "kernel_ms": 22.661151999999998,
+   "n_kernels": 270,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 15.616713999999998,
+     "n": 15,
+     "share": 0.6891403402616072
+    },
+    "matmul (quantized, other)": {
+     "ms": 3.280041,
+     "n": 90,
+     "share": 0.14474290627413824
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 2.263142,
+     "n": 60,
+     "share": 0.09986879749096605
+    },
+    "flash attention": {
+     "ms": 0.536001,
+     "n": 17,
+     "share": 0.023652857542282052
+    },
+    "rope": {
+     "ms": 0.323169,
+     "n": 12,
+     "share": 0.014260925481634826
+    },
+    "norm": {
+     "ms": 0.19702900000000004,
+     "n": 13,
+     "share": 0.008694571220386327
+    },
+    "other": {
+     "ms": 0.196224,
+     "n": 21,
+     "share": 0.008659047871882243
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 0.09801599999999999,
+     "n": 12,
+     "share": 0.004325287611150572
+    },
+    "gather / get_rows": {
+     "ms": 0.05856,
+     "n": 6,
+     "share": 0.002584158122234916
+    },
+    "router / softmax / top-k": {
+     "ms": 0.04777599999999999,
+     "n": 12,
+     "share": 0.002108277637429906
+    },
+    "KV cache write / copy": {
+     "ms": 0.04448,
+     "n": 12,
+     "share": 0.001962830486287723
+    }
+   },
+   "wall_ms": 296.211879,
+   "gpu_busy": 0.07650318439794913
+  }
+ },
+ "top_kernels": [
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)39, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned",
+   "ms": 823.876243,
+   "n": 7446,
+   "mean_us": 110.6468228579103,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)64, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 466.96444999999954,
+   "n": 414,
+   "mean_us": 1127.933454106279,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned ",
+   "ms": 453.72455899999636,
+   "n": 14880,
+   "mean_us": 30.492241868279326,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)0, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned ",
+   "ms": 380.1783970000002,
+   "n": 158,
+   "mean_us": 2406.1923860759507,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)32, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 178.00068600000006,
+   "n": 207,
+   "mean_us": 859.9066956521741,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)8, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_tile",
+   "ms": 101.62511,
+   "n": 207,
+   "mean_us": 490.9425603864734,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void flash_attn_ext_f16<(int)64, (int)64, (int)1, (int)8, (bool)0, (bool)0, (bool)0>(const char *, const char *, const char *, const char *, const char *, const",
+   "ms": 41.722758000000006,
+   "n": 3720,
+   "mean_us": 11.215795161290323,
+   "cat": "flash attention"
+  },
+  {
+   "kernel": "quantize_q8_1",
+   "ms": 41.04846199999481,
+   "n": 22910,
+   "mean_us": 1.7917268441726235,
+   "cat": "activation quantize"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)8, (int)128, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 41.030282,
+   "n": 216,
+   "mean_us": 189.95500925925927,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void mul_mat_vec_q_moe<(ggml_type)39, (int)2, (bool)1>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, u",
+   "ms": 39.49671699999999,
+   "n": 138,
+   "mean_us": 286.2080942028985,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)8, (int)112, (bool)0, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 37.729763999999996,
+   "n": 432,
+   "mean_us": 87.33741666666666,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void rms_norm_f32<float, (int)1024, (int)1, (bool)1, (bool)1, (bool)0, (bool)0, float>(const T1 *, T1 *, int, int, int, long, long, long, float, const float *, ",
+   "ms": 32.85911400000124,
+   "n": 8306,
+   "mean_us": 3.9560695882496075,
+   "cat": "norm"
+  },
+  {
+   "kernel": "add_id_kernel",
+   "ms": 32.55007700000002,
+   "n": 828,
+   "mean_us": 39.31168719806766,
+   "cat": "elementwise (add/mul/glu/...)"
+  },
+  {
+   "kernel": "void k_bin_bcast<&op_add, float, float, float, const float *>(const T2 *, const T3 *, T4 *, unsigned int, unsigned int, unsigned int, uint3, uint3, uint3, uint3",
+   "ms": 32.10904099999882,
+   "n": 9921,
+   "mean_us": 3.236472230621794,
+   "cat": "elementwise (add/mul/glu/...)"
+  },
+  {
+   "kernel": "void k_argsort_f32_i32<(ggml_sort_order)1>(const float *, int *, int, int)",
+   "ms": 29.714941000000202,
+   "n": 4068,
+   "mean_us": 7.304557767944986,
+   "cat": "router / softmax / top-k"
+  },
+  {
+   "kernel": "void rope_neox<(bool)1, (bool)0, float, float>(const T3 *, T4 *, int, int, int, int, int, int, int, int, int, int, int, const int *, float, float, float, rope_c",
+   "ms": 26.055617999999804,
+   "n": 8160,
+   "mean_us": 3.1930904411764467,
+   "cat": "rope"
+  },
+  {
+   "kernel": "void flash_attn_ext_f16<(int)64, (int)64, (int)8, (int)8, (bool)0, (bool)0, (bool)0>(const char *, const char *, const char *, const char *, const char *, const",
+   "ms": 24.348687000000012,
+   "n": 288,
+   "mean_us": 84.54405208333338,
+   "cat": "flash attention"
+  },
+  {
+   "kernel": "void swiglu_oai_kernel<float>(const T1 *, const T1 *, T1 *, long, long, long, long, float, float)",
+   "ms": 17.915978000000013,
+   "n": 276,
+   "mean_us": 64.91296376811599,
+   "cat": "elementwise (add/mul/glu/...)"
+  },
+  {
+   "kernel": "void k_set_rows<float, long, __half>(const T1 *, const T2 *, T3 *, long, long, long, long, long, long, long, long, long, long, long, long, long, long, uint3, ui",
+   "ms": 17.456010999999446,
+   "n": 8160,
+   "mean_us": 2.1392170343136576,
+   "cat": "KV cache write / copy"
+  },
+  {
+   "kernel": "void mul_mat_vec_f<float, float, (int)1, (int)256, (bool)1, (bool)0>(const T1 *, const float *, const int *, ggml_cuda_mm_fusion_args_device, float *, int, uint",
+   "ms": 15.962864000000236,
+   "n": 3723,
+   "mean_us": 4.28763470319641,
+   "cat": "matmul (f16/f32 / cuBLAS)"
+  },
+  {
+   "kernel": "moe_weighted_reduction_f32",
+   "ms": 13.507389999999967,
+   "n": 4068,
+   "mean_us": 3.32040068829891,
+   "cat": "other"
+  },
+  {
+   "kernel": "void k_get_rows_float<float, float>(const T1 *, const int *, T2 *, long, long, uint3, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long,",
+   "ms": 11.949597999999737,
+   "n": 4384,
+   "mean_us": 2.72572947080286,
+   "cat": "gather / get_rows"
+  },
+  {
+   "kernel": "void quantize_mmq_q8_1<(mmq_q8_1_ds_layout)0, (bool)0>(const float *, const int *, void *, long, long, long, long, long, int, int, int)",
+   "ms": 11.870791000000013,
+   "n": 1428,
+   "mean_us": 8.312878851540626,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void soft_max_f32<(bool)1, (int)0, (int)0, float>(const float *, const T4 *, const float *, float *, soft_max_params)",
+   "ms": 10.47762200000009,
+   "n": 4068,
+   "mean_us": 2.575619960668656,
+   "cat": "router / softmax / top-k"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)8, (int)96, (bool)0, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_tile",
+   "ms": 10.079905,
+   "n": 144,
+   "mean_us": 69.99934027777778,
+   "cat": "matmul (quantized, other)"
+  }
+ ],
+ "memcpy_by_kind": {
+  "2": {
+   "ms": 19.383544000000043,
+   "bytes": 243971072,
+   "n": 638
+  },
+  "1": {
+   "ms": 6.548686999999968,
+   "bytes": 67244712,
+   "n": 1906
+  }
+ }
+}
