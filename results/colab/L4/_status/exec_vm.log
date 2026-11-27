@@ -84,3 +84,15 @@ restored 27 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-27 16:47:57Z] running | line=kprof # retry try=2 run=None | 27 runs done | backup=download+ack missing=0 | idle 0.1 min
 [2026-11-27 16:51:45Z] running | line=kprof # retry try=2 run=kprof_gptoss20b_mem0-local_async_think5 | 28 runs done | backup=download+ack missing=1 | idle 0.0 min
 [2026-11-27 16:54:52Z] running | line=kprof # retry try=2 run=kprof_gptoss20b_mem0-pg_async_think5 | 29 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 17:00:57Z] finished 'kprof # retry'
+[2026-11-27 17:00:57Z] running | line=None try=0 run=None | 31 runs done | backup=download+ack missing=2 | idle 0.3 min
+[2026-11-27 17:00:58Z] start 'l1 # async retry' attempt 1/3 at b98367e kernel_profile: Q8_0 dense matmuls (attention projections, output head) get their own category; first kprof runs + Nsight Compute speed-of-light results
+[2026-11-27 17:00:58Z] running | line=l1 # async retry try=1 run=None | 31 runs done | backup=download+ack missing=2 | idle 0.3 min
+[2026-11-27 17:01:45Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_rag-pg_async_think5_t100 | 31 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 17:04:52Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_rag-pg_async_think5_t100 | 31 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 17:11:45Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_rag-pg_async_think5_t100 | 31 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 17:14:53Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_mem0-local_async_think5_t100 | 32 runs done | backup=download+ack missing=3 | idle 0.0 min
+[2026-11-27 17:21:45Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_mem0-local_async_think5_t100 | 32 runs done | backup=download+ack missing=3 | idle 0.0 min
+[2026-11-27 17:24:53Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_mem0-local_async_think5_t100 | 32 runs done | backup=download+ack missing=3 | idle 0.0 min
+[2026-11-27 17:31:45Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_mem0-pg_async_think5_t100 | 33 runs done | backup=download+ack missing=4 | idle 0.0 min
+[2026-11-27 17:34:53Z] running | line=l1 # async retry try=1 run=l1_gptoss20b_mem0-pg_async_think5_t100 | 33 runs done | backup=download+ack missing=4 | idle 0.0 min

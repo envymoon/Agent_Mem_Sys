@@ -1,0 +1,1079 @@
+{
+ "label": "kprof_gptoss20b_mem0-pg_async_think5",
+ "turns": [
+  10,
+  13
+ ],
+ "n_kernels": 531205,
+ "kernel_ms": 11569.847025,
+ "capture_ms": 16250.915804,
+ "align": {
+  "offset_ns": 3181517255085,
+  "kernel_share_in_llm_calls": 0.9987517727789491
+ },
+ "by_category": {
+  "matmul MoE experts (MXFP4)": {
+   "ms": 5375.75543099998,
+   "share": 0.4646349618438434
+  },
+  "matmul (quantized, other)": {
+   "ms": 4226.182464999945,
+   "share": 0.365275569838396
+  },
+  "flash attention": {
+   "ms": 902.9153110000349,
+   "share": 0.07804038454864834
+  },
+  "activation quantize": {
+   "ms": 198.9664509999323,
+   "share": 0.017196981997256125
+  },
+  "elementwise (add/mul/glu/...)": {
+   "ms": 188.10718100002083,
+   "share": 0.016258398282497675
+  },
+  "router / softmax / top-k": {
+   "ms": 183.7281880000004,
+   "share": 0.01587991505877325
+  },
+  "norm": {
+   "ms": 136.0450730000173,
+   "share": 0.011758588744177222
+  },
+  "matmul (f16/f32 / cuBLAS)": {
+   "ms": 86.59578500000309,
+   "share": 0.007484609330865643
+  },
+  "rope": {
+   "ms": 86.04445599998738,
+   "share": 0.007436957101858258
+  },
+  "KV cache write / copy": {
+   "ms": 77.59839799999193,
+   "share": 0.006706951080020173
+  },
+  "other": {
+   "ms": 58.20248000000231,
+   "share": 0.005030531507827115
+  },
+  "gather / get_rows": {
+   "ms": 49.70580599999975,
+   "share": 0.004296150665829546
+  }
+ },
+ "by_stage": {
+  "memory:reasoning": {
+   "kernel_ms": 4453.000429000353,
+   "n_kernels": 232888,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 1836.258807999866,
+     "n": 33368,
+     "share": 0.41236439054466584
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 1833.550238999986,
+     "n": 16512,
+     "share": 0.4117561334732674
+    },
+    "flash attention": {
+     "ms": 378.78548499998703,
+     "n": 24768,
+     "share": 0.08506297967840529
+    },
+    "activation quantize": {
+     "ms": 90.43108099997787,
+     "n": 49880,
+     "share": 0.020307898560045414
+    },
+    "router / softmax / top-k": {
+     "ms": 81.5349179999992,
+     "n": 16512,
+     "share": 0.018310107825051984
+    },
+    "norm": {
+     "ms": 57.12435500000323,
+     "n": 16856,
+     "share": 0.012828284189684434
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 35.666006000001,
+     "n": 8256,
+     "share": 0.008009432419481623
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 34.944506999998495,
+     "n": 16512,
+     "share": 0.007847407058939614
+    },
+    "KV cache write / copy": {
+     "ms": 33.54735399999878,
+     "n": 16512,
+     "share": 0.007533651643399859
+    },
+    "rope": {
+     "ms": 30.519540999998092,
+     "n": 16512,
+     "share": 0.006853702685775258
+    },
+    "gather / get_rows": {
+     "ms": 20.82344200000018,
+     "n": 8944,
+     "share": 0.004676272174686227
+    },
+    "other": {
+     "ms": 19.814693000000336,
+     "n": 8256,
+     "share": 0.004449739746476626
+    }
+   },
+   "wall_ms": 9354.527749,
+   "gpu_busy": 0.4760262140947071
+  },
+  "memory:answer": {
+   "kernel_ms": 3227.345535999868,
+   "n_kernels": 168284,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 1331.2918619999916,
+     "n": 11931,
+     "share": 0.4125036650553571
+    },
+    "matmul (quantized, other)": {
+     "ms": 1326.46930799998,
+     "n": 24112,
+     "share": 0.41100938625991434
+    },
+    "flash attention": {
+     "ms": 276.91476100000347,
+     "n": 17898,
+     "share": 0.08580263808480369
+    },
+    "activation quantize": {
+     "ms": 65.44250199998152,
+     "n": 36043,
+     "share": 0.020277500896632904
+    },
+    "router / softmax / top-k": {
+     "ms": 58.99155799999957,
+     "n": 11932,
+     "share": 0.018278661935008246
+    },
+    "norm": {
+     "ms": 41.326901000002906,
+     "n": 12180,
+     "share": 0.0128052297279657
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 25.811885000000707,
+     "n": 5966,
+     "share": 0.007997868437723354
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 25.358554999999313,
+     "n": 11931,
+     "share": 0.007857403155978757
+    },
+    "KV cache write / copy": {
+     "ms": 24.262267999999207,
+     "n": 11932,
+     "share": 0.007517716256087987
+    },
+    "rope": {
+     "ms": 22.088892999999157,
+     "n": 11932,
+     "share": 0.006844291308013218
+    },
+    "gather / get_rows": {
+     "ms": 15.065432999999944,
+     "n": 6462,
+     "share": 0.004668057024557955
+    },
+    "other": {
+     "ms": 14.321610000000117,
+     "n": 5965,
+     "share": 0.00443758185798445
+    }
+   },
+   "wall_ms": 4441.234742000001,
+   "gpu_busy": 0.7266775398020309
+  },
+  "agent:answer": {
+   "kernel_ms": 1012.5744620000878,
+   "n_kernels": 56191,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 444.3465540000017,
+     "n": 8051,
+     "share": 0.4388285214326916
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 441.7647680000009,
+     "n": 3984,
+     "share": 0.4362787968475968
+    },
+    "flash attention": {
+     "ms": 27.97100599999931,
+     "n": 5976,
+     "share": 0.027623653419768832
+    },
+    "activation quantize": {
+     "ms": 22.037028999998316,
+     "n": 12035,
+     "share": 0.02176336637650299
+    },
+    "router / softmax / top-k": {
+     "ms": 19.87998400000012,
+     "n": 3984,
+     "share": 0.019633108226660367
+    },
+    "norm": {
+     "ms": 13.951068000000076,
+     "n": 4067,
+     "share": 0.013777819334336389
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 8.74249099999997,
+     "n": 1992,
+     "share": 0.00863392405012009
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 8.354938999999982,
+     "n": 3984,
+     "share": 0.008251184790397428
+    },
+    "KV cache write / copy": {
+     "ms": 8.16369500000049,
+     "n": 3984,
+     "share": 0.00806231571737959
+    },
+    "rope": {
+     "ms": 7.436755000000215,
+     "n": 3984,
+     "share": 0.007344403082525668
+    },
+    "gather / get_rows": {
+     "ms": 5.112136999999963,
+     "n": 2158,
+     "share": 0.0050486529058833005
+    },
+    "other": {
+     "ms": 4.814035999999971,
+     "n": 1992,
+     "share": 0.004754253816051262
+    }
+   },
+   "wall_ms": 1190.69912,
+   "gpu_busy": 0.8504033008776287
+  },
+  "memory:prefill": {
+   "kernel_ms": 936.2929719999946,
+   "n_kernels": 14145,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 565.8537380000008,
+     "n": 931,
+     "share": 0.6043554260492773
+    },
+    "matmul (quantized, other)": {
+     "ms": 150.4498429999998,
+     "n": 2991,
+     "share": 0.1606867161232955
+    },
+    "flash attention": {
+     "ms": 116.01554799999974,
+     "n": 1233,
+     "share": 0.12390945085509027
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 58.68284099999975,
+     "n": 2255,
+     "share": 0.06267572517889207
+    },
+    "rope": {
+     "ms": 10.887901999999984,
+     "n": 822,
+     "share": 0.011628734088158944
+    },
+    "other": {
+     "ms": 7.859864000000017,
+     "n": 762,
+     "share": 0.008394663032886742
+    },
+    "norm": {
+     "ms": 7.41704399999999,
+     "n": 828,
+     "share": 0.007921712777739436
+    },
+    "router / softmax / top-k": {
+     "ms": 4.979534000000011,
+     "n": 810,
+     "share": 0.005318350290895956
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 4.858248999999998,
+     "n": 522,
+     "share": 0.005188812845217027
+    },
+    "activation quantize": {
+     "ms": 3.8460580000000038,
+     "n": 1740,
+     "share": 0.004107750581299916
+    },
+    "KV cache write / copy": {
+     "ms": 2.7292850000000013,
+     "n": 822,
+     "share": 0.0029149903733337187
+    },
+    "gather / get_rows": {
+     "ms": 2.7130659999999955,
+     "n": 429,
+     "share": 0.0028976678039189757
+    }
+   },
+   "wall_ms": 1350.411,
+   "gpu_busy": 0.6933392663418726
+  },
+  "agent:prefill": {
+   "kernel_ms": 623.336460000002,
+   "n_kernels": 13098,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 445.28760299999976,
+     "n": 851,
+     "share": 0.7143615552345491
+    },
+    "matmul (quantized, other)": {
+     "ms": 105.3439839999999,
+     "n": 3184,
+     "share": 0.1690001961380529
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 26.720715000000038,
+     "n": 2358,
+     "share": 0.042867242195330515
+    },
+    "flash attention": {
+     "ms": 16.125006999999957,
+     "n": 1053,
+     "share": 0.025868865427829946
+    },
+    "rope": {
+     "ms": 6.144082000000003,
+     "n": 708,
+     "share": 0.009856766600817772
+    },
+    "other": {
+     "ms": 4.833671,
+     "n": 814,
+     "share": 0.00775451350944558
+    },
+    "norm": {
+     "ms": 4.733766999999998,
+     "n": 708,
+     "share": 0.007594240516590321
+    },
+    "router / softmax / top-k": {
+     "ms": 4.092172999999999,
+     "n": 692,
+     "share": 0.006564950492387347
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 3.792938000000003,
+     "n": 500,
+     "share": 0.00608489675062484
+    },
+    "activation quantize": {
+     "ms": 2.4855470000000084,
+     "n": 1160,
+     "share": 0.003987488554736554
+    },
+    "KV cache write / copy": {
+     "ms": 2.0384369999999916,
+     "n": 708,
+     "share": 0.0032702033826161638
+    },
+    "gather / get_rows": {
+     "ms": 1.7385359999999948,
+     "n": 362,
+     "share": 0.0027890811970151547
+    }
+   },
+   "wall_ms": 703.067,
+   "gpu_busy": 0.8865960996604905
+  },
+  "agent:prefill+memory:answer": {
+   "kernel_ms": 358.6898769999974,
+   "n_kernels": 6677,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 235.04416899999998,
+     "n": 416,
+     "share": 0.65528520337919
+    },
+    "matmul (quantized, other)": {
+     "ms": 61.80904,
+     "n": 1530,
+     "share": 0.17231888593276484
+    },
+    "flash attention": {
+     "ms": 33.45694700000001,
+     "n": 489,
+     "share": 0.0932754146278855
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 13.936072000000033,
+     "n": 1482,
+     "share": 0.03885270506254107
+    },
+    "rope": {
+     "ms": 2.9592980000000026,
+     "n": 342,
+     "share": 0.008250296954993307
+    },
+    "other": {
+     "ms": 2.372163000000001,
+     "n": 387,
+     "share": 0.00661340938818861
+    },
+    "norm": {
+     "ms": 2.283813000000003,
+     "n": 350,
+     "share": 0.006367096331519887
+    },
+    "router / softmax / top-k": {
+     "ms": 1.9465309999999962,
+     "n": 342,
+     "share": 0.005426779858635404
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 1.8299610000000015,
+     "n": 242,
+     "share": 0.005101791595863785
+    },
+    "activation quantize": {
+     "ms": 1.2166790000000034,
+     "n": 568,
+     "share": 0.0033920081887340585
+    },
+    "KV cache write / copy": {
+     "ms": 0.9673960000000008,
+     "n": 342,
+     "share": 0.0026970262113084607
+    },
+    "gather / get_rows": {
+     "ms": 0.8678080000000002,
+     "n": 187,
+     "share": 0.002419382468382308
+    }
+   },
+   "wall_ms": 406.651,
+   "gpu_busy": 0.8820582686382117
+  },
+  "agent:reasoning": {
+   "kernel_ms": 292.1551820000028,
+   "n_kernels": 16248,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 128.16875099999905,
+     "n": 2328,
+     "share": 0.43870093325949566
+    },
+    "matmul MoE experts (MXFP4)": {
+     "ms": 127.57977299999993,
+     "n": 1152,
+     "share": 0.4366849566953726
+    },
+    "flash attention": {
+     "ms": 7.9574980000000535,
+     "n": 1728,
+     "share": 0.027237230383953884
+    },
+    "activation quantize": {
+     "ms": 6.36269900000013,
+     "n": 3480,
+     "share": 0.021778490993872114
+    },
+    "router / softmax / top-k": {
+     "ms": 5.744718000000026,
+     "n": 1152,
+     "share": 0.019663241845218993
+    },
+    "norm": {
+     "ms": 4.031567999999954,
+     "n": 1176,
+     "share": 0.013799406097817957
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 2.5234289999999953,
+     "n": 576,
+     "share": 0.00863728989068546
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 2.4108230000000077,
+     "n": 1152,
+     "share": 0.008251857740452416
+    },
+    "KV cache write / copy": {
+     "ms": 2.3588199999999846,
+     "n": 1152,
+     "share": 0.00807385987081332
+    },
+    "rope": {
+     "ms": 2.1469809999999936,
+     "n": 1152,
+     "share": 0.007348769189382281
+    },
+    "gather / get_rows": {
+     "ms": 1.4767729999999903,
+     "n": 624,
+     "share": 0.005054755455270262
+    },
+    "other": {
+     "ms": 1.3933490000000004,
+     "n": 576,
+     "share": 0.004769208577652362
+    }
+   },
+   "wall_ms": 337.180711,
+   "gpu_busy": 0.8664646952476556
+  },
+  "agent:answer+memory:answer": {
+   "kernel_ms": 200.29899800000487,
+   "n_kernels": 8767,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 110.07584800000005,
+     "n": 528,
+     "share": 0.5495576567986494
+    },
+    "matmul (quantized, other)": {
+     "ms": 59.39458100000008,
+     "n": 1067,
+     "share": 0.2965295962189418
+    },
+    "flash attention": {
+     "ms": 14.769998999999995,
+     "n": 792,
+     "share": 0.0737397548039638
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 4.1850640000000014,
+     "n": 1848,
+     "share": 0.020894083554027065
+    },
+    "activation quantize": {
+     "ms": 3.079021000000035,
+     "n": 1595,
+     "share": 0.015372123828597286
+    },
+    "router / softmax / top-k": {
+     "ms": 2.5246139999999917,
+     "n": 528,
+     "share": 0.012604226806965506
+    },
+    "norm": {
+     "ms": 1.7774449999999935,
+     "n": 539,
+     "share": 0.008873958520750813
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 1.1424350000000005,
+     "n": 264,
+     "share": 0.005703648103122177
+    },
+    "KV cache write / copy": {
+     "ms": 1.063810000000001,
+     "n": 528,
+     "share": 0.0053111099437450765
+    },
+    "rope": {
+     "ms": 0.980002999999999,
+     "n": 528,
+     "share": 0.004892700461736584
+    },
+    "gather / get_rows": {
+     "ms": 0.6607700000000002,
+     "n": 286,
+     "share": 0.0032989181503543224
+    },
+    "other": {
+     "ms": 0.645408,
+     "n": 264,
+     "share": 0.0032222228091225115
+    }
+   },
+   "wall_ms": 234.179401,
+   "gpu_busy": 0.8553228727406509
+  },
+  "agent:reasoning+memory:answer": {
+   "kernel_ms": 184.3682020000001,
+   "n_kernels": 7970,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 102.07005400000006,
+     "n": 480,
+     "share": 0.5536207051582571
+    },
+    "matmul (quantized, other)": {
+     "ms": 54.04651900000016,
+     "n": 970,
+     "share": 0.2931444707585754
+    },
+    "flash attention": {
+     "ms": 13.456613999999991,
+     "n": 720,
+     "share": 0.07298771617895358
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 3.849738000000049,
+     "n": 1680,
+     "share": 0.02088070479745768
+    },
+    "activation quantize": {
+     "ms": 2.8440080000000223,
+     "n": 1450,
+     "share": 0.0154256968888812
+    },
+    "router / softmax / top-k": {
+     "ms": 2.330309000000005,
+     "n": 480,
+     "share": 0.012639430090010877
+    },
+    "norm": {
+     "ms": 1.6375409999999968,
+     "n": 490,
+     "share": 0.008881905785467256
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 1.048515000000001,
+     "n": 240,
+     "share": 0.005687070702137673
+    },
+    "KV cache write / copy": {
+     "ms": 0.9771550000000007,
+     "n": 480,
+     "share": 0.005300019143214295
+    },
+    "rope": {
+     "ms": 0.903203,
+     "n": 480,
+     "share": 0.0048989087608502
+    },
+    "gather / get_rows": {
+     "ms": 0.6096320000000003,
+     "n": 260,
+     "share": 0.0033066005601117697
+    },
+    "other": {
+     "ms": 0.5949140000000003,
+     "n": 240,
+     "share": 0.0032267711760838235
+    }
+   },
+   "wall_ms": 215.243776,
+   "gpu_busy": 0.8565553226496088
+  },
+  "memory:queue": {
+   "kernel_ms": 104.89394499999956,
+   "n_kernels": 2944,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 67.98177800000002,
+     "n": 197,
+     "share": 0.6481001167417271
+    },
+    "matmul (quantized, other)": {
+     "ms": 17.26116999999999,
+     "n": 600,
+     "share": 0.16455830696423956
+    },
+    "flash attention": {
+     "ms": 9.751963,
+     "n": 279,
+     "share": 0.09296974196175042
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 4.579530000000005,
+     "n": 358,
+     "share": 0.043658668763006524
+    },
+    "KV cache write / copy": {
+     "ms": 1.0267850000000027,
+     "n": 187,
+     "share": 0.00978879190786472
+    },
+    "rope": {
+     "ms": 0.9138259999999989,
+     "n": 186,
+     "share": 0.008711904199999369
+    },
+    "norm": {
+     "ms": 0.7811530000000008,
+     "n": 183,
+     "share": 0.007447074280598409
+    },
+    "router / softmax / top-k": {
+     "ms": 0.6748219999999999,
+     "n": 180,
+     "share": 0.006433374204774191
+    },
+    "other": {
+     "ms": 0.6056020000000001,
+     "n": 147,
+     "share": 0.005773469574435423
+    },
+    "activation quantize": {
+     "ms": 0.5896970000000005,
+     "n": 426,
+     "share": 0.005621840231102023
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 0.46397,
+     "n": 111,
+     "share": 0.004423229577264941
+    },
+    "gather / get_rows": {
+     "ms": 0.2636489999999998,
+     "n": 90,
+     "share": 0.0025134815932416395
+    }
+   },
+   "wall_ms": 461.257627,
+   "gpu_busy": 0.22740858656847654
+  },
+  "agent:queue+memory:answer": {
+   "kernel_ms": 92.05035699999985,
+   "n_kernels": 2617,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 57.761591999999986,
+     "n": 177,
+     "share": 0.6274999237645551
+    },
+    "matmul (quantized, other)": {
+     "ms": 20.712792,
+     "n": 548,
+     "share": 0.2250158790801869
+    },
+    "flash attention": {
+     "ms": 6.852083000000001,
+     "n": 237,
+     "share": 0.07443841852780661
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 2.3826310000000004,
+     "n": 343,
+     "share": 0.025883995213619913
+    },
+    "router / softmax / top-k": {
+     "ms": 0.7996179999999993,
+     "n": 158,
+     "share": 0.00868674523445901
+    },
+    "norm": {
+     "ms": 0.6841620000000002,
+     "n": 161,
+     "share": 0.007432475248303505
+    },
+    "activation quantize": {
+     "ms": 0.6321299999999995,
+     "n": 352,
+     "share": 0.006867219428600376
+    },
+    "rope": {
+     "ms": 0.6221130000000005,
+     "n": 158,
+     "share": 0.006758398557867641
+    },
+    "other": {
+     "ms": 0.5201929999999998,
+     "n": 140,
+     "share": 0.005651178517428245
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 0.478274,
+     "n": 100,
+     "share": 0.005195786475874295
+    },
+    "KV cache write / copy": {
+     "ms": 0.34393700000000005,
+     "n": 158,
+     "share": 0.00373640050086933
+    },
+    "gather / get_rows": {
+     "ms": 0.26083199999999995,
+     "n": 85,
+     "share": 0.0028335794504305983
+    }
+   },
+   "wall_ms": 103.151811,
+   "gpu_busy": 0.8923775172497926
+  },
+  "agent:queue": {
+   "kernel_ms": 70.39880700000006,
+   "n_kernels": 1370,
+   "cats": {
+    "matmul MoE experts (MXFP4)": {
+     "ms": 57.494006999999996,
+     "n": 85,
+     "share": 0.8166900754440334
+    },
+    "matmul (quantized, other)": {
+     "ms": 7.479316999999987,
+     "n": 446,
+     "share": 0.10624209867647302
+    },
+    "elementwise (add/mul/glu/...)": {
+     "ms": 2.701766000000001,
+     "n": 320,
+     "share": 0.03837800830914647
+    },
+    "flash attention": {
+     "ms": 0.8584,
+     "n": 75,
+     "share": 0.012193388447619564
+    },
+    "rope": {
+     "ms": 0.4418589999999999,
+     "n": 60,
+     "share": 0.0062765126119253625
+    },
+    "other": {
+     "ms": 0.4269769999999997,
+     "n": 114,
+     "share": 0.006065116984155702
+    },
+    "norm": {
+     "ms": 0.29625599999999996,
+     "n": 60,
+     "share": 0.00420825313133502
+    },
+    "matmul (f16/f32 / cuBLAS)": {
+     "ms": 0.23763199999999998,
+     "n": 60,
+     "share": 0.0033755117469533224
+    },
+    "router / softmax / top-k": {
+     "ms": 0.22940899999999986,
+     "n": 60,
+     "share": 0.0032587057902841972
+    },
+    "KV cache write / copy": {
+     "ms": 0.11945599999999999,
+     "n": 60,
+     "share": 0.001696846936624933
+    },
+    "gather / get_rows": {
+     "ms": 0.113728,
+     "n": 30,
+     "share": 0.0016154819214479004
+    }
+   },
+   "wall_ms": 354.365629,
+   "gpu_busy": 0.1986614988554662
+  },
+  "none": {
+   "kernel_ms": 14.441798000000002,
+   "n_kernels": 6,
+   "cats": {
+    "matmul (quantized, other)": {
+     "ms": 14.441798000000002,
+     "n": 6,
+     "share": 1.0
+    }
+   },
+   "wall_ms": 2302.483189,
+   "gpu_busy": 0.006272270767923509
+  }
+ },
+ "top_kernels": [
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)39, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned",
+   "ms": 3845.3120850000046,
+   "n": 34572,
+   "mean_us": 111.22619706699076,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned ",
+   "ms": 2112.4052239997272,
+   "n": 69120,
+   "mean_us": 30.561418171292352,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)0, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned ",
+   "ms": 1748.1326239999992,
+   "n": 726,
+   "mean_us": 2407.896176308539,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)64, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 747.7334970000006,
+   "n": 621,
+   "mean_us": 1204.0797053140107,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void flash_attn_ext_f16<(int)64, (int)64, (int)1, (int)8, (bool)0, (bool)0, (bool)0>(const char *, const char *, const char *, const char *, const char *, const",
+   "ms": 661.3173440000044,
+   "n": 17856,
+   "mean_us": 37.03614157706118,
+   "cat": "flash attention"
+  },
+  {
+   "kernel": "void mul_mat_vec_q_moe<(ggml_type)39, (int)2, (bool)1>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, u",
+   "ms": 327.0501729999999,
+   "n": 1430,
+   "mean_us": 228.70641468531463,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)32, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 200.587699,
+   "n": 207,
+   "mean_us": 969.0227004830917,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "quantize_q8_1",
+   "ms": 198.9664509999323,
+   "n": 108729,
+   "mean_us": 1.8299299266978664,
+   "cat": "activation quantize"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)16, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 153.374618,
+   "n": 207,
+   "mean_us": 740.9401835748793,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void flash_attn_ext_f16<(int)64, (int)64, (int)8, (int)8, (bool)0, (bool)0, (bool)0>(const char *, const char *, const char *, const char *, const char *, const",
+   "ms": 148.52114300000014,
+   "n": 456,
+   "mean_us": 325.7042609649126,
+   "cat": "flash attention"
+  },
+  {
+   "kernel": "void rms_norm_f32<float, (int)1024, (int)1, (bool)1, (bool)1, (bool)0, (bool)0, float>(const T1 *, T1 *, int, int, int, long, long, long, float, const float *, ",
+   "ms": 136.0450730000173,
+   "n": 37598,
+   "mean_us": 3.6184124953459573,
+   "cat": "norm"
+  },
+  {
+   "kernel": "void k_argsort_f32_i32<(ggml_sort_order)1>(const float *, int *, int, int)",
+   "ms": 135.80868599999727,
+   "n": 18415,
+   "mean_us": 7.374894705403055,
+   "cat": "router / softmax / top-k"
+  },
+  {
+   "kernel": "void mul_mat_vec_q<(ggml_type)8, (int)2, (bool)0, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned ",
+   "ms": 132.15689600000033,
+   "n": 2329,
+   "mean_us": 56.74405152425948,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "void k_bin_bcast<&op_add, float, float, float, const float *>(const T2 *, const T3 *, T4 *, unsigned int, unsigned int, unsigned int, uint3, uint3, uint3, uint3",
+   "ms": 109.16497099998561,
+   "n": 42567,
+   "mean_us": 2.564544623769249,
+   "cat": "elementwise (add/mul/glu/...)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)39, (int)8, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_tile",
+   "ms": 101.69735900000009,
+   "n": 207,
+   "mean_us": 491.29158937198116,
+   "cat": "matmul MoE experts (MXFP4)"
+  },
+  {
+   "kernel": "void rope_neox<(bool)1, (bool)0, float, float>(const T3 *, T4 *, int, int, int, int, int, int, int, int, int, int, int, const int *, float, float, float, rope_c",
+   "ms": 86.04445599998738,
+   "n": 36864,
+   "mean_us": 2.3341052517357688,
+   "cat": "rope"
+  },
+  {
+   "kernel": "void k_set_rows<float, long, __half>(const T1 *, const T2 *, T3 *, long, long, long, long, long, long, long, long, long, long, long, long, long, long, uint3, ui",
+   "ms": 76.94054099999207,
+   "n": 36864,
+   "mean_us": 2.08714575195291,
+   "cat": "KV cache write / copy"
+  },
+  {
+   "kernel": "void mul_mat_vec_f<float, float, (int)1, (int)256, (bool)1, (bool)0>(const T1 *, const float *, const int *, ggml_cuda_mm_fusion_args_device, float *, int, uint",
+   "ms": 74.99664600000173,
+   "n": 17286,
+   "mean_us": 4.338577230128528,
+   "cat": "matmul (f16/f32 / cuBLAS)"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)8, (int)128, (bool)1, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_til",
+   "ms": 65.040963,
+   "n": 360,
+   "mean_us": 180.66934166666667,
+   "cat": "matmul (quantized, other)"
+  },
+  {
+   "kernel": "add_id_kernel",
+   "ms": 50.80203300000002,
+   "n": 1242,
+   "mean_us": 40.9034082125604,
+   "cat": "elementwise (add/mul/glu/...)"
+  },
+  {
+   "kernel": "moe_weighted_reduction_f32",
+   "ms": 50.777087000002176,
+   "n": 18415,
+   "mean_us": 2.757376432256431,
+   "cat": "other"
+  },
+  {
+   "kernel": "void k_get_rows_float<float, float>(const T1 *, const int *, T2 *, long, long, uint3, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long,",
+   "ms": 49.70580599999975,
+   "n": 19917,
+   "mean_us": 2.4956472360295097,
+   "cat": "gather / get_rows"
+  },
+  {
+   "kernel": "void soft_max_f32<(bool)1, (int)0, (int)0, float>(const float *, const T4 *, const float *, float *, soft_max_params)",
+   "ms": 47.919502000002055,
+   "n": 18415,
+   "mean_us": 2.602199402660986,
+   "cat": "router / softmax / top-k"
+  },
+  {
+   "kernel": "void flash_attn_stream_k_fixup_uniform<(int)64, (int)1, (int)8>(float *, const float2 *, int, int, int, int, int, int, uint3, uint3, uint3)",
+   "ms": 41.56446099999673,
+   "n": 17856,
+   "mean_us": 2.3277587925625407,
+   "cat": "flash attention"
+  },
+  {
+   "kernel": "void mul_mat_q<(ggml_type)8, (int)96, (bool)0, (ggml_prec)30, (bool)0, (bool)0>(const char *, const char *, const int *, const int *, const ggml_cuda_mm_id_tile",
+   "ms": 39.760014999999946,
+   "n": 504,
+   "mean_us": 78.88891865079354,
+   "cat": "matmul (quantized, other)"
+  }
+ ],
+ "memcpy_by_kind": {
+  "1": {
+   "ms": 55.28067199999992,
+   "bytes": 594398620,
+   "n": 8648
+  },
+  "2": {
+   "ms": 91.36541200000003,
+   "bytes": 1172099072,
+   "n": 1591
+  }
+ }
+}

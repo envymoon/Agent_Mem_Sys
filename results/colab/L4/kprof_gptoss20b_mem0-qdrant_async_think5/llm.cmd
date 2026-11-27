@@ -1,0 +1,3 @@
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+nsys: no --cuda-graph-trace; GGML_CUDA_DISABLE_GRAPHS=1
+nsys: nsys launch --session-new=memprof --trace=cuda

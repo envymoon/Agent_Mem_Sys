@@ -1,0 +1,157 @@
+{
+  "args": {
+    "system": "mem0-qdrant",
+    "dataset": "locomo",
+    "data": "/root/locomo/data/locomo10.json",
+    "conv": 0,
+    "memorize_source": "auto",
+    "turns": 16,
+    "qa": 0,
+    "topk": 10,
+    "window": 6,
+    "answer_tokens": 1024,
+    "qa_tokens": 512,
+    "async_add": true,
+    "think": 5.0,
+    "kprof": "10:13",
+    "no_hwmon": false,
+    "vllm_metrics": "http://127.0.0.1:8000",
+    "label": "kprof_gptoss20b_mem0-qdrant_async_think5",
+    "out": "/content/results/L4/kprof_gptoss20b_mem0-qdrant_async_think5"
+  },
+  "cfg": {
+    "proxy": "http://127.0.0.1:8100/v1",
+    "emb_dim": 1024,
+    "pg_dsn": "postgresql://postgres@127.0.0.1:5432/memprof",
+    "qdrant": "http://127.0.0.1:6333",
+    "neo4j_uri": "bolt://127.0.0.1:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "memprof-neo4j",
+    "letta": "http://127.0.0.1:8283/v1",
+    "letta_ctx": 32768,
+    "llm_name": "gpt-4.1-mini",
+    "small_llm_name": "gpt-4.1-nano",
+    "emb_name": "text-embedding-3-small"
+  },
+  "label": "kprof_gptoss20b_mem0-qdrant_async_think5",
+  "tracer_overhead_us": 45.269941700000004,
+  "t_start_ns": 3305917883712,
+  "pg_before": null,
+  "io_devices": [],
+  "kprof": {
+    "turns": [
+      10,
+      13
+    ],
+    "start": {
+      "cmd": "start",
+      "rc": 0,
+      "t0_ns": 3374711649419,
+      "t1_ns": 3374971697327,
+      "t0_wall_ns": 1795798710900224662,
+      "out": ""
+    },
+    "stop": {
+      "cmd": "stop",
+      "rc": 0,
+      "t0_ns": 3394841682322,
+      "t1_ns": 3415534314842,
+      "t0_wall_ns": 1795798751462841997,
+      "out": "[===================79%      ] kprof.nsys-rep\n[1/1] [===================80%      ] kprof.nsys-rep\n[1/1] [===================81%      ] kprof.nsys-rep\n[1/1] [===================82%      ] kprof.nsys-rep\n[1/1] [========================100%] kprof.nsys-rep\n[1/1] [========================100%] kprof.nsys-rep\nGenerated:\n\t/content/results/L4/kprof_gptoss20b_mem0-qdrant_async_think5/store/kprof.nsys-rep\n"
+    }
+  },
+  "commit_lag_s": [
+    0.5192873020000661,
+    2.3380392389999543,
+    2.7952019730000757,
+    3.3943688530002873,
+    2.023852335999891,
+    2.788686471999881,
+    4.305810041999848,
+    7.77636449099964,
+    8.052123897000001,
+    11.449146378000023,
+    11.754947644000367,
+    13.919351499000186,
+    9.67827356800035,
+    7.163595443999839,
+    7.658562049000011,
+    4.261438822999935
+  ],
+  "n_turns": 16,
+  "n_qa": 0,
+  "total_s": 128.84415827299972,
+  "count": 25,
+  "footprint": {
+    "qdrant_local:kprof.nsys-rep": 53483790,
+    "qdrant_local:history.db": 28672,
+    "qdrant:mem0_kprof_gptoss20b_mem0_qdrant_async_think5:points": 25,
+    "qdrant:mem0_kprof_gptoss20b_mem0_qdrant_async_think5_entities:points": 25
+  },
+  "pg_after": null,
+  "io_total": {
+    "procs": {
+      "embed_server": {
+        "rchar": 0,
+        "wchar": 35390,
+        "syscr": 0,
+        "syscw": 1089,
+        "read_bytes": 0,
+        "write_bytes": 81920
+      },
+      "llm_server": {
+        "rchar": 11120,
+        "wchar": 409347,
+        "syscr": 3,
+        "syscw": 11087,
+        "read_bytes": 0,
+        "write_bytes": 592416768
+      },
+      "proxy": {
+        "rchar": 0,
+        "wchar": 44304,
+        "syscr": 0,
+        "syscw": 109,
+        "read_bytes": 0,
+        "write_bytes": 86016
+      },
+      "postgres": {
+        "rchar": 1116765,
+        "wchar": 824344,
+        "syscr": 287,
+        "syscw": 121,
+        "read_bytes": 909312,
+        "write_bytes": 835584
+      },
+      "qdrant": {
+        "rchar": 2662349,
+        "wchar": 3976226,
+        "syscr": 822,
+        "syscw": 8029,
+        "read_bytes": 40960,
+        "write_bytes": 11063296
+      },
+      "neo4j": {
+        "rchar": 8097,
+        "wchar": 0,
+        "syscr": 34,
+        "syscw": 0,
+        "read_bytes": 0,
+        "write_bytes": 143360
+      },
+      "harness": {
+        "rchar": 53331613,
+        "wchar": 859585,
+        "syscr": 5182,
+        "syscw": 694,
+        "read_bytes": 0,
+        "write_bytes": 1179648
+      }
+    },
+    "dev": {},
+    "psi_io": {
+      "some_total_us": 1825664,
+      "full_total_us": 1793064
+    }
+  }
+}

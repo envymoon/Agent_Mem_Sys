@@ -4,7 +4,8 @@
   "l1",
   "score budget # after l1",
   "lme",
-  "score budget # after lme"
+  "score budget # after lme",
+  "kprof # retry"
  ],
  "gave_up": [
   "kprof",
