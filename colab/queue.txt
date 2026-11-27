@@ -11,3 +11,9 @@ l1 # async
 score budget # after async l1
 lme # async
 score budget # after async lme
+# 重试（修复：装了 nsys 后 start_llama.sh 在 set -e 下提前退出）
+kprof # retry
+l1 # async retry
+score budget # after async l1 retry
+lme # async retry
+score budget # after async lme retry

@@ -1,1 +1,18 @@
-
+[16:23:01] kprof ncu tg: rc=0 
+[16:25:00] kprof ncu pp: rc=0 
+embedder (Qwen3-Embedding-0.6B-Q8_0.gguf) up
+[16:25:03] LLM failed: 
+[16:25:16] LLM failed: 
+[16:25:47] LLM failed: 
+[16:26:17] LLM failed: 
+[16:26:48] LLM failed: 
+[16:27:18] LLM failed: 
+[16:27:49] LLM failed: 
+[16:28:20] LLM failed: 
+[16:28:50] LLM failed: 
+[16:29:21] LLM failed: 
+[16:29:52] LLM failed: 
+[16:30:22] LLM failed: 
+[16:30:53] LLM failed: 
+[16:31:23] LLM failed: 
+[16:31:54] LLM failed: 

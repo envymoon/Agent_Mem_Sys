@@ -34,7 +34,8 @@ wait_http() {  # url name tries log [pid]
 
 llm() {
   local FA=on; [ "$NGL" = 0 ] && FA=auto   # flash-attn (needed for quantized V cache) on GPU
-  command -v nsys >/dev/null && nsys shutdown --kill sigkill --session="${NSYS_SESSION:-memprof}" >/dev/null 2>&1
+  # (|| true: under set -e a failing last command of an && list aborts the script; shutdown fails when no session exists)
+  if command -v nsys >/dev/null; then nsys shutdown --kill sigkill --session="${NSYS_SESSION:-memprof}" >/dev/null 2>&1 || true; fi
   pkill -f "llama-server.*--port 8000" 2>/dev/null || true; sleep 1
   A=(-m "$LLM_GGUF" --alias local --port 8000 --host 127.0.0.1 -c "$CTX" -np "$NP" -ngl "$NGL"
      -ctk "$KV" -ctv "$KV" -fa "$FA" --fit off --kv-unified --cache-ram "${CACHE_RAM:-8192}"

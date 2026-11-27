@@ -6,6 +6,18 @@
   "lme",
   "score budget # after lme"
  ],
- "gave_up": [],
- "tries": {}
+ "gave_up": [
+  "kprof",
+  "l1 # async",
+  "score budget # after async l1",
+  "lme # async",
+  "score budget # after async lme"
+ ],
+ "tries": {
+  "kprof": 3,
+  "l1 # async": 3,
+  "score budget # after async l1": 3,
+  "lme # async": 3,
+  "score budget # after async lme": 3
+ }
 }
