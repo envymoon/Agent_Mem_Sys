@@ -51,3 +51,27 @@ proxy up
 [17:13:09] === l1_gptoss20b_mem0-local_async_think5_t100 (mem0-local) PROFILE=gptoss20b
 [17:25:26] done l1_gptoss20b_mem0-local_async_think5_t100: {"n_turns": 100, "n_qa": 47, "count": 145, "total_s": 706.5055486869996}
 [17:25:26] === l1_gptoss20b_mem0-pg_async_think5_t100 (mem0-pg) PROFILE=gptoss20b
+[17:37:37] done l1_gptoss20b_mem0-pg_async_think5_t100: {"n_turns": 100, "n_qa": 47, "count": 151, "total_s": 701.0152497769996}
+[17:37:37] === l1_gptoss20b_mem0-qdrant_async_think5_t100 (mem0-qdrant) PROFILE=gptoss20b
+[17:49:45] done l1_gptoss20b_mem0-qdrant_async_think5_t100: {"n_turns": 100, "n_qa": 47, "count": 137, "total_s": 698.1117209040003}
+[17:49:45] suite done -> /content/results/L4
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) up
+{"load_wall_s": 8.362060785293579, "offloaded": "25/25", "buffers_mib": {"model:CPU_Mapped": 586.8, "model:CUDA0": 10949.4, "KV:CUDA0": 786.0, "compute:CUDA0": 123.0, "compute:CUDA_Host": 55.5}, "n_ctx_slot": 32768}
+proxy up
+kprof_gptoss20b_mem0-local_async_think5: n=0 F1=0.000 J=0.000
+kprof_gptoss20b_mem0-pg_async_think5: n=0 F1=0.000 J=0.000
+kprof_gptoss20b_mem0-qdrant_async_think5: n=0 F1=0.000 J=0.000
+kprof_gptoss20b_rag-pg_async_think5: n=0 F1=0.000 J=0.000
+l1_gptoss20b_mem0-local_async_think5_t100: n=47 F1=0.166 J=0.596
+l1_gptoss20b_mem0-pg_async_think5_t100: n=47 F1=0.153 J=0.553
+l1_gptoss20b_mem0-qdrant_async_think5_t100: n=47 F1=0.181 J=0.574
+l1_gptoss20b_rag-pg_async_think5_t100: n=47 F1=0.199 J=0.596
+[17:52:34] suite done -> /content/results/L4
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) up
+{"load_wall_s": 4.085320472717285, "offloaded": "25/25", "buffers_mib": {"model:CPU_Mapped": 586.8, "model:CUDA0": 10949.4, "KV:CUDA0": 786.0, "compute:CUDA0": 123.0, "compute:CUDA_Host": 55.5}, "n_ctx_slot": 32768}
+proxy up
+[17:53:07] === lme_gptoss20b_rag-pg_i70_t0_async_think5 (rag-pg) PROFILE=gptoss20b
+[18:28:29] done lme_gptoss20b_rag-pg_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 242, "total_s": 2087.26190418}
+[18:28:29] === lme_gptoss20b_mem0-local_i70_t0_async_think5 (mem0-local) PROFILE=gptoss20b

@@ -15,3 +15,11 @@ lme_gptoss20b_mem0-local_i366_t0+late1
 lme_gptoss20b_mem0-pg_i366_t0+late1
 lme_gptoss20b_mem0-qdrant_i366_t0+late1
 lme_gptoss20b_rag-pg_i366_t0+late1
+kprof_gptoss20b_mem0-local_async_think5+late1
+kprof_gptoss20b_mem0-pg_async_think5+late1
+kprof_gptoss20b_mem0-qdrant_async_think5+late1
+kprof_gptoss20b_rag-pg_async_think5+late1
+l1_gptoss20b_mem0-local_async_think5_t100+late1
+l1_gptoss20b_mem0-pg_async_think5_t100+late1
+l1_gptoss20b_mem0-qdrant_async_think5_t100+late1
+l1_gptoss20b_rag-pg_async_think5_t100+late1

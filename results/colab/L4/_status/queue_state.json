@@ -5,7 +5,9 @@
   "score budget # after l1",
   "lme",
   "score budget # after lme",
-  "kprof # retry"
+  "kprof # retry",
+  "l1 # async retry",
+  "score budget # after async l1 retry"
  ],
  "gave_up": [
   "kprof",

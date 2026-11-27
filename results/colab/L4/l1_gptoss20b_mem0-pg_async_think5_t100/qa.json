@@ -1,0 +1,942 @@
+[
+  {
+    "q": "When did Caroline go to the LGBTQ support group?",
+    "gold": "7 May 2023",
+    "pred": "Caroline attended the LGBTQ support group on **May\u202f7,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there",
+      "User is keen on pursuing a career in counseling or mental\u2011health work to support people with similar issues they faced in the LGBTQ support group",
+      "User joined a new LGBTQ activist group on 2023-07-18, meeting many passionate allies, feeling empowered by giving their voice and making a real difference, and describing the experience as fulfilling and great",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community",
+      "User is a member of a group called \"Connected LGBTQ Activists\", a dedicated platform where diverse members meet regularly to plan events and campaigns, share experiences, and support each other\u2019s rights and personal authenticity",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User expresses that having supportive people makes a huge difference, notes progress in LGBTQ rights but sees more work needed, and states a desire to help make a difference"
+    ]
+  },
+  {
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold": "Psychology, counseling certification",
+    "pred": "Caroline would likely pursue fields that blend counseling, mental\u2011health practice, and personal\u2011growth work\u2014especially programs that train her to support trans people and help them accept themselves. Think social work, clinical psychology, or a specialized counseling degree focused on LGBTQ+ mental health.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User plans to continue their education and explore career options, expressing excitement about the upcoming opportunities",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User is going to do research on topics related to counseling, mental health, or personal growth",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User is considering a career focused on working with trans people, helping them accept themselves and supporting their mental health",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating"
+    ]
+  },
+  {
+    "q": "What did Caroline research?",
+    "gold": "Adoption agencies",
+    "pred": "I\u2019m not aware of any research that Caroline has done.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant offered the user resources and guidance for the adoption agency research process",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User is going to do research on topics related to counseling, mental health, or personal growth",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "User is researching a specific adoption agency, adding it to their list of agencies to consider"
+    ]
+  },
+  {
+    "q": "What is Caroline's identity?",
+    "gold": "Transgender woman",
+    "pred": "I\u2019m not aware of any details about a person named Caroline in our conversation. If you can give me a bit more context, I\u2019ll do my best to help!",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime",
+      "Assistant says it is available 24/7, cheering the user on and listening whenever needed, describing its support as a beautiful reminder that we\u2019re never alone",
+      "User is a transgender individual who publicly shared their journey at a school event",
+      "User reflected on how far they have come since starting their transition, noting personal growth and progress",
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine"
+    ]
+  },
+  {
+    "q": "What is Caroline's relationship status?",
+    "gold": "Single",
+    "pred": "I\u2019m not aware of any details about Caroline\u2019s relationship status. If you have more context or want to share, I\u2019m here to listen.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path"
+    ]
+  },
+  {
+    "q": "When did Caroline give a speech at a school?",
+    "gold": "The week before 9 June 2023",
+    "pred": "Caroline gave her school speech on **May\u202f31,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User is a transgender individual who publicly shared their journey at a school event",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "User celebrated their 18th birthday and received a black\u2011and\u2011white bowl from a friend",
+      "User felt super powerful giving a school talk about their transgender journey, sharing struggles and growth since coming out, and noted the audience related and was inspired to become better allies, emphasizing the necessity of conversations about gender identity and inclusion",
+      "Assistant expressed pride in the user\u2019s passion at the council meeting and encouraged them to keep the momentum to help children find loving families"
+    ]
+  },
+  {
+    "q": "When did Caroline meet up with her friends, family, and mentors?",
+    "gold": "The week before 9 June 2023",
+    "pred": "Caroline met up with her friends, family, and mentors for a picnic around **June\u202f29,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User and their friends and family had a picnic together around June 29, 2023, celebrating their supportive relationships",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "User reflected on how far they have come since starting their transition, noting personal growth and progress",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life"
+    ]
+  },
+  {
+    "q": "How long has Caroline had her current group of friends for?",
+    "gold": "4 years",
+    "pred": "Caroline has had her current group of friends for about four years.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User and their friends and family had a picnic together around June 29, 2023, celebrating their supportive relationships",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User reports having a busy week since their last conversation with the assistant",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime"
+    ]
+  },
+  {
+    "q": "Where did Caroline move from 4 years ago?",
+    "gold": "Sweden",
+    "pred": "Caroline moved from her home country.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "Assistant reports that their family has been supportive during the assistant\u2019s move by checking in daily, sending encouraging messages, and planning a surprise visit to celebrate the new chapter, making every move feel like home.",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User expresses pride in how far they have come on their transition journey, reflecting on personal growth and progress",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home"
+    ]
+  },
+  {
+    "q": "How long ago was Caroline's 18th birthday?",
+    "gold": "10 years ago",
+    "pred": "Caroline\u2019s 18th birthday was ten years ago.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User celebrated their 18th birthday and received a black\u2011and\u2011white bowl from a friend",
+      "User has a hand\u2011painted bowl that a friend made for their 18th birthday ten years ago; the bowl\u2019s pattern and colors are described as awesome and remind the user of art and self\u2011expression",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User\u2019s friend crafted a black\u2011and\u2011white bowl as a gift for the user\u2019s 18th birthday",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User comments that the black\u2011and\u2011white bowl they received for their 18th birthday looks gorgeous and fancy",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup"
+    ]
+  },
+  {
+    "q": "What career path has Caroline decided to persue?",
+    "gold": "counseling or mental health for Transgender people",
+    "pred": "I\u2019m not aware of any information about a person named Caroline or her career plans. If you have more context or details, feel free to share!",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "User feels motivated by community interactions and is excited to give back, reaffirming that counseling and mental health is the career path they are still considering",
+      "User plans to continue their education and explore career options, expressing excitement about the upcoming opportunities",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User reflected on how far they have come since starting their transition, noting personal growth and progress",
+      "User is going to do research on topics related to counseling, mental health, or personal growth",
+      "User is considering a career focused on working with trans people, helping them accept themselves and supporting their mental health",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt"
+    ]
+  },
+  {
+    "q": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+    "gold": "Likely no",
+    "pred": "If Caroline hadn\u2019t received that early support, she might still be drawn to counseling\u2014her own experience of healing and the community she\u2019s found seem to be the core of her motivation.  But without that foundational encouragement, she could feel less confident or less sure she\u2019d be able to help others, and she might hesitate or look for a different path.  In short, the support she got growing up likely strengthened her resolve, but her intrinsic interest in helping people could still exist even without it.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User is exploring a career in counseling and mental health to help people who have experienced similar challenges as themselves",
+      "User feels motivated by community interactions and is excited to give back, reaffirming that counseling and mental health is the career path they are still considering",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User learned self\u2011acceptance through their personal journey, recognizing that support helped them grow into a more confident self",
+      "User is considering a career in counseling and mental health to help others",
+      "User is considering a career focused on working with trans people, helping them accept themselves and supporting their mental health"
+    ]
+  },
+  {
+    "q": "When is Caroline going to the transgender conference?",
+    "gold": "July 2023",
+    "pred": "Caroline is heading to the transgender conference in **July\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User is attending a transgender conference in July 2023, excited to meet community members and learn more about advocacy",
+      "User attended an LGBTQ conference on 2023-07-10, felt fully accepted, expressed deep gratitude for the welcoming community, and emphasized the importance of fighting for trans rights and spreading awareness.",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User is a transgender individual who publicly shared their journey at a school event",
+      "User feels that sharing their transgender journey is essential for promoting understanding and acceptance, believes it helps build a supportive community of hope, and wants to pass on the love and support they have received",
+      "User attended an LGBTQ+ counseling workshop on 2023-06-23, found it enlightening, and learned about various therapeutic methods and best practices for working with trans clients",
+      "User expresses deep gratitude for the opportunity to share their transgender journey, believing it gives others hope and that collective effort can build a more inclusive and understanding world",
+      "User felt super powerful giving a school talk about their transgender journey, sharing struggles and growth since coming out, and noted the audience related and was inspired to become better allies, emphasizing the necessity of conversations about gender identity and inclusion",
+      "User attended an LGBT pride event in June 2023",
+      "User mentors a transgender teen, working together on confidence building and positive strategies that are proving effective"
+    ]
+  },
+  {
+    "q": "When did Caroline have a picnic?",
+    "gold": "The week before 6 July 2023",
+    "pred": "Caroline had the picnic around **June\u202f29,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User and their friends and family had a picnic together around June 29, 2023, celebrating their supportive relationships",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User celebrated their 18th birthday and received a black\u2011and\u2011white bowl from a friend",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User attended an LGBT pride event in June 2023",
+      "User reports having a busy week since their last conversation with the assistant"
+    ]
+  },
+  {
+    "q": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+    "gold": "Yes, since she collects classic children's books",
+    "pred": "I don\u2019t have any details about Caroline\u2019s book collection, so I can\u2019t say for sure whether she has Dr.\u202fSeuss books on her shelf.",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant recommended *Where the Wild Things Are* as a favorite childhood book, noting its timeless adventure and imagination",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home"
+    ]
+  },
+  {
+    "q": "When did Caroline go to the LGBTQ conference?",
+    "gold": "10 July 2023",
+    "pred": "Caroline attended the LGBTQ conference on **July\u202f10,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBTQ conference on 2023-07-10, felt fully accepted, expressed deep gratitude for the welcoming community, and emphasized the importance of fighting for trans rights and spreading awareness.",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User attended an LGBT pride event in June 2023",
+      "User is attending a transgender conference in July 2023, excited to meet community members and learn more about advocacy",
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User attended an LGBTQ+ counseling workshop on 2023-06-23, found it enlightening, and learned about various therapeutic methods and best practices for working with trans clients",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User joined a new LGBTQ activist group on 2023-07-18, meeting many passionate allies, feeling empowered by giving their voice and making a real difference, and describing the experience as fulfilling and great",
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there"
+    ]
+  },
+  {
+    "q": "Would Caroline pursue writing as a career option?",
+    "gold": "LIkely no; though she likes reading, she wants to be a counselor",
+    "pred": "I don\u2019t have any information about a person named Caroline or her career plans. If you\u2019re thinking about writing as a path, I can help you explore that option!",
+    "qtype": "locomo-cat3",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User plans to continue their education and explore career options, expressing excitement about the upcoming opportunities",
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "User feels motivated by community interactions and is excited to give back, reaffirming that counseling and mental health is the career path they are still considering",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User is going to do research on topics related to counseling, mental health, or personal growth",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "User is considering a career focused on working with trans people, helping them accept themselves and supporting their mental health"
+    ]
+  },
+  {
+    "q": "When did Caroline go to the adoption meeting?",
+    "gold": "The friday before 15 July 2023",
+    "pred": "Caroline went to the adoption meeting on **Friday, July\u202f14,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended a council meeting for adoption on Friday, July 14, 2023, found it inspiring and emotional, and felt even more determined to adopt children in need",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "Assistant offered the user resources and guidance for the adoption agency research process",
+      "User chose adoption agencies that specifically help LGBTQ+ families because the agencies\u2019 inclusivity and support resonated with them",
+      "User indicates that the hard work to turn the adoption dream into reality is now beginning, feeling hopeful and optimistic",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User is researching a specific adoption agency, adding it to their list of agencies to consider",
+      "Assistant expressed pride in the user\u2019s passion at the council meeting and encouraged them to keep the momentum to help children find loving families"
+    ]
+  },
+  {
+    "q": "What LGBTQ+ events has Caroline participated in?",
+    "gold": "Pride parade, school speech, support group",
+    "pred": "Caroline has taken part in the following LGBTQ+ events:\n\n| Date | Event | Notes |\n|------|-------|-------|\n| 2023\u201105\u201107 | LGBTQ support group | Found it powerful, supportive, and inspiring, especially the transgender stories shared. |\n| 2023\u201105\u201131 | School presentation on her transgender journey | Encouraged students to get involved in the LGBTQ community; received positive reactions. |\n| 2023\u201106\u201130 | LGBTQ+ pride parade | Felt a strong sense of belonging and saw the community\u2019s growth and happiness. |\n| 2023\u201107\u201110 | LGBTQ conference | Felt fully accepted, expressed deep gratitude for the welcoming community, and emphasized the importance of fighting for trans rights and spreading awareness. |\n| 2023\u201107\u201115 | Mentorship program for LGBTQ youth (Saturday) | Described the experience as rewarding and expressed a desire to help the community. |\n| 2023\u201107\u201118 | New LGBTQ activist group meeting | Met many passionate allies, felt empowered by giving her voice and making a real difference; described the experience as fulfilling and great. |\n\nThese are all the events recorded in the memories.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBT pride event in June 2023",
+      "User attended an LGBTQ conference on 2023-07-10, felt fully accepted, expressed deep gratitude for the welcoming community, and emphasized the importance of fighting for trans rights and spreading awareness.",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User is a member of a group called \"Connected LGBTQ Activists\", a dedicated platform where diverse members meet regularly to plan events and campaigns, share experiences, and support each other\u2019s rights and personal authenticity",
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User attended an LGBTQ+ pride parade on 2023-06-30, felt a strong sense of belonging, and observed the community\u2019s growth and widespread happiness",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User joined a new LGBTQ activist group on 2023-07-18, meeting many passionate allies, feeling empowered by giving their voice and making a real difference, and describing the experience as fulfilling and great",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there",
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community"
+    ]
+  },
+  {
+    "q": "When did Caroline go to a pride parade during the summer?",
+    "gold": "The week before 3 July 2023",
+    "pred": "Caroline went to a pride parade in late June\u202f2023 \u2013 around June\u202f24 (and again on June\u202f30).",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended a pride parade around June 24, 2023, feeling a strong sense of belonging and witnessing the community\u2019s growth",
+      "User felt deeply accepted and happy at a pride parade, describing it as a top memory where people celebrated and accepted them",
+      "User felt proud and grateful after attending a pride parade, describing the vibes as amazing and comforting, and noted that knowing they are not alone and have a great community around them reinforced this feeling",
+      "User felt inspired and deeply moved by the community support experienced at the pride parade, noting that being surrounded by people who embrace and back them up was beyond words and reinforced their sense of belonging",
+      "User described the recent pride event as awesome, noting that being surrounded by love and acceptance was encouraging and uplifting",
+      "User attended an LGBTQ+ pride parade on 2023-06-30, felt a strong sense of belonging, and observed the community\u2019s growth and widespread happiness",
+      "Assistant encouraged the user to keep riding the momentum of the July 20 pride parade, praising the collective strength and urging continued action",
+      "User missed the city pride parade on July 20, 2023, noting that the march of flags, signs, and celebratory crowds served as a powerful reminder of collective strength and the ongoing fight for equality and inclusivity",
+      "User attended an LGBT pride event in June 2023",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together"
+    ]
+  },
+  {
+    "q": "What events has Caroline participated in to help children?",
+    "gold": "Mentoring program, school speech",
+    "pred": "I\u2019m not aware of any events that Caroline has participated in to help children.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "User expresses pride and support for the assistant\u2019s participation in a charity race aimed at raising mental health awareness",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "Assistant expresses excitement about running in the charity race and offers to provide race\u2011prep tips or resources",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User expresses excitement about creating a family for children in need and acknowledges that single parenting will be challenging but they are prepared to meet the challenge",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need"
+    ]
+  },
+  {
+    "q": "When did Caroline join a mentorship program?",
+    "gold": "The weekend before 17 July 2023",
+    "pred": "Caroline joined the mentorship program on Saturday, July\u202f15,\u202f2023.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community",
+      "User mentors a transgender teen, working together on confidence building and positive strategies that are proving effective",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User reports that their LGBTQ youth mentorship program is going well, having met several young participants whom they are supporting and finding their resilience and strength inspiring",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant praised the user\u2019s courage to transition and the supportive community backing them, encouraging them to keep shining",
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "User reflected on how far they have come since starting their transition, noting personal growth and progress"
+    ]
+  },
+  {
+    "q": "In what ways is Caroline participating in the LGBTQ community?",
+    "gold": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+    "pred": "Caroline is actively involved in the LGBTQ community in several ways:\n\n1. **Public Advocacy** \u2013 She gave a school presentation on May\u202f31, 2023, sharing her transgender journey and encouraging classmates to join LGBTQ causes, which received positive feedback.  \n2. **Support Group Participation** \u2013 She attended an LGBTQ support group on May\u202f7, 2023, and again on July\u202f15, 2023, finding the experience powerful, supportive, and rewarding.  \n3. **Mentorship** \u2013 She joined a mentorship program for LGBTQ youth on July\u202f15, 2023, aiming to help and guide younger community members.  \n4. **Activist Group Membership** \u2013 She is a member of \u201cConnected LGBTQ Activists,\u201d where she meets regularly to plan events, share experiences, and advocate for rights.  \n5. **New Activist Group** \u2013 On July\u202f18, 2023, she joined another LGBTQ activist group, meeting passionate allies and feeling empowered to make a real difference.  \n\nThese activities show her commitment to advocacy, support, mentorship, and community building.",
+    "qtype": "locomo-cat1",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User is keen on pursuing a career in counseling or mental\u2011health work to support people with similar issues they faced in the LGBTQ support group",
+      "User is a member of a group called \"Connected LGBTQ Activists\", a dedicated platform where diverse members meet regularly to plan events and campaigns, share experiences, and support each other\u2019s rights and personal authenticity",
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User expresses that having supportive people makes a huge difference, notes progress in LGBTQ rights but sees more work needed, and states a desire to help make a difference",
+      "User joined a new LGBTQ activist group on 2023-07-18, meeting many passionate allies, feeling empowered by giving their voice and making a real difference, and describing the experience as fulfilling and great",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there",
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information"
+    ]
+  },
+  {
+    "q": "When did Caroline join a new activist group?",
+    "gold": "The Tuesday before 20 July 2023",
+    "pred": "Caroline joined the new LGBTQ activist group on **July\u202f18,\u202f2023**.",
+    "qtype": "locomo-cat2",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User joined a new LGBTQ activist group on 2023-07-18, meeting many passionate allies, feeling empowered by giving their voice and making a real difference, and describing the experience as fulfilling and great",
+      "User is a member of a group called \"Connected LGBTQ Activists\", a dedicated platform where diverse members meet regularly to plan events and campaigns, share experiences, and support each other\u2019s rights and personal authenticity",
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User is attending a transgender conference in July 2023, excited to meet community members and learn more about advocacy",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there",
+      "User is keen on pursuing a career in counseling or mental\u2011health work to support people with similar issues they faced in the LGBTQ support group"
+    ]
+  },
+  {
+    "q": "What did the charity race raise awareness for?",
+    "gold": "mental health",
+    "pred": "The charity race was raising awareness for mental\u2011health issues.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant is motivated to run because they love the feeling of movement, the sense of community, and the opportunity to support a charity race that raises mental\u2011health awareness, while also staying fit, clearing their head, and helping others",
+      "User expresses pride and support for the assistant\u2019s participation in a charity race aimed at raising mental health awareness",
+      "Assistant expresses excitement about running in the charity race and offers to provide race\u2011prep tips or resources",
+      "User discovered how to find support by seeking counseling and mental health resources, building a network to help others",
+      "User described the recent pride event as awesome, noting that being surrounded by love and acceptance was encouraging and uplifting",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "User feels that the support they received during their own journey made a huge difference in their life and reinforced their desire to help others navigate similar paths",
+      "User feels that sharing their transgender journey is essential for promoting understanding and acceptance, believes it helps build a supportive community of hope, and wants to pass on the love and support they have received",
+      "User missed the city pride parade on July 20, 2023, noting that the march of flags, signs, and celebratory crowds served as a powerful reminder of collective strength and the ongoing fight for equality and inclusivity"
+    ]
+  },
+  {
+    "q": "What are Caroline's plans for the summer?",
+    "gold": "researching adoption agencies",
+    "pred": "I\u2019m not sure\u2014there\u2019s no mention of Caroline\u2019s summer plans in our chat history. If you have any details or want to brainstorm ideas for her, let me know!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User reports having a busy week since their last conversation with the assistant",
+      "Assistant says it is available 24/7, cheering the user on and listening whenever needed, describing its support as a beautiful reminder that we\u2019re never alone"
+    ]
+  },
+  {
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gold": "LGBTQ+ individuals",
+    "pred": "Caroline\u2019s agency focuses on helping **LGBTQ+ families and single parents** who want to adopt. It offers inclusive support, counseling, and resources tailored to those who may face unique challenges in the adoption process.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User is researching a specific adoption agency, adding it to their list of agencies to consider",
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "Assistant offered the user resources and guidance for the adoption agency research process",
+      "User chose adoption agencies that specifically help LGBTQ+ families because the agencies\u2019 inclusivity and support resonated with them",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "Assistant offers to help the user plan and maintain balance while navigating single parenting and adoption efforts",
+      "User attended a council meeting for adoption on Friday, July 14, 2023, found it inspiring and emotional, and felt even more determined to adopt children in need"
+    ]
+  },
+  {
+    "q": "Why did Caroline choose the adoption agency?",
+    "gold": "because of their inclusivity and support for LGBTQ+ individuals",
+    "pred": "Caroline chose the agency because it specifically supports LGBTQ+ families, and its inclusivity and support resonated with her.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User chose adoption agencies that specifically help LGBTQ+ families because the agencies\u2019 inclusivity and support resonated with them",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "User is researching a specific adoption agency, adding it to their list of agencies to consider",
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "Assistant offered the user resources and guidance for the adoption agency research process",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User indicates that the hard work to turn the adoption dream into reality is now beginning, feeling hopeful and optimistic",
+      "User attended a council meeting for adoption on Friday, July 14, 2023, found it inspiring and emotional, and felt even more determined to adopt children in need",
+      "Assistant offers to help the user plan and maintain balance while navigating single parenting and adoption efforts"
+    ]
+  },
+  {
+    "q": "What is Caroline excited about in the adoption process?",
+    "gold": "creating a family for kids who need one",
+    "pred": "I\u2019m not aware of any specific mention of someone named Caroline in our conversation, so I don\u2019t have details on what she might be excited about. If you have more context or can share what you know, I\u2019d be happy to help!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User indicates that the hard work to turn the adoption dream into reality is now beginning, feeling hopeful and optimistic",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "Assistant offered the user resources and guidance for the adoption agency research process",
+      "User chose adoption agencies that specifically help LGBTQ+ families because the agencies\u2019 inclusivity and support resonated with them",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User is researching a specific adoption agency, adding it to their list of agencies to consider",
+      "Assistant offers to help the user plan and maintain balance while navigating single parenting and adoption efforts",
+      "User attended a council meeting for adoption on Friday, July 14, 2023, found it inspiring and emotional, and felt even more determined to adopt children in need"
+    ]
+  },
+  {
+    "q": "What does Caroline's necklace symbolize?",
+    "gold": "love, faith, and strength",
+    "pred": "Caroline\u2019s necklace, given to her by her grandmother in Sweden, symbolizes love, faith, and strength\u2014serving as a reminder of her roots and the family support that surrounds her.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User received a necklace from their grandmother in Sweden when they were young; the necklace symbolizes love, faith, and strength, serving as a reminder of their roots and family support",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "Assistant says roses represent the classic combination of love and beauty",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "User has a hand\u2011painted bowl that a friend made for their 18th birthday ten years ago; the bowl\u2019s pattern and colors are described as awesome and remind the user of art and self\u2011expression"
+    ]
+  },
+  {
+    "q": "What country is Caroline's grandma from?",
+    "gold": "Sweden",
+    "pred": "Caroline\u2019s grandma is from Sweden.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User received a necklace from their grandmother in Sweden when they were young; the necklace symbolizes love, faith, and strength, serving as a reminder of their roots and family support",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine"
+    ]
+  },
+  {
+    "q": "What was grandma's gift to Caroline?",
+    "gold": "necklace",
+    "pred": "Caroline\u2019s grandma gave her a necklace when she was young\u2014a piece that symbolizes love, faith, and strength, reminding her of her roots and family support.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User received a necklace from their grandmother in Sweden when they were young; the necklace symbolizes love, faith, and strength, serving as a reminder of their roots and family support",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User has known their close friends for four years, since moving from their home country, and credits their love and help as especially important after a tough breakup",
+      "User celebrated their 18th birthday and received a black\u2011and\u2011white bowl from a friend"
+    ]
+  },
+  {
+    "q": "What is Melanie's hand-painted bowl a reminder of?",
+    "gold": "art and self-expression",
+    "pred": "It\u2019s a reminder of art and self\u2011expression.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "User has a hand\u2011painted bowl that a friend made for their 18th birthday ten years ago; the bowl\u2019s pattern and colors are described as awesome and remind the user of art and self\u2011expression",
+      "User comments that the black\u2011and\u2011white bowl they received for their 18th birthday looks gorgeous and fancy",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family"
+    ]
+  },
+  {
+    "q": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+    "gold": "working with trans people, helping them accept themselves and supporting their mental health",
+    "pred": "Caroline is drawn to counseling that supports trans individuals and helps people who have faced similar challenges to accept themselves and build mental health resilience. She\u2019s also interested in community\u2011based services that provide a safe space for people to talk, learn self\u2011understanding, and grow together.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User is considering a career in counseling and mental health to help others",
+      "User is exploring a career in counseling and mental health to help people who have experienced similar challenges as themselves",
+      "User is going to do research on topics related to counseling, mental health, or personal growth",
+      "User feels motivated by community interactions and is excited to give back, reaffirming that counseling and mental health is the career path they are still considering",
+      "User is actively researching counseling or mental health work, expressing passion for helping people, a desire to make a positive impact, and noting that the work is tough but rewarding",
+      "User is still researching counseling and mental health job opportunities, emphasizing the importance of providing people with someone to talk to and wanting to help make that happen",
+      "User is considering a career focused on working with trans people, helping them accept themselves and supporting their mental health",
+      "User discovered how to find support by seeking counseling and mental health resources, building a network to help others",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life",
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session"
+    ]
+  },
+  {
+    "q": "What workshop did Caroline attend recently?",
+    "gold": "LGBTQ+ counseling workshop",
+    "pred": "Caroline attended the LGBTQ+ counseling workshop on June\u202f23,\u202f2023.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User attended an LGBTQ+ counseling workshop on 2023-06-23, found it enlightening, and learned about various therapeutic methods and best practices for working with trans clients",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User is attending a transgender conference in July 2023, excited to meet community members and learn more about advocacy",
+      "The workshop emphasized creating safe spaces for trans individuals, and the professionals present were passionate about supporting people like the user",
+      "User reports having a busy week since their last conversation with the assistant",
+      "User has a painting prepared for the upcoming LGBTQ art show scheduled for August 2023",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating"
+    ]
+  },
+  {
+    "q": "What was discussed in the LGBTQ+ counseling workshop?",
+    "gold": "therapeutic methods and how to best work with trans people",
+    "pred": "In the workshop on 23\u202fJune\u202f2023, the focus was on building safe, affirming spaces for trans clients. Topics covered included:\n\n- **Therapeutic models** that respect gender identity (e.g., gender\u2011affirming therapy, minority stress model).  \n- **Best practices** for confidentiality, informed consent, and respectful language.  \n- **Clinical techniques** such as gender\u2011affirming CBT, narrative therapy, and coping skills for dysphoria and discrimination.  \n- **Cultural competence**: understanding intersectionality (race, disability, socioeconomic status).  \n- **Self\u2011care for clinicians** to avoid burnout when working with marginalized populations.  \n\nThe session emphasized creating welcoming environments and highlighted the importance of ongoing education and community collaboration.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended an LGBTQ+ counseling workshop on 2023-06-23, found it enlightening, and learned about various therapeutic methods and best practices for working with trans clients",
+      "User is keen on pursuing a career in counseling or mental\u2011health work to support people with similar issues they faced in the LGBTQ support group",
+      "User gave a school presentation on 2023-05-31 about their transgender journey and encouraged students to get involved in the LGBTQ community, receiving positive reactions from the audience",
+      "User feels accepted and has gained courage to embrace themselves after attending the LGBTQ support group",
+      "User attended an LGBTQ support group on 2023-05-07 and found the experience powerful and supportive",
+      "User joined a mentorship program for LGBTQ youth on Saturday, July 15, 2023, describing the experience as rewarding and expressing a desire to help the community",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User felt happy and thankful after attending the LGBTQ support group, especially inspired by the transgender stories shared there",
+      "User reports that their LGBTQ youth mentorship program is going well, having met several young participants whom they are supporting and finding their resilience and strength inspiring",
+      "The workshop emphasized creating safe spaces for trans individuals, and the professionals present were passionate about supporting people like the user"
+    ]
+  },
+  {
+    "q": "What motivated Caroline to pursue counseling?",
+    "gold": "her own journey and the support she received, and how counseling improved her life",
+    "pred": "I\u2019m not aware of any details about a person named Caroline in our conversation. If you have more context or specifics, feel free to share!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User feels motivated by community interactions and is excited to give back, reaffirming that counseling and mental health is the career path they are still considering",
+      "Assistant encouraged the user to keep exploring counseling career paths and offered to provide resources or a quick brainstorming session",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User is exploring a career in counseling and mental health to help people who have experienced similar challenges as themselves",
+      "User is actively researching counseling or mental health work, expressing passion for helping people, a desire to make a positive impact, and noting that the work is tough but rewarding",
+      "User is going to do research on topics related to counseling, mental health, or personal growth"
+    ]
+  },
+  {
+    "q": "What kind of place does Caroline want to create for people?",
+    "gold": "a safe and inviting place for people to grow",
+    "pred": "Caroline wants to create a **safe, welcoming space**\u2014a place where people can feel supported, inspired, and at home. She\u2019s building a shared treasure, like a library, that nurtures creativity and community, and she\u2019s committed to turning that passion into a warm, inclusive environment for everyone.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant encouraged the user to keep building on their passion and offered help to turn it into a safe, welcoming space for others",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "User expresses gratitude to friends and mentors for their support while pursuing the goal of giving kids a loving home",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "User feels that the support they received during their own journey made a huge difference in their life and reinforced their desire to help others navigate similar paths",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need"
+    ]
+  },
+  {
+    "q": "What kind of books does Caroline have in her library?",
+    "gold": "kids' books - classics, stories from different cultures, educational books",
+    "pred": "I\u2019m not aware of any books that Caroline has in her library. If you have a list or a specific genre she\u2019s interested in, let me know and I can help you find some great titles!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant recommended *Where the Wild Things Are* as a favorite childhood book, noting its timeless adventure and imagination",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant states they focus on balancing self\u2011care with family time and offers to provide tips or ideas for the user\u2019s own routine",
+      "Assistant says it is available 24/7, cheering the user on and listening whenever needed, describing its support as a beautiful reminder that we\u2019re never alone"
+    ]
+  },
+  {
+    "q": "What book did Caroline recommend to Melanie?",
+    "gold": "\"Becoming Nicole\"",
+    "pred": "Caroline recommended **\u201cBecoming\u202fNicole.\u201d**",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "Assistant recommended *Where the Wild Things Are* as a favorite childhood book, noting its timeless adventure and imagination"
+    ]
+  },
+  {
+    "q": "What did Caroline take away from the book \"Becoming Nicole\"?",
+    "gold": "Lessons on self-acceptance and finding support",
+    "pred": "Caroline took away a deeper sense of self\u2011acceptance.  Seeing Nicole\u2019s journey showed her that with support and love she could grow into a more confident, authentic self.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant acknowledged the recommendation and said it will add \"Becoming Nicole\" to its reading list",
+      "User loves the book \"Becoming Nicole\" by Amy Ellis Nutt, describing it as an inspiring true story about a trans girl and her family that gave them hope for their own path",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User learned self\u2011acceptance through their personal journey, recognizing that support helped them grow into a more confident self",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "Assistant recommended *Where the Wild Things Are* as a favorite childhood book, noting its timeless adventure and imagination",
+      "User has started caring more about mental health and self-understanding after witnessing counseling and support groups improve their own life",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family"
+    ]
+  },
+  {
+    "q": "What are the new shoes that Melanie got used for?",
+    "gold": "Running",
+    "pred": "I\u2019m not aware of any new shoes Melanie has gotten. If you have more details, let me know!",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "Assistant says it is available 24/7, cheering the user on and listening whenever needed, describing its support as a beautiful reminder that we\u2019re never alone",
+      "Assistant is not married and states its focus is on being a supportive chat companion available anytime",
+      "User mentors a transgender teen, working together on confidence building and positive strategies that are proving effective"
+    ]
+  },
+  {
+    "q": "What is Melanie's reason for getting into running?",
+    "gold": "To de-stress and clear her mind",
+    "pred": "Melanie started running to boost her mood, find peace, and support a charity race that raises mental\u2011health awareness.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "Assistant notes that each mile of running feels like a step toward brighter days for everyone, implying that running helps it find peace",
+      "Assistant expresses excitement about running in the charity race and offers to provide race\u2011prep tips or resources",
+      "Assistant is motivated to run because they love the feeling of movement, the sense of community, and the opportunity to support a charity race that raises mental\u2011health awareness, while also staying fit, clearing their head, and helping others"
+    ]
+  },
+  {
+    "q": "What creative project do Mel and her kids do together besides pottery?",
+    "gold": "painting",
+    "pred": "Besides pottery, Mel and her kids love doing finger\u2011painting, making homemade paper, and putting together simple collages.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "Assistant listed additional creative projects with kids: finger\u2011painting, homemade paper, and simple collage",
+      "Assistant explained that they chose pottery because the tactile, hands\u2011on experience of shaping clay provides a quiet, creative hug and helps them stay present while sharing a tangible piece of themselves",
+      "Assistant says they are painting with the kids, mixing bold colors to capture a wild vibe of nature, describing it as a fun, collaborative splash of creativity that brings everyone together",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User is learning to play the piano, expressing enthusiasm for the creative process",
+      "Assistant expresses hope that the library the user is creating will become another shared treasure for the family",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support"
+    ]
+  },
+  {
+    "q": "What did Caroline see at the council meeting for adoption?",
+    "gold": "many people wanting to create loving homes for children in need",
+    "pred": "Caroline saw an inspiring and emotional council meeting that left her feeling even more determined to adopt children in need.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User attended a council meeting for adoption on Friday, July 14, 2023, found it inspiring and emotional, and felt even more determined to adopt children in need",
+      "Assistant expressed pride in the user\u2019s passion at the council meeting and encouraged them to keep the momentum to help children find loving families",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "Assistant offers to help the user dig into the agency details or outline next steps for the adoption process",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "Assistant acknowledged the user\u2019s choice of LGBTQ+\u2011supportive adoption agencies as a powerful step and offered to help sift through the next information",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User is researching adoption agencies as a first step toward building a loving family and providing homes for children in need",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "Assistant offered the user resources and guidance for the adoption agency research process"
+    ]
+  },
+  {
+    "q": "What do sunflowers represent according to Caroline?",
+    "gold": "warmth and happiness",
+    "pred": "Caroline says sunflowers represent pure sunshine.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "Assistant says sunflowers represent pure sunshine",
+      "Assistant says roses represent the classic combination of love and beauty",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "User thanks Melanie, expressing that they are really glad to have her as a friend to share their journey and calling her awesome",
+      "User thanks Melanie, expressing that the support network has been amazing, providing love, guidance, and acceptance, and acknowledges it was essential to their progress",
+      "User congratulated Melanie, saying she and her partner looked great on their wedding day and wished them many happy years together",
+      "User thanked Melanie for her encouragement and expressed a commitment to provide a safe and loving home for the children they hope to adopt",
+      "User expresses appreciation for family moments, saying they are special and is glad that Melanie and her loved ones had a great time",
+      "User received a necklace from their grandmother in Sweden when they were young; the necklace symbolizes love, faith, and strength, serving as a reminder of their roots and family support",
+      "Assistant thanks the user, commits to keep hitting the pavement, and says each mile feels like a step toward brighter days for everyone, spreading good vibes"
+    ]
+  },
+  {
+    "q": "What inspired Caroline's painting for the art show?",
+    "gold": "visiting an LGBTQ center and wanting to capture unity and strength",
+    "pred": "Caroline was inspired by the unity and strength she witnessed during a recent visit to an LGBTQ center, which she captured in her new painting for the upcoming art show.",
+    "qtype": "locomo-cat4",
+    "date": "8:56 pm on 20 July, 2023",
+    "question_id": null,
+    "mem": [
+      "User expresses excitement for Mel\u2019s art, saying it helps her express herself and brings joy, and encourages her to keep creating",
+      "User has a painting prepared for the upcoming LGBTQ art show scheduled for August 2023",
+      "User\u2019s painting was created to reflect the unity and strength observed during a recent visit to an LGBTQ center",
+      "User has a hand\u2011painted bowl that a friend made for their 18th birthday ten years ago; the bowl\u2019s pattern and colors are described as awesome and remind the user of art and self\u2011expression",
+      "User painted a new artwork after visiting an LGBTQ center, intending to capture the community\u2019s unity and strength",
+      "Assistant recommends that painting can be a powerful way to explore feelings and share stories, offering to provide tips on art as therapy",
+      "User observes that the painting\u2019s colors blend nicely and believes painting could serve as a powerful outlet for expressing themselves",
+      "User encourages the assistant, Melanie, to continue running, noting that running can boost her mood and expressing support",
+      "Assistant noted that the artwork\u2019s colors pop and the overall vibe feels uplifting, and that this energy is something they want to share with people",
+      "User is planning to host an LGBTQ art show featuring their own paintings in August 2023"
+    ]
+  }
+]
