@@ -1,3 +1,7 @@
 # 实验队列：colab/supervisor.py 按顺序执行，每行一次 run_local_suite.sh 调用。
 # 由 Claude 根据你的决定修改并推送；运行中的 supervisor 会自动拉取新行。
-pilot
+# 第一层完整版：LoCoMo 100 轮 + 50 题 x 5 系统，先打分出中间结果；再跑 LongMemEval 三个完整 haystack。
+l1
+score budget # after l1
+lme
+score budget # after lme
