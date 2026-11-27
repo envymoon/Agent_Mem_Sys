@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 04:25:39Z",
+ "time": "2026-11-27 04:43:03Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
  "code": "821542b Colab status: layer-1 runtime building llama.cpp",
  "boot": "750da98a",
- "runtime_up_h": 0.89,
+ "runtime_up_h": 1.18,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -18,34 +18,34 @@
  "tries": {},
  "current_line": "l1",
  "attempt": 1,
- "current_run": "l1_gptoss20b_mem0-qdrant_sync_t100",
+ "current_run": "l1_gptoss20b_graphiti_sync_t100",
  "suite_alive": true,
  "minutes_since_last_write": 0.0,
  "finished_runs": [
   "l1_gptoss20b_mem0-local_sync_t100",
   "l1_gptoss20b_mem0-pg_sync_t100",
+  "l1_gptoss20b_mem0-qdrant_sync_t100",
   "l1_gptoss20b_rag-pg_sync_t100"
  ],
  "failed_lines": [],
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "15 acked",
+  "why": "18 acked",
   "missing": [
-   "l1_gptoss20b_mem0-local_sync_t100",
-   "l1_gptoss20b_mem0-pg_sync_t100",
-   "l1_gptoss20b_rag-pg_sync_t100"
+   "l1_gptoss20b_mem0-qdrant_sync_t100"
   ]
  },
  "disk_free_gb": 220.5,
  "stop": null,
- "hours_since_start": 0.84,
+ "hours_since_start": 1.13,
  "max_hours": 5.0,
- "ram_avail_gb": 39.1,
- "gpu": "NVIDIA L4, 92 %, 14284 MiB, 23034 MiB, 71.27 W",
+ "ram_avail_gb": 38.2,
+ "gpu": "NVIDIA L4, 90 %, 14294 MiB, 23034 MiB, 74.43 W",
  "outbox_runs": [
   "l1_gptoss20b_mem0-local_sync_t100",
   "l1_gptoss20b_mem0-pg_sync_t100",
+  "l1_gptoss20b_mem0-qdrant_sync_t100",
   "l1_gptoss20b_rag-pg_sync_t100"
  ]
 }

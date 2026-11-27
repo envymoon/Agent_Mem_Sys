@@ -1,12 +1,12 @@
-# L4  2026-11-27 04:25:39Z  (running)
+# L4  2026-11-27 04:43:03Z  (running)
 
-- code `821542b Colab status: layer-1 runtime building llama.cpp`, runtime up 0.89 h
+- code `821542b Colab status: layer-1 runtime building llama.cpp`, runtime up 1.18 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme']  done: []  gave up: []
-- now: line `l1` attempt 1, run `l1_gptoss20b_mem0-qdrant_sync_t100`, suite alive True, last write 0.0 min ago
-- finished runs (3): l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t100
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '15 acked', 'missing': ['l1_gptoss20b_mem0-local_sync_t100', 'l1_gptoss20b_mem0-pg_sync_t100', 'l1_gptoss20b_rag-pg_sync_t100']}
-- stop: None; 0.84 h since start, cap 5.0 h
-- disk free 220.5 GB, RAM avail 39.1 GB, GPU NVIDIA L4, 92 %, 14284 MiB, 23034 MiB, 71.27 W
+- now: line `l1` attempt 1, run `l1_gptoss20b_graphiti_sync_t100`, suite alive True, last write 0.0 min ago
+- finished runs (4): l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_rag-pg_sync_t100
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '18 acked', 'missing': ['l1_gptoss20b_mem0-qdrant_sync_t100']}
+- stop: None; 1.13 h since start, cap 5.0 h
+- disk free 220.5 GB, RAM avail 38.2 GB, GPU NVIDIA L4, 90 %, 14294 MiB, 23034 MiB, 74.43 W
 
 ## problems
 
@@ -33,3 +33,5 @@ none
     [04:07:56] === l1_gptoss20b_mem0-pg_sync_t100 (mem0-pg) PROFILE=gptoss20b
     [04:18:42] done l1_gptoss20b_mem0-pg_sync_t100: {"n_turns": 100, "n_qa": 47, "count": 157, "total_s": 615.1927671079998}
     [04:18:42] === l1_gptoss20b_mem0-qdrant_sync_t100 (mem0-qdrant) PROFILE=gptoss20b
+    [04:30:10] done l1_gptoss20b_mem0-qdrant_sync_t100: {"n_turns": 100, "n_qa": 47, "count": 144, "total_s": 657.2621116169998}
+    [04:30:10] === l1_gptoss20b_graphiti_sync_t100 (graphiti) PROFILE=gptoss20b
