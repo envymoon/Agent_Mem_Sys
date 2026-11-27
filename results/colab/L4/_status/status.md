@@ -1,12 +1,12 @@
-# L4  2026-11-27 09:42:24Z  (running)
+# L4  2026-11-27 10:42:25Z  (running)
 
-- code `a1b06c4 Colab status: first lme attempt stopped (embedder context), relaunching`, runtime up 2.89 h
+- code `a1b06c4 Colab status: first lme attempt stopped (embedder context), relaunching`, runtime up 3.89 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme']  done: ['pilot', 'l1', 'score budget # after l1']  gave up: []
-- now: line `lme` attempt 1, run `lme_gptoss20b_mem0-local_i233_t0`, suite alive True, last write 0.0 min ago
-- finished runs (20): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i70_t0
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '27 acked', 'missing': ['lme_gptoss20b_mem0-pg_i70_t0', 'lme_gptoss20b_mem0-qdrant_i70_t0', 'lme_gptoss20b_rag-pg_i233_t0']}
-- stop: None; 2.84 h since start, cap 5.0 h
-- disk free 220.3 GB, RAM avail 38.2 GB, GPU NVIDIA L4, 89 %, 16092 MiB, 23034 MiB, 70.11 W
+- now: line `lme` attempt 1, run `lme_gptoss20b_mem0-pg_i233_t0`, suite alive True, last write 0.0 min ago
+- finished runs (21): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i70_t0
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '30 acked', 'missing': ['lme_gptoss20b_mem0-local_i233_t0']}
+- stop: None; 3.84 h since start, cap 5.0 h
+- disk free 220.2 GB, RAM avail 38.4 GB, GPU NVIDIA L4, 93 %, 16092 MiB, 23034 MiB, 67.50 W
 
 ## problems
 
@@ -55,3 +55,5 @@ none
     [09:21:20] === lme_gptoss20b_rag-pg_i233_t0 (rag-pg) PROFILE=gptoss20b
     [09:38:18] done lme_gptoss20b_rag-pg_i233_t0: {"n_turns": 240, "n_qa": 1, "count": 240, "total_s": 984.3047961660013}
     [09:38:18] === lme_gptoss20b_mem0-local_i233_t0 (mem0-local) PROFILE=gptoss20b
+    [10:19:32] done lme_gptoss20b_mem0-local_i233_t0: {"n_turns": 240, "n_qa": 1, "count": 866, "total_s": 2439.639567321001}
+    [10:19:32] === lme_gptoss20b_mem0-pg_i233_t0 (mem0-pg) PROFILE=gptoss20b

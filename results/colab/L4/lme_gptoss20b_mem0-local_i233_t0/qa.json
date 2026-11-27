@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "Zero days \u2013 you visited both the MoMA exhibit and the \u201cAncient Civilizations\u201d exhibit on the same day, January\u202f15,\u202f2023.",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art in New York City on January 15, 2023",
+      "User visited the Museum of Modern Art on a guided tour focused on 20th\u2011century modern art movements, sparking a strong interest in Cubism",
+      "User is interested in visiting the American Museum of Natural History to see its dinosaur exhibits and also plans to visit the Brooklyn Museum for its ancient artifacts collection",
+      "Assistant recommended the American Museum of Natural History (AMNH) as a museum in New York City with significant collections of artifacts and exhibits on ancient civilizations",
+      "Assistant highlighted the Metropolitan Museum of Art's Temple of Dendur, an ancient Egyptian temple built around 15\u202fBCE, as a must-see exhibit for ancient Egyptian architecture and culture",
+      "Assistant recommended the Brooklyn Museum as a museum in New York City with a significant collection of ancient artifacts, including Egyptian, Greek, and Roman art, and highlighted its \"Egypt Reborn: Art for Eternity\" exhibit",
+      "Assistant noted that the Brooklyn Museum's antiquities collection, featuring Greek, Roman, and Egyptian artifacts, is a permanent highlight worth visiting",
+      "User visited a modern art exhibit featuring recycled materials on January 15, 2023",
+      "Assistant recommended the Morgan Library & Museum as a museum in New York City with an impressive collection of ancient and medieval artifacts, including illuminated manuscripts and papyri",
+      "Assistant recommended El Museo del Barrio as a museum in New York City that includes a collection of pre-Columbian artifacts from ancient Mesoamerica and South America"
+    ]
+  }
+]
