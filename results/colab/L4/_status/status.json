@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 21:12:09Z",
+ "time": "2026-11-27 21:13:09Z",
  "final": false,
  "tag": "L4",
  "phase": "finishing: time cap 5 h reached",
  "code": "e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)",
  "boot": "b56b501b",
- "runtime_up_h": 5.16,
+ "runtime_up_h": 5.18,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -52,7 +52,7 @@
  "attempt": 1,
  "current_run": "lme_gptoss20b_mem0-local_i233_t0_async_think5",
  "suite_alive": false,
- "minutes_since_last_write": 6.8,
+ "minutes_since_last_write": 7.8,
  "finished_runs": [
   "kprof_gptoss20b_mem0-local_async_think5",
   "kprof_gptoss20b_mem0-pg_async_think5",
@@ -123,7 +123,7 @@
  },
  "disk_free_gb": 219.6,
  "stop": "time cap 5 h reached",
- "hours_since_start": 5.13,
+ "hours_since_start": 5.14,
  "max_hours": 5.0,
  "ram_avail_gb": 51.0,
  "gpu": "NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 17.32 W",

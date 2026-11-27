@@ -1,11 +1,11 @@
-# L4  2026-11-27 21:12:09Z  (finishing: time cap 5 h reached)
+# L4  2026-11-27 21:13:09Z  (finishing: time cap 5 h reached)
 
-- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 5.16 h
+- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 5.18 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry', 'lme # async retry', 'score budget # after async lme retry']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
-- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-local_i233_t0_async_think5`, suite alive False, last write 6.8 min ago
+- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-local_i233_t0_async_think5`, suite alive False, last write 7.8 min ago
 - finished runs (40): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i233_t0_async_think5, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
 - backup: {'mode': 'download+ack', 'ok': True, 'why': '70 acked', 'missing': ['lme_gptoss20b_rag-pg_i233_t0_async_think5']}
-- stop: time cap 5 h reached; 5.13 h since start, cap 5.0 h
+- stop: time cap 5 h reached; 5.14 h since start, cap 5.0 h
 - disk free 219.6 GB, RAM avail 51.0 GB, GPU NVIDIA L4, 0 %, 0 MiB, 23034 MiB, 17.32 W
 
 ## problems
