@@ -1,12 +1,12 @@
-# L4  2026-11-27 19:34:54Z  (running)
+# L4  2026-11-27 20:31:48Z  (running)
 
-- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 3.54 h
+- code `e9dd87b Colab: kprof done for 4 systems; first async l1 runs (rag-pg, mem0-local)`, runtime up 4.49 h
 - queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry', 'lme # async retry', 'score budget # after async lme retry']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
-- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_mem0-pg_i70_t0_async_think5`, suite alive True, last write 0.0 min ago
-- finished runs (37): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '67 acked', 'missing': ['lme_gptoss20b_mem0-local_i70_t0_async_think5']}
-- stop: None; 3.51 h since start, cap 5.0 h
-- disk free 219.6 GB, RAM avail 38.5 GB, GPU NVIDIA L4, 92 %, 16092 MiB, 23034 MiB, 72.64 W
+- now: line `lme # async retry` attempt 1, run `lme_gptoss20b_rag-pg_i233_t0_async_think5`, suite alive True, last write 0.0 min ago
+- finished runs (39): kprof_gptoss20b_mem0-local_async_think5, kprof_gptoss20b_mem0-pg_async_think5, kprof_gptoss20b_mem0-qdrant_async_think5, kprof_gptoss20b_rag-pg_async_think5, l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_async_think5_t100, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_async_think5_t100, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_async_think5_t100, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_async_think5_t100, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-local_i70_t0_async_think5, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-pg_i70_t0_async_think5, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_mem0-qdrant_i70_t0_async_think5, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0, lme_gptoss20b_rag-pg_i70_t0_async_think5
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '68 acked', 'missing': ['lme_gptoss20b_mem0-pg_i70_t0_async_think5', 'lme_gptoss20b_mem0-qdrant_i70_t0_async_think5']}
+- stop: None; 4.45 h since start, cap 5.0 h
+- disk free 219.6 GB, RAM avail 38.0 GB, GPU NVIDIA L4, 0 %, 16092 MiB, 23034 MiB, 35.94 W
 
 ## problems
 
@@ -72,10 +72,6 @@
 
 ## suite.log (tail)
 
-    nsys: nsys launch --session-new=memprof --trace=cuda --sample=none --cpuctxsw=none
-    LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) FAILED
-    ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5.
-    The cpuctxsw switch can be set on the profile and start commands.
     [16:47:52] LLM failed: ERROR: The --cpuctxsw switch is not supported by the launch command after NVIDIA Nsight Systems v2021.5.
     The cpuctxsw switch can be set on the profile and start commands.
     /root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
@@ -132,3 +128,7 @@
     [18:28:29] === lme_gptoss20b_mem0-local_i70_t0_async_think5 (mem0-local) PROFILE=gptoss20b
     [19:03:47] done lme_gptoss20b_mem0-local_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 771, "total_s": 2083.1840475189983}
     [19:03:47] === lme_gptoss20b_mem0-pg_i70_t0_async_think5 (mem0-pg) PROFILE=gptoss20b
+    [19:40:14] done lme_gptoss20b_mem0-pg_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 874, "total_s": 2151.719180619999}
+    [19:40:14] === lme_gptoss20b_mem0-qdrant_i70_t0_async_think5 (mem0-qdrant) PROFILE=gptoss20b
+    [20:14:47] done lme_gptoss20b_mem0-qdrant_i70_t0_async_think5: {"n_turns": 242, "n_qa": 1, "count": 837, "total_s": 2037.4444540660006}
+    [20:14:47] === lme_gptoss20b_rag-pg_i233_t0_async_think5 (rag-pg) PROFILE=gptoss20b

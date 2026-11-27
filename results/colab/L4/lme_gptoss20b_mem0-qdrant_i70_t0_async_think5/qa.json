@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "You have two items to handle:  \n1. Pick up the new pair of Zara boots.  \n2. Pick up the dry\u2011cleaned navy blue blazer.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "User will use existing boxes at home to store winter clothes and has exchanged a pair of Zara boots on February 5, needing to pick up a new pair",
+      "Assistant provided a \"To-Pickup\" list strategy for tracking items to pick up or return, including writing down item, store, and pickup date",
+      "User needs to pick up dry cleaning for a navy blue blazer worn at a meeting a few weeks ago",
+      "Assistant recommended several strategies for tracking items to pick up or return, including creating a to\u2011pickup list, setting phone reminders, designating a returns spot, organizing receipts, using a task\u2011management app, and taking photos as backups",
+      "User intends to organize their closet by season, storing winter items like a thick grey scarf and gloves in boxes and bringing out spring items such as a yellow sundress",
+      "User wants to ensure the new black jeans and white button\u2011down shirt complement existing clothing and is cautious about keeping items that do not fit their style",
+      "User plans to organize their closet by season, storing winter items such as a thick grey scarf and gloves in boxes and bringing out spring items like a yellow sundress",
+      "User plans to use existing home boxes to store winter clothing items such as scarves and gloves",
+      "Assistant recommended that the user set reminders for each note in the notes app, create separate lists per store (e.g., \"Zara Pickups\" or \"Returns to Make\"), and use notifications to stay on top of pickups and returns",
+      "Assistant advised storing multi-season items like lightweight sweaters or scarves in a separate section of the closet for year-round accessibility"
+    ]
+  }
+]

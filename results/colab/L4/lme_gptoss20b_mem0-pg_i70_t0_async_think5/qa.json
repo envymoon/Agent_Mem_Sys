@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many items of clothing do I need to pick up or return from a store?",
+    "gold": "3",
+    "pred": "You have two items to handle:\n\n1. **Pick up** the new pair of Zara boots (you exchanged the old pair on Feb\u202f5).  \n2. **Pick up** the dry\u2011cleaned navy\u2011blue blazer that you wore a few weeks ago.  \n\nSo, a total of **two** items to pick up or return.",
+    "qtype": "multi-session",
+    "date": "2023/02/15 (Wed) 23:50",
+    "question_id": "0a995998",
+    "mem": [
+      "User wants help organizing their closet, asking for tips on decluttering and categorizing clothes, and also needs to pick up dry cleaning for a navy blue blazer worn a few weeks ago",
+      "User considers using boxes or bins for seasonal storage of out-of-season clothes",
+      "User has recently purchased a pair of black jeans from Levi's and a white button-down shirt from H&M, and is evaluating how to integrate these new pieces into their existing wardrobe",
+      "Assistant suggested creating a \"To-Pickup\" list and using a notes app to keep track of items to pick up or return",
+      "User will use existing boxes at home to store winter clothes and has exchanged a pair of Zara boots purchased on February 5, 2023, and still needs to pick up a new pair",
+      "Assistant recommended that the user set reminders for each note and create separate notes or lists for each store, such as \"Zara Pickups\" or \"Returns to Make\"",
+      "User was advised on wardrobe integration strategies: pair new items with existing tops, shoes, and accessories; identify gaps in the wardrobe; consider a capsule wardrobe; and use a \"maybe\" box with a deadline to decide on keeping or discarding items",
+      "User inquired which category to start with when decluttering\u2014tops, bottoms, or dresses\u2014indicating a plan to begin the process",
+      "User plans to organize their closet by season, storing winter items like a thick grey scarf and gloves in boxes and bringing out spring items such as a yellow sundress",
+      "User is considering organizing their closet by season, storing winter items like a thick grey scarf and gloves in boxes and bringing out spring items such as a yellow sundress"
+    ]
+  }
+]
