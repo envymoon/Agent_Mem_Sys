@@ -18,3 +18,15 @@ restored 40 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-27 22:22:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i233_t0_async_think5 | 41 runs done | backup=download+ack missing=1 | idle 0.0 min
 [2026-11-27 22:27:37Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i233_t0_async_think5 | 41 runs done | backup=download+ack missing=1 | idle 0.0 min
 [2026-11-27 22:32:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i233_t0_async_think5 | 41 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 22:37:38Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i233_t0_async_think5 | 41 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 22:42:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i233_t0_async_think5 | 41 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-27 22:47:38Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 22:52:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 22:57:39Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 23:02:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 23:07:39Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 23:12:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 23:17:39Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | 42 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-27 23:22:59Z] running | line=lme # async retry try=1 run=lme_gptoss20b_rag-pg_i366_t0_async_think5 | 43 runs done | backup=download+ack missing=2 | idle 0.1 min
+[2026-11-27 23:27:39Z] running | line=lme # async retry try=1 run=lme_gptoss20b_rag-pg_i366_t0_async_think5 | 43 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-27 23:33:00Z] running | line=lme # async retry try=1 run=lme_gptoss20b_rag-pg_i366_t0_async_think5 | 43 runs done | backup=download+ack missing=2 | idle 0.0 min

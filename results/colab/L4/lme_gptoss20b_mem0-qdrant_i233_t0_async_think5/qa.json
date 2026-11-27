@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "I\u2019m not sure\u2014your records don\u2019t include a date for the MoMA visit, so I can\u2019t calculate the number of days between that and the January\u202f15,\u202f2023 \u201cAncient Civilizations\u201d exhibit at the Met. If you remember when you went to MoMA, let me know and I\u2019ll do the math!",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art in New York City on January 15, 2023",
+      "User visited the Museum of Modern Art on a guided tour focused on 20th\u2011century modern art movements, which sparked a strong interest in modern art",
+      "User expressed interest in visiting the American Museum of Natural History and the Brooklyn Museum, noting the AMNH\u2019s dinosaur exhibits and the Brooklyn Museum\u2019s ancient artifacts collection",
+      "User was recommended the American Museum of Natural History for its extensive collections on ancient civilizations, including the Hall of Human Origins and the Rose Center for Earth and Space",
+      "User was recommended the Brooklyn Museum for its significant collection of ancient artifacts, notably Egyptian, Greek, and Roman art, and its \"Egypt Reborn: Art for Eternity\" exhibit",
+      "User was advised to visit the Metropolitan Museum of Art's Temple of Dendur, an ancient Egyptian temple built around 15 BCE, as a must-see for Egyptian architecture and culture",
+      "User was advised to explore the Brooklyn Museum's antiquities collection, which includes Greek, Roman, and Egyptian artifacts and is a highlight for ancient culture enthusiasts",
+      "User visited a modern art exhibit featuring recycled materials in their city on January 15, 2023, and is seeking inspiration for a future art-themed day trip",
+      "User was recommended the Morgan Library & Museum for its collection of ancient and medieval artifacts, including illuminated manuscripts and papyri",
+      "User is particularly interested in visiting the Environmental Art Museum and the Recycled Art Gallery in Singapore"
+    ]
+  }
+]

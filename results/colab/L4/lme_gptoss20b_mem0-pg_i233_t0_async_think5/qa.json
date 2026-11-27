@@ -1,0 +1,22 @@
+[
+  {
+    "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+    "gold": "7 days. 8 days (including the last day) is also acceptable.",
+    "pred": "I\u2019m not sure\u2014your notes don\u2019t include a specific date for the MoMA visit, so I can\u2019t calculate the number of days between the two trips. If you remember when you went to MoMA, let me know and I\u2019ll do the math!",
+    "qtype": "temporal-reasoning",
+    "date": "2023/02/01 (Wed) 10:20",
+    "question_id": "gpt4_59149c77",
+    "mem": [
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art on January 15, 2023, expressing interest in ancient cultures",
+      "User attended the \"Ancient Civilizations\" exhibit at the Metropolitan Museum of Art in New York City on January 15, 2023",
+      "User recently returned from a guided tour at the Museum of Modern Art focused on 20th-century modern art movements, sparking a strong interest in modern art",
+      "User learned about Frida Kahlo during a guided tour at the Museum of Modern Art focused on 20th-century modern art movements",
+      "User expressed a strong interest in visiting the American Museum of Natural History and the Brooklyn Museum, noting the AMNH\u2019s dinosaur exhibits and the Brooklyn Museum\u2019s ancient artifacts",
+      "User was advised to visit the Metropolitan Museum of Art's Temple of Dendur, an ancient Egyptian temple built around 15 BCE",
+      "User was recommended the American Museum of Natural History for its ancient civilizations artifacts and Hall of Human Origins",
+      "User expressed interest in guided tours and special programs at the American Museum of Natural History and the Brooklyn Museum",
+      "User was recommended the Brooklyn Museum for its Egyptian, Greek, and Roman collections and the exhibit \"Egypt Reborn: Art for Eternity\"",
+      "User was advised to explore the Brooklyn Museum's antiquities collection, including Greek, Roman, and Egyptian artifacts"
+    ]
+  }
+]
