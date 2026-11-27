@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.0,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "What was my personal best time in the charity 5K run?",
+   "gold": "25 minutes and 50 seconds (or 25:50)",
+   "pred": "Your personal best time in the charity 5K run was **27:12**.",
+   "qtype": "knowledge-update",
+   "f1": 0.0,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}

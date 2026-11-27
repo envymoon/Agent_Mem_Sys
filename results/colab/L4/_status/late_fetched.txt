@@ -11,3 +11,7 @@ lme_gptoss20b_mem0-qdrant_i233_t0+late1
 lme_gptoss20b_mem0-qdrant_i70_t0+late1
 lme_gptoss20b_rag-pg_i233_t0+late1
 lme_gptoss20b_rag-pg_i70_t0+late1
+lme_gptoss20b_mem0-local_i366_t0+late1
+lme_gptoss20b_mem0-pg_i366_t0+late1
+lme_gptoss20b_mem0-qdrant_i366_t0+late1
+lme_gptoss20b_rag-pg_i366_t0+late1

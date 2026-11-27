@@ -13,15 +13,19 @@
 | lme_gptoss20b_graphiti_i0_t60 | graphiti | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-local_i0_t60 | mem0-local | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-local_i233_t0 | mem0-local | longmemeval | 1 | 0.148 | 0.000 |
+| lme_gptoss20b_mem0-local_i366_t0 | mem0-local | longmemeval | 1 | 0.421 | 1.000 |
 | lme_gptoss20b_mem0-local_i70_t0 | mem0-local | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-pg_i0_t60 | mem0-pg | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-pg_i233_t0 | mem0-pg | longmemeval | 1 | 0.038 | 0.000 |
+| lme_gptoss20b_mem0-pg_i366_t0 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-pg_i70_t0 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-qdrant_i0_t60 | mem0-qdrant | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-qdrant_i233_t0 | mem0-qdrant | longmemeval | 1 | 0.043 | 0.000 |
+| lme_gptoss20b_mem0-qdrant_i366_t0 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-qdrant_i70_t0 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i0_t60 | rag-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i233_t0 | rag-pg | longmemeval | 1 | 0.037 | 0.000 |
+| lme_gptoss20b_rag-pg_i366_t0 | rag-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i70_t0 | rag-pg | longmemeval | 1 | 0.054 | 1.000 |
 
 | system | dataset | runs | n QA | F1 (QA-weighted) | judge acc (QA-weighted) |
@@ -29,10 +33,10 @@
 | graphiti | locomo | 2 | 57 | 0.112 | 0.263 |
 | graphiti | longmemeval | 1 | 1 | 0.444 | 1.000 |
 | mem0-local | locomo | 2 | 57 | 0.163 | 0.579 |
-| mem0-local | longmemeval | 3 | 3 | 0.198 | 0.333 |
+| mem0-local | longmemeval | 4 | 4 | 0.253 | 0.500 |
 | mem0-pg | locomo | 2 | 57 | 0.154 | 0.561 |
-| mem0-pg | longmemeval | 3 | 3 | 0.161 | 0.333 |
+| mem0-pg | longmemeval | 4 | 4 | 0.121 | 0.250 |
 | mem0-qdrant | locomo | 2 | 57 | 0.156 | 0.596 |
-| mem0-qdrant | longmemeval | 3 | 3 | 0.163 | 0.333 |
+| mem0-qdrant | longmemeval | 4 | 4 | 0.122 | 0.250 |
 | rag-pg | locomo | 2 | 57 | 0.192 | 0.561 |
-| rag-pg | longmemeval | 3 | 3 | 0.030 | 0.333 |
+| rag-pg | longmemeval | 4 | 4 | 0.023 | 0.250 |

@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What was my personal best time in the charity 5K run?",
+    "gold": "25 minutes and 50 seconds (or 25:50)",
+    "pred": "Your personal best time in the charity 5K run was **27:12**.",
+    "qtype": "knowledge-update",
+    "date": "2023/06/25 (Sun) 13:22",
+    "question_id": "6a1eabeb",
+    "mem": [
+      "User recently ran a charity 5K and set a personal best time of 27:12, expressing happiness about the achievement",
+      "User has a personal best time of 25:50 for a 5K run and is aiming to beat this record in an upcoming charity 5K event",
+      "User is training for a charity 5K run and hopes to beat a personal best time of 25:50",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is training for an upcoming charity 5K run and hopes to beat a personal best time of 25:50.",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50, requesting endurance improvement tips",
+      "Assistant provided endurance improvement tips for the user\u2019s upcoming charity 5K run",
+      "Assistant congratulated User on the 5K personal best and provided detailed running technique tips, including posture, footstrike, cadence, arm swing, core engagement, breathing, plyometrics, agility drills, strength training, and practice with a soccer ball",
+      "User is training for another marathon and is seeking advice to improve running pace",
+      "User plans to schedule post\u2011run stretching into their daily planner, find a stretching buddy such as a friend or family member, and track consistency in their running log to monitor progress"
+    ]
+  }
+]

@@ -38,3 +38,16 @@ proxy up
 [12:49:36] === lme_gptoss20b_mem0-local_i366_t0 (mem0-local) PROFILE=gptoss20b
 [13:27:34] done lme_gptoss20b_mem0-local_i366_t0: {"n_turns": 205, "n_qa": 1, "count": 767, "total_s": 2244.217672335}
 [13:27:34] === lme_gptoss20b_mem0-pg_i366_t0 (mem0-pg) PROFILE=gptoss20b
+[14:03:36] done lme_gptoss20b_mem0-pg_i366_t0: {"n_turns": 205, "n_qa": 1, "count": 732, "total_s": 2128.046998637}
+[14:03:36] === lme_gptoss20b_mem0-qdrant_i366_t0 (mem0-qdrant) PROFILE=gptoss20b
+[14:37:09] done lme_gptoss20b_mem0-qdrant_i366_t0: {"n_turns": 205, "n_qa": 1, "count": 716, "total_s": 1979.0132229459996}
+[14:37:09] suite done -> /content/results/L4
+/root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+LLM (gpt-oss-20b-MXFP4.gguf, PROFILE=gptoss20b) up
+{"load_wall_s": 8.155347347259521, "offloaded": "25/25", "buffers_mib": {"model:CPU_Mapped": 586.8, "model:CUDA0": 10949.4, "KV:CUDA0": 786.0, "compute:CUDA0": 123.0, "compute:CUDA_Host": 55.5}, "n_ctx_slot": 32768}
+proxy up
+lme_gptoss20b_mem0-local_i366_t0: n=1 F1=0.421 J=1.000
+lme_gptoss20b_mem0-pg_i366_t0: n=1 F1=0.000 J=0.000
+lme_gptoss20b_mem0-qdrant_i366_t0: n=1 F1=0.000 J=0.000
+lme_gptoss20b_rag-pg_i366_t0: n=1 F1=0.000 J=0.000
+[14:37:38] suite done -> /content/results/L4

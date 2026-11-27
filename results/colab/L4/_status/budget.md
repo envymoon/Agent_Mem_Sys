@@ -5,13 +5,13 @@
 | gptoss20b | graphiti | locomo | 2 | 99 | 19.1 | 0.000 | 1.1 | 3.9 |
 | gptoss20b | graphiti | longmemeval | 1 | 63 | 28.9 | 0.191 | 0.8 | 3.5 |
 | gptoss20b | mem0-local | locomo | 2 | 99 | 5.7 | 0.003 | 1.1 | 1.7 |
-| gptoss20b | mem0-local | longmemeval | 3 | 241 | 9.7 | 0.001 | 1.9 | 1.7 |
+| gptoss20b | mem0-local | longmemeval | 4 | 241 | 9.7 | 0.001 | 1.7 | 1.7 |
 | gptoss20b | mem0-pg | locomo | 2 | 99 | 5.2 | 0.009 | 1.1 | 1.6 |
-| gptoss20b | mem0-pg | longmemeval | 3 | 241 | 9.1 | 0.000 | 1.4 | 1.5 |
+| gptoss20b | mem0-pg | longmemeval | 4 | 241 | 9.1 | 0.000 | 1.3 | 1.5 |
 | gptoss20b | mem0-qdrant | locomo | 2 | 99 | 6.4 | 0.000 | 1.2 | 3.8 |
-| gptoss20b | mem0-qdrant | longmemeval | 3 | 241 | 8.7 | 0.003 | 1.5 | 3.6 |
+| gptoss20b | mem0-qdrant | longmemeval | 4 | 241 | 8.7 | 0.003 | 1.4 | 3.6 |
 | gptoss20b | rag-pg | locomo | 2 | 99 | 1.2 | 0.001 | 1.4 | 1.7 |
-| gptoss20b | rag-pg | longmemeval | 3 | 241 | 3.7 | 0.000 | 2.7 | 1.5 |
+| gptoss20b | rag-pg | longmemeval | 4 | 241 | 3.7 | 0.000 | 2.9 | 1.5 |
 
 ## projection for the full suites
 

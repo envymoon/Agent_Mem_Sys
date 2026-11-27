@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What was my personal best time in the charity 5K run?",
+    "gold": "25 minutes and 50 seconds (or 25:50)",
+    "pred": "Your personal best time in the charity 5K run was **27:12**.",
+    "qtype": "knowledge-update",
+    "date": "2023/06/25 (Sun) 13:22",
+    "question_id": "6a1eabeb",
+    "mem": [
+      "User recently ran a charity 5K and set a personal best time of 27:12, expressing happiness about the achievement",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is training for an upcoming charity 5K run and hopes to beat a personal best time of 25:50.",
+      "Assistant offered endurance training tips for a 5K run, including interval training, strategic pacing, and mental preparation to beat a personal best of 25:50",
+      "Assistant advised the user to mentally visualize crossing the finish line in under 25:50 as part of mental preparation for the charity 5K run",
+      "Assistant asked User for their current finish time and goal for the next marathon",
+      "Assistant congratulated User on the 5K personal best and provided detailed running technique tips, including posture, footstrike, cadence, arm swing, core engagement, breathing, plyometrics, agility drills, strength training, and practice with a soccer ball",
+      "Assistant recommended increasing weekly mileage by 10-15% each week to build endurance for the charity 5K.",
+      "Assistant provided tailored 5K running endurance tips, including consistent training, gradual progression, and smart strategies to beat a 25:50 finish"
+    ]
+  }
+]
