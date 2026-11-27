@@ -6,3 +6,6 @@
 16:24:40 keep-alive ok
 16:28:41 keep-alive ok
 16:32:43 keep-alive ok
+16:36:44 keep-alive ok
+16:40:45 list failed: ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+16:41:45 keep-alive ok

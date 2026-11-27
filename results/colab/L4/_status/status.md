@@ -1,12 +1,12 @@
-# L4  2026-11-27 16:34:52Z  (idle (queue empty))
+# L4  2026-11-27 16:41:45Z  (running)
 
-- code `c11e895 Kernel-level GPU profiling (Nsight Systems window on the LLM server + kernel classification and attribution to request stages; Nsight Compute speed-of-light probe), async write path as the l1/lme default, patrol fetches queue_state.json`, runtime up 0.54 h
-- queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
-- now: line `None` attempt 0, run `None`, suite alive False, last write 3.0 min ago
+- code `a321a0a Fix LLM launcher aborting under set -e when nsys is installed (nsys shutdown with no session); requeue async + kprof lines`, runtime up 0.66 h
+- queue: ['l1', 'score budget # after l1', 'lme', 'score budget # after lme', 'kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme', 'kprof # retry', 'l1 # async retry', 'score budget # after async l1 retry', 'lme # async retry', 'score budget # after async lme retry']  done: ['pilot', 'l1', 'score budget # after l1', 'lme', 'score budget # after lme']  gave up: ['kprof', 'l1 # async', 'score budget # after async l1', 'lme # async', 'score budget # after async lme']
+- now: line `kprof # retry` attempt 1, run `None`, suite alive True, last write 4.3 min ago
 - finished runs (27): l1_gptoss20b_graphiti_sync_t100, l1_gptoss20b_graphiti_sync_t20, l1_gptoss20b_mem0-local_sync_t100, l1_gptoss20b_mem0-local_sync_t20, l1_gptoss20b_mem0-pg_sync_t100, l1_gptoss20b_mem0-pg_sync_t20, l1_gptoss20b_mem0-qdrant_sync_t100, l1_gptoss20b_mem0-qdrant_sync_t20, l1_gptoss20b_rag-pg_sync_t100, l1_gptoss20b_rag-pg_sync_t20, lme_gptoss20b_graphiti_i0_t60, lme_gptoss20b_mem0-local_i0_t60, lme_gptoss20b_mem0-local_i233_t0, lme_gptoss20b_mem0-local_i366_t0, lme_gptoss20b_mem0-local_i70_t0, lme_gptoss20b_mem0-pg_i0_t60, lme_gptoss20b_mem0-pg_i233_t0, lme_gptoss20b_mem0-pg_i366_t0, lme_gptoss20b_mem0-pg_i70_t0, lme_gptoss20b_mem0-qdrant_i0_t60, lme_gptoss20b_mem0-qdrant_i233_t0, lme_gptoss20b_mem0-qdrant_i366_t0, lme_gptoss20b_mem0-qdrant_i70_t0, lme_gptoss20b_rag-pg_i0_t60, lme_gptoss20b_rag-pg_i233_t0, lme_gptoss20b_rag-pg_i366_t0, lme_gptoss20b_rag-pg_i70_t0
-- backup: {'mode': 'download+ack', 'ok': True, 'why': '0 acked', 'missing': ['l1_gptoss20b_graphiti_sync_t100', 'l1_gptoss20b_graphiti_sync_t20', 'l1_gptoss20b_mem0-local_sync_t100', 'l1_gptoss20b_mem0-local_sync_t20', 'l1_gptoss20b_mem0-pg_sync_t100', 'l1_gptoss20b_mem0-pg_sync_t20', 'l1_gptoss20b_mem0-qdrant_sync_t100', 'l1_gptoss20b_mem0-qdrant_sync_t20', 'l1_gptoss20b_rag-pg_sync_t100', 'l1_gptoss20b_rag-pg_sync_t20', 'lme_gptoss20b_graphiti_i0_t60', 'lme_gptoss20b_mem0-local_i0_t60', 'lme_gptoss20b_mem0-local_i233_t0', 'lme_gptoss20b_mem0-local_i366_t0', 'lme_gptoss20b_mem0-local_i70_t0', 'lme_gptoss20b_mem0-pg_i0_t60', 'lme_gptoss20b_mem0-pg_i233_t0', 'lme_gptoss20b_mem0-pg_i366_t0', 'lme_gptoss20b_mem0-pg_i70_t0', 'lme_gptoss20b_mem0-qdrant_i0_t60', 'lme_gptoss20b_mem0-qdrant_i233_t0', 'lme_gptoss20b_mem0-qdrant_i366_t0', 'lme_gptoss20b_mem0-qdrant_i70_t0', 'lme_gptoss20b_rag-pg_i0_t60', 'lme_gptoss20b_rag-pg_i233_t0', 'lme_gptoss20b_rag-pg_i366_t0', 'lme_gptoss20b_rag-pg_i70_t0']}
-- stop: None; 0.51 h since start, cap 5.0 h
-- disk free 220.8 GB, RAM avail 50.0 GB, GPU NVIDIA L4, 0 %, 3968 MiB, 23034 MiB, 32.47 W
+- backup: {'mode': 'download+ack', 'ok': True, 'why': '49 acked', 'missing': []}
+- stop: None; 0.62 h since start, cap 5.0 h
+- disk free 220.8 GB, RAM avail 50.0 GB, GPU NVIDIA L4, 0 %, 3968 MiB, 23034 MiB, 32.42 W
 
 ## problems
 
@@ -67,6 +67,7 @@
     [2026-11-27 16:32:24Z] 'score budget # after async lme' attempt ended rc=1; failed runs: ['(stack) LLM failed: ']
     [2026-11-27 16:32:24Z] GAVE UP 'score budget # after async lme' after 3 attempts (fix + append a '# retry' line to colab/queue.txt)
     [2026-11-27 16:32:25Z] queue empty at c11e895 Kernel-level GPU profiling (Nsight Systems window on the LLM server + kernel classification and attribution to request stages; Nsight Compute speed-of-light probe), async write path as the l1/lme default, patrol fetches queue_state.json; waiting up to 15 min for new lines in colab/queue.txt
+    [2026-11-27 16:37:26Z] start 'kprof # retry' attempt 1/3 at a321a0a Fix LLM launcher aborting under set -e when nsys is installed (nsys shutdown with no session); requeue async + kprof lines
 
 ## suite.log (tail)
 
@@ -88,3 +89,5 @@
     [16:30:53] LLM failed: 
     [16:31:23] LLM failed: 
     [16:31:54] LLM failed: 
+    /root/llama.cpp/build/bin/llama-server -m /root/models/gpt-oss-20b-MXFP4.gguf --alias local --port 8000 --host 127.0.0.1 -c 32768 -np 2 -ngl 99 -ctk f16 -ctv f16 -fa on --fit off --kv-unified --cache-ram 8192 --slot-save-path /opt/svc/data/kv_slots/ --metrics --jinja --no-webui -t 12 -lv 4 --load-mode auto
+    nsys: nsys launch --session-new=memprof --trace=cuda --sample=none --cpuctxsw=none
