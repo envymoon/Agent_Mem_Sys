@@ -1,0 +1,431 @@
+<title>Agent 记忆系统 L4 剖析</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~880px) with full-width tables/charts in scroll boxes; numbers set in mono. */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --fg: #1a2130;
+  --muted: #5a6476;
+  --rule: #dfe3ea;
+  --accent: #1d5bb8;
+  --accent-soft: #e6eefb;
+  --warn: #9a5b00;
+  --s1: #257de0; --s2: #f47230; --s3: #00b894; --s4: #f2a600;
+  --grid: #e9ecf1;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Noto Sans SC", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --surface: #191d25; --fg: #e5e8ee; --muted: #9aa3b3; --rule: #2b313c;
+    --accent: #82b2ff; --accent-soft: #1d2a40; --warn: #e0a54a;
+    --s1: #338ced; --s2: #e76624; --s3: #00a888; --s4: #d28e05; --grid: #262b35;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --surface: #191d25; --fg: #e5e8ee; --muted: #9aa3b3; --rule: #2b313c;
+  --accent: #82b2ff; --accent-soft: #1d2a40; --warn: #e0a54a;
+  --s1: #338ced; --s2: #e76624; --s3: #00a888; --s4: #d28e05; --grid: #262b35;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15.5px; line-height: 1.75; }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; display: grid; gap: 44px; }
+header { display: grid; gap: 14px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 5vw, 40px); line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-size: 23px; line-height: 1.3; margin: 0 0 4px; text-wrap: balance; }
+h3 { font-size: 16.5px; margin: 18px 0 2px; }
+p { margin: 0; max-width: 68ch; }
+section { display: grid; gap: 14px; min-width: 0; }
+.lede { color: var(--muted); max-width: 68ch; }
+.spec { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.spec div { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
+.spec b { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: .03em; }
+.spec span { font-size: 14px; line-height: 1.55; }
+.mono, td.n, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+ol.find { margin: 0; padding-left: 1.4em; display: grid; gap: 12px; max-width: 72ch; }
+ol.find li::marker { font-family: var(--font-mono); color: var(--accent); }
+ol.find b { font-weight: 700; }
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 12px; display: grid; gap: 10px; min-width: 0; }
+.figure h4 { margin: 0; font-size: 15px; }
+.figure .sub { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.chart { overflow-x: auto; }
+.chart svg { display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--fg); }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; line-height: 1.5; }
+th, td { padding: 7px 11px; border-bottom: 1px solid var(--rule); text-align: left; white-space: nowrap; vertical-align: top; }
+th { font-weight: 500; color: var(--muted); font-size: 12.5px; background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%); }
+tr:last-child td { border-bottom: 0; }
+td.n, th.n { text-align: right; }
+td.wrap-cell { white-space: normal; min-width: 220px; }
+tr.hi td { background: var(--accent-soft); }
+.note { border-left: 3px solid var(--warn); padding: 8px 14px; background: var(--surface); border-radius: 0 6px 6px 0; font-size: 14px; color: var(--fg); max-width: 72ch; }
+.note b { color: var(--warn); }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover, .toc a:focus-visible { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.kv div { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+.kv .v { font-family: var(--font-display); font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kv .l { font-size: 13px; color: var(--muted); line-height: 1.45; }
+#tip { position: fixed; pointer-events: none; z-index: 20; background: var(--fg); color: var(--bg); font-size: 12.5px; line-height: 1.5; padding: 7px 10px; border-radius: 6px; max-width: 280px; font-family: var(--font-body); }
+.axis text, .lbl { fill: var(--muted); font-size: 12px; font-family: var(--font-mono); }
+.rowlbl { fill: var(--fg); font-size: 12.5px; font-family: var(--font-body); }
+.endlbl { fill: var(--fg); font-size: 12px; font-family: var(--font-mono); }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in srgb, var(--surface) 80%, var(--accent) 10%); padding: 1px 5px; border-radius: 4px; }
+@media (max-width: 520px) { body { font-size: 15px; } .figure { padding: 14px 12px 10px; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Layer 1 · NVIDIA L4 · gpt-oss-20b · 2026-11-27/28</div>
+  <h1>Agent 记忆系统 L4 剖析</h1>
+  <p class="lede">在一张 L4 上同时跑对话 agent、记忆系统和本地 LLM，逐环节记录每一轮的时间和资源都花在哪里。比较对象是 mem0 的三种存储后端和一个纯检索的 RAG 基线。写入路径全部改为异步，并保留此前的同步数据做对照。LoCoMo 和 LongMemEval-S 只用来提供真实负载，分数仅作参考。</p>
+  <nav class="toc" aria-label="目录">
+    <a href="#tldr">结论</a><a href="#setup">环境</a><a href="#stages">每轮分解</a><a href="#add">mem0 add 内部</a><a href="#kernel">GPU kernel</a><a href="#async">同步与异步</a><a href="#scale">规模增长</a><a href="#rag">mem0 与 rag-pg</a><a href="#bottleneck">瓶颈排序</a><a href="#scores">分数</a><a href="#caveats">注意事项</a>
+  </nav>
+</header>
+
+<section id="tldr">
+  <h2>结论</h2>
+  <div class="kv">
+    <div><span class="v">77%</span><span class="l">LoCoMo 上 mem0 每轮 LLM 忙碌时间中，记忆写入所占比例（4.37 s 对 agent 的 1.30 s）</span></div>
+    <div><span class="v">97%</span><span class="l">mem0 add 耗时中那一次 LLM 抽取调用的占比；其余 9 个阶段合计约 135 ms</span></div>
+    <div><span class="v">75%</span><span class="l">抽取调用的 decode 时间中，用于 reasoning token 的比例（188 个推理 token 对 64 个 JSON token）</span></div>
+    <div><span class="v">85%</span><span class="l">decode 主力 kernel（MXFP4 MoE matvec）达到的 DRAM 带宽峰值比例：decode 受带宽限制</span></div>
+  </div>
+  <ol class="find">
+    <li><b>瓶颈在记忆写入，不在检索。</b>mem0 每轮在后台花 4.5–4.8 s 写记忆，而用户等待的前台只有 1.38 s。nsys 抓取的 4 轮里，mem0 的 GPU kernel 时间是 11.6–16.3 s，rag-pg 只有 3.0 s，约为 4–5 倍。</li>
+    <li><b>mem0 add 实质上就是一次 LLM 调用。</b>抽取调用占 add 的 97%。它的 prompt 约 8.5k token，但前缀缓存命中 91%，所以 prefill 加排队只要 0.33 s；时间主要花在 decode 上，3.9 s 中有 2.9 s 是 gpt-oss 的 reasoning。embedding、NER、数据库读写等 9 个阶段合计约 135 ms。</li>
+    <li><b>decode 受显存带宽限制，prefill 两头都没吃满。</b>Nsight Compute 显示：decode 时 MXFP4 MoE matvec 达到 DRAM 峰值的 85%，Q8_0 dense matvec 达到 68%，tensor core 完全空闲。输出头（Q8_0，约 20 万词表）每个 token 要 2.4 ms，约占全部 kernel 时间的 14%。prefill 的 mmq kernel 只用到 SM 55%、tensor 28%、DRAM 26%，每个 SM 的活跃 warp 被限制在 16.7%。</li>
+    <li><b>记忆抽取的 decode 阶段 GPU 有四成时间在空转。</b>记忆 reasoning 段 GPU 忙碌率只有 48–58%，而 agent 的单流 decode 是 84–87%。llama-server 进程稳定占满约一个 CPU 核（89–103%）。推测每个 token 的 CPU 路径是瓶颈：mem0 用 <code>response_format</code> 要求 JSON，需要逐 token 做语法约束采样；另外抓 trace 时关闭了 CUDA graph，kernel 启动开销也被放大。这一条是推断，尚未单独验证。</li>
+    <li><b>异步写入大幅缩短用户等待，但有两个代价。</b>用户每轮等待时间：LoCoMo 从 5.6–6.0 s 降到 1.38 s；LongMemEval 从 9.4–10.3 s 降到 3.5–3.8 s。代价一是争抢 GPU，agent 每个 token 的 decode 时间从 12.2 ms 涨到 14.4 ms（LoCoMo），LongMemEval 上从 12.7 ms 涨到 18.5 ms。代价二是记忆变得不新鲜：提交延迟中位数在 LoCoMo 上是 4.1–4.8 s，在 LongMemEval 上是 17–34 s，最长 188 s，队列最多积压 17 条。原因是 LongMemEval 上一次 add 要 7.8–8.5 s，几乎等于两轮之间的间隔（约 3.5 s 回答加 5 s 思考）。</li>
+    <li><b>只有 mem0-local 随存储增长明显变慢。</b>在 240 轮的会话里，mem0-local 的检索从 176 ms 涨到 430 ms；它的向量库是进程内的嵌入式 Qdrant，压测进程占 71% CPU，常驻内存 2.25 GB。mem0-pg 和 mem0-qdrant 基本持平，在 115–160 ms 之间；rag-pg 一直是 13–17 ms。add 里的实体查找也是同样规律：mem0-local 447 ms，mem0-pg 165 ms，mem0-qdrant 43 ms。</li>
+    <li><b>mem0 把读时的 prefill 换成了写时的 decode。</b>rag-pg 写入不调 LLM，只要 23–41 ms，提交延迟低于 0.4 s；代价是回答 prompt 有 4.8k token（mem0 是 1.1k），LongMemEval 上 prefill 要 1.67 s（mem0 是 0.56 s）。最终用户等待时间相近，rag-pg 4.2 s，异步 mem0 3.5–3.8 s，但 mem0 消耗的 GPU 时间多出数倍。</li>
+  </ol>
+</section>
+
+<section id="setup">
+  <h2>实验环境</h2>
+  <div class="spec">
+    <div><b>GPU</b><span>NVIDIA L4（Ada，58 SM，24 GB GDDR6 192-bit，约 300 GB/s，L2 48 MB，72 W），Colab</span></div>
+    <div><b>LLM</b><span>gpt-oss-20b MXFP4（11.27 GiB），llama.cpp b12559，<code>-c 32768 -np 2 --kv-unified</code>，flash attention，f16 KV，<code>--cache-ram 8192</code></span></div>
+    <div><b>LLM 基准（llama-bench）</b><span class="mono">pp512 3647 tok/s；tg64 83.4 tok/s（上下文 0）→ 72.7 tok/s（上下文 16k）</span></div>
+    <div><b>Embedding</b><span>Qwen3-Embedding-0.6B，1024 维，独立服务</span></div>
+    <div><b>记忆系统</b><span>mem0-local（嵌入式 Qdrant + SQLite，与 agent 同进程）、mem0-pg（pgvector）、mem0-qdrant（Qdrant 服务）、rag-pg（原文分块入 pgvector，写入不调 LLM）</span></div>
+    <div><b>负载</b><span>LoCoMo 第 0 段对话 100 轮 + 47 道评分问答；LongMemEval-S 3 个 haystack（i70/i233/i366），每个 205–242 轮</span></div>
+    <div><b>异步模式</b><span>记忆写入进入后台队列，每轮之间模拟用户思考 5 s。同步对照组的思考时间为 0</span></div>
+    <div><b>采集</b><span>逐 span 计时（含 CPU、I/O），代理记录每次 LLM 调用的 token、prefill、reasoning/answer 分段，硬件监控，nsys（kernel 级），ncu（硬件计数器）</span></div>
+  </div>
+</section>
+
+<section id="stages">
+  <h2>每轮时间花在哪</h2>
+  <p>下图是 LoCoMo 异步运行的每轮均值。前台条是用户能感受到的等待：检索、拼 prompt，加上 agent 的一次 LLM 调用。后台条是同一轮触发的记忆写入。LLM 时间拆成三段：prefill 加排队、reasoning token 的 decode、answer token 的 decode。“非 LLM”包括检索、embedding、数据库，以及 LLM 调用本身的 HTTP 和流式解析开销。</p>
+  <div class="figure">
+    <h4>LoCoMo 异步，每轮均值（ms）</h4>
+    <div class="legend" id="lg1"></div>
+    <div class="chart" id="c1" role="img" aria-label="每个系统前台与后台每轮时间的堆叠条形图"></div>
+    <div class="sub">rag-pg 的后台写入只有 22.7 ms，所以条形几乎看不到。mem0 三种后端的后台条中，reasoning decode 一项就有 2.9–3.3 s。</div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>LoCoMo 异步，每轮均值</th><th class="n">rag-pg</th><th class="n">mem0-local</th><th class="n">mem0-pg</th><th class="n">mem0-qdrant</th></tr></thead>
+    <tbody>
+      <tr><td>前台：用户等待（均值 / p95，ms）</td><td class="n">1215 / 1582</td><td class="n">1382 / 1988</td><td class="n">1386 / 1990</td><td class="n">1387 / 1997</td></tr>
+      <tr><td>　检索（ms）</td><td class="n">12.7</td><td class="n">74.4</td><td class="n">89.1</td><td class="n">83.1</td></tr>
+      <tr><td>　agent prompt token</td><td class="n">1054</td><td class="n">634</td><td class="n">631</td><td class="n">629</td></tr>
+      <tr><td>　agent reasoning / answer token</td><td class="n">8.8 / 31.4</td><td class="n">10.1 / 33.2</td><td class="n">10.0 / 33.4</td><td class="n">9.5 / 32.7</td></tr>
+      <tr class="hi"><td>后台：记忆写入（均值 / p95，ms）</td><td class="n">22.7 / 27.2</td><td class="n">4509 / 10835</td><td class="n">4634 / 9514</td><td class="n">4819 / 9884</td></tr>
+      <tr><td>　抽取 prompt token（其中命中缓存）</td><td class="n">—</td><td class="n">8470（7683）</td><td class="n">8469（7672）</td><td class="n">8460（7683）</td></tr>
+      <tr><td>　抽取 reasoning / answer token</td><td class="n">—</td><td class="n">188 / 64</td><td class="n">195 / 66</td><td class="n">214 / 62</td></tr>
+      <tr><td>　抽取 decode：reasoning / answer（ms）</td><td class="n">—</td><td class="n">2910 / 972</td><td class="n">2994 / 1001</td><td class="n">3254 / 970</td></tr>
+      <tr><td>冷启动（ms）</td><td class="n">1455</td><td class="n">1726</td><td class="n">1624</td><td class="n">3744</td></tr>
+    </tbody>
+  </table></div>
+  <p>LongMemEval 上的结构相同，但每一项都更重。mem0 的抽取 prompt 涨到约 9.1k token，reasoning 加 answer 共约 410 token（reasoning 244 个，用 4.1 s；answer 168 个，用 2.8 s），单次 add 7.8–8.5 s。agent 的回答也更长，约 150 token。</p>
+</section>
+
+<section id="add">
+  <h2>mem0 add 内部的 10 个阶段</h2>
+  <p>在 mem0 的分阶段写入流水线里逐段打点。LLM 抽取之外的 9 个阶段，在 LoCoMo（存储小）上合计约 135 ms，在 LongMemEval（存储大）上涨到约 0.3–0.85 s。涨幅主要来自实体查找，并且明显取决于后端。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>阶段（ms，均值）</th><th>做什么</th><th class="n">mem0-local<br>LoCoMo</th><th class="n">mem0-local<br>LME</th><th class="n">mem0-pg<br>LME</th><th class="n">mem0-qdrant<br>LME</th></tr></thead>
+    <tbody>
+      <tr><td>context</td><td>取本会话最近消息</td><td class="n">0.2</td><td class="n">0.2</td><td class="n">0.2</td><td class="n">0.2</td></tr>
+      <tr><td>retrieve_existing</td><td>新消息 embedding，检索已有记忆</td><td class="n">22.2</td><td class="n">55.0</td><td class="n">46.0</td><td class="n">41.4</td></tr>
+      <tr class="hi"><td>llm_extract</td><td>一次 LLM 调用，输出 JSON 记忆列表</td><td class="n">4373</td><td class="n">7677</td><td class="n">7828</td><td class="n">7446</td></tr>
+      <tr><td>embed_new</td><td>新记忆 embedding</td><td class="n">19.0</td><td class="n">41.2</td><td class="n">41.5</td><td class="n">40.8</td></tr>
+      <tr><td>lemmatize_dedup</td><td>词形还原、去重（spaCy）</td><td class="n">7.3</td><td class="n">20.1</td><td class="n">18.6</td><td class="n">18.2</td></tr>
+      <tr><td>persist</td><td>写入向量库与历史库</td><td class="n">17.3</td><td class="n">33.7</td><td class="n">42.8</td><td class="n">14.7</td></tr>
+      <tr><td>entity_ner</td><td>实体抽取</td><td class="n">10.7</td><td class="n">22.3</td><td class="n">22.5</td><td class="n">21.8</td></tr>
+      <tr><td>entity_embed</td><td>实体 embedding</td><td class="n">22.4</td><td class="n">100.7</td><td class="n">105.0</td><td class="n">101.4</td></tr>
+      <tr class="hi"><td>entity_lookup</td><td>在实体库中查找已有实体</td><td class="n">10.5</td><td class="n">446.9</td><td class="n">165.3</td><td class="n">43.2</td></tr>
+      <tr><td>entity_write</td><td>写实体与关联</td><td class="n">26.1</td><td class="n">121.7</td><td class="n">130.8</td><td class="n">26.2</td></tr>
+      <tr><td><b>add 总计（含排队外开销）</b></td><td></td><td class="n">4509</td><td class="n">8519</td><td class="n">8401</td><td class="n">7754</td></tr>
+    </tbody>
+  </table></div>
+  <p>LME 列是 3 个 haystack 的平均（每个约 200–240 次 add）。后 7 个阶段只在抽取出新记忆时才执行，LoCoMo 上约 75–80% 的 add 会走到这里。</p>
+</section>
+
+<section id="kernel">
+  <h2>GPU kernel 级分解</h2>
+  <p>用 nsys 抓取异步 LoCoMo 第 10–13 轮的全部 CUDA kernel，按时间戳对齐到代理记录的每次 LLM 调用，再按调用所处的阶段归类。对齐质量很高：98.5–99.9% 的 kernel 时间落在某次 LLM 调用之内。</p>
+  <div class="figure">
+    <h4>mem0-local：各阶段的 kernel 类别占比与 GPU 忙碌率</h4>
+    <div class="legend" id="lg2"></div>
+    <div class="chart" id="c2" role="img" aria-label="各阶段 kernel 类别百分比堆叠条形图"></div>
+    <div class="sub">右侧数字是 GPU 忙碌率，即 kernel 时间除以该阶段的墙钟时间。“agent 与记忆重叠”指两路请求同时在 GPU 上的时段。</div>
+  </div>
+  <h3>四个系统的 kernel 时间（第 10–13 轮）</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th class="n">kernel 时间 / 抓取时长</th><th class="n">kernel 数</th><th class="n">MoE MXFP4</th><th class="n">Q8_0 dense</th><th class="n">flash attn</th><th class="n">其他</th><th class="n">记忆 reasoning 段<br>GPU 忙碌率</th></tr></thead>
+    <tbody>
+      <tr><td>rag-pg</td><td class="n">3.0 s / 13.6 s</td><td class="n">120,559</td><td class="n">54.1%</td><td class="n">33.1%</td><td class="n">2.9%</td><td class="n">9.9%</td><td class="n">—</td></tr>
+      <tr><td>mem0-local</td><td class="n">13.9 s / 17.7 s</td><td class="n">640,505</td><td class="n">46.4%</td><td class="n">36.2%</td><td class="n">8.2%</td><td class="n">9.2%</td><td class="n">57.8%</td></tr>
+      <tr><td>mem0-pg</td><td class="n">11.6 s / 16.3 s</td><td class="n">531,205</td><td class="n">46.5%</td><td class="n">36.5%</td><td class="n">7.8%</td><td class="n">9.2%</td><td class="n">47.6%</td></tr>
+      <tr><td>mem0-qdrant</td><td class="n">16.3 s / 19.9 s</td><td class="n">770,625</td><td class="n">45.5%</td><td class="n">36.9%</td><td class="n">8.5%</td><td class="n">9.1%</td><td class="n">57.3%</td></tr>
+    </tbody>
+  </table></div>
+  <h3>耗时最多的 kernel（mem0-local）</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>kernel</th><th>作用</th><th class="n">总时间</th><th class="n">次数</th><th class="n">单次均值</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">mul_mat_vec_q&lt;MXFP4&gt;</td><td>decode：MoE 专家 matvec</td><td class="n">4305 ms</td><td class="n">38,706</td><td class="n">111 µs</td></tr>
+      <tr><td class="mono">mul_mat_vec_q&lt;Q8_0&gt;（融合）</td><td>decode：注意力投影</td><td class="n">2368 ms</td><td class="n">77,376</td><td class="n">31 µs</td></tr>
+      <tr class="hi"><td class="mono">mul_mat_vec_q&lt;Q8_0&gt;（非融合）</td><td>decode：输出头（词表约 20 万）</td><td class="n">1964 ms</td><td class="n">815</td><td class="n">2410 µs</td></tr>
+      <tr><td class="mono">mul_mat_vec_q_moe&lt;MXFP4&gt;</td><td>两路并发 decode 的 MoE</td><td class="n">961 ms</td><td class="n">4,504</td><td class="n">213 µs</td></tr>
+      <tr><td class="mono">flash_attn_ext_f16</td><td>注意力（8k 级上下文）</td><td class="n">858 ms</td><td class="n">21,456</td><td class="n">40 µs</td></tr>
+      <tr><td class="mono">mul_mat_q&lt;MXFP4&gt;</td><td>prefill：MoE 矩阵乘</td><td class="n">533 ms</td><td class="n">414</td><td class="n">1288 µs</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Nsight Compute 硬件计数器</h3>
+  <p>用 ncu 对 llama-bench 的 decode（tg）和 prefill（pp512）各采样 80 个 kernel。百分比都是相对 L4 峰值的利用率。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>阶段</th><th>kernel</th><th class="n">时间占比</th><th class="n">DRAM</th><th class="n">SM</th><th class="n">Tensor</th><th class="n">L2</th><th class="n">活跃 warp 上限</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>decode</td><td class="mono">mul_mat_vec_q&lt;MXFP4&gt;</td><td class="n">52.3%</td><td class="n">85.1%</td><td class="n">63.9%</td><td class="n">0%</td><td class="n">33.0%</td><td class="n">83%</td><td>带宽受限，接近上限</td></tr>
+      <tr><td>decode</td><td class="mono">mul_mat_vec_q&lt;Q8_0&gt;</td><td class="n">29.2%</td><td class="n">67.6%</td><td class="n">28.8%</td><td class="n">0%</td><td class="n">27.4%</td><td class="n">75%</td><td>带宽受限，未吃满</td></tr>
+      <tr><td>decode</td><td class="mono">quantize_q8_1</td><td class="n">6.2%</td><td class="n">1.7%</td><td class="n">1.6%</td><td class="n">0%</td><td class="n">1.2%</td><td class="n">100%</td><td>极小 kernel，启动开销为主</td></tr>
+      <tr class="hi"><td>prefill</td><td class="mono">mul_mat_q&lt;MXFP4&gt;</td><td class="n">73.9%</td><td class="n">25.5%</td><td class="n">55.3%</td><td class="n">28.3%</td><td class="n">20.3%</td><td class="n">16.7%</td><td>算力与带宽都未饱和，受占用率限制</td></tr>
+      <tr><td>prefill</td><td class="mono">mul_mat_q&lt;Q8_0&gt;</td><td class="n">13.5%</td><td class="n">17.0%</td><td class="n">41–52%</td><td class="n">28–36%</td><td class="n">24–27%</td><td class="n">16.7%</td><td>同上</td></tr>
+      <tr><td>prefill</td><td class="mono">flash_attn_ext_f16</td><td class="n">3.1%</td><td class="n">16.3%</td><td class="n">38.2%</td><td class="n">38.2%</td><td class="n">32.6%</td><td class="n">16.7%</td><td>同上</td></tr>
+    </tbody>
+  </table></div>
+  <p>推算：每个 decode token 要读取活跃专家、注意力权重和输出头，约 2–3 GB。按 300 GB/s 算下限约 7–10 ms，实测 12–14 ms/token，与“带宽受限”的判断一致。D2H 拷贝约 0.6 MB/token，是 logits 回传，4 轮合计 88 ms，可以忽略。</p>
+</section>
+
+<section id="async">
+  <h2>同步与异步</h2>
+  <p>同步对照组：每轮先写完记忆再回答下一条，无思考时间。异步组：写入进入后台队列，与前台回答并发，每轮之间有 5 s 思考时间。以下均为每轮均值；LME 是 3 个 haystack 的平均。</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>数据集</th><th class="n">用户等待<br>同步 → 异步（s）</th><th class="n">agent decode<br>ms/token</th><th class="n">agent 生成<br>同步 → 异步（s）</th><th class="n">提交延迟<br>中位数 / 最大（s）</th><th class="n">最大积压</th></tr></thead>
+    <tbody>
+      <tr><td>rag-pg</td><td>LoCoMo</td><td class="n">1.23 → 1.21</td><td class="n">12.1 → 12.3</td><td class="n">1.17 → 1.20</td><td class="n">0.02 / 0.03</td><td class="n">—</td></tr>
+      <tr><td>mem0-local</td><td>LoCoMo</td><td class="n">5.84 → 1.38</td><td class="n">12.2 → 14.2</td><td class="n">1.24 → 1.31</td><td class="n">4.1 / 16.3</td><td class="n">—</td></tr>
+      <tr><td>mem0-pg</td><td>LoCoMo</td><td class="n">5.62 → 1.39</td><td class="n">12.1 → 14.4</td><td class="n">1.16 → 1.30</td><td class="n">4.4 / 23.4</td><td class="n">—</td></tr>
+      <tr><td>mem0-qdrant</td><td>LoCoMo</td><td class="n">5.98 → 1.39</td><td class="n">12.2 → 14.7</td><td class="n">1.20 → 1.30</td><td class="n">4.8 / 24.0</td><td class="n">—</td></tr>
+      <tr><td>rag-pg</td><td>LME</td><td class="n">4.22 → 4.23</td><td class="n">13.2 → 13.3</td><td class="n">4.14 → 4.21</td><td class="n">0.04 / 0.38</td><td class="n">1</td></tr>
+      <tr class="hi"><td>mem0-local</td><td>LME</td><td class="n">10.30 → 3.78</td><td class="n">12.8 → 18.5</td><td class="n">2.50 → 3.50</td><td class="n">27.7 / 188.4</td><td class="n">17</td></tr>
+      <tr class="hi"><td>mem0-pg</td><td>LME</td><td class="n">9.63 → 3.76</td><td class="n">12.7 → 19.0</td><td class="n">2.46 → 3.62</td><td class="n">34.2 / 140.9</td><td class="n">14</td></tr>
+      <tr class="hi"><td>mem0-qdrant</td><td>LME</td><td class="n">9.35 → 3.51</td><td class="n">12.8 → 18.2</td><td class="n">2.49 → 3.39</td><td class="n">17.2 / 80.3</td><td class="n">10</td></tr>
+    </tbody>
+  </table></div>
+  <h3>怎么读这张表</h3>
+  <p><b>争抢。</b>后台写入和前台回答共用一张卡，llama.cpp 以 <code>-np 2</code> 把两路 decode 合批。合批让 GPU 总吞吐更高（重叠段 GPU 忙碌率 85–90%），但单路变慢。rag-pg 没有后台 LLM 调用，所以异步前后完全一致。LoCoMo 上每轮写入约 4.5 s，大致能在 5 s 思考时间里做完，agent 每个 token 的 decode 只慢约 17%。LongMemEval 上每次写入 7.8–8.5 s，前台回答时几乎总有一路写入在跑，每个 token 慢约 45%。</p>
+  <p><b>新鲜度。</b>提交延迟是从用户说完一句话，到这句话的记忆可以被检索到的时间。LoCoMo 上它约等于一次 add 的耗时，说明队列基本不积压。LongMemEval 上写入速度略低于对话速度，队列会积压，中位数 17–34 s，最长 188 s。也就是说，用户几轮之前说的话可能还没进入记忆。思考时间越短（真实打字越快），这个问题越严重。</p>
+  <p><b>GPU 利用率。</b>在 LongMemEval 上，异步加思考时间后，rag-pg 的平均 GPU 利用率从 90% 掉到约 42%，因为思考时间里没有工作。mem0 仍保持在 84–86%，因为后台写入填满了这些空闲时间。</p>
+</section>
+
+<section id="scale">
+  <h2>随存储规模的变化</h2>
+  <p>把 LongMemEval 每个会话按轮次分成 5 段，越往后存储里的记忆越多。下图是检索（含查询 embedding）的平均耗时，异步运行，3 个 haystack 取平均。</p>
+  <div class="figure">
+    <h4>检索耗时随会话进度变化（ms）</h4>
+    <div class="legend" id="lg3"></div>
+    <div class="chart" id="c3" role="img" aria-label="四个系统检索耗时随会话进度变化的折线图"></div>
+    <div class="sub">mem0-local 是唯一随存储明显增长的：176 → 430 ms，约 2.5 倍。</div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>LME 异步（3 个 haystack 平均）</th><th class="n">rag-pg</th><th class="n">mem0-local</th><th class="n">mem0-pg</th><th class="n">mem0-qdrant</th></tr></thead>
+    <tbody>
+      <tr><td>检索均值（ms）</td><td class="n">14.6</td><td class="n">275.7</td><td class="n">137.0</td><td class="n">123.4</td></tr>
+      <tr><td>mem0.search 中实体加权（entity_boost，ms，i366）</td><td class="n">—</td><td class="n">199.5</td><td class="n">83.2</td><td class="n">70.6</td></tr>
+      <tr><td>add 中实体查找（ms）</td><td class="n">—</td><td class="n">446.9</td><td class="n">165.3</td><td class="n">43.2</td></tr>
+      <tr><td>会话结束时客户端可见的存储大小</td><td class="n">3.6 MB</td><td class="n">24.9 MB</td><td class="n">47.5 MB</td><td class="n">0.3 MB*</td></tr>
+    </tbody>
+  </table></div>
+  <p>mem0-local 的向量库运行在 agent 进程内部，在 LongMemEval i366 上，压测进程平均占用 71% 的 CPU，常驻内存 2.25 GB；同一配置在 LoCoMo 上只有 2.9% CPU、357 MB。检索和实体查找都在 Python 里遍历，开销随记忆条数线性增长。服务化的 pgvector 和 Qdrant 有索引，在这个规模（几千条）上基本不变。* mem0-qdrant 的数据在 Qdrant 服务进程里，客户端目录只能看到元数据。</p>
+</section>
+
+<section id="rag">
+  <h2>mem0 与 rag-pg</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>LME，每轮均值</th><th class="n">rag-pg</th><th class="n">mem0（三后端范围，异步）</th></tr></thead>
+    <tbody>
+      <tr><td>写入：每轮耗时</td><td class="n">41 ms</td><td class="n">7.8–8.5 s</td></tr>
+      <tr><td>写入：LLM token（prompt / 生成）</td><td class="n">0 / 0</td><td class="n">≈9.1k / ≈410</td></tr>
+      <tr><td>读取：检索</td><td class="n">15 ms</td><td class="n">123–276 ms</td></tr>
+      <tr><td>读取：agent prompt token</td><td class="n">4768</td><td class="n">1105–1110</td></tr>
+      <tr><td>读取：agent prefill + 排队</td><td class="n">1.67 s</td><td class="n">0.56–0.57 s</td></tr>
+      <tr><td>用户等待</td><td class="n">4.23 s</td><td class="n">3.51–3.78 s</td></tr>
+      <tr><td>提交延迟中位数</td><td class="n">0.04 s</td><td class="n">17–34 s</td></tr>
+      <tr><td>GPU kernel 时间（LoCoMo，4 轮）</td><td class="n">3.0 s</td><td class="n">11.6–16.3 s</td></tr>
+    </tbody>
+  </table></div>
+  <p>两者的成本结构几乎相反。rag-pg 写入时什么都不做，读的时候把原文整段塞进 prompt，所以成本在读路径的 prefill 上，并且随检索出的原文长度增长。mem0 在写入时用 LLM 把对话压缩成短事实，读路径的 prompt 很短，但每轮都要付出一次 8–9k token 的 reasoning 调用，并且新记忆要等写完才能检索。在单卡上，mem0 的 GPU 总工作量约为 rag-pg 的 4–5 倍。</p>
+</section>
+
+<section id="bottleneck">
+  <h2>瓶颈排序</h2>
+  <div class="tbl"><table>
+    <thead><tr><th class="n">#</th><th>瓶颈</th><th>证据</th><th>可以做的</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>记忆抽取的 reasoning decode</td><td class="wrap-cell">LoCoMo 上占 add 的 65%，LongMemEval 上约 48%；每次 188–244 个推理 token，2.9–4.1 s</td><td class="wrap-cell">降低抽取调用的 reasoning effort，或换不带 reasoning 的小模型做抽取；限制输出长度</td></tr>
+      <tr><td class="n">2</td><td>decode 受显存带宽限制</td><td class="wrap-cell">MoE matvec 达到 DRAM 峰值的 85%，tensor core 空闲</td><td class="wrap-cell">合批多路 decode（已见 85–90% 忙碌率）、投机解码；输出头 2.4 ms/token 可考虑裁剪词表或更低位宽</td></tr>
+      <tr><td class="n">3</td><td>记忆 decode 时 GPU 空转约 40%</td><td class="wrap-cell">记忆 reasoning 段忙碌率 48–58%，agent 段 84–87%；llama-server 占满一个 CPU 核</td><td class="wrap-cell">单独测量 JSON 语法约束采样的开销；开启 CUDA graph 后复测（见注意事项）</td></tr>
+      <tr><td class="n">4</td><td>写入速度跟不上对话</td><td class="wrap-cell">LME 上 add ≈ 8 s ≈ 每轮间隔，队列积压到 17 条，提交延迟最长 188 s</td><td class="wrap-cell">合并多轮再抽取；写入优先级调度；在检索时补查队列中尚未提交的原文</td></tr>
+      <tr><td class="n">5</td><td>mem0-local 存储随规模变慢</td><td class="wrap-cell">检索 176 → 430 ms，实体查找 447 ms，压测进程 71% CPU</td><td class="wrap-cell">超过几千条记忆时换服务化后端（pgvector 或 Qdrant）</td></tr>
+      <tr><td class="n">6</td><td>静态抽取 prompt 很长</td><td class="wrap-cell">每次 8.5–9.1k token，靠 91% 的前缀缓存才把 prefill 压到 0.33–0.61 s</td><td class="wrap-cell">保持前缀缓存常驻（不要被 agent 请求挤出），或精简 prompt</td></tr>
+    </tbody>
+  </table></div>
+  <p>embedding、NER、SQL 和向量库读写在 LoCoMo 规模下合计不到 0.3 s，不是当前的瓶颈。</p>
+</section>
+
+<section id="scores">
+  <h2>基准分数（仅作参考）</h2>
+  <p>LoCoMo 47 道题，LLM 评委判定的准确率。每道题约 2.1 个百分点，四个系统、两种模式之间的差别都只有 2–4 道题，不足以说明质量差异。LongMemEval 每个 haystack 只有 1 道题，不做结论。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>LoCoMo（47 题）</th><th class="n">rag-pg</th><th class="n">mem0-local</th><th class="n">mem0-pg</th><th class="n">mem0-qdrant</th></tr></thead>
+    <tbody>
+      <tr><td>同步：评委准确率 / F1</td><td class="n">51.1% / 0.198</td><td class="n">57.4% / 0.172</td><td class="n">55.3% / 0.162</td><td class="n">59.6% / 0.161</td></tr>
+      <tr><td>异步：评委准确率 / F1</td><td class="n">59.6% / 0.199</td><td class="n">59.6% / 0.166</td><td class="n">55.3% / 0.153</td><td class="n">57.4% / 0.181</td></tr>
+      <tr><td>LME 3 题答对数（同步 / 异步）</td><td class="n">1 / 1</td><td class="n">1 / 1</td><td class="n">0 / 0</td><td class="n">0 / 0</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="caveats">
+  <h2>注意事项</h2>
+  <div class="note"><b>CUDA graph。</b>nsys 2025.3 不支持 <code>--cuda-graph-trace</code>，为了看到单个 kernel，kernel 抓取时 llama-server 以 <code>GGML_CUDA_DISABLE_GRAPHS=1</code> 运行。这会增加 kernel 启动开销，使 kernel 抓取中的 GPU 忙碌率偏低，尤其是单路 decode。各类 kernel 的占比和 ncu 计数器不受影响。</div>
+  <div class="note"><b>类别名。</b>VM 上分析 kernel 时用的是旧分类名 “matmul (quantized, other)”，在 gpt-oss-20b 上它对应 Q8_0 dense matmul（注意力投影和输出头）。本报告统一写作 “Q8_0 dense”。</div>
+  <div class="note"><b>对照条件。</b>同步对照组没有思考时间，异步组有 5 s，所以两组的平均 GPU 利用率不能直接比较。同步运行是 reasoning 拆分功能上线前做的，没有 reasoning / answer 分段，表中只比较了总 decode 和每 token 时间。</div>
+  <div class="note"><b>样本。</b>kernel 抓取覆盖第 10–13 轮（4 轮）。ncu 数据来自 llama-bench，而不是真实请求。LongMemEval 只有 3 个 haystack。所有实验各跑一次，没有重复。</div>
+</section>
+
+<footer>
+  <div>数据：<span class="mono">results/colab/L4/</span>（l1_*、lme_*、kprof_*、kprof_ncu、rates_gptoss20b），分支 <span class="mono">claude/gifted-maxwell-td8cnz</span>。</div>
+  <div>汇总脚本：<span class="mono">analysis/report_l1_data.py</span>；每个运行目录内有 breakdown_multi.json、kernel_profile.json。</div>
+</footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const C1 = [
+ {sys:"rag-pg",side:"前台",seg:[112.2,474.2,196.2,432.2],total:1214.8},
+ {sys:"rag-pg",side:"后台",seg:[22.7,0,0,0],total:22.7},
+ {sys:"mem0-local",side:"前台",seg:[234.2,380.4,249.7,517.4],total:1381.7},
+ {sys:"mem0-local",side:"后台",seg:[296.7,330.1,2910.2,971.9],total:4508.9},
+ {sys:"mem0-pg",side:"前台",seg:[242.0,369.2,248.5,526.7],total:1386.4},
+ {sys:"mem0-pg",side:"后台",seg:[290.9,347.5,2994.2,1001.0],total:4633.6},
+ {sys:"mem0-qdrant",side:"前台",seg:[234.8,380.7,246.1,525.8],total:1387.4},
+ {sys:"mem0-qdrant",side:"后台",seg:[264.3,330.3,3254.3,969.8],total:4818.7}];
+const C1N = ["非 LLM 与调用开销","prefill + 排队","reasoning decode","answer decode"];
+const C2 = [
+ {stage:"记忆 prefill",wall:1339,busy:68.5,v:[61.2,15.8,11.9,11.1]},
+ {stage:"记忆 reasoning decode",wall:12800,busy:57.8,v:[41.1,41.2,8.5,9.2]},
+ {stage:"记忆 answer decode",wall:3072,busy:67.4,v:[41.0,41.1,8.6,9.3]},
+ {stage:"agent prefill",wall:397,busy:82.6,v:[71.9,16.5,2.6,9.0]},
+ {stage:"agent reasoning decode",wall:155,busy:86.5,v:[43.6,43.8,2.8,9.8]},
+ {stage:"agent answer decode",wall:655,busy:84.3,v:[43.5,43.9,2.8,9.8]},
+ {stage:"agent 与记忆重叠",wall:2772,busy:86.4,v:[58.4,25.6,7.8,8.2]}];
+const C2N = ["MoE 专家 MXFP4","Q8_0 dense","flash attention","其他"];
+const C3 = {"rag-pg":[13.5,15.6,13.9,13.8,16.5],"mem0-local":[175.5,237.9,252.4,334.1,430.4],"mem0-pg":[145.5,142.9,131.4,133.8,160.4],"mem0-qdrant":[146.0,135.9,114.7,118.9,136.6]};
+const COL = ["var(--s1)","var(--s2)","var(--s3)","var(--s4)"];
+const NS = "http://www.w3.org/2000/svg";
+const tip = document.getElementById("tip");
+function el(n, a, p) { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+function txt(p, x, y, s, cls, anchor) { const t = el("text", {x, y, class: cls, "text-anchor": anchor || "start", "dominant-baseline": "middle"}, p); t.textContent = s; return t; }
+function showTip(e, html) { tip.innerHTML = html; tip.hidden = false; moveTip(e); }
+function moveTip(e) { const w = tip.offsetWidth, h = tip.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14; if (x + w > innerWidth - 8) x = e.clientX - w - 14; if (y + h > innerHeight - 8) y = e.clientY - h - 14; tip.style.left = x + "px"; tip.style.top = y + "px"; }
+function hideTip() { tip.hidden = true; }
+function hover(node, html) { node.addEventListener("pointerenter", e => showTip(e, html)); node.addEventListener("pointermove", moveTip); node.addEventListener("pointerleave", hideTip); }
+function legend(id, names) { const l = document.getElementById(id); names.forEach((n, i) => { const s = document.createElement("span"); s.innerHTML = `<i style="background:${COL[i]}"></i>${n}`; l.appendChild(s); }); }
+function rbar(p, x, y, w, h, fill, roundEnd) {
+  if (w <= 0) return null;
+  const r = Math.min(4, w, h / 2);
+  if (!roundEnd) return el("rect", {x, y, width: w, height: h, fill}, p);
+  const d = `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`;
+  return el("path", {d, fill}, p);
+}
+function stacked(id, rows, opt) {
+  const box = document.getElementById(id);
+  const W = Math.max(560, box.clientWidth || 640), L = opt.left, R = opt.right, bh = 18, gap = opt.gap || 14, top = 8;
+  const H = top + rows.length * (bh + gap) + 28;
+  const svg = el("svg", {width: W, height: H, viewBox: `0 0 ${W} ${H}`}, box);
+  const pw = W - L - R, sx = v => L + v / opt.max * pw;
+  const g = el("g", {class: "axis"}, svg);
+  opt.ticks.forEach(t => { el("line", {x1: sx(t), x2: sx(t), y1: top - 4, y2: H - 24, stroke: "var(--grid)", "stroke-width": 1}, g); txt(g, sx(t), H - 12, opt.fmt(t), "lbl", "middle"); });
+  rows.forEach((r, i) => {
+    const y = top + i * (bh + gap);
+    if (opt.groupLabel) opt.groupLabel(svg, r, i, y, bh);
+    let x = L; const segs = r.seg; const lastIdx = segs.map((v, k) => v > 0 ? k : -1).filter(k => k >= 0).pop();
+    segs.forEach((v, k) => {
+      if (v <= 0) return;
+      const w = Math.max(1, sx(v) - L - (k === lastIdx ? 0 : 2));
+      const n = rbar(svg, x, y, w, bh, COL[k], k === lastIdx);
+      if (n) hover(n, opt.tipFor(r, k));
+      x += sx(v) - L;
+    });
+    txt(svg, x + 6, y + bh / 2, opt.endLabel(r), "endlbl");
+  });
+}
+function chart1() {
+  stacked("c1", C1, {left: 150, right: 70, max: 5000, gap: 10, ticks: [0, 1000, 2000, 3000, 4000, 5000], fmt: t => (t / 1000) + " s",
+    groupLabel: (svg, r, i, y, bh) => { txt(svg, 0, y + bh / 2, (r.side === "前台" ? r.sys + " · " : "") + r.side, "rowlbl"); },
+    endLabel: r => (r.total >= 1000 ? (r.total / 1000).toFixed(2) + " s" : r.total.toFixed(1) + " ms"),
+    tipFor: (r, k) => `<b>${r.sys} · ${r.side}</b><br>${C1N[k]}：${r.seg[k].toFixed(1)} ms<br>本条合计：${r.total.toFixed(1)} ms`});
+}
+function chart2() {
+  const rows = C2.map(r => ({...r, seg: r.v}));
+  stacked("c2", rows, {left: 170, right: 64, max: 100, gap: 12, ticks: [0, 25, 50, 75, 100], fmt: t => t + "%",
+    groupLabel: (svg, r, i, y, bh) => txt(svg, 0, y + bh / 2, r.stage, "rowlbl"),
+    endLabel: r => "忙 " + r.busy + "%",
+    tipFor: (r, k) => `<b>${r.stage}</b><br>${C2N[k]}：${r.v[k]}% 的 kernel 时间<br>墙钟 ${r.wall} ms，GPU 忙碌 ${r.busy}%`});
+}
+function chart3() {
+  const box = document.getElementById("c3");
+  const W = Math.max(520, box.clientWidth || 640), H = 300, L = 48, R = 104, T = 14, B = 40;
+  const svg = el("svg", {width: W, height: H, viewBox: `0 0 ${W} ${H}`}, box);
+  const xs = ["0–20%","20–40%","40–60%","60–80%","80–100%"], pw = W - L - R, ph = H - T - B;
+  const sx = i => L + i * pw / 4, sy = v => T + ph - v / 500 * ph;
+  const g = el("g", {class: "axis"}, svg);
+  [0, 100, 200, 300, 400, 500].forEach(t => { el("line", {x1: L, x2: W - R, y1: sy(t), y2: sy(t), stroke: "var(--grid)", "stroke-width": 1}, g); txt(g, L - 8, sy(t), t, "lbl", "end"); });
+  xs.forEach((s, i) => txt(g, sx(i), H - 22, s, "lbl", "middle"));
+  txt(g, L + pw / 2, H - 6, "会话进度（存储中的记忆逐渐增多）", "lbl", "middle");
+  const names = Object.keys(C3);
+  const ends = {"rag-pg": 0, "mem0-local": 0, "mem0-pg": -7, "mem0-qdrant": 7};
+  names.forEach((n, si) => {
+    const v = C3[n];
+    el("polyline", {points: v.map((y, i) => `${sx(i)},${sy(y)}`).join(" "), fill: "none", stroke: COL[si], "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round"}, svg);
+    v.forEach((y, i) => {
+      const c = el("circle", {cx: sx(i), cy: sy(y), r: 4, fill: COL[si], stroke: "var(--surface)", "stroke-width": 2}, svg);
+      const hit = el("circle", {cx: sx(i), cy: sy(y), r: 11, fill: "transparent"}, svg);
+      hover(hit, `<b>${n}</b><br>会话进度 ${xs[i]}<br>检索 ${y} ms`);
+    });
+    txt(svg, sx(4) + 10, sy(v[4]) + ends[n], `${n} ${v[4]}`, "endlbl");
+  });
+}
+legend("lg1", C1N); legend("lg2", C2N); legend("lg3", Object.keys(C3));
+chart1(); chart2(); chart3();
+</script>
