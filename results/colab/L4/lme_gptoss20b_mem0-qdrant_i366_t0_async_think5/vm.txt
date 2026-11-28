@@ -1,0 +1,1 @@
+boot=768bcafe gpu=NVIDIA L4 profile=gptoss20b

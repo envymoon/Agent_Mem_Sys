@@ -21,30 +21,42 @@
 | lme_gptoss20b_graphiti_i0_t60 | graphiti | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-local_i0_t60 | mem0-local | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-local_i233_t0 | mem0-local | longmemeval | 1 | 0.148 | 0.000 |
+| lme_gptoss20b_mem0-local_i233_t0_async_think5 | mem0-local | longmemeval | 1 | 0.039 | 0.000 |
 | lme_gptoss20b_mem0-local_i366_t0 | mem0-local | longmemeval | 1 | 0.421 | 1.000 |
+| lme_gptoss20b_mem0-local_i366_t0_async_think5 | mem0-local | longmemeval | 1 | 0.421 | 1.000 |
 | lme_gptoss20b_mem0-local_i70_t0 | mem0-local | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_mem0-local_i70_t0_async_think5 | mem0-local | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-pg_i0_t60 | mem0-pg | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-pg_i233_t0 | mem0-pg | longmemeval | 1 | 0.038 | 0.000 |
+| lme_gptoss20b_mem0-pg_i233_t0_async_think5 | mem0-pg | longmemeval | 1 | 0.044 | 0.000 |
 | lme_gptoss20b_mem0-pg_i366_t0 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_mem0-pg_i366_t0_async_think5 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-pg_i70_t0 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_mem0-pg_i70_t0_async_think5 | mem0-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-qdrant_i0_t60 | mem0-qdrant | longmemeval | 1 | 0.444 | 1.000 |
 | lme_gptoss20b_mem0-qdrant_i233_t0 | mem0-qdrant | longmemeval | 1 | 0.043 | 0.000 |
+| lme_gptoss20b_mem0-qdrant_i233_t0_async_think5 | mem0-qdrant | longmemeval | 1 | 0.039 | 0.000 |
 | lme_gptoss20b_mem0-qdrant_i366_t0 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_mem0-qdrant_i70_t0 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_mem0-qdrant_i70_t0_async_think5 | mem0-qdrant | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i0_t60 | rag-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i233_t0 | rag-pg | longmemeval | 1 | 0.037 | 0.000 |
+| lme_gptoss20b_rag-pg_i233_t0_async_think5 | rag-pg | longmemeval | 1 | 0.037 | 0.000 |
 | lme_gptoss20b_rag-pg_i366_t0 | rag-pg | longmemeval | 1 | 0.000 | 0.000 |
+| lme_gptoss20b_rag-pg_i366_t0_async_think5 | rag-pg | longmemeval | 1 | 0.000 | 0.000 |
 | lme_gptoss20b_rag-pg_i70_t0 | rag-pg | longmemeval | 1 | 0.054 | 1.000 |
+| lme_gptoss20b_rag-pg_i70_t0_async_think5 | rag-pg | longmemeval | 1 | 0.054 | 1.000 |
 
 | system | dataset | runs | n QA | F1 (QA-weighted) | judge acc (QA-weighted) |
 |---|---|---|---|---|---|
 | graphiti | locomo | 2 | 57 | 0.112 | 0.263 |
 | graphiti | longmemeval | 1 | 1 | 0.444 | 1.000 |
 | mem0-local | locomo | 4 | 104 | 0.164 | 0.587 |
-| mem0-local | longmemeval | 4 | 4 | 0.253 | 0.500 |
+| mem0-local | longmemeval | 7 | 7 | 0.211 | 0.429 |
 | mem0-pg | locomo | 4 | 104 | 0.153 | 0.558 |
-| mem0-pg | longmemeval | 4 | 4 | 0.121 | 0.250 |
+| mem0-pg | longmemeval | 7 | 7 | 0.075 | 0.143 |
 | mem0-qdrant | locomo | 4 | 104 | 0.167 | 0.587 |
-| mem0-qdrant | longmemeval | 4 | 4 | 0.122 | 0.250 |
+| mem0-qdrant | longmemeval | 7 | 7 | 0.075 | 0.143 |
 | rag-pg | locomo | 4 | 104 | 0.195 | 0.577 |
-| rag-pg | longmemeval | 4 | 4 | 0.023 | 0.250 |
+| rag-pg | longmemeval | 7 | 7 | 0.026 | 0.286 |

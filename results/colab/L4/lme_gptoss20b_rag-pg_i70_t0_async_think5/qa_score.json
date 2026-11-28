@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.05405405405405406,
+ "judge_acc": 1.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many items of clothing do I need to pick up or return from a store?",
+   "gold": "3",
+   "pred": "You have three items to manage:\n\n1. **New boots** \u2013 pick them up from Zara.  \n2. **Old boots** \u2013 return the ones you exchanged.  \n3. **Navy\u2011blue blazer** \u2013 pick up the dry\u2011cleaned blazer.  \n\nSo, a total of **three** items.",
+   "qtype": "multi-session",
+   "f1": 0.05405405405405406,
+   "judge": 1,
+   "judge_raw": "CORRECT"
+  }
+ ]
+}

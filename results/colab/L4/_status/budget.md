@@ -25,4 +25,4 @@
 | l4 q4b | q4b: mem0-pg + graphiti x 60 turns + 20 QA | 0.4 | no rates file for this profile yet: costed as the main profile |
 | l5 | store scale 1e3..1e5, 4 backends | 1.5 | LLM-free; embedding + DB only; planning guess |
 
-experiments 25.4 h + setup 3 runtime(s) x 17 min = **26.3 h**  (set CU_PER_HOUR from Colab's Resources panel to convert to compute units)
+experiments 25.4 h + setup 3 runtime(s) x 15 min = **26.2 h**  (set CU_PER_HOUR from Colab's Resources panel to convert to compute units)

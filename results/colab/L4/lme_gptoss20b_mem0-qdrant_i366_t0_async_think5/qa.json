@@ -1,0 +1,22 @@
+[
+  {
+    "q": "What was my personal best time in the charity 5K run?",
+    "gold": "25 minutes and 50 seconds (or 25:50)",
+    "pred": "Your personal best time in the charity 5K run was **27:12**.",
+    "qtype": "knowledge-update",
+    "date": "2023/06/25 (Sun) 13:22",
+    "question_id": "6a1eabeb",
+    "mem": [
+      "User has been running regularly and recently achieved a personal best time of 27:12 in a charity 5K run",
+      "User is training for an upcoming charity 5K run and hopes to beat a personal best time of 25:50",
+      "User recently set a personal best time of 27:12 in a charity 5K run, marking a new milestone in their running performance",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is training for a charity 5K run and aims to beat a personal best time of 25:50",
+      "User is training for an upcoming charity 5K run and wants endurance tips, hoping to beat a personal best time of 25:50.",
+      "User asked whether to focus on pushing hard or maintaining a consistent pace during interval training for the 5K",
+      "Assistant recommended tempo runs\u2014running at a moderate to high intensity for an extended period\u2014to build lactate tolerance and improve running efficiency",
+      "Assistant recommended incorporating interval training, such as 4-6 repetitions of 800m at a fast pace with 400m active recovery, to improve running pace",
+      "Assistant suggested practicing pace changes during long runs, such as running 1-2 miles at a fast pace followed by a slow recovery, to simulate race demands"
+    ]
+  }
+]

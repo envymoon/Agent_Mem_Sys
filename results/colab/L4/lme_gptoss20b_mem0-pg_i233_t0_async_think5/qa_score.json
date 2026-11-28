@@ -1,0 +1,17 @@
+{
+ "n": 1,
+ "f1": 0.04444444444444444,
+ "judge_acc": 0.0,
+ "judge_failed": 0,
+ "items": [
+  {
+   "q": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
+   "gold": "7 days. 8 days (including the last day) is also acceptable.",
+   "pred": "I\u2019m not sure\u2014your notes don\u2019t include a specific date for the MoMA visit, so I can\u2019t calculate the number of days between the two trips. If you remember when you went to MoMA, let me know and I\u2019ll do the math!",
+   "qtype": "temporal-reasoning",
+   "f1": 0.04444444444444444,
+   "judge": 0,
+   "judge_raw": "WRONG"
+  }
+ ]
+}

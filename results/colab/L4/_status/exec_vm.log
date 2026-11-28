@@ -42,3 +42,23 @@ restored 40 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-28 00:23:00Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-local_i366_t0_async_think5 | 44 runs done | backup=download+ack missing=1 | idle 0.0 min
 [2026-11-28 00:27:39Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=2 | idle 0.2 min
 [2026-11-28 00:33:01Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=2 | idle 0.0 min
+[2026-11-28 00:37:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-28 00:43:01Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-28 00:47:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-28 00:53:01Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=0 | idle 0.0 min
+[2026-11-28 00:57:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-pg_i366_t0_async_think5 | 45 runs done | backup=download+ack missing=0 | idle 0.1 min
+[2026-11-28 01:03:01Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-28 01:07:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-28 01:13:02Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-28 01:17:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-28 01:23:02Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.1 min
+[2026-11-28 01:27:40Z] running | line=lme # async retry try=1 run=lme_gptoss20b_mem0-qdrant_i366_t0_async_think5 | 46 runs done | backup=download+ack missing=1 | idle 0.0 min
+[2026-11-28 01:31:00Z] finished 'lme # async retry'
+[2026-11-28 01:31:00Z] running | line=None try=0 run=None | 47 runs done | backup=download+ack missing=2 | idle 0.5 min
+[2026-11-28 01:31:04Z] start 'score budget # after async lme retry' attempt 1/3 at 4da3040 Colab: async lme i366 progress (runtime 2)
+[2026-11-28 01:31:04Z] running | line=score budget # after async lme retry try=1 run=None | 47 runs done | backup=download+ack missing=2 | idle 0.5 min
+[2026-11-28 01:31:34Z] finished 'score budget # after async lme retry'
+[2026-11-28 01:31:34Z] running | line=None try=0 run=None | 47 runs done | backup=download+ack missing=2 | idle 0.2 min
+[2026-11-28 01:31:34Z] queue empty at 4da3040 Colab: async lme i366 progress (runtime 2); waiting up to 15 min for new lines in colab/queue.txt
+[2026-11-28 01:31:34Z] idle (queue empty) | line=None try=0 run=None | 47 runs done | backup=download+ack missing=14 | idle 0.2 min
+[2026-11-28 01:33:02Z] idle (queue empty) | line=None try=0 run=None | 47 runs done | backup=download+ack missing=14 | idle 1.6 min
