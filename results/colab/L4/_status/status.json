@@ -1,11 +1,11 @@
 {
- "time": "2026-11-27 23:33:00Z",
+ "time": "2026-11-28 00:33:01Z",
  "final": false,
  "tag": "L4",
  "phase": "running",
  "code": "92c3106 Colab status at runtime 1 release",
  "boot": "768bcafe",
- "runtime_up_h": 2.3,
+ "runtime_up_h": 3.3,
  "cu_used_this_runtime": null,
  "queue": [
   "l1",
@@ -50,7 +50,7 @@
  },
  "current_line": "lme # async retry",
  "attempt": 1,
- "current_run": "lme_gptoss20b_rag-pg_i366_t0_async_think5",
+ "current_run": "lme_gptoss20b_mem0-pg_i366_t0_async_think5",
  "suite_alive": true,
  "minutes_since_last_write": 0.0,
  "finished_runs": [
@@ -77,6 +77,7 @@
   "lme_gptoss20b_mem0-local_i233_t0",
   "lme_gptoss20b_mem0-local_i233_t0_async_think5",
   "lme_gptoss20b_mem0-local_i366_t0",
+  "lme_gptoss20b_mem0-local_i366_t0_async_think5",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-local_i70_t0_async_think5",
   "lme_gptoss20b_mem0-pg_i0_t60",
@@ -95,6 +96,7 @@
   "lme_gptoss20b_rag-pg_i233_t0",
   "lme_gptoss20b_rag-pg_i233_t0_async_think5",
   "lme_gptoss20b_rag-pg_i366_t0",
+  "lme_gptoss20b_rag-pg_i366_t0_async_think5",
   "lme_gptoss20b_rag-pg_i70_t0",
   "lme_gptoss20b_rag-pg_i70_t0_async_think5"
  ],
@@ -102,18 +104,18 @@
  "backup": {
   "mode": "download+ack",
   "ok": true,
-  "why": "72 acked",
+  "why": "74 acked",
   "missing": [
-   "lme_gptoss20b_mem0-pg_i233_t0_async_think5",
-   "lme_gptoss20b_mem0-qdrant_i233_t0_async_think5"
+   "lme_gptoss20b_mem0-local_i366_t0_async_think5",
+   "lme_gptoss20b_rag-pg_i366_t0_async_think5"
   ]
  },
- "disk_free_gb": 220.0,
+ "disk_free_gb": 219.9,
  "stop": null,
- "hours_since_start": 2.26,
+ "hours_since_start": 3.26,
  "max_hours": 5.0,
- "ram_avail_gb": 37.0,
- "gpu": "NVIDIA L4, 0 %, 16094 MiB, 23034 MiB, 34.63 W",
+ "ram_avail_gb": 38.1,
+ "gpu": "NVIDIA L4, 93 %, 16094 MiB, 23034 MiB, 71.85 W",
  "outbox_runs": [
   "kprof_gptoss20b_mem0-local_async_think5",
   "kprof_gptoss20b_mem0-pg_async_think5",
@@ -138,6 +140,7 @@
   "lme_gptoss20b_mem0-local_i233_t0",
   "lme_gptoss20b_mem0-local_i233_t0_async_think5",
   "lme_gptoss20b_mem0-local_i366_t0",
+  "lme_gptoss20b_mem0-local_i366_t0_async_think5",
   "lme_gptoss20b_mem0-local_i70_t0",
   "lme_gptoss20b_mem0-local_i70_t0_async_think5",
   "lme_gptoss20b_mem0-pg_i0_t60",
@@ -156,6 +159,7 @@
   "lme_gptoss20b_rag-pg_i233_t0",
   "lme_gptoss20b_rag-pg_i233_t0_async_think5",
   "lme_gptoss20b_rag-pg_i366_t0",
+  "lme_gptoss20b_rag-pg_i366_t0_async_think5",
   "lme_gptoss20b_rag-pg_i70_t0",
   "lme_gptoss20b_rag-pg_i70_t0_async_think5"
  ]
