@@ -62,3 +62,9 @@ restored 40 finished runs from /content/Agent_Mem_Sys/results/colab/L4
 [2026-11-28 01:31:34Z] queue empty at 4da3040 Colab: async lme i366 progress (runtime 2); waiting up to 15 min for new lines in colab/queue.txt
 [2026-11-28 01:31:34Z] idle (queue empty) | line=None try=0 run=None | 47 runs done | backup=download+ack missing=14 | idle 0.2 min
 [2026-11-28 01:33:02Z] idle (queue empty) | line=None try=0 run=None | 47 runs done | backup=download+ack missing=14 | idle 1.6 min
+[2026-11-28 01:37:37Z] STOP: stop requested
+[2026-11-28 01:37:40Z] idle (queue empty) | line=None try=0 run=None | 47 runs done | backup=download+ack missing=0 | idle 6.3 min
+[2026-11-28 01:37:53Z] finishing (stop requested); waiting up to 75 min for the backup of the last runs
+[2026-11-28 01:37:53Z] finishing: stop requested | line=None try=0 run=None | 47 runs done | backup=download+ack missing=0 | idle 6.5 min
+[2026-11-28 01:37:53Z] released: stop requested | line=None try=0 run=None | 47 runs done | backup=download+ack missing=0 | idle 6.5 min
+[2026-11-28 01:37:53Z] releasing the runtime
