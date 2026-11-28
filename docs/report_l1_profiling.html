@@ -84,7 +84,20 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .endlbl { fill: var(--fg); font-size: 12px; font-family: var(--font-mono); }
 footer { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
 code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in srgb, var(--surface) 80%, var(--accent) 10%); padding: 1px 5px; border-radius: 4px; }
-@media (max-width: 520px) { body { font-size: 15px; } .figure { padding: 14px 12px 10px; } }
+.tbl.prose td { white-space: normal; min-width: 150px; line-height: 1.6; }
+.tbl.prose td:first-child { min-width: 0; white-space: nowrap; }
+.tbl.prose .mono, .tbl.prose td.mono { overflow-wrap: anywhere; }
+.m { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px; display: grid; gap: 8px; min-width: 0; }
+.m h4 { margin: 0; font-size: 15.5px; }
+.m h4 .mono { font-size: 12.5px; color: var(--muted); font-weight: 400; margin-left: 6px; }
+.m ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 74ch; }
+ol.steps { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; max-width: 74ch; }
+ol.steps li::marker { font-family: var(--font-mono); color: var(--accent); }
+.tl .bar-r { fill: var(--s3); } .tl .bar-g { fill: var(--s1); } .tl .bar-m { fill: var(--s2); }
+.tl .bar-t { fill: var(--grid); stroke: var(--rule); stroke-dasharray: 4 3; }
+.tl .brk { stroke: var(--fg); stroke-width: 1.2; fill: none; }
+.tl .ax { stroke: var(--rule); }
+@media (max-width: 520px) { body { font-size: 15px; } .figure { padding: 14px 12px 10px; } .m { padding: 12px 12px; } }
 </style>
 
 <div class="wrap">
@@ -93,7 +106,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
   <h1>Agent 记忆系统 L4 剖析</h1>
   <p class="lede">在一张 L4 上同时跑对话 agent、记忆系统和本地 LLM，逐环节记录每一轮的时间和资源都花在哪里。比较对象是 mem0 的三种存储后端和一个纯检索的 RAG 基线。写入路径全部改为异步，并保留此前的同步数据做对照。LoCoMo 和 LongMemEval-S 只用来提供真实负载，分数仅作参考。</p>
   <nav class="toc" aria-label="目录">
-    <a href="#tldr">结论</a><a href="#setup">环境</a><a href="#stages">每轮分解</a><a href="#add">mem0 add 内部</a><a href="#kernel">GPU kernel</a><a href="#async">同步与异步</a><a href="#scale">规模增长</a><a href="#rag">mem0 与 rag-pg</a><a href="#bottleneck">瓶颈排序</a><a href="#scores">分数</a><a href="#caveats">注意事项</a>
+    <a href="#tldr">结论</a><a href="#setup">环境</a><a href="#method">实验设置与测量方法</a><a href="#stages">每轮分解</a><a href="#add">mem0 add 内部</a><a href="#kernel">GPU kernel</a><a href="#async">同步与异步</a><a href="#scale">规模增长</a><a href="#rag">mem0 与 rag-pg</a><a href="#bottleneck">瓶颈排序</a><a href="#scores">分数</a><a href="#caveats">注意事项</a>
   </nav>
 </header>
 
@@ -106,7 +119,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
     <div><span class="v">85%</span><span class="l">decode 主力 kernel（MXFP4 MoE matvec）达到的 DRAM 带宽峰值比例：decode 受带宽限制</span></div>
   </div>
   <ol class="find">
-    <li><b>瓶颈在记忆写入，不在检索。</b>mem0 每轮在后台花 4.5–4.8 s 写记忆，而用户等待的前台只有 1.38 s。nsys 抓取的 4 轮里，mem0 的 GPU kernel 时间是 11.6–16.3 s，rag-pg 只有 3.0 s，约为 4–5 倍。</li>
+    <li><b>瓶颈在记忆写入，不在检索。</b>mem0 每轮在后台花 4.5–4.8 s 写记忆，而用户等待的前台只有 1.38 s。在 nsys 抓取的约 19 s 窗口里（第 10–12 轮），mem0 的 GPU kernel 时间是 11.6–16.3 s，rag-pg 只有 3.0 s，约为 4–5 倍。</li>
     <li><b>mem0 add 实质上就是一次 LLM 调用。</b>抽取调用占 add 的 97%。它的 prompt 约 8.5k token，但前缀缓存命中 91%，所以 prefill 加排队只要 0.33 s；时间主要花在 decode 上，3.9 s 中有 2.9 s 是 gpt-oss 的 reasoning。embedding、NER、数据库读写等 9 个阶段合计约 135 ms。</li>
     <li><b>decode 受显存带宽限制，prefill 两头都没吃满。</b>Nsight Compute 显示：decode 时 MXFP4 MoE matvec 达到 DRAM 峰值的 85%，Q8_0 dense matvec 达到 68%，tensor core 完全空闲。输出头（Q8_0，约 20 万词表）每个 token 要 2.4 ms，约占全部 kernel 时间的 14%。prefill 的 mmq kernel 只用到 SM 55%、tensor 28%、DRAM 26%，每个 SM 的活跃 warp 被限制在 16.7%。</li>
     <li><b>记忆抽取的 decode 阶段 GPU 有四成时间在空转。</b>记忆 reasoning 段 GPU 忙碌率只有 48–58%，而 agent 的单流 decode 是 84–87%。llama-server 进程稳定占满约一个 CPU 核（89–103%）。推测每个 token 的 CPU 路径是瓶颈：mem0 用 <code>response_format</code> 要求 JSON，需要逐 token 做语法约束采样；另外抓 trace 时关闭了 CUDA graph，kernel 启动开销也被放大。这一条是推断，尚未单独验证。</li>
@@ -126,7 +139,302 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
     <div><b>记忆系统</b><span>mem0-local（嵌入式 Qdrant + SQLite，与 agent 同进程）、mem0-pg（pgvector）、mem0-qdrant（Qdrant 服务）、rag-pg（原文分块入 pgvector，写入不调 LLM）</span></div>
     <div><b>负载</b><span>LoCoMo 第 0 段对话 100 轮 + 47 道评分问答；LongMemEval-S 3 个 haystack（i70/i233/i366），每个 205–242 轮</span></div>
     <div><b>异步模式</b><span>记忆写入进入后台队列，每轮之间模拟用户思考 5 s。同步对照组的思考时间为 0</span></div>
-    <div><b>采集</b><span>逐 span 计时（含 CPU、I/O），代理记录每次 LLM 调用的 token、prefill、reasoning/answer 分段，硬件监控，nsys（kernel 级），ncu（硬件计数器）</span></div>
+    <div><b>采集</b><span>逐 span 计时（含 CPU、I/O），代理记录每次 LLM 调用的 token、prefill、reasoning/answer 分段，硬件监控，nsys（kernel 级），ncu（硬件计数器）。细节见下一节</span></div>
+  </div>
+</section>
+
+<section id="method">
+  <h2>实验设置与测量方法</h2>
+  <p>这一节按“一次运行从启动到出数”的顺序，说明每个环节做了什么、在哪里打的点、数字怎么算出来。原则是不改被测系统的源码：mem0 和 RAG 基线都按原样运行，测量全部靠外部包装（monkeypatch）、一个夹在中间的 LLM 代理和独立的采样进程完成。</p>
+
+  <h3>1. 一次运行怎么跑起来</h3>
+  <ol class="steps">
+    <li><b>调度。</b>用 colab CLI 开一台 L4 运行时。虚拟机上的 <code>colab/supervisor.py</code> 按 <code>colab/queue.txt</code> 依次执行套件（l1、lme、kprof、score），每个套件调用一次 <code>scripts/local/run_local_suite.sh</code>。失败会自动重试。每个跑完的运行目录打包放进 outbox，由我用 <code>colab download</code> 取回，再提交到仓库。</li>
+    <li><b>启动推理栈</b>（<code>start_llama.sh</code>）。先起 embedding 服务（:8001），再起 LLM 服务（:8000），最后起 memprof 代理（:8100）。实际命令行和每块显存的分配都记进 <code>llm.cmd</code> 和 <code>llm.load.json</code>，防止显存不够时 llama.cpp 悄悄回退、改变了实验条件。</li>
+    <li><b>每个运行之前先清场。</b>
+      <ul>
+        <li>停掉 Postgres 和 Qdrant，删除它们的数据目录再重建，所以每次运行都从空库开始。</li>
+        <li>运行目录整个删掉重建，mem0-local 的嵌入式 Qdrant 和 SQLite 就在这个目录里。</li>
+        <li>清页缓存。容器里 <code>drop_caches</code> 不可写，改用 <code>posix_fadvise(DONTNEED)</code> 按文件逐出。但 Colab 的数据目录在 overlay 文件系统上，preflight 没能从块设备计数确认逐出生效（记到的冷读设备字节为 0），所以本报告不对冷、热页缓存做结论。</li>
+      </ul></li>
+    <li><b>开始采集。</b>启动硬件采样进程 <code>memprof.hwmon</code>，并通知代理把日志切换到本次运行的 <code>llm_calls.jsonl</code>。</li>
+    <li><b>运行</b> <code>bench/multi_e2e.py</code>，依次执行：
+      <ul>
+        <li>冷启动 <code>cold.start</code>：建表、建集合、加载 spaCy。</li>
+        <li>逐轮回放对话。</li>
+        <li>异步模式下等后台队列排空。</li>
+        <li>问答。</li>
+        <li>统计存储大小，写出 <code>spans.jsonl</code>、<code>meta.json</code> 和 <code>qa.json</code>。</li>
+      </ul></li>
+    <li><b>后处理。</b>
+      <ul>
+        <li><code>analysis/multi_breakdown.py</code> 生成 <code>breakdown_multi.json</code>。</li>
+        <li>kprof 运行再由 <code>analysis/kernel_profile.py</code> 生成 <code>kernel_profile.json</code>。</li>
+        <li>score 套件由 <code>analysis/qa_score.py</code> 打分。</li>
+        <li><code>analysis/report_l1_data.py</code> 把以上结果汇总成本报告用的数据。</li>
+      </ul></li>
+  </ol>
+
+  <h3>2. 进程与探针</h3>
+  <p>所有进程都在同一台虚拟机上，时间戳一律取 CLOCK_MONOTONIC（Python 的 <code>perf_counter_ns</code>），所以不同进程记下的时间可以直接对齐。nsys 的时间基准不同，单独对齐，方法见 5.8。</p>
+  <div class="tbl prose"><table>
+    <thead><tr><th>进程</th><th>里面是什么</th><th>在这里测什么</th><th>输出</th></tr></thead>
+    <tbody>
+      <tr><td>压测进程（Python）</td><td>agent 循环和被测记忆系统。mem0 作为库跑在这个进程里，mem0-local 的嵌入式 Qdrant 和 SQLite 也在这里</td><td>span 计时器（5.1）：每个操作的墙钟、CPU 时间、I/O 字节、缺页；mem0 内部函数、数据库驱动调用</td><td class="mono">spans.jsonl</td></tr>
+      <tr><td>memprof 代理 :8100</td><td>OpenAI 兼容的转发层。agent 和所有被测系统都只连它，不直接连推理服务</td><td>每次 LLM 和 embedding 请求的起止时间、首 token、首个 answer token、token 数、缓存命中、llama.cpp 服务端计时（5.2）</td><td class="mono">llm_calls.jsonl</td></tr>
+      <tr><td>llama-server :8000</td><td>gpt-oss-20b，2 个 slot：前台 agent 和后台写入各占一个，两路 decode 会合成一个 batch</td><td>服务端 <code>timings</code>（经代理）；<code>/metrics</code> 计数器（经 hwmon）；kprof 运行时被 nsys 包裹（5.8）</td><td class="mono">hw.jsonl、kprof.nsys-rep</td></tr>
+      <tr><td>llama-server :8001</td><td>Qwen3-Embedding-0.6B Q8_0，与 LLM 共用同一张 GPU</td><td>只在代理端计时，不被 nsys 跟踪</td><td class="mono">llm_calls.jsonl</td></tr>
+      <tr><td>Postgres 16 + pgvector；Qdrant 1.15.5</td><td>mem0-pg 和 rag-pg 用 Postgres，mem0-qdrant 用 Qdrant 服务</td><td>客户端驱动计时；同步模式下每个操作前后取 Postgres 统计视图的差值（5.7）</td><td class="mono">spans.jsonl</td></tr>
+      <tr><td>hwmon 采样进程</td><td>独立进程，每 0.25 s 采样一次</td><td>GPU、各进程 CPU 与内存、llama.cpp 计数器、磁盘计数器（5.6）</td><td class="mono">hw.jsonl</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>3. 负载：喂给 agent 的是什么</h3>
+  <div class="tbl prose"><table>
+    <thead><tr><th></th><th>LoCoMo</th><th>LongMemEval-S</th></tr></thead>
+    <tbody>
+      <tr><td>选取</td><td><code>locomo10.json</code> 第 0 段对话。只回放 speaker_a 说的话，取前 100 条</td><td>第 70、233、366 项，分别是数据集中第一道 multi-session、temporal-reasoning 和 knowledge-update 题。完整 haystack，分别有 242、240、205 条用户消息</td></tr>
+      <tr><td>顺序与日期</td><td>按会话顺序，每条带所在会话的日期</td><td>会话按日期排序，每条带会话日期</td></tr>
+      <tr><td>写进记忆的内容</td><td>用户消息加 agent 自己生成的回复</td><td>用户消息加数据集里原有的助手回复。agent 的回复只用于计时，不写入，这样记忆内容与基准定义一致</td></tr>
+      <tr><td>问答</td><td>只问证据全部在已回放消息里的题，排除第 5 类对抗题（与 mem0 论文一致），上限 50，实际 47 道</td><td>每项 1 道</td></tr>
+      <tr><td>两轮之间</td><td colspan="2">同步对照组 0 s；异步组 5 s，模拟用户读回复、打下一句</td></tr>
+    </tbody>
+  </table></div>
+  <p>mem0 默认用系统时钟给记忆标日期，回放 2023 年的对话时会被标成今天。所以在 mem0 生成抽取 prompt 时，把日期替换成这一轮对话自己的日期，相当于对话真实发生时系统时钟应有的读数。</p>
+
+  <h3>4. agent 的一轮：每一步做什么、怎么测</h3>
+  <div class="figure">
+    <h4>一轮的时间线：同步与异步</h4>
+    <div class="legend">
+      <span><i style="background:var(--s3)"></i>检索</span><span><i style="background:var(--s1)"></i>agent 生成</span><span><i style="background:var(--s2)"></i>记忆写入（add）</span><span><i style="background:var(--grid);outline:1px dashed var(--muted)"></i>用户思考 5 s</span>
+    </div>
+    <div class="chart">
+      <svg class="tl" viewBox="0 0 880 232" width="100%" style="min-width:640px" role="img" aria-label="同步与异步模式下两轮对话的时间线示意">
+        <text class="rowlbl" x="0" y="66">同步</text>
+        <path class="brk" d="M96 40 v-6 H432.4 v6"/><text class="lbl" x="264" y="26" text-anchor="middle">一轮 ≈ 5.8 s（下一句要等写完才处理）</text>
+        <rect class="bar-r" x="96" y="50" width="4" height="22"/><rect class="bar-g" x="100" y="50" width="69.6" height="22"/><rect class="bar-m" x="169.7" y="50" width="262.7" height="22"/>
+        <rect class="bar-r" x="432.4" y="50" width="4" height="22"/><rect class="bar-g" x="436.5" y="50" width="69.6" height="22"/><rect class="bar-m" x="506.1" y="50" width="262.7" height="22"/>
+        <text class="rowlbl" x="0" y="136">异步·前台</text>
+        <path class="brk" d="M96 110 v-6 H176 v6"/><text class="lbl" x="96" y="96">用户等待 1.38 s</text>
+        <rect class="bar-r" x="96" y="120" width="4" height="22"/><rect class="bar-g" x="100" y="120" width="76" height="22"/><rect class="bar-t" x="176" y="120" width="290" height="22"/>
+        <rect class="bar-r" x="466" y="120" width="4" height="22"/><rect class="bar-g" x="470.1" y="120" width="76" height="22"/><rect class="bar-t" x="546.1" y="120" width="290" height="22"/>
+        <text class="rowlbl" x="0" y="176">异步·后台</text>
+        <rect class="bar-m" x="176" y="160" width="261.6" height="22"/><rect class="bar-m" x="546.1" y="160" width="261.6" height="22"/>
+        <path class="brk" d="M176 188 v6 H437.6 v-6"/><text class="lbl" x="306.8" y="208" text-anchor="middle">提交延迟：提交 → 可被检索</text>
+        <line class="ax" x1="96" y1="222" x2="850" y2="222"/>
+        <text class="lbl" x="96" y="232" text-anchor="middle">0</text><text class="lbl" x="212" y="232" text-anchor="middle">2</text><text class="lbl" x="328" y="232" text-anchor="middle">4</text><text class="lbl" x="444" y="232" text-anchor="middle">6</text><text class="lbl" x="560" y="232" text-anchor="middle">8</text><text class="lbl" x="676" y="232" text-anchor="middle">10</text><text class="lbl" x="792" y="232" text-anchor="middle">12 s</text>
+      </svg>
+    </div>
+    <div class="sub">按 LoCoMo 上 mem0-local 的实测均值画的比例：检索约 0.07 s，生成 1.2–1.3 s，一次 add 约 4.5 s。异步模式下，add 在 agent 回复后立即提交到后台，和用户思考时间重叠。</div>
+  </div>
+  <div class="tbl prose"><table>
+    <thead><tr><th>步骤</th><th>做什么</th><th>怎么测</th><th>记录在</th></tr></thead>
+    <tbody>
+      <tr><td>① 检索<br><span class="mono">agent.retrieve</span></td><td>用这句用户消息检索 top-10 记忆。mem0：<code>mem0.search</code>，包括查询 embedding、向量检索、BM25 关键词检索、实体加权、打分排序。rag-pg：查询 embedding，再用 pgvector 按余弦距离 <code>ORDER BY … LIMIT 10</code></td><td>span 墙钟。内部的 embedding 请求（代理记录）、SQL 和 Qdrant 调用（驱动包装）、spaCy（<code>nlp.*</code>）、实体加权（<code>mem0.entity_boost</code>）各自是子区间</td><td class="mono">spans、llm_calls</td></tr>
+      <tr><td>② 拼 prompt</td><td>system prompt 由三部分组成：助手设定、当前日期、检索到的记忆。之后接最近 6 条对话历史和这句用户消息</td><td>不单独计时，算在每轮的“非 LLM”时间里</td><td>—</td></tr>
+      <tr><td>③ 生成<br><span class="mono">agent.generate</span></td><td>一次 chat 请求，<code>max_tokens</code> 1024（包含 reasoning），temperature 0.7，<code>reasoning_effort=low</code></td><td>代理记录四个时刻：收到请求 t0、首 token、首个 answer token、结束。t0 到首 token 是 prefill 加排队；首 token 到首个 answer token 是 reasoning decode；其后到结束是 answer decode</td><td class="mono">llm_calls（client=agent）</td></tr>
+      <tr><td>④ 写入<br><span class="mono">agent.memorize</span><br><span class="mono">memorize_async</span></td><td>把（用户消息，回复）交给记忆系统的 add。同步模式下在本轮内执行。异步模式下提交到只有 1 个线程的后台队列，本轮立即结束</td><td>span 墙钟；mem0 内部 10 个阶段的打点（5.4）。每次提交时记录队列长度，每次完成时记录提交延迟</td><td class="mono">spans、meta</td></tr>
+      <tr><td>⑤ 思考</td><td>异步组 sleep 5 s</td><td>不计入用户等待</td><td>—</td></tr>
+      <tr><td>⑥ 问答<br><span class="mono">agent.qa</span></td><td>所有轮次结束后进行；异步组先等后台队列排空。每道题先检索，再回答（temperature 0，<code>max_tokens</code> 512）</td><td>计时方法同①③；回答写入 <code>qa.json</code> 供评分（5.10）</td><td class="mono">qa.json</td></tr>
+    </tbody>
+  </table></div>
+  <p>第 0 轮不计入稳态统计，报告中的每轮均值都从第 1 轮算起。冷启动单独记作 <code>cold.start</code>。gpt-oss-20b 由代理统一加上 <code>reasoning_effort=low</code>。mem0 默认请求的模型名是 gpt-4.1-mini，代理把它改写成本地模型；除了指向代理的 LLM 和 embedding 地址、向量库配置之外，mem0 的其他设置都保持默认。</p>
+
+  <h3>5. 每类数据是怎么抓的</h3>
+  <div class="m">
+    <h4>5.1 span 计时器<span class="mono">memprof/tracer.py</span></h4>
+    <ul>
+      <li>用 <code>with TRACER.span(name)</code> 包住一段代码，进入和退出时各取一次：
+        <ul>
+          <li>墙钟：<code>perf_counter_ns</code>。</li>
+          <li>CPU 时间：<code>process_time_ns</code>，本进程所有线程合计，ONNX 和 numpy 的工作线程也算在内。</li>
+          <li><code>/proc/self/io</code> 计数：rchar/wchar 是经过 read/write 系统调用的字节；read_bytes/write_bytes 是真正落到块设备的字节。</li>
+          <li>缺页次数：<code>getrusage</code>。</li>
+        </ul></li>
+      <li>每个线程维护自己的嵌套栈，记录父 span，并附上当前阶段（chat、qa、cold）和轮号。</li>
+      <li>不改源码，全部用 monkeypatch 包装：
+        <ul>
+          <li>mem0 内部：<code>Memory.add</code>、<code>Memory.search</code>、<code>_compute_entity_boosts</code>、<code>score_and_rank</code>。</li>
+          <li>spaCy：词形还原（BM25 用）和 NER；BM25 编码。</li>
+          <li>存储与 embedding 客户端：SQLite 历史库、embedding 客户端。</li>
+          <li>数据库驱动：psycopg 的 <code>execute</code>、<code>executemany</code>、<code>commit</code>；<code>QdrantClient</code> 的各个读写方法。mem0-local 的嵌入式 Qdrant 用的也是这个类，所以三种后端测法一致。</li>
+        </ul></li>
+      <li>可能并发的调用（数据库驱动、后台线程里的调用）记成“扁平区间”，不进嵌套栈；分析时按区间并集处理，不会重复计数。</li>
+      <li>开销：每次运行开头实测一个空 span 的开销，约 44–46 µs，存进 <code>meta.json</code>。一轮几十个 span，合计不到几毫秒。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.2 LLM 代理<span class="mono">memprof/llm_proxy.py</span></h4>
+    <ul>
+      <li>agent 和所有被测系统的 <code>base_url</code> 都指向代理。代理把请求中的模型名改成本地模型，再转发给 llama-server。</li>
+      <li><b>非流式请求改成流式。</b>mem0 发的是普通的非流式请求，拿不到首 token 时间。代理把它改成流式发给 llama-server，收完再拼成非流式响应返回。被测系统完全感知不到，但每次调用都能测到首 token。</li>
+      <li><b>reasoning 和 answer 分开计数。</b>逐个解析流式 chunk：
+        <ul>
+          <li>带 <code>reasoning_content</code> 的计为 reasoning token。</li>
+          <li>带 <code>content</code> 或 <code>tool_calls</code> 的计为 answer token。llama.cpp 每个 chunk 恰好一个 token。</li>
+          <li>记下首 token 时刻和首个 answer token 时刻，decode 就以后者为界拆成 reasoning 段和 answer 段。</li>
+        </ul></li>
+      <li><b>服务端计时。</b>从最后一个 chunk 的 <code>usage</code> 和 llama.cpp 的 <code>timings</code> 中取 prompt token 数和生成 token 数，以及：
+        <ul>
+          <li><code>cache_n</code>：命中前缀缓存、不用重算的 token 数。</li>
+          <li><code>prompt_ms</code>：服务端实际做 prefill 的时间。</li>
+        </ul></li>
+      <li><b>排队时间估计。</b>首 token 时间 − <code>prompt_ms</code> − 2 ms，其中 2 ms 是 HTTP 和首个 chunk 的固定开销。这个数是上界：两路请求合批时，prefill 本身也会被另一路拖慢。</li>
+      <li><b>区分调用来源。</b>agent 的请求带请求头 <code>X-Memprof-Client: agent</code>，其余都算记忆系统自己的调用。</li>
+      <li>embedding 请求同样经过代理，记录起止时间和输入条数。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.3 时间归因：每轮分解的几段是怎么来的<span class="mono">analysis/multi_breakdown.py</span></h4>
+    <ul>
+      <li>一个操作区间（比如一次 add）里会有多个子区间：LLM 调用、embedding、数据库、spaCy。它们可能互相重叠，例如并发的数据库调用。</li>
+      <li>用扫描线把区间里的每一时刻只归给一个类别，按下面的优先级取最高者：
+        <ol>
+          <li>LLM decode（reasoning 段和 answer 段同级）</li>
+          <li>LLM prefill + 排队</li>
+          <li>Embedding</li>
+          <li>DB</li>
+          <li>NLP</li>
+          <li>其他：没有被任何子区间覆盖的时间，即 Python 胶水代码、序列化、HTTP 开销</li>
+        </ol>
+        各类加起来正好等于操作的墙钟时间。</li>
+      <li><code>agent.generate</code> 只统计 agent 标签的调用，写入操作只统计记忆系统的调用，所以异步模式下前台和后台的 LLM 时间不会混在一起。</li>
+      <li>报告中前台条的“非 LLM 与调用开销” = <code>agent.turn</code> 的墙钟 − <code>agent.generate</code> 的三段 LLM 时间。</li>
+      <li>每个操作都取第 1 轮起的均值，同时给出 p50、p95 和最大值。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.4 mem0 add 的 10 个阶段<span class="mono">bench/systems/mem0_sys.py</span></h4>
+    <ul>
+      <li><b>打点方法。</b>mem0 2.2.1 的写入流水线 <code>_add_to_vector_store</code> 是一个顺序执行的大函数，无法单独包住每个阶段。做法是在每个阶段第一个调用的函数上打时间标记：一个阶段从自己的标记开始，持续到下一个阶段的标记，阶段之间的 Python 代码也算进去。</li>
+      <li><b>标记只能往后走</b>，阶段号必须递增。这样一个阶段内部重复调用某个函数，不会被错误地切回前一个阶段。</li>
+      <li><b>跳过的阶段</b>（没抽出新记忆时，后 7 段都不执行）按 0 计入均值。</li>
+      <li><b>阶段内再拆分。</b>每个阶段内部再按 5.3 的方法分成 LLM、embedding、DB、NLP 和其他。</li>
+    </ul>
+    <div class="tbl prose"><table>
+      <thead><tr><th>阶段</th><th>以哪个函数的第一次调用为起点</th></tr></thead>
+      <tbody>
+        <tr><td>context</td><td class="mono">db.get_last_messages</td></tr>
+        <tr><td>retrieve_existing</td><td><span class="mono">embedding_model.embed(…, "search")</span> 或 <span class="mono">vector_store.search</span></td></tr>
+        <tr><td>llm_extract</td><td class="mono">llm.generate_response</td></tr>
+        <tr><td>embed_new</td><td><span class="mono">embedding_model.embed_batch</span>（实体阶段之前）</td></tr>
+        <tr><td>lemmatize_dedup</td><td class="mono">lemmatize_for_bm25</td></tr>
+        <tr><td>persist</td><td><span class="mono">vector_store.insert</span> 或 <span class="mono">db.batch_add_history</span></td></tr>
+        <tr><td>entity_ner</td><td class="mono">extract_entities_batch</td></tr>
+        <tr><td>entity_embed</td><td><span class="mono">embedding_model.embed_batch</span>（实体阶段之后）</td></tr>
+        <tr><td>entity_lookup</td><td><span class="mono">_existing_entities_by_text</span> 或 <span class="mono">entity_store.search(_batch)</span></td></tr>
+        <tr><td>entity_write</td><td><span class="mono">entity_store.update</span> 或 <span class="mono">entity_store.insert</span></td></tr>
+        <tr><td>（结束）</td><td><span class="mono">_add_to_vector_store</span> 返回</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="m">
+    <h4>5.5 同步与异步的指标定义</h4>
+    <ul>
+      <li><b>用户等待</b>：<code>agent.turn</code> 的墙钟，即检索、拼 prompt 和 agent 生成之和；同步模式下还包括写入，因为下一句要等写入完成才会被处理。不含思考时间。</li>
+      <li><b>提交延迟</b>：从后台任务提交，到这次 add 返回，包括在队列里等待的时间。add 返回后，这句话的记忆就可以被检索到。</li>
+      <li><b>积压</b>：每次提交时，队列里尚未完成的 add 数，包括刚提交的这一个。</li>
+      <li><b>agent 每 token 的 decode 时间</b>：<code>agent.generate</code> 的 decode 时间 ÷ 它生成的 token 数（reasoning 加 answer）。</li>
+      <li>后台只有一个写入线程，所以 add 串行执行。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.6 硬件与进程采样<span class="mono">memprof/hwmon.py</span></h4>
+    <ul>
+      <li><b>每 0.25 s，GPU（NVML）</b>：GPU 利用率、显存带宽利用率、显存占用、功耗、SM 频率、PCIe 吞吐。NVML 的利用率是“采样周期内有 kernel 在运行的时间比例”，只说明有没有 kernel 在跑，不说明 SM 用了多少，所以 kernel 级的忙碌率另用 nsys 测（5.8）。</li>
+      <li><b>每 0.25 s，进程</b>：用 psutil 按命令行把进程分组（llm_server、embed_server、postgres、qdrant、proxy、harness），记录每组的 CPU%（100% 等于一个核）和常驻内存。正文中“llama-server 占约一个核（89–103%）”和“mem0-local 压测进程 71% CPU、2.25 GB”都来自这里。</li>
+      <li><b>每 1 s，llama.cpp <code>/metrics</code></b>：prompt token 总数、命中缓存的 token 总数、生成 token 总数和耗时。用首末两次的差值，算整次运行的前缀缓存命中率和平均吞吐。</li>
+      <li><b>每 1 s，磁盘</b>：各进程组的 <code>/proc/&lt;pid&gt;/io</code>、数据盘的 <code>/proc/diskstats</code>（含 flush 次数和耗时），以及 IO 压力（PSI）。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.7 存储 I/O 与数据库</h4>
+    <ul>
+      <li><b>同步模式</b>下，每个操作前后各取一次快照，差值记到这个操作上：
+        <ul>
+          <li>系统侧：各进程组的块设备读写字节和系统调用读写字节、磁盘 flush 次数。</li>
+          <li>Postgres 侧：<code>pg_stat_statements</code>（语句数、执行时间、共享缓冲命中与读盘、WAL 字节）、<code>pg_stat_wal</code>、<code>pg_stat_io</code>。</li>
+        </ul></li>
+      <li><b>异步模式</b>下后台写入和前台并发，差值没法归到单个操作，只保留整次运行的总量。</li>
+      <li><b>数据库配置。</b>Postgres 保持默认的持久化设置（fsync 和 synchronous_commit 都开启），shared_buffers 2 GB，开启 IO 计时。</li>
+      <li><b>磁盘基线</b>（preflight 中用 fio 测得）：顺序读 4.8 GB/s；4k 随机读 5.9 万 IOPS；4k 写加 fsync 412 IOPS，平均每次 2.4 ms。</li>
+      <li>Colab 的数据目录在 overlay 文件系统上，块设备层的计数不一定能对应到具体文件。</li>
+      <li>这次实验只有几千条记忆、几十 MB 数据，存储读写和 fsync 每轮都在毫秒级，所以正文没有展开。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.8 GPU kernel 抓取（Nsight Systems）<span class="mono">analysis/kernel_profile.py</span></h4>
+    <ul>
+      <li><b>启动方式。</b>kprof 套件让 llama-server 在 <code>nsys launch --trace=cuda</code> 的会话里启动，只跟踪 CUDA，不做 CPU 采样，启动后先不采集。这台机器上的 nsys 不支持 <code>--cuda-graph-trace</code>，为了看到 CUDA graph 里的每个 kernel，llama-server 以 <code>GGML_CUDA_DISABLE_GRAPHS=1</code> 运行。</li>
+      <li><b>抓取窗口。</b>每个系统单独跑一次 16 轮的异步 LoCoMo，同样有 5 s 思考时间：
+        <ul>
+          <li>前 10 轮用来预热，让前缀缓存和存储进入稳态。</li>
+          <li>第 10 轮开始前执行 <code>nsys start</code>，第 13 轮开始前执行 <code>nsys stop</code>。</li>
+          <li>窗口约 19 s，覆盖第 10–12 轮的前台回答、第 9 轮写入的尾部，以及第 10–12 轮的完整写入。</li>
+        </ul></li>
+      <li><b>导出。</b>把抓取结果导出成 SQLite，读出每个 kernel 的起止时间和完整名字，以及每次显存拷贝。</li>
+      <li><b>分类。</b>按 llama.cpp 的 kernel 名用正则分类，模板参数里带着量化类型：MXFP4 MoE matmul、Q8_0 dense matmul、flash attention、激活量化、norm、rope、softmax/top-k、KV 写入、逐元素运算等。</li>
+      <li><b>对齐。</b>nsys 和代理的时钟基准不同。把 kernel 活动和代理记录的 LLM 活动都切成 1 ms 的格子，用 FFT 互相关找到让两者重叠最多的平移量。校验：对齐后 98.5–99.9% 的 kernel 时间落在某次 LLM 调用之内。</li>
+      <li><b>归因到阶段。</b>
+        <ul>
+          <li>用代理日志把每次 LLM 调用切成排队、prefill、reasoning、answer 四段，并标明是 agent 还是记忆系统的调用。prefill 段取首 token 之前、长度为 <code>prompt_ms</code> 的那一段。</li>
+          <li>每个 kernel 按它的中点落在哪一段打标签。两路请求同时在跑时，标签是组合，例如 agent:answer+memory:reasoning，因为 llama.cpp 把两路请求合进同一次前向计算。</li>
+        </ul></li>
+      <li><b>GPU 忙碌率</b> = 该段内 kernel 时间之和 ÷ 该段的墙钟时间。它能看到 kernel 之间的空隙，比 NVML 利用率精确。</li>
+      <li>embedding 服务是另一个进程，没有被跟踪。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.9 硬件计数器（Nsight Compute）与吞吐基准</h4>
+    <ul>
+      <li><b>负载。</b>先停掉 llama-server 让出 GPU，再用 ncu 运行 llama-bench。模型文件相同，全部层放在 GPU 上，开启 flash attention：
+        <ul>
+          <li>decode：<code>-p 0 -n 32</code>。</li>
+          <li>prefill：<code>-p 1024 -n 0</code>，即 1024 token 的 prompt。</li>
+          <li>两者上下文都从 0 开始。</li>
+        </ul></li>
+      <li><b>采样哪些 kernel。</b>只采名字匹配 mul_mat、flash_attn、quantize、norm、soft_max、rope 的 kernel。跳过前 300 次启动（模型加载和预热），之后采 80 个。</li>
+      <li><b>指标。</b>用 SpeedOfLight 小节：
+        <ul>
+          <li>DRAM、SM、tensor 管线、L2 的吞吐占峰值的百分比。</li>
+          <li>理论占用率，即每个 SM 可驻留 warp 的上限。</li>
+        </ul>
+        正文表格按 kernel 名汇总。</li>
+      <li><b>局限。</b>这是合成负载，上下文很短。真实请求有 8k 级上下文，attention 的占比会更高。</li>
+      <li><b>吞吐基准。</b>另外用 llama-bench 测了 pp512 和 tg64 在上下文深度 0–16k 下的吞吐，每档 3 次，作为速率参考。</li>
+    </ul>
+  </div>
+  <div class="m">
+    <h4>5.10 评分与规模分析<span class="mono">analysis/qa_score.py</span></h4>
+    <ul>
+      <li><b>token F1</b>：SQuAD 风格，去掉标点和冠词后，按词计算预测与标准答案的重合，即 LoCoMo 论文的指标。</li>
+      <li><b>LLM 评委</b>：用同一个本地 gpt-oss-20b（经代理）判 CORRECT 或 WRONG。按题型使用不同规则，参照 LongMemEval 的评测脚本和 mem0 的 J 指标，例如时间题允许差一天，知识更新题要求给出最新值。论文用的评委是 GPT-4o，所以绝对值不能与论文直接对比。</li>
+      <li><b>规模增长</b>：把每个 LongMemEval haystack 按轮号均分成 5 段，越往后存储里的记忆越多。每段内对检索墙钟取均值，再对 3 个 haystack 取平均。</li>
+    </ul>
+  </div>
+
+  <h3>6. 报告中的数字从哪来</h3>
+  <div class="tbl prose"><table>
+    <thead><tr><th>报告里的数</th><th>原始数据</th><th>怎么算</th></tr></thead>
+    <tbody>
+      <tr><td>每轮分解（前台、后台各段）</td><td class="mono">spans.jsonl + llm_calls.jsonl</td><td>对 <code>agent.turn</code>、<code>agent.generate</code>、<code>agent.memorize_async</code> 做扫描线归因，取第 1 轮起的均值</td></tr>
+      <tr><td>prompt、reasoning、answer token，缓存命中</td><td class="mono">llm_calls.jsonl</td><td>对落在操作区间内的调用求和，再对轮次取均值</td></tr>
+      <tr><td>mem0 add 10 个阶段</td><td>spans.jsonl 中的 <span class="mono">mem0.add.phase</span> 标记</td><td>相邻标记之差，再按 5.3 拆分</td></tr>
+      <tr><td>提交延迟、积压</td><td>meta.json 的 <span class="mono">commit_lag_s</span>；spans 的 <span class="mono">agent.backlog</span></td><td>中位数、最大值</td></tr>
+      <tr><td>GPU 利用率、进程 CPU、前缀缓存命中</td><td class="mono">hw.jsonl</td><td>整次运行的均值，或首末计数之差</td></tr>
+      <tr><td>kernel 类别、各阶段 GPU 忙碌率、耗时最多的 kernel</td><td class="mono">store/kprof.nsys-rep</td><td>导出 SQLite，按 5.8 对齐、分类、归因</td></tr>
+      <tr><td>DRAM、SM、Tensor 利用率</td><td class="mono">kprof_ncu/tg.csv、pp.csv</td><td>按 kernel 名汇总</td></tr>
+      <tr><td>评委准确率与 F1</td><td class="mono">qa.json</td><td>按 5.10 打分</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note"><b>测量本身的局限。</b>
+    <ul style="margin:6px 0 0;padding-left:1.2em;display:grid;gap:4px">
+      <li>异步模式下，前台检索等非 LLM 操作内部的类别拆分会混进同时在跑的后台调用。例如 mem0-local 检索的 74 ms 里，有 29 ms 被记成 LLM decode，那其实是后台写入的 decode。墙钟本身不受影响，报告的前台条也只用了 <code>agent.generate</code> 的 LLM 段，其余合为“非 LLM”。</li>
+      <li>排队时间是上界估计。</li>
+      <li>token 数按流式 chunk 计数。</li>
+      <li>NVML 利用率粒度较粗。</li>
+    </ul>
   </div>
 </section>
 
@@ -180,14 +488,14 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
 
 <section id="kernel">
   <h2>GPU kernel 级分解</h2>
-  <p>用 nsys 抓取异步 LoCoMo 第 10–13 轮的全部 CUDA kernel，按时间戳对齐到代理记录的每次 LLM 调用，再按调用所处的阶段归类。对齐质量很高：98.5–99.9% 的 kernel 时间落在某次 LLM 调用之内。</p>
+  <p>用 nsys 抓取异步 LoCoMo 第 10–12 轮前后约 19 s 内的全部 CUDA kernel（抓取方法见 5.8），按时间戳对齐到代理记录的每次 LLM 调用，再按调用所处的阶段归类。对齐质量很高：98.5–99.9% 的 kernel 时间落在某次 LLM 调用之内。</p>
   <div class="figure">
     <h4>mem0-local：各阶段的 kernel 类别占比与 GPU 忙碌率</h4>
     <div class="legend" id="lg2"></div>
     <div class="chart" id="c2" role="img" aria-label="各阶段 kernel 类别百分比堆叠条形图"></div>
     <div class="sub">右侧数字是 GPU 忙碌率，即 kernel 时间除以该阶段的墙钟时间。“agent 与记忆重叠”指两路请求同时在 GPU 上的时段。</div>
   </div>
-  <h3>四个系统的 kernel 时间（第 10–13 轮）</h3>
+  <h3>四个系统的 kernel 时间（第 10–12 轮）</h3>
   <div class="tbl"><table>
     <thead><tr><th></th><th class="n">kernel 时间 / 抓取时长</th><th class="n">kernel 数</th><th class="n">MoE MXFP4</th><th class="n">Q8_0 dense</th><th class="n">flash attn</th><th class="n">其他</th><th class="n">记忆 reasoning 段<br>GPU 忙碌率</th></tr></thead>
     <tbody>
@@ -210,7 +518,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
     </tbody>
   </table></div>
   <h3>Nsight Compute 硬件计数器</h3>
-  <p>用 ncu 对 llama-bench 的 decode（tg）和 prefill（pp512）各采样 80 个 kernel。百分比都是相对 L4 峰值的利用率。</p>
+  <p>用 ncu 对 llama-bench 的 decode（tg）和 1024 token 的 prefill 各采样 80 个 kernel（方法见 5.9）。百分比都是相对 L4 峰值的利用率。</p>
   <div class="tbl"><table>
     <thead><tr><th>阶段</th><th>kernel</th><th class="n">时间占比</th><th class="n">DRAM</th><th class="n">SM</th><th class="n">Tensor</th><th class="n">L2</th><th class="n">活跃 warp 上限</th><th>判断</th></tr></thead>
     <tbody>
@@ -222,7 +530,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
       <tr><td>prefill</td><td class="mono">flash_attn_ext_f16</td><td class="n">3.1%</td><td class="n">16.3%</td><td class="n">38.2%</td><td class="n">38.2%</td><td class="n">32.6%</td><td class="n">16.7%</td><td>同上</td></tr>
     </tbody>
   </table></div>
-  <p>推算：每个 decode token 要读取活跃专家、注意力权重和输出头，约 2–3 GB。按 300 GB/s 算下限约 7–10 ms，实测 12–14 ms/token，与“带宽受限”的判断一致。D2H 拷贝约 0.6 MB/token，是 logits 回传，4 轮合计 88 ms，可以忽略。</p>
+  <p>推算：每个 decode token 要读取活跃专家、注意力权重和输出头，约 2–3 GB。按 300 GB/s 算下限约 7–10 ms，实测 12–14 ms/token，与“带宽受限”的判断一致。D2H 拷贝约 0.6 MB/token，是 logits 回传，整个抓取窗口合计 88 ms，可以忽略。</p>
 </section>
 
 <section id="async">
@@ -280,7 +588,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
       <tr><td>读取：agent prefill + 排队</td><td class="n">1.67 s</td><td class="n">0.56–0.57 s</td></tr>
       <tr><td>用户等待</td><td class="n">4.23 s</td><td class="n">3.51–3.78 s</td></tr>
       <tr><td>提交延迟中位数</td><td class="n">0.04 s</td><td class="n">17–34 s</td></tr>
-      <tr><td>GPU kernel 时间（LoCoMo，4 轮）</td><td class="n">3.0 s</td><td class="n">11.6–16.3 s</td></tr>
+      <tr><td>GPU kernel 时间（LoCoMo 抓取窗口，3 轮）</td><td class="n">3.0 s</td><td class="n">11.6–16.3 s</td></tr>
     </tbody>
   </table></div>
   <p>两者的成本结构几乎相反。rag-pg 写入时什么都不做，读的时候把原文整段塞进 prompt，所以成本在读路径的 prefill 上，并且随检索出的原文长度增长。mem0 在写入时用 LLM 把对话压缩成短事实，读路径的 prompt 很短，但每轮都要付出一次 8–9k token 的 reasoning 调用，并且新记忆要等写完才能检索。在单卡上，mem0 的 GPU 总工作量约为 rag-pg 的 4–5 倍。</p>
@@ -320,7 +628,7 @@ code { font-family: var(--font-mono); font-size: .9em; background: color-mix(in 
   <div class="note"><b>CUDA graph。</b>nsys 2025.3 不支持 <code>--cuda-graph-trace</code>，为了看到单个 kernel，kernel 抓取时 llama-server 以 <code>GGML_CUDA_DISABLE_GRAPHS=1</code> 运行。这会增加 kernel 启动开销，使 kernel 抓取中的 GPU 忙碌率偏低，尤其是单路 decode。各类 kernel 的占比和 ncu 计数器不受影响。</div>
   <div class="note"><b>类别名。</b>VM 上分析 kernel 时用的是旧分类名 “matmul (quantized, other)”，在 gpt-oss-20b 上它对应 Q8_0 dense matmul（注意力投影和输出头）。本报告统一写作 “Q8_0 dense”。</div>
   <div class="note"><b>对照条件。</b>同步对照组没有思考时间，异步组有 5 s，所以两组的平均 GPU 利用率不能直接比较。同步运行是 reasoning 拆分功能上线前做的，没有 reasoning / answer 分段，表中只比较了总 decode 和每 token 时间。</div>
-  <div class="note"><b>样本。</b>kernel 抓取覆盖第 10–13 轮（4 轮）。ncu 数据来自 llama-bench，而不是真实请求。LongMemEval 只有 3 个 haystack。所有实验各跑一次，没有重复。</div>
+  <div class="note"><b>样本。</b>kernel 抓取覆盖第 10–12 轮的前台回答及其后台写入（约 19 s）。ncu 数据来自 llama-bench，而不是真实请求。LongMemEval 只有 3 个 haystack。所有实验各跑一次，没有重复。</div>
 </section>
 
 <footer>
